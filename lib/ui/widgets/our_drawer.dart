@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/ui/pages/emmanuels_page.dart';
 import 'package:libertaspeople/ui/pages/home_page.dart';
 import 'package:libertaspeople/ui/pages/michaels_page.dart';
 import 'package:libertaspeople/ui/pages/peters_page.dart';
@@ -34,7 +35,17 @@ class OurDrawer extends StatelessWidget {
               );
             },
           ),
-          ListTile(
+            ListTile(
+            title: Text("Emmanuel's Page"),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => EmmanuelsPage(),
+                ),
+              );
+            },
+          ),
+            ListTile(
             title: Text("Michael's Page"),
             onTap: () {
               Navigator.of(context).push(
