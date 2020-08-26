@@ -42,6 +42,11 @@ class OurDrawer extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => SouviksPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
             title: Text("Emmanuel's Page"),
             onTap: () {
               Navigator.of(context).push(
