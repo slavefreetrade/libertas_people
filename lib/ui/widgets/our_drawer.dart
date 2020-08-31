@@ -4,6 +4,7 @@ import 'package:libertaspeople/ui/pages/home_page.dart';
 import 'package:libertaspeople/ui/pages/michaels_page.dart';
 import 'package:libertaspeople/ui/pages/peters_page.dart';
 import 'package:libertaspeople/ui/pages/souviks_page.dart';
+import 'package:libertaspeople/ui/pages/vipuls_page.dart';
 
 class OurDrawer extends StatelessWidget {
   @override
@@ -62,6 +63,16 @@ class OurDrawer extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => MichaelsPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text("Vipul's Page"),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => VipulsPage(),
                 ),
               );
             },
