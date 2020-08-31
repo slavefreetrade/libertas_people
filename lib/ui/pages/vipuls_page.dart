@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/global_widgets/our_drawer.dart';
 
-import '../widgets/our_drawer.dart';
 
 class VipulsPage extends StatelessWidget {
   @override

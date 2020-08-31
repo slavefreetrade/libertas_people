@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/data/todo_repository.dart';
 import 'package:libertaspeople/ui/pages/emmanuels_page.dart';
-import 'package:libertaspeople/ui/pages/home_page.dart';
+import 'package:libertaspeople/features/home/home_page.dart';
 import 'package:libertaspeople/ui/pages/michaels_page.dart';
-import 'package:libertaspeople/ui/pages/peters_page.dart';
+import 'package:libertaspeople/features/peters_todo_list/peters_page.dart';
 import 'package:libertaspeople/ui/pages/souviks_page.dart';
 import 'package:libertaspeople/ui/pages/ayushs_page.dart';
 import 'package:libertaspeople/ui/pages/vipuls_page.dart';
@@ -33,7 +34,7 @@ class OurDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => PetersPage(),
+                  builder: (context) => PetersPage(repo: TodoRepository()),
                 ),
               );
             },
@@ -74,10 +75,10 @@ class OurDrawer extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => AyushsPage(),
-                 ),
+                ),
               );
             },
-          ),  
+          ),
           ListTile(
             title: Text("Vipul's Page"),
             onTap: () {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/ui/widgets/our_drawer.dart';
+import 'package:libertaspeople/global_widgets/our_drawer.dart';
 
 class SouviksPage extends StatelessWidget {
   @override
