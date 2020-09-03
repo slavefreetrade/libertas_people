@@ -64,7 +64,7 @@ class OurDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => MichaelsPage(),
+                  builder: (context) => MichaelsPage(repo: TodoRepository()),
                 ),
               );
             },
