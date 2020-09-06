@@ -6,7 +6,9 @@ import 'package:libertaspeople/ui/pages/michaels_page.dart';
 import 'package:libertaspeople/features/peters_todo_list/peters_page.dart';
 import 'package:libertaspeople/ui/pages/souviks_page.dart';
 import 'package:libertaspeople/ui/pages/ayushs_page.dart';
-import 'package:libertaspeople/ui/pages/vipuls_page.dart';
+import 'package:libertaspeople/features/vipuls_todo_list/vipuls_page.dart';
+
+import '../data/todo_repository.dart';
 
 class OurDrawer extends StatelessWidget {
   @override
@@ -84,7 +86,9 @@ class OurDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => VipulsPage(),
+                  builder: (context) => VipulsPage(
+                    repo: TodoRepository(),
+                  ),
                 ),
               );
             },
