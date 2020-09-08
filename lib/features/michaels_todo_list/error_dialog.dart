@@ -19,7 +19,7 @@ class _ErrorDialogState extends State<ErrorDialog> {
         builder: (context) => MichaelsPage(repo: TodoRepository()),
       );
 
-  _refreshPage(BuildContext context) {
+  _buildRefreshButton(BuildContext context) {
     return FlatButton(
       child: Text('Refresh'),
       onPressed: () {
@@ -37,7 +37,7 @@ class _ErrorDialogState extends State<ErrorDialog> {
           title: new Text('An error has occurred'),
           content: new Text(errorDetails),
           actions: <Widget>[
-            _refreshPage(context),
+            _buildRefreshButton(context),
             FlatButton(
               child: new Text('Close'),
               onPressed: () {
@@ -62,7 +62,7 @@ class _ErrorDialogState extends State<ErrorDialog> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(errorDetails),
-        _refreshPage(context),
+        _buildRefreshButton(context),
       ],
     );
   }
