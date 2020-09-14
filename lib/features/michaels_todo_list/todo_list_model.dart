@@ -16,6 +16,9 @@ class TodoListModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  String _selectedTodoUid;
+  String get selectedTodoUid => _selectedTodoUid;
+
   void _setIsLoadingTo(bool state) {
     _isLoading = state;
     notifyListeners();
@@ -25,7 +28,14 @@ class TodoListModel extends ChangeNotifier {
     _todos = todos;
   }
 
-  Future loadTodos() async {
+  void updateSelectedTodoUid(String uid) {
+    assert(uid != null);
+
+    _selectedTodoUid = uid;
+    notifyListeners();
+  }
+
+  Future<void> loadTodos() async {
     _setIsLoadingTo(true);
 
     await Task(() => repository.fetchTodoItems())
@@ -34,6 +44,32 @@ class TodoListModel extends ChangeNotifier {
         .run()
         .then((todoList) => _setTodos(todoList));
 
+    _setIsLoadingTo(false);
+  }
+
+  Future<void> removeTodo(TodoItem todo) async {
+    assert(todo != null);
+    assert(todo.uid != null);
+
+    _setIsLoadingTo(true);
+    await repository.deleteTodoItem(todo.uid);
+    _setIsLoadingTo(false);
+  }
+
+  Future<void> addTodo(TodoItem todo) async {
+    assert(todo != null);
+
+    _setIsLoadingTo(true);
+    await repository.addTodoItem(todo);
+    _setIsLoadingTo(false);
+  }
+
+  Future<void> updateTodo(TodoItem todo) async {
+    assert(todo != null);
+    assert(todo.uid != null);
+
+    _setIsLoadingTo(true);
+    await repository.updateTodoItem(todo);
     _setIsLoadingTo(false);
   }
 }

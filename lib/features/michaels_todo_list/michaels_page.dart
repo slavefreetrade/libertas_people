@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data/todo_repository.dart';
+import 'package:libertaspeople/features/michaels_todo_list/edit_and_add_widget.dart';
 import 'package:libertaspeople/global_widgets/our_drawer.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,16 @@ class MichaelsPage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Michael's Page"),
         ),
-        body: TodoListView(),
+        body: Column(
+          children: [
+            Expanded(child: TodoListView()),
+            SizedBox(
+              height: 60,
+              width: double.maxFinite,
+              child: EditAndAddWidget(),
+            ),
+          ],
+        ),
       ),
     );
   }

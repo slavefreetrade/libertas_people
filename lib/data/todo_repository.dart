@@ -8,20 +8,6 @@ import 'package:libertaspeople/models/todo_item_model.dart';
 class TodoRepository {
   final LocalTodoDataSource dataSource = LocalTodoDataSource();
 
-  test(Function f) {
-    try {
-      f();
-    } on SocketException {
-      throw Failure('No Internet connection');
-    } on HttpException {
-      throw Failure("Couldn't find the post");
-    } on FormatException {
-      throw Failure("Bad response format");
-    } on NetworkException {
-      throw Failure('No Internet connection');
-    }
-  }
-
   Future<List<TodoItem>> fetchTodoItems() async {
     try {
       List<dynamic> dataList = await dataSource.fetchDataList();
@@ -36,12 +22,12 @@ class TodoRepository {
       return todoList;
     } on NetworkException {
       throw Failure('No Internet connection');
-    } on SocketException {
-      throw Failure('No Internet connection');
     } on HttpException {
       throw Failure("Couldn't find the todo list");
     } on FormatException {
       throw Failure("Bad response format");
+    } catch (e) {
+      throw Failure("Unhandled error");
     }
   }
 

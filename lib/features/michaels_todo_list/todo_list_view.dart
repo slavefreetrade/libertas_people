@@ -15,9 +15,7 @@ class TodoListView extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         } else {
           return notifier.todos.fold(
-            (failure) => ErrorDialog(
-              errorDetails: failure.message,
-            ),
+            (failure) => ErrorDialog(errorDetails: failure.toString()),
             (todoList) => todoList.isEmpty
                 ? TodoEmptyList()
                 : ListView.builder(
