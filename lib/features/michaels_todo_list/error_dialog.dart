@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/ui/pages/michaels_page.dart';
+import 'package:libertaspeople/features/michaels_todo_list/michaels_page.dart';
 
 class ErrorDialog extends StatefulWidget {
   final String errorDetails;
@@ -18,6 +18,25 @@ class _ErrorDialogState extends State<ErrorDialog> {
   MaterialPageRoute<dynamic> get refreshRoute => MaterialPageRoute(
         builder: (context) => MichaelsPage(repo: TodoRepository()),
       );
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(errorDetails),
+          _buildRefreshButton(context),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) => _showDialog(context));
+  }
 
   _buildRefreshButton(BuildContext context) {
     return FlatButton(
@@ -47,23 +66,6 @@ class _ErrorDialogState extends State<ErrorDialog> {
           ],
         );
       },
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) => _showDialog(context));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(errorDetails),
-        _buildRefreshButton(context),
-      ],
     );
   }
 }
