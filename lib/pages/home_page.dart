@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/global_widgets/our_drawer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,7 +9,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: OurDrawer(),
         appBar: AppBar(
           title: Text("Home"),
         ),
