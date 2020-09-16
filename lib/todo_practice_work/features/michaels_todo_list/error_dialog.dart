@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/ui/pages/michaels_page.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/ui/pages/michaels_page.dart';
 
 class ErrorDialog extends StatefulWidget {
   final String errorDetails;

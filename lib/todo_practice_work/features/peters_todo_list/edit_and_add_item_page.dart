@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/models/custom_exceptions.dart';
-import 'package:libertaspeople/models/todo_item_model.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/models/custom_exceptions.dart';
+import 'package:libertaspeople/todo_practice_work/models/todo_item_model.dart';
+
 
 class EditAndAddItemPage extends StatefulWidget {
   final TodoItem item;

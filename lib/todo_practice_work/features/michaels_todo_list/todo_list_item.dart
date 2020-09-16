@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/models/todo_item_model.dart';
+import 'package:libertaspeople/todo_practice_work/models/todo_item_model.dart';
 
 class TodoListItemWidget extends StatelessWidget {
   final TodoItem item;
