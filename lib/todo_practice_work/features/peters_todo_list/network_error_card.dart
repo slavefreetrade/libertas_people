@@ -33,7 +33,7 @@ class _NetworkErrorCardState extends State<NetworkErrorCard> {
             isLoading
                 ? CircularProgressIndicator()
                 : RaisedButton(
-                    child: Text("refetch data"),
+                    child: Text("refetch todo_practice_work.data"),
                     onPressed: () {
                       widget.reloadParent();
                       setState(() {

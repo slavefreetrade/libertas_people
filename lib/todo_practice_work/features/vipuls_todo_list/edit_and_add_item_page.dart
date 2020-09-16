@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
 import '../../models/todo_item_model.dart';
 
 class EditAndAddItemPage extends StatefulWidget {

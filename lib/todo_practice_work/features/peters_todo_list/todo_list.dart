@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/features/peters_todo_list/edit_and_add_item_page.dart';
-import 'package:libertaspeople/models/todo_item_model.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/models/todo_item_model.dart';
+
+import 'edit_and_add_item_page.dart';
 
 class TodoList extends StatelessWidget {
   final TodoRepository repo;

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:libertaspeople/models/custom_exceptions.dart';
+import 'package:libertaspeople/todo_practice_work/models/custom_exceptions.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -38,7 +38,7 @@ class LocalTodoDataSource {
 
     File todoFile = await _todoFile;
 
-    // Here I am creating some starting data for the todo list
+    // Here I am creating some starting todo_practice_work.data for the todo list
     if (!(await todoFile.exists())) {
       List<Map<String, dynamic>> startingTodoListData = [
         {
