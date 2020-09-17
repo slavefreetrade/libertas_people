@@ -12,7 +12,7 @@ class TodoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Provider.of<TodoListModel>(context, listen: false)
-          .updateSelectedTodoUid(item.uid),
+          .setSelectedTodo(item),
       child: Card(
         child: ListTile(
           title: Text(item.description),
