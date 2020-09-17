@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class UIDevelopmentPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _UIDevelopmentPageState createState() => _UIDevelopmentPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,41 +39,12 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: Text("workplace id"),
+              title: Text("feat-profile creation"),
               onTap: () {
                 print("nav to workplace id page");
               },
             ),
-            ListTile(
-              title: Text("gender"),
-              onTap: () {
-                print("nav to gender page");
-              },
-            ),
-            ListTile(
-              title: Text("workplace"),
-              onTap: () {
-                print("nav to workplace page");
-              },
-            ),
-            ListTile(
-              title: Text("address"),
-              onTap: () {
-                print("nav to address page");
-              },
-            ),
-            ListTile(
-              title: Text("age"),
-              onTap: () {
-                print("nav to age page");
-              },
-            ),
-            ListTile(
-              title: Text("role"),
-              onTap: () {
-                print("nav to role page");
-              },
-            ),
+
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
