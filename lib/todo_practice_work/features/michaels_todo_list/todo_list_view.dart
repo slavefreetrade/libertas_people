@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:libertaspeople/features/michaels_todo_list/error_dialog.dart';
-import 'package:libertaspeople/features/michaels_todo_list/todo_empty_list.dart';
-import 'package:libertaspeople/features/michaels_todo_list/todo_list_item.dart';
-import 'package:libertaspeople/features/michaels_todo_list/todo_list_model.dart';
+import 'file:///E:/projects/libertas_people/lib/todo_practice_work/features/michaels_todo_list/todo_list_model.dart';
+import 'package:libertaspeople/todo_practice_work/features/michaels_todo_list/error_dialog.dart';
+import 'package:libertaspeople/todo_practice_work/features/michaels_todo_list/todo_empty_list.dart';
+import 'package:libertaspeople/todo_practice_work/features/michaels_todo_list/todo_list_item.dart';
 import 'package:provider/provider.dart';
 
 class TodoListView extends StatelessWidget {

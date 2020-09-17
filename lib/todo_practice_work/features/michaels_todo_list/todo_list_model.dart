@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/models/failure.dart';
-import 'package:libertaspeople/models/todo_item_model.dart';
+import 'file:///E:/projects/libertas_people/lib/todo_practice_work/models/failure.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/models/todo_item_model.dart';
 
 class TodoListModel extends ChangeNotifier {
   TodoListModel({@required this.repository});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/features/vipuls_todo_list/card_item.dart';
-import 'package:libertaspeople/features/vipuls_todo_list/edit_and_add_item_page.dart';
-import 'package:libertaspeople/global_widgets/our_drawer.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/features/vipuls_todo_list/edit_and_add_item_page.dart';
+import 'package:libertaspeople/todo_practice_work/global_widgets/our_drawer.dart';
 
-import '../../data/todo_repository.dart';
 import '../../models/todo_item_model.dart';
+import 'card_item.dart';
 
 class VipulsPage extends StatefulWidget {
   final TodoRepository repo;

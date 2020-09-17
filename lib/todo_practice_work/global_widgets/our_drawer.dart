@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/features/michaels_todo_list/michaels_page.dart';
-import 'package:libertaspeople/ui/pages/emmanuels_page.dart';
-import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/pages/home_page.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/features/michaels_todo_list/michaels_page.dart';
+import 'package:libertaspeople/todo_practice_work/features/peters_todo_list/peters_page.dart';
+import 'package:libertaspeople/todo_practice_work/features/vipuls_todo_list/vipuls_page.dart';
+import 'package:libertaspeople/todo_practice_work/ui/pages/emmanuels_page.dart';
+import 'package:libertaspeople/todo_practice_work/ui/pages/souviks_page.dart';
+import 'package:libertaspeople/todo_practice_work/ui/pages/ayushs_page.dart';
 
-import 'package:libertaspeople/features/peters_todo_list/peters_page.dart';
-import 'package:libertaspeople/ui/pages/souviks_page.dart';
-import 'package:libertaspeople/ui/pages/ayushs_page.dart';
-import 'package:libertaspeople/features/vipuls_todo_list/vipuls_page.dart';
-
-import '../data/todo_repository.dart';
 
 class OurDrawer extends StatelessWidget {
   @override

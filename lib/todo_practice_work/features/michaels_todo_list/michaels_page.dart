@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/data/todo_repository.dart';
-import 'package:libertaspeople/features/michaels_todo_list/edit_and_add_widget.dart';
-import 'package:libertaspeople/global_widgets/our_drawer.dart';
+import 'package:libertaspeople/todo_practice_work/data/todo_repository.dart';
+import 'package:libertaspeople/todo_practice_work/features/michaels_todo_list/edit_and_add_widget.dart';
+import 'package:libertaspeople/todo_practice_work/global_widgets/our_drawer.dart';
 import 'package:provider/provider.dart';
 
 import 'todo_list_view.dart';

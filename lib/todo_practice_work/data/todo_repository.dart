@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:libertaspeople/data/local_todo_data_source.dart';
-import 'package:libertaspeople/models/custom_exceptions.dart';
-import 'package:libertaspeople/models/failure.dart';
-import 'package:libertaspeople/models/todo_item_model.dart';
+import 'package:libertaspeople/todo_practice_work/models/custom_exceptions.dart';
+import 'package:libertaspeople/todo_practice_work/models/failure.dart';
+import 'package:libertaspeople/todo_practice_work/models/todo_item_model.dart';
+
+import 'local_todo_data_source.dart';
 
 class TodoRepository {
   final LocalTodoDataSource dataSource = LocalTodoDataSource();
