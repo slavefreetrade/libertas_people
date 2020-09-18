@@ -15,21 +15,9 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: Text("onboarding 1"),
+              title: Text("onboarding"),
               onTap: () {
                 print("nav to onboarding 1 page");
-              },
-            ),
-            ListTile(
-              title: Text("onboarding 2"),
-              onTap: () {
-                print("nav to onboarding 2 page");
-              },
-            ),
-            ListTile(
-              title: Text("onboarding 3"),
-              onTap: () {
-                print("nav to onboarding 3 page");
               },
             ),
             ListTile(
