@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/pages/profile_creation/view.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override
@@ -28,11 +29,10 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             ),
             ListTile(
               title: Text("feat-profile creation"),
-              onTap: () {
-                print("nav to workplace id page");
-              },
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => ProfileCreationView(),
+              )),
             ),
-
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
