@@ -92,7 +92,6 @@ class _ProfileScreenTabState extends State<ProfileScreenTab> {
         selectedItemColor: ColorConstants.darkBlue,
         onTap: _onItemTapped,
         iconSize: 40.2,
-
       ),
     );
   }
