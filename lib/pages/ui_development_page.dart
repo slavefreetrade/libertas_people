@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/emmanuel_work/confirm_profile.dart';
 import 'package:libertaspeople/pages/emmanuel_work/profile_screen.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
@@ -37,12 +36,7 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
 
             ListTile(
               title: Text("confirmation login_returning user"),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ConfirmProfile()
-                  )
-              ),
+              onTap: () { print("Confirm Page"); }
             ),
             ListTile(
               title: Text("home_first time user"),
