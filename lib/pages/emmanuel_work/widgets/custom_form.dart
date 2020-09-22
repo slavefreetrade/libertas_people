@@ -41,22 +41,29 @@ class _CustomFormState extends State<CustomForm> {
 
   // Function used to valid Form
   _saveForm(){
-    final valid = _form.currentState.validate();
+  /*  final valid = _form.currentState.validate();
     if(valid){
       return;
-    }
+    }*/
     _form.currentState.save();
 
     print("****************** Print current Form Valuer **********************");
 
-    print("Work ID: ${((_workID != null) || !(_workID.isEmpty)) ? _workID : 'Please enter the Work ID'}");
-    print("Work Address: ${_workAddress != null ? _workAddress : 'Please enter your work address'}");
+    print("Work ID: $_workID");
+    print("Work Address: $_workAddress ");
     print("Your Gender: ${_genderStyle}");
     print("Workplace Type: ${_workplaceTypeCurrent}");
     print("Your age group: ${_agegroupcurrent}");
     print("You are manager: ${_managerValuerCurrent}");
   }
 
+  bool isEnabled = true;
+
+  enableButton(){
+    setState(() {
+      isEnabled = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +91,7 @@ class _CustomFormState extends State<CustomForm> {
                     fontWeight: FontWeight.w600,
                     fontSize: 20.0
                   ),
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.edit),
                     hintText: "0000000",
@@ -108,27 +116,24 @@ class _CustomFormState extends State<CustomForm> {
                      borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
                    ),
                   ),
-                  textInputAction: TextInputAction.next,
                   onFieldSubmitted: (_){
                     FocusScope.of(context).requestFocus(_WorkAdressFocusNode);
                   },
+
                   // ignore: missing_return
-                  validator: (value){
+                /*  validator: (value){
                     if(value.isEmpty){
                       return "Please provide a value";
                     }
                     return null;
-                  },
-                  onChanged: (value){
+                  },*/
+                /*  onChanged: (value){
                     setState(() {
                       _workID = value;
                     });
-                    print(_workID);
-                  },
+                  },*/
                   onSaved: (value){
-                    setState(() {
                       _workID = value;
-                    });
                   },
                 ),
               ],
@@ -152,6 +157,7 @@ class _CustomFormState extends State<CustomForm> {
                       fontWeight: FontWeight.w700,
                       fontSize: 20.0
                   ),
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.edit),
                     hintText: "XXXXXXXX street XX, XXXX City",
@@ -178,27 +184,22 @@ class _CustomFormState extends State<CustomForm> {
                   ),
                   maxLines: 2,
                   keyboardType: TextInputType.multiline,
-                  textInputAction: TextInputAction.next,
                   focusNode: _WorkAdressFocusNode,
                   onFieldSubmitted: (_){
                     FocusScope.of(context).requestFocus(_GenderFocusNode);
                   },
                   onChanged: (value){
-                    setState(() {
                       _workAddress = value;
-                    });
                   },
                   onSaved: (value){
-                    setState(() {
                       _workAddress = value;
-                    });
                   },
-                  validator: (value){
+                /*  validator: (value){
                     if(value.isEmpty){
                       return "Please provide a value";
                     }
                     return null;
-                  },
+                  }, */
                 ),
               ],
             ),
@@ -231,6 +232,9 @@ class _CustomFormState extends State<CustomForm> {
                   }).toList(),
                   onChanged: (newValue){
                     FocusScope.of(context).requestFocus(_workplaceTypeFocusNode);
+                    setState(() {
+                      _genderStyle = newValue;
+                    });
                   },
                   onSaved: (newValue){
                     setState(() {
@@ -300,6 +304,9 @@ class _CustomFormState extends State<CustomForm> {
                   icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
                   onChanged: (newValue){
                      FocusScope.of(context).requestFocus(_ageGroupFocusNode);
+                     setState(() {
+                       _workplaceTypeCurrent = newValue;
+                     });
                   },
                   onSaved: (value){
                     setState(() {
@@ -351,6 +358,10 @@ class _CustomFormState extends State<CustomForm> {
                   }).toList(),
                   onChanged: (newValue){
                     FocusScope.of(context).requestFocus(_managerFocusNode);
+                   // enableButton();
+                    setState(() {
+                      _agegroupcurrent = newValue;
+                    });
                   },
                   onSaved: (value){
                     setState(() {
@@ -463,9 +474,10 @@ class _CustomFormState extends State<CustomForm> {
                   borderRadius: BorderRadius.circular(40),
                   child: RaisedButton(
                     padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
-                    color: ColorConstants.orange,
+                    color: isEnabled ? ColorConstants.orange : Colors.grey,
                     child: Text("Save", style: TextStyle(color: Colors.white, fontSize: 22.0 ),),
-                    onPressed: _saveForm,
+                    onPressed: _saveForm
+
                   ),
                 ),
                 ],
