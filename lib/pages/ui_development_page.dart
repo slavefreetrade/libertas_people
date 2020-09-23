@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/pages/emmanuel_work/profile_screen.dart';
+import 'package:libertaspeople/pages/emmanuel_work/splash_screen.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override
@@ -18,7 +19,10 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             ListTile(
               title: Text("onboarding"),
               onTap: () {
-                print("nav to onboarding 1 page");
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                      return new SplashScreen();
+                    }));
               },
             ),
             ListTile(
@@ -64,7 +68,6 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
                         return new ProfileScreen();
                       }));
                 },
-
             ),
             ListTile(
               title: Text("profile screen #5"),

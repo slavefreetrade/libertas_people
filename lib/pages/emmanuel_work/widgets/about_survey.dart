@@ -10,7 +10,7 @@ class _AboutSurveyState extends State<AboutSurvey> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("This is the About Survey Page"),
+        child: Text("About Survey")
       ),
     );
   }
