@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/pages/souvik/home_page.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override
@@ -44,7 +45,6 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
                 print("nav to workplace id page");
               },
             ),
-
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
@@ -55,6 +55,14 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               title: Text("home_first time user"),
               onTap: () {
                 print("nav to home_first time user page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage();
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
