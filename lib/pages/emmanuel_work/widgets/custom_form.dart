@@ -9,24 +9,26 @@ class CustomForm extends StatefulWidget {
 
 class _CustomFormState extends State<CustomForm> {
 
-
+// FocusNode function Used to control field Item and pass to another field
   final _WorkAdressFocusNode = FocusNode();
   final _managerFocusNode = FocusNode();
   final _GenderFocusNode = FocusNode();
   final _workplaceTypeFocusNode = FocusNode();
   final _ageGroupFocusNode = FocusNode();
 
-   List<String> gender = ["Male", "Female"];
-   List<String> workplaceType = ["An office", "A field or a farm", "Other"];
-   List<String> ageGroup = ["18-25 years", "26-39 years", "40-60 years"];
-   List<String> manager = ["Yes", "No"];
+  List<String> gender = ["Male", "Female"];
+  List<String> workplaceType = ["An office", "A field or a farm", "Other"];
+  List<String> ageGroup = ["18-25 years", "26-39 years", "40-60 years"];
+  List<String> manager = ["Yes", "No"];
 
-   String _workID;
-   String _workAddress;
-   String _genderStyle = "Female";
-   String _workplaceTypeCurrent = "An office";
-   String _agegroupcurrent = "26-39 years";
-   String _managerValuerCurrent = "No";
+  String _workID;
+  String _workAddress;
+  String _genderStyle = "Female";
+  String _workplaceTypeCurrent = "An office";
+  String _agegroupcurrent = "26-39 years";
+  String _managerValuerCurrent = "No";
+  bool isEnabled = false;
+  bool isReadOnly = true;
 
   final _form = GlobalKey<FormState>();
 
@@ -41,14 +43,13 @@ class _CustomFormState extends State<CustomForm> {
 
   // Function used to valid Form
   _saveForm(){
-   final valid = _form.currentState.validate();
+    final valid = _form.currentState.validate();
     if(!valid){
       return;
     }
     _form.currentState.save();
 
     print("****************** Print current Form Valuer **********************");
-
     print("Work ID: $_workID");
     print("Work Address: $_workAddress ");
     print("Your Gender: ${_genderStyle}");
@@ -57,8 +58,7 @@ class _CustomFormState extends State<CustomForm> {
     print("You are manager: ${_managerValuerCurrent}");
   }
 
-  bool isEnabled = false;
-  bool isReadOnly = true;
+
 
   readWriteField(){
     setState(() {
@@ -75,13 +75,13 @@ class _CustomFormState extends State<CustomForm> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
-          setState(() {
-            isReadOnly = true;
-          });
-       },
-       child: Form(
+      onTap: (){
+        FocusScope.of(context).requestFocus(new FocusNode());
+        setState(() {
+          isReadOnly = true;
+        });
+      },
+      child: Form(
         key: _form,
         child: Padding(
           padding: EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
@@ -140,8 +140,11 @@ class _CustomFormState extends State<CustomForm> {
                     },
                     // ignore: missing_return
                     validator: (value){
+                      String itemTovalidate = (value.toString()).trim();
                       if(value.isEmpty){
                         return "Please provide your Workplace ID";
+                      } else if(itemTovalidate.length == 0){
+                        return "Your Workplace ID cannot be empty";
                       }
                       return null;
                     },
@@ -178,7 +181,6 @@ class _CustomFormState extends State<CustomForm> {
                           onPressed: readWriteField
                       ),
                       hintText: "XXXXXXXX street XX, XXXX City",
-
                       hintStyle: TextStyle(
                           color: ColorConstants.darkBlue,
                           fontFamily: "WorkSansLight",
@@ -210,8 +212,11 @@ class _CustomFormState extends State<CustomForm> {
                       _workAddress = value;
                     },
                     validator: (value){
+                      String itemTovalidate = (value.toString()).trim();
                       if(value.isEmpty){
                         return "Please provide your Work Address";
+                      } else if(itemTovalidate.length <= 4){
+                        return "Your Address cannot be less than 4 letters";
                       }
                       return null;
                     },
@@ -240,7 +245,6 @@ class _CustomFormState extends State<CustomForm> {
                         currentSelect = Icon(
                             Icons.check_circle_outline, color: Colors.grey);
                       }
-
                       return new DropdownMenuItem(
                           value: genderItem,
                           child: Padding(
