@@ -58,8 +58,6 @@ class _CustomFormState extends State<CustomForm> {
     print("You are manager: ${_managerValuerCurrent}");
   }
 
-
-
   readWriteField(){
     setState(() {
       isReadOnly = false;
