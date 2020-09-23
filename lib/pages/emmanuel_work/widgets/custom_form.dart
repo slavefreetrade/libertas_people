@@ -141,7 +141,7 @@ class _CustomFormState extends State<CustomForm> {
                     // ignore: missing_return
                     validator: (value){
                       if(value.isEmpty){
-                        return "Please provide a value";
+                        return "Please provide your Workplace ID";
                       }
                       return null;
                     },
@@ -211,7 +211,7 @@ class _CustomFormState extends State<CustomForm> {
                     },
                     validator: (value){
                       if(value.isEmpty){
-                        return "Please provide a value";
+                        return "Please provide your Work Address";
                       }
                       return null;
                     },
