@@ -233,13 +233,23 @@ class _CustomFormState extends State<CustomForm> {
                   SizedBox(height: 5.0,),
                   DropdownButtonFormField(
                     items: gender.map((String genderItem) {
+                      Icon currentSelect;
+                      if(genderItem == _genderStyle){
+                        currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                      } else {
+                        currentSelect = Icon(
+                            Icons.check_circle_outline, color: Colors.grey);
+                      }
+
                       return new DropdownMenuItem(
                           value: genderItem,
                           child: Padding(
                             padding: EdgeInsets.only(top: 0.0),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(genderItem),
+                                currentSelect
                               ],
                             ),
                           )
@@ -302,11 +312,20 @@ class _CustomFormState extends State<CustomForm> {
                   SizedBox(height: 5.0,),
                   DropdownButtonFormField(
                     items: workplaceType.map((String workplaceTypeItem) {
+                      Icon currentSelect;
+                      if(workplaceTypeItem == _workplaceTypeCurrent){
+                        currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                      } else {
+                        currentSelect = Icon(
+                            Icons.check_circle_outline, color: Colors.grey);
+                      }
                       return new DropdownMenuItem(
                           value: workplaceTypeItem,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(workplaceTypeItem),
+                              currentSelect
                             ],
                           )
                       );
@@ -362,11 +381,21 @@ class _CustomFormState extends State<CustomForm> {
                   SizedBox(height: 5.0,),
                   DropdownButtonFormField(
                     items: ageGroup.map((String ageGroupItem) {
+
+                      Icon currentSelect;
+                      if(ageGroupItem == _agegroupcurrent){
+                        currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                      } else {
+                        currentSelect = Icon(
+                            Icons.check_circle_outline, color: Colors.grey);
+                      }
                       return new DropdownMenuItem(
                           value: ageGroupItem,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(ageGroupItem),
+                              currentSelect
                             ],
                           )
                       );
@@ -374,6 +403,9 @@ class _CustomFormState extends State<CustomForm> {
                     onChanged: (newValue){
                       FocusScope.of(context).requestFocus(_managerFocusNode);
                       enableButton();
+                      setState(() {
+                        _agegroupcurrent = newValue;
+                      });
                     },
                     onSaved: (value){
                       setState(() {
@@ -426,13 +458,21 @@ class _CustomFormState extends State<CustomForm> {
                   SizedBox(height: 5.0,),
                   DropdownButtonFormField(
                     items: manager.map((managerItem) {
+
+                      Icon currentSelect;
+                      if(managerItem == _managerValuerCurrent){
+                        currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                      } else {
+                        currentSelect = Icon(
+                            Icons.check_circle_outline, color: Colors.grey);
+                      }
                       return new DropdownMenuItem(
                         value: managerItem,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(managerItem),
-                            // Icon(Icons.check)
+                            currentSelect
                           ],
                         ),
                       );
