@@ -41,10 +41,10 @@ class _CustomFormState extends State<CustomForm> {
 
   // Function used to valid Form
   _saveForm(){
-  /*  final valid = _form.currentState.validate();
-    if(valid){
+   final valid = _form.currentState.validate();
+    if(!valid){
       return;
-    }*/
+    }
     _form.currentState.save();
 
     print("****************** Print current Form Valuer **********************");
@@ -57,7 +57,7 @@ class _CustomFormState extends State<CustomForm> {
     print("You are manager: ${_managerValuerCurrent}");
   }
 
-  bool isEnabled = true;
+  bool isEnabled = false;
 
   enableButton(){
     setState(() {
@@ -119,19 +119,13 @@ class _CustomFormState extends State<CustomForm> {
                   onFieldSubmitted: (_){
                     FocusScope.of(context).requestFocus(_WorkAdressFocusNode);
                   },
-
                   // ignore: missing_return
-                /*  validator: (value){
+                  validator: (value){
                     if(value.isEmpty){
                       return "Please provide a value";
                     }
                     return null;
-                  },*/
-                /*  onChanged: (value){
-                    setState(() {
-                      _workID = value;
-                    });
-                  },*/
+                  },
                   onSaved: (value){
                       _workID = value;
                   },
@@ -188,18 +182,15 @@ class _CustomFormState extends State<CustomForm> {
                   onFieldSubmitted: (_){
                     FocusScope.of(context).requestFocus(_GenderFocusNode);
                   },
-                  onChanged: (value){
-                      _workAddress = value;
-                  },
                   onSaved: (value){
                       _workAddress = value;
                   },
-                /*  validator: (value){
+                  validator: (value){
                     if(value.isEmpty){
                       return "Please provide a value";
                     }
                     return null;
-                  }, */
+                  },
                 ),
               ],
             ),
@@ -358,10 +349,7 @@ class _CustomFormState extends State<CustomForm> {
                   }).toList(),
                   onChanged: (newValue){
                     FocusScope.of(context).requestFocus(_managerFocusNode);
-                   // enableButton();
-                    setState(() {
-                      _agegroupcurrent = newValue;
-                    });
+                    enableButton();
                   },
                   onSaved: (value){
                     setState(() {
@@ -476,8 +464,7 @@ class _CustomFormState extends State<CustomForm> {
                     padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
                     color: isEnabled ? ColorConstants.orange : Colors.grey,
                     child: Text("Save", style: TextStyle(color: Colors.white, fontSize: 22.0 ),),
-                    onPressed: _saveForm
-
+                    onPressed: isEnabled ? _saveForm : null
                   ),
                 ),
                 ],
