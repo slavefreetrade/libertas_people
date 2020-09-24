@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/pages/survey_question_page.dart';
+import 'package:libertaspeople/pages/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/thankyou_page.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
+  static const routeName = '/home';
   @override
   _UIDevelopmentPageState createState() => _UIDevelopmentPageState();
 }
@@ -32,7 +36,6 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
                 print("nav to workplace id page");
               },
             ),
-
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
@@ -84,6 +87,7 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             ListTile(
               title: Text("survey Q1"),
               onTap: () {
+                Navigator.of(context).pushNamed(SurveyQuestionPage.routeName);
                 print("nav to survey Q1 page");
               },
             ),
@@ -91,11 +95,13 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               title: Text("survey1 thank you"),
               onTap: () {
                 print("nav to survey1 thank you page");
+                Navigator.of(context).pushNamed(SurveyThankyouPage.routeName);
               },
             ),
             ListTile(
               title: Text("thank you screen retr=u"),
               onTap: () {
+                Navigator.of(context).pushNamed(ThankyouPage.routeName);
                 print("nav to _ page");
               },
             ),
