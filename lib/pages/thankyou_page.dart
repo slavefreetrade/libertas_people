@@ -37,7 +37,8 @@ class _ThankyouPageState extends State<ThankyouPage> {
               ),
               Positioned(
                 top: height * 0.05,
-                left: width / 3.7,
+                left: 0,
+                right: 0,
                 child: Column(
                   children: [
                     CircularPercentIndicator(

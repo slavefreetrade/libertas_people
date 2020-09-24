@@ -28,7 +28,8 @@ class SurveyThankyouPage extends StatelessWidget {
               ),
               Positioned(
                 top: height * 0.05,
-                left: width / 3.5,
+                left: 0,
+                right: 0,
                 child: Column(
                   children: [
                     const Image(
