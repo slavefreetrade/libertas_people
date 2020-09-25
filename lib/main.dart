@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:libertaspeople/pages/profile_creation/shared/fonts/app_fonts.dart';
 
 import 'constants/colors.dart';
 import 'generated/l10n.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         backgroundColor: ColorConstants.backgroundColor,
         primarySwatch: Colors.blue,
+        fontFamily: AppFonts.helveticaNeue,
         buttonTheme: const ButtonThemeData(
           padding: EdgeInsets.zero,
           height: 50,
@@ -46,6 +48,7 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme(
             headline6: TextStyle(
                 color: ColorConstants.orange,
+                fontFamily: AppFonts.helveticaNeue,
                 fontSize: 32,
                 fontWeight: FontWeight.w700),
           ),
