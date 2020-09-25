@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/profile_creation/view.dart';
+import 'profile_creation/profile_creation_view.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override
@@ -28,9 +28,10 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               },
             ),
             ListTile(
-              title: Text("feat-profile creation"),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => ProfileCreationView(),
+              title: Text('feat-profile creation'),
+              onTap: () => Navigator.of(context)
+                  .pushReplacement<Object, Object>(MaterialPageRoute<dynamic>(
+                builder: (_) => const ProfileCreationView(),
               )),
             ),
             ListTile(

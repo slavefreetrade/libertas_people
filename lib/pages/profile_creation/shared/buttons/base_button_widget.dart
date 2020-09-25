@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../constants/colors.dart';
 
 class BaseButton extends StatelessWidget {
   final Function() onPressedBtn;
@@ -56,8 +55,8 @@ class BaseButton extends StatelessWidget {
             labelBtn,
             style: TextStyle(
               color: colorTxt,
-              fontWeight: FontWeight.w700,
-              fontSize: 24, // double
+              fontWeight: FontWeight.w500,
+              fontSize: 20, // double
             ),
           ),
           if (isRightArrowBtn)

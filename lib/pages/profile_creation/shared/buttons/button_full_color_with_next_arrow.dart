@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+import '../../../../constants/colors.dart';
 import 'base_button_widget.dart';
 
 class ButtonFullColorWithNextArrow extends BaseButton {
@@ -17,5 +17,6 @@ class ButtonFullColorWithNextArrow extends BaseButton {
             isRightArrowBtn: true,
             colorBtn: ColorConstants.lightBlue,
             colorTxt: ColorConstants.white,
+            colorBorder: ColorConstants.lightBlue,
             key: key);
 }

@@ -1,10 +1,10 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:libertaspeople/pages/profile_creation/shared/fonts/app_fonts.dart';
 
 import 'constants/colors.dart';
 import 'generated/l10n.dart';
+import 'pages/profile_creation/shared/fonts/app_fonts.dart';
 import 'pages/ui_development_page.dart';
 
 
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                 color: ColorConstants.orange,
                 fontFamily: AppFonts.helveticaNeue,
                 fontSize: 32,
-                fontWeight: FontWeight.w700),
+                fontWeight: FontWeight.w500),
           ),
         ),
       ),
