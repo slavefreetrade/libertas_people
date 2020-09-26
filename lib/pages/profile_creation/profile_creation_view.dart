@@ -58,6 +58,36 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
             S.of(context).moreThan60Years
           ]),
       ProfileFormQuestionModel(
+          question: S.of(context).whichAgeGroupAreYouIn,
+          options: [
+            S.of(context).lessThan15Years,
+            S.of(context).from15To18Years,
+            S.of(context).from19To25Years,
+            S.of(context).from26To39Years,
+            S.of(context).from40To59Years,
+            S.of(context).moreThan60Years
+          ]),
+      ProfileFormQuestionModel(
+          question: S.of(context).whichAgeGroupAreYouIn,
+          options: [
+            S.of(context).lessThan15Years,
+            S.of(context).from15To18Years,
+            S.of(context).from19To25Years,
+            S.of(context).from26To39Years,
+            S.of(context).from40To59Years,
+            S.of(context).moreThan60Years
+          ]),
+      ProfileFormQuestionModel(
+          question: S.of(context).whichAgeGroupAreYouIn,
+          options: [
+            S.of(context).lessThan15Years,
+            S.of(context).from15To18Years,
+            S.of(context).from19To25Years,
+            S.of(context).from26To39Years,
+            S.of(context).from40To59Years,
+            S.of(context).moreThan60Years
+          ]),
+      ProfileFormQuestionModel(
           question: S.of(context).areYouAManagerInYourDepartment,
           options: [S.of(context).yes, S.of(context).no]),
     ];

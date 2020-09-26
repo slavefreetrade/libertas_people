@@ -1,11 +1,11 @@
 import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/images.dart';
-import '../shared/utils/extensions.dart';
 
 class HeaderProgressBar extends StatefulWidget {
   const HeaderProgressBar(
@@ -114,15 +114,6 @@ class _AnimatedProgressBar extends AnimatedWidget {
           animation.value, widget.changeColorValue, widget.maxIndex, 5));
     }
 
-    final progressWidgets = <Widget>[];
-    final Widget progressWidget = Container(
-      decoration: BoxDecoration(
-          color: progressColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          border: widget.border),
-    );
-    progressWidgets.add(progressWidget);
-
     return Directionality(
       textDirection: widget.directionality,
       child: Column(
@@ -146,7 +137,6 @@ class _AnimatedProgressBar extends AnimatedWidget {
                   child: Container())
             ],
           ),
-
           Container(
             width: widget.direction == Axis.vertical ? widget.size : null,
             height: widget.direction == Axis.horizontal ? widget.size : null,
@@ -163,7 +153,12 @@ class _AnimatedProgressBar extends AnimatedWidget {
                   children: <Widget>[
                     Expanded(
                         flex: (animation.value * 100).toInt(),
-                        child: Stack(children: progressWidgets)),
+                        child:  Container(
+                          decoration: BoxDecoration(
+                              color: progressColor,
+                              borderRadius: BorderRadius.circular(widget.borderRadius),
+                              border: widget.border),
+                        )),
                     Expanded(
                       flex: 100 - (animation.value * 100).toInt(),
                       child: Container(),
@@ -173,29 +168,9 @@ class _AnimatedProgressBar extends AnimatedWidget {
                 Flex(
                   direction: widget.direction,
                   verticalDirection: widget.verticalDirection,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Expanded(
-                      child: ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: widget.maxIndex,
-                        separatorBuilder: (BuildContext context, int index) =>
-                            VerticalDivider(
-                          thickness: (context.width / widget.maxIndex) * 0.05,
-                          color: ColorConstants.backgroundColor,
-                        ),
-                        itemBuilder: (context, index) {
-                          final double _thickness =
-                              (context.width / widget.maxIndex) * 0.05;
-                          final double _subWidth =
-                              context.width - (_thickness * widget.maxIndex);
-                          return SizedBox(
-                              width: _subWidth / (widget.maxIndex + 2));
-                        },
-                      ),
-                    ),
+                    ..._buildSeparators(),
                   ],
                 ),
               ],
@@ -204,5 +179,21 @@ class _AnimatedProgressBar extends AnimatedWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> _buildSeparators() {
+    final List<Widget> separators = [];
+    final int separatorCount = widget.maxIndex;
+
+    final Widget separator = VerticalDivider(
+      thickness: (1 / separatorCount) * 30,
+      color: ColorConstants.backgroundColor,
+    );
+
+    for (int i = 0; i < separatorCount; i++) {
+        separators.add(separator);
+    }
+
+    return separators;
   }
 }
