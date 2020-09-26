@@ -53,10 +53,10 @@ class S {
     );
   }
 
-  /// `gender`
+  /// `Gender`
   String get gender {
     return Intl.message(
-      'gender',
+      'Gender',
       name: 'gender',
       desc: '',
       args: [],
@@ -103,10 +103,10 @@ class S {
     );
   }
 
-  /// `Please enter the workplace ID that you have been given (by email or by workplace manager`
+  /// `Please enter the workplace ID that you have been given (by email or by workplace manager)`
   String get pleaseEnterTheWorkplaceIdThat {
     return Intl.message(
-      'Please enter the workplace ID that you have been given (by email or by workplace manager',
+      'Please enter the workplace ID that you have been given (by email or by workplace manager)',
       name: 'pleaseEnterTheWorkplaceIdThat',
       desc: '',
       args: [],
@@ -223,17 +223,65 @@ class S {
     );
   }
 
-  // skipped getter for the '<15Years' key
+  /// `< 15 years`
+  String get lessThan15Years {
+    return Intl.message(
+      '< 15 years',
+      name: 'lessThan15Years',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '15-18Years' key
+  /// `15-18 years`
+  String get from15To18Years {
+    return Intl.message(
+      '15-18 years',
+      name: 'from15To18Years',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '19-25Years' key
+  /// `19-25 years`
+  String get from19To25Years {
+    return Intl.message(
+      '19-25 years',
+      name: 'from19To25Years',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '26-39Years' key
+  /// `26-39 years`
+  String get from26To39Years {
+    return Intl.message(
+      '26-39 years',
+      name: 'from26To39Years',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '40-59Years' key
+  /// `40-59 years`
+  String get from40To59Years {
+    return Intl.message(
+      '40-59 years',
+      name: 'from40To59Years',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '>60Years' key
+  /// `> 60 years`
+  String get moreThan60Years {
+    return Intl.message(
+      '> 60 years',
+      name: 'moreThan60Years',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Are you a manager in your department?`
   String get areYouAManagerInYourDepartment {

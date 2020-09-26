@@ -5,8 +5,8 @@ import '../../../constants/colors.dart';
 class HeaderProgressBar extends StatefulWidget {
   const HeaderProgressBar(
       {Key key,
-        this.currentValue = 0,
-        this.maxValue = 100,
+        this.currentIndex = 0,
+        this.maxIndex = 100,
         this.size = 20,
         this.animatedDuration = const Duration(milliseconds: 300),
         this.direction = Axis.horizontal,
@@ -19,8 +19,8 @@ class HeaderProgressBar extends StatefulWidget {
         this.changeProgressColor = const Color(0xFF5F4B8B),
         this.displayText})
       : super(key: key);
-  final int currentValue;
-  final int maxValue;
+  final int currentIndex;
+  final int maxIndex;
   final double size;
   final Duration animatedDuration;
   final Axis direction;
@@ -63,7 +63,7 @@ class _HeaderProgressBarState extends State<HeaderProgressBar>
   void triggerAnimation() {
     setState(() {
       _currentBegin = _animation.value;
-      _currentEnd = widget.currentValue / widget.maxValue;
+      _currentEnd = widget.currentIndex / widget.maxIndex;
       _animation = Tween<double>(begin: _currentBegin, end: _currentEnd)
           .animate(_controller);
     });
@@ -106,7 +106,7 @@ class _AnimatedProgressBar extends AnimatedWidget {
       final _colorTween = ColorTween(
           begin: widget.progressColor, end: widget.changeProgressColor);
       progressColor = _colorTween.transform(transformValue(
-          animation.value, widget.changeColorValue, widget.maxValue, 5));
+          animation.value, widget.changeColorValue, widget.maxIndex, 5));
     }
 
     final progressWidgets = <Widget>[];
@@ -126,7 +126,7 @@ class _AnimatedProgressBar extends AnimatedWidget {
               ? const FractionalOffset(0.5, 0.05)
               : const FractionalOffset(0.5, 0.95)),
           child: Text(
-              (animation.value * widget.maxValue).toInt().toString() +
+              (animation.value * widget.maxIndex).toInt().toString() +
                   widget.displayText,
               softWrap: false,
               style: const TextStyle(color: Color(0xFFFFFFFF), fontSize: 12)));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/generated/l10n.dart';
 
 import 'base/base_view.dart';
 import 'models/profile_query_model.dart';
@@ -27,17 +28,53 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
     _pageController = PageController();
   }
 
-  final List<Widget> _pages = [
-    MultiSelectFormPage(ProfileFormQuestionModel(
-        title: 'test1', options: ['olo', 'lol'], selectedIndex: 1)),
-    MultiSelectFormPage(
-        ProfileFormQuestionModel(title: 'test2', options: ['sho', 'pooo'])),
-    MultiSelectFormPage(
-        ProfileFormQuestionModel(title: 'test3', options: ['olo', 'lol'])),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<ProfileFormQuestionModel> _questions = [
+      ProfileFormQuestionModel(
+          title: S.of(context).workplaceId,
+          question: S.of(context).pleaseEnterTheWorkplaceIdThat,
+          progressLabel: S.of(context).id,
+          options: [S.of(context).workplaceId]),
+      ProfileFormQuestionModel(
+          title: S.of(context).gender,
+          question: S.of(context).whatIsYourGender,
+          progressLabel: S.of(context).gender,
+          options: [
+            S.of(context).male,
+            S.of(context).female,
+            S.of(context).other,
+            S.of(context).preferNotToSay,
+          ]),
+      ProfileFormQuestionModel(
+        title: S.of(context).workplace,
+        question: S.of(context).yourWorkplaceIs,
+        progressLabel: S.of(context).workplace,
+        options: [
+          S.of(context).anOfficeOrAFactory,
+          S.of(context).aFieldOrAFarm,
+          S.of(context).other
+        ],
+      ),
+      ProfileFormQuestionModel(
+          title: S.of(context).age,
+          question: S.of(context).whichAgeGroupAreYouIn,
+          progressLabel: S.of(context).age,
+          options: [
+            S.of(context).lessThan15Years,
+            S.of(context).from15To18Years,
+            S.of(context).from19To25Years,
+            S.of(context).from26To39Years,
+            S.of(context).from40To59Years,
+            S.of(context).moreThan60Years
+          ]),
+      ProfileFormQuestionModel(
+          title: S.of(context).role,
+          question: S.of(context).areYouAManagerInYourDepartment,
+          progressLabel: S.of(context).role,
+          options: [S.of(context).yes, S.of(context).no]),
+    ];
+
     return BaseView<ProfileCreationViewModel>(
         model: ProfileCreationViewModel(),
         builder: (BuildContext context, ProfileCreationViewModel model,
@@ -46,7 +83,8 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
               onWillPop: _onWillPop,
               child: SafeArea(
                 child: Scaffold(
-                  appBar: _buildAppBar(context),
+                  appBar:
+                      _buildAppBar(context, _questions[_progressIndex].title),
                   body: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Column(
@@ -54,14 +92,17 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
                       children: [
                         HeaderProgressBar(
                           animatedDuration: const Duration(seconds: 1),
-                          currentValue: _progressIndex,
-                          maxValue: _pages.length - 1,
+                          currentIndex: _progressIndex,
+                          maxIndex: _questions.length - 1,
                         ),
                         Expanded(
                           child: PageView(
                             controller: _pageController,
                             physics: const NeverScrollableScrollPhysics(),
-                            children: _pages,
+                            children: _questions
+                                .map(
+                                    (question) => MultiSelectFormPage(question))
+                                .toList(),
                           ),
                         ),
                         Column(
@@ -76,7 +117,8 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
                                   : false,
                               // ignore: avoid_bool_literals_in_conditional_expressions
                               showNext: _pageController.hasClients
-                                  ? _pageController.page != _pages.length - 1
+                                  ? _pageController.page !=
+                                      _questions.length - 1
                                   : true,
                             ),
                             const SizedBox(height: 50),
@@ -90,18 +132,20 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
             ));
   }
 
-  AppBar _buildAppBar(BuildContext context) {
+  AppBar _buildAppBar(BuildContext context, String title) {
     return AppBar(
-      title: const Text('Workplace ID'),
+      title: Text(title),
       centerTitle: true,
       toolbarHeight: context.height * 0.15,
     );
   }
 
   Future<bool> _onWillPop() async {
-    if (_pageController.hasClients
+    final bool isInitialPage = _pageController.hasClients
         ? _pageController.page == 0
-        : _pageController.initialPage == 0) {
+        : _pageController.initialPage == 0;
+
+    if (isInitialPage) {
       return true;
     } else {
       await _onPressedBack();

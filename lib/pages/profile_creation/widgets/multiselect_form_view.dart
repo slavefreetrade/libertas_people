@@ -38,20 +38,24 @@ class _MultiSelectFormPageState extends State<MultiSelectFormPage> {
 
   Row _buildTitle() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.formQuestion.isRequired)
-          const Text(
-            '*',
-            style: TextStyle(color: Colors.red, fontSize: 15),
+        if (!widget.formQuestion.isOptional)
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Text(
+              '*',
+              style: TextStyle(color: Colors.red, fontSize: 15),
+            ),
           ),
-        const SizedBox(width: 5),
-        Text(
-          widget.formQuestion.title,
+        Flexible(child: Text(
+          widget.formQuestion.question,
+          softWrap: true,
           style: const TextStyle(
               color: ColorConstants.darkBlue,
               fontSize: 20,
               fontWeight: FontWeight.w500),
-        ),
+        )),
       ],
     );
   }

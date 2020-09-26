@@ -2,14 +2,18 @@ import 'package:flutter/widgets.dart';
 
 class ProfileFormQuestionModel {
   String title;
+  String question;
   List<String> options;
+  String progressLabel;
   int selectedIndex;
-  bool isRequired;
+  bool isOptional;
 
   ProfileFormQuestionModel({
     @required this.title,
+    @required this.question,
+    @required this.options,
+    this.progressLabel = '',
     this.selectedIndex,
-    this.options = const <String>[],
-    this.isRequired = true
+    this.isOptional = false
   });
 }
