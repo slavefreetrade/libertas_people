@@ -42,14 +42,13 @@ class MyApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
         appBarTheme: const AppBarTheme(
-          color: ColorConstants.backgroundColor,
+          color: ColorConstants.darkBlue,
           centerTitle: true,
           elevation: 0,
           textTheme: TextTheme(
             headline6: TextStyle(
-                color: ColorConstants.orange,
                 fontFamily: AppFonts.helveticaNeue,
-                fontSize: 32,
+                fontSize: 28,
                 fontWeight: FontWeight.w500),
           ),
         ),

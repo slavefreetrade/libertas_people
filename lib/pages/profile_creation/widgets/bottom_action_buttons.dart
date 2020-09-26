@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../generated/l10n.dart';
 import '../shared/buttons/button_bordered_with_back_arrow.dart';
 import '../shared/buttons/button_full_color_with_next_arrow.dart';
 
@@ -26,14 +27,14 @@ class BottomActionButtons extends StatelessWidget {
       children: [
         if (onPressedBack != null && showBack)
           ButtonBorderedWithBackArrow(
-            label: 'Back',
+            label: S.of(context).back,
             onPressed: onPressedBack,
           )
         else
           const SizedBox.shrink(),
         if (onPressedNext != null && showNext)
           ButtonFullColorWithNextArrow(
-            label: 'Next',
+            label: S.of(context).next,
             onPressed: onPressedNext,
           )
         else

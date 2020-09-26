@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/generated/l10n.dart';
+import '../../generated/l10n.dart';
 
 import 'base/base_view.dart';
 import 'models/profile_query_model.dart';
 import 'profile_creation_view_model.dart';
-import 'shared/utils/extensions.dart';
 import 'widgets/bottom_action_buttons.dart';
-import 'widgets/header_progress_bar.dart';
+import 'widgets/linear_progress_bar.dart';
 import 'widgets/multiselect_form_view.dart';
 
 class ProfileCreationView extends StatefulWidget {
@@ -19,8 +18,6 @@ class ProfileCreationView extends StatefulWidget {
 class _ProfileCreationViewState extends State<ProfileCreationView> {
   int _progressIndex = 0;
   PageController _pageController;
-  Duration animationDuration = const Duration(microseconds: 50);
-  Curve animationCurve = Curves.easeIn;
 
   @override
   void initState() {
@@ -32,14 +29,10 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
   Widget build(BuildContext context) {
     final List<ProfileFormQuestionModel> _questions = [
       ProfileFormQuestionModel(
-          title: S.of(context).workplaceId,
           question: S.of(context).pleaseEnterTheWorkplaceIdThat,
-          progressLabel: S.of(context).id,
           options: [S.of(context).workplaceId]),
       ProfileFormQuestionModel(
-          title: S.of(context).gender,
           question: S.of(context).whatIsYourGender,
-          progressLabel: S.of(context).gender,
           options: [
             S.of(context).male,
             S.of(context).female,
@@ -47,9 +40,7 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
             S.of(context).preferNotToSay,
           ]),
       ProfileFormQuestionModel(
-        title: S.of(context).workplace,
         question: S.of(context).yourWorkplaceIs,
-        progressLabel: S.of(context).workplace,
         options: [
           S.of(context).anOfficeOrAFactory,
           S.of(context).aFieldOrAFarm,
@@ -57,9 +48,7 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
         ],
       ),
       ProfileFormQuestionModel(
-          title: S.of(context).age,
           question: S.of(context).whichAgeGroupAreYouIn,
-          progressLabel: S.of(context).age,
           options: [
             S.of(context).lessThan15Years,
             S.of(context).from15To18Years,
@@ -69,9 +58,7 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
             S.of(context).moreThan60Years
           ]),
       ProfileFormQuestionModel(
-          title: S.of(context).role,
           question: S.of(context).areYouAManagerInYourDepartment,
-          progressLabel: S.of(context).role,
           options: [S.of(context).yes, S.of(context).no]),
     ];
 
@@ -83,18 +70,36 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
               onWillPop: _onWillPop,
               child: SafeArea(
                 child: Scaffold(
-                  appBar:
-                      _buildAppBar(context, _questions[_progressIndex].title),
+                  appBar: AppBar(
+                    title: Text('${_progressIndex + 1} / ${_questions.length}'),
+                    titleSpacing: 0.0,
+                    centerTitle: true,
+                    actions: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Text(
+                            S.of(context).close,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                   body: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        const SizedBox(height: 15),
                         HeaderProgressBar(
                           animatedDuration: const Duration(seconds: 1),
                           currentIndex: _progressIndex,
                           maxIndex: _questions.length - 1,
                         ),
+                        const SizedBox(height: 15),
                         Expanded(
                           child: PageView(
                             controller: _pageController,
@@ -121,7 +126,7 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
                                       _questions.length - 1
                                   : true,
                             ),
-                            const SizedBox(height: 50),
+                            const SizedBox(height: 30),
                           ],
                         ),
                       ],
@@ -132,14 +137,6 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
             ));
   }
 
-  AppBar _buildAppBar(BuildContext context, String title) {
-    return AppBar(
-      title: Text(title),
-      centerTitle: true,
-      toolbarHeight: context.height * 0.15,
-    );
-  }
-
   Future<bool> _onWillPop() async {
     final bool isInitialPage = _pageController.hasClients
         ? _pageController.page == 0
@@ -148,7 +145,7 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
     if (isInitialPage) {
       return true;
     } else {
-      await _onPressedBack();
+      _onPressedBack();
       return false;
     }
   }
@@ -159,22 +156,17 @@ class _ProfileCreationViewState extends State<ProfileCreationView> {
     super.dispose();
   }
 
-  Future<void> _onPressedNext() async {
+  void _onPressedNext() {
     print('going from ${_pageController.page} to ${_pageController.page + 1}');
-
     _progressIndex++;
-    await _pageController.animateToPage(_progressIndex,
-        duration: animationDuration, curve: animationCurve);
+    _pageController.jumpToPage(_progressIndex);
     setState(() {});
   }
 
-  Future<void> _onPressedBack() async {
+  void _onPressedBack() {
     print('going from ${_pageController.page} to ${_pageController.page - 1}');
-
     _progressIndex--;
-    await _pageController.animateToPage(_progressIndex,
-        duration: animationDuration, curve: animationCurve);
-
+    _pageController.jumpToPage(_progressIndex);
     setState(() {});
   }
 }

@@ -1,23 +1,27 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../constants/colors.dart';
+import '../../../constants/images.dart';
 
 class HeaderProgressBar extends StatefulWidget {
   const HeaderProgressBar(
       {Key key,
-        this.currentIndex = 0,
-        this.maxIndex = 100,
-        this.size = 20,
-        this.animatedDuration = const Duration(milliseconds: 300),
-        this.direction = Axis.horizontal,
-        this.verticalDirection = VerticalDirection.down,
-        this.borderRadius = 0,
-        this.border,
-        this.backgroundColor = ColorConstants.greyAboutPage,
-        this.progressColor = ColorConstants.lightBlue,
-        this.changeColorValue,
-        this.changeProgressColor = const Color(0xFF5F4B8B),
-        this.displayText})
+      this.currentIndex = 0,
+      this.maxIndex = 100,
+      this.size = 20,
+      this.animatedDuration = const Duration(milliseconds: 300),
+      this.direction = Axis.horizontal,
+      this.verticalDirection = VerticalDirection.down,
+      this.borderRadius = 0,
+      this.border,
+      this.backgroundColor = ColorConstants.greyAboutPage,
+      this.progressColor = ColorConstants.lightBlue,
+      this.changeColorValue,
+      this.changeProgressColor = const Color(0xFF5F4B8B),
+      this.displayText,
+      this.directionality = TextDirection.ltr})
       : super(key: key);
   final int currentIndex;
   final int maxIndex;
@@ -32,6 +36,7 @@ class HeaderProgressBar extends StatefulWidget {
   final int changeColorValue;
   final Color changeProgressColor;
   final String displayText;
+  final TextDirection directionality;
 
   @override
   _HeaderProgressBarState createState() => _HeaderProgressBarState();
@@ -73,9 +78,9 @@ class _HeaderProgressBarState extends State<HeaderProgressBar>
 
   @override
   Widget build(BuildContext context) => _AnimatedProgressBar(
-    animation: _animation,
-    widget: widget,
-  );
+        animation: _animation,
+        widget: widget,
+      );
 
   @override
   void dispose() {
@@ -123,8 +128,8 @@ class _AnimatedProgressBar extends AnimatedWidget {
           alignment: widget.direction == Axis.horizontal
               ? const FractionalOffset(0.95, 0.5)
               : (widget.verticalDirection == VerticalDirection.up
-              ? const FractionalOffset(0.5, 0.05)
-              : const FractionalOffset(0.5, 0.95)),
+                  ? const FractionalOffset(0.5, 0.05)
+                  : const FractionalOffset(0.5, 0.95)),
           child: Text(
               (animation.value * widget.maxIndex).toInt().toString() +
                   widget.displayText,
@@ -134,28 +139,54 @@ class _AnimatedProgressBar extends AnimatedWidget {
     }
 
     return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Container(
-        width: widget.direction == Axis.vertical ? widget.size : null,
-        height: widget.direction == Axis.horizontal ? widget.size : null,
-        decoration: BoxDecoration(
-          color: widget.backgroundColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          border: widget.border,
-        ),
-        child: Flex(
-          direction: widget.direction,
-          verticalDirection: widget.verticalDirection,
-          children: <Widget>[
-            Expanded(
-                flex: (animation.value * 100).toInt(),
-                child: Stack(children: progressWidgets)),
-            Expanded(
-              flex: 100 - (animation.value * 100).toInt(),
-              child: Container(),
-            )
-          ],
-        ),
+      textDirection: widget.directionality,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                  flex: (animation.value * 100).toInt(),
+                  child: Stack(children: [
+                    Align(
+                      alignment: widget.directionality == TextDirection.ltr
+                          ? Alignment.centerRight
+                          : Alignment.centerLeft,
+                      child: SvgPicture.asset(AppImagePaths.manOnPiddle,
+                          semanticsLabel: 'Man on a piddle'),
+                    )
+                  ])),
+              Expanded(
+                  flex: 100 - (animation.value * 100).toInt(),
+                  child: Container())
+            ],
+          ),
+          Stack(children: [
+            Container(
+              width: widget.direction == Axis.vertical ? widget.size : null,
+              height: widget.direction == Axis.horizontal ? widget.size : null,
+              decoration: BoxDecoration(
+                color: widget.backgroundColor,
+                borderRadius: BorderRadius.circular(widget.borderRadius),
+                border: widget.border,
+              ),
+              child: Flex(
+                direction: widget.direction,
+                verticalDirection: widget.verticalDirection,
+                children: <Widget>[
+                  Expanded(
+                      flex: (animation.value * 100).toInt(),
+                      child: Stack(children: progressWidgets)),
+                  Expanded(
+                    flex: 100 - (animation.value * 100).toInt(),
+                    child: Container(),
+                  )
+                ],
+              ),
+            ),
+
+          ],),
+        ],
       ),
     );
   }

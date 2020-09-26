@@ -43,66 +43,6 @@ class S {
     );
   }
 
-  /// `ID`
-  String get id {
-    return Intl.message(
-      'ID',
-      name: 'id',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Gender`
-  String get gender {
-    return Intl.message(
-      'Gender',
-      name: 'gender',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Workplace`
-  String get workplace {
-    return Intl.message(
-      'Workplace',
-      name: 'workplace',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Address`
-  String get address {
-    return Intl.message(
-      'Address',
-      name: 'address',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Age`
-  String get age {
-    return Intl.message(
-      'Age',
-      name: 'age',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Role`
-  String get role {
-    return Intl.message(
-      'Role',
-      name: 'role',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Please enter the workplace ID that you have been given (by email or by workplace manager)`
   String get pleaseEnterTheWorkplaceIdThat {
     return Intl.message(
@@ -293,21 +233,51 @@ class S {
     );
   }
 
-  /// `yes`
+  /// `Yes`
   String get yes {
     return Intl.message(
-      'yes',
+      'Yes',
       name: 'yes',
       desc: '',
       args: [],
     );
   }
 
-  /// `no`
+  /// `No`
   String get no {
     return Intl.message(
-      'no',
+      'No',
       name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
       desc: '',
       args: [],
     );

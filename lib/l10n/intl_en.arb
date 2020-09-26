@@ -1,11 +1,5 @@
 {
   "workplaceId": "Workplace ID",
-  "id": "ID",
-  "gender": "Gender",
-  "workplace": "Workplace",
-  "address": "Address",
-  "age": "Age",
-  "role": "Role",
   "pleaseEnterTheWorkplaceIdThat": "Please enter the workplace ID that you have been given (by email or by workplace manager)",
   "pleaseEnterWorkplaceId": "Please enter workplace ID.",
   "whatIsYourGender": "What is your gender?",
@@ -25,6 +19,9 @@
   "from40To59Years": "40-59 years",
   "moreThan60Years": "> 60 years",
   "areYouAManagerInYourDepartment": "Are you a manager in your department?",
-  "yes": "yes",
-  "no": "no"
+  "yes": "Yes",
+  "no": "No",
+  "close": "Close",
+  "next": "Next",
+  "back": "Back"
 }
