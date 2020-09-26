@@ -5,7 +5,7 @@ import 'base/base_view.dart';
 import 'models/profile_query_model.dart';
 import 'profile_creation_view_model.dart';
 import 'widgets/bottom_action_buttons.dart';
-import 'widgets/linear_progress_bar.dart';
+import 'widgets/header_progress_bar.dart';
 import 'widgets/multiselect_form_view.dart';
 
 class ProfileCreationView extends StatefulWidget {

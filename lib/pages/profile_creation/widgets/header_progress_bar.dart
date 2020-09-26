@@ -1,9 +1,11 @@
 import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/images.dart';
+import '../shared/utils/extensions.dart';
 
 class HeaderProgressBar extends StatefulWidget {
   const HeaderProgressBar(
@@ -20,7 +22,6 @@ class HeaderProgressBar extends StatefulWidget {
       this.progressColor = ColorConstants.lightBlue,
       this.changeColorValue,
       this.changeProgressColor = const Color(0xFF5F4B8B),
-      this.displayText,
       this.directionality = TextDirection.ltr})
       : super(key: key);
   final int currentIndex;
@@ -35,7 +36,6 @@ class HeaderProgressBar extends StatefulWidget {
   final Color progressColor;
   final int changeColorValue;
   final Color changeProgressColor;
-  final String displayText;
   final TextDirection directionality;
 
   @override
@@ -123,21 +123,6 @@ class _AnimatedProgressBar extends AnimatedWidget {
     );
     progressWidgets.add(progressWidget);
 
-    if (widget.displayText != null) {
-      final Widget textProgress = Container(
-          alignment: widget.direction == Axis.horizontal
-              ? const FractionalOffset(0.95, 0.5)
-              : (widget.verticalDirection == VerticalDirection.up
-                  ? const FractionalOffset(0.5, 0.05)
-                  : const FractionalOffset(0.5, 0.95)),
-          child: Text(
-              (animation.value * widget.maxIndex).toInt().toString() +
-                  widget.displayText,
-              softWrap: false,
-              style: const TextStyle(color: Color(0xFFFFFFFF), fontSize: 12)));
-      progressWidgets.add(textProgress);
-    }
-
     return Directionality(
       textDirection: widget.directionality,
       child: Column(
@@ -161,31 +146,61 @@ class _AnimatedProgressBar extends AnimatedWidget {
                   child: Container())
             ],
           ),
-          Stack(children: [
-            Container(
-              width: widget.direction == Axis.vertical ? widget.size : null,
-              height: widget.direction == Axis.horizontal ? widget.size : null,
-              decoration: BoxDecoration(
-                color: widget.backgroundColor,
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-                border: widget.border,
-              ),
-              child: Flex(
-                direction: widget.direction,
-                verticalDirection: widget.verticalDirection,
-                children: <Widget>[
-                  Expanded(
-                      flex: (animation.value * 100).toInt(),
-                      child: Stack(children: progressWidgets)),
-                  Expanded(
-                    flex: 100 - (animation.value * 100).toInt(),
-                    child: Container(),
-                  )
-                ],
-              ),
-            ),
 
-          ],),
+          Container(
+            width: widget.direction == Axis.vertical ? widget.size : null,
+            height: widget.direction == Axis.horizontal ? widget.size : null,
+            decoration: BoxDecoration(
+              color: widget.backgroundColor,
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              border: widget.border,
+            ),
+            child: Stack(
+              children: [
+                Flex(
+                  direction: widget.direction,
+                  verticalDirection: widget.verticalDirection,
+                  children: <Widget>[
+                    Expanded(
+                        flex: (animation.value * 100).toInt(),
+                        child: Stack(children: progressWidgets)),
+                    Expanded(
+                      flex: 100 - (animation.value * 100).toInt(),
+                      child: Container(),
+                    )
+                  ],
+                ),
+                Flex(
+                  direction: widget.direction,
+                  verticalDirection: widget.verticalDirection,
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: widget.maxIndex,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            VerticalDivider(
+                          thickness: (context.width / widget.maxIndex) * 0.05,
+                          color: ColorConstants.backgroundColor,
+                        ),
+                        itemBuilder: (context, index) {
+                          final double _thickness =
+                              (context.width / widget.maxIndex) * 0.05;
+                          final double _subWidth =
+                              context.width - (_thickness * widget.maxIndex);
+                          return SizedBox(
+                              width: _subWidth / (widget.maxIndex + 2));
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
