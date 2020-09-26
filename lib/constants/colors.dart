@@ -18,4 +18,5 @@ class ColorConstants {
   static const Color blueAboutPage = const Color(0xFFC1A754);
   static const Color purpleAboutPage = const Color(0xFFA86E55);
   static const Color darkBrownAboutPage = const Color(0xFF286DDB);
+  static const Color greyHomePage = const Color.fromARGB(225, 242, 242, 242);
 }

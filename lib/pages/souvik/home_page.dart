@@ -6,22 +6,26 @@ import 'home_page_content/widget3.dart';
 import '../../constants/colors.dart';
 
 class MainHomePage extends StatefulWidget {
+  final num;
+  MainHomePage({this.num});
   @override
   _MainHomePageState createState() => _MainHomePageState();
 }
 
 class _MainHomePageState extends State<MainHomePage> {
   int pageIndex = 0;
-  List<Widget> tabPages = [
-    HomepageFirstTimeUser(),
-    Container(),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<Widget> tabPages = [
+      HomepageFirstTimeUser(
+        num: widget.num,
+      ),
+      Container(),
+    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorConstants.darkBlue,
-        backgroundColor: ColorConstants.greyAboutPage,
+        backgroundColor: ColorConstants.greyHomePage,
         onTap: (ind) {
           setState(() {
             pageIndex = ind;
@@ -45,6 +49,8 @@ class _MainHomePageState extends State<MainHomePage> {
 }
 
 class HomepageFirstTimeUser extends StatelessWidget {
+  final num;
+  HomepageFirstTimeUser({this.num});
   final theme = ThemeData();
   final String coverImage =
       "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"; //really big name so i thought making a variable would be better.
@@ -77,32 +83,48 @@ class HomepageFirstTimeUser extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 400,
-              width: deviceWidth,
-              child: Welcome(),
-            ),
-            Container(
-              height: 50,
-              width: 50,
-              child: FlatButton(
-                onPressed: () {
-                  print("Fetching Surveys");
-                },
-                child: Text(
-                  "Take Survey",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                color: ColorConstants.orange,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
+            if (num == 1)
+              Container(
+                child: Welcome(
+                  deviceWidth: deviceWidth,
                 ),
               ),
-            ),
+            if (num == 2)
+              Container(
+                child: NoSurvey(
+                  deviceWidth: deviceWidth,
+                ),
+              ),
+            if (num == 3)
+              Container(
+                child: WelcomeBack(
+                  deviceWidth: deviceWidth,
+                ),
+              ),
+            if (num != 2)
+              Padding(
+                padding: EdgeInsets.fromLTRB(55, 0.0, 65, 55),
+                child: Container(
+                  height: 50,
+                  child: FlatButton(
+                    onPressed: () {
+                      print("Fetching Surveys");
+                    },
+                    child: Text(
+                      "Take Survey",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    color: ColorConstants.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

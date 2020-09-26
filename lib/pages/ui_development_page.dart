@@ -59,7 +59,9 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return MainHomePage();
+                      return MainHomePage(
+                        num: 1,
+                      );
                     },
                   ),
                 );
@@ -69,12 +71,32 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               title: Text("home_first no surveys"),
               onTap: () {
                 print("nav to home_first no surveys page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage(
+                        num: 2,
+                      );
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
               title: Text("home_returning user"),
               onTap: () {
                 print("nav to home_returning user page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage(
+                        num: 3,
+                      );
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
