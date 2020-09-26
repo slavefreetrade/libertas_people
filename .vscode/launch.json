@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "libertas_people (Flutter)",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
