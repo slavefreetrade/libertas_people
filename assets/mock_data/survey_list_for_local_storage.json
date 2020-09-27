@@ -1,0 +1,36 @@
+{
+  "surveys": {
+    "2": {
+      "id": "gklndshgdsglkn",
+      "name": "Survey_2",
+      "isActive": true,
+      "isComplete": false,
+      "beginDate": "UTC DATE TIME STRING",
+      "finalDate": "UTC DATE TIME STRING"
+    },
+    "1": {
+      "id": "PK_asgdmnantkp",
+      "name": "Survey_1",
+      "isActive": true,
+      "isComplete": true,
+      "beginDate": "UTC DATE TIME STRING",
+      "finalDate": "UTC DATE TIME STRING"
+    },
+    "3": {
+      "id": "ALNFoafnjdsglkn",
+      "name": "Survey_3",
+      "isActive": true,
+      "isComplete": false,
+      "beginDate": "UTC DATE TIME STRING",
+      "finalDate": "UTC DATE TIME STRING"
+    },
+    "4": {
+      "id": "SV_bslkMpW1tsMStkp",
+      "name": "Survey_4",
+      "isActive": true,
+      "isComplete": false,
+      "beginDate": "UTC DATE TIME STRING",
+      "finalDate": "UTC DATE TIME STRING"
+    }
+  }
+}

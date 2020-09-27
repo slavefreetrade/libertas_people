@@ -1,0 +1,52 @@
+{
+  "result": {
+    "sessionId": "FS_6DpmZGOa9wRpimd",
+    "questions": [
+      {
+        "questionId": "QID7",
+        "type": "te",
+        "display": "Enter your workplace code",
+        "options": {}
+      },
+      {
+        "questionId": "QID11",
+        "type": "mc",
+        "display": "Gender",
+        "options": {
+          "columnLabels": [],
+          "multiSelect": false
+        },
+        "choices": [
+          {
+            "choiceId": "1",
+            "display": "male",
+            "textual": false
+          },
+          {
+            "choiceId": "2",
+            "display": "Female",
+            "textual": false
+          },
+          {
+            "choiceId": "4",
+            "display": "other",
+            "textual": false
+          },
+          {
+            "choiceId": "5",
+            "display": "non disclose",
+            "textual": false
+          }
+        ]
+      },
+      {
+        "questionId": "QID12",
+        "type": "te",
+        "display": "unique user id",
+        "options": {}
+      }
+    ],
+    "responses": {},
+    "done": false
+  }
+}
