@@ -1,0 +1,31 @@
+{
+  "questionId": "QID2",
+  "type": "mc",
+  "display": "*What is your gender?",
+  "options": {
+    "columnLabels": [],
+    "multiSelect": false
+  },
+  "choices": [
+    {
+      "choiceId": "1",
+      "display": "Male",
+      "textual": false
+    },
+    {
+      "choiceId": "2",
+      "display": "Female",
+      "textual": false
+    },
+    {
+      "choiceId": "3",
+      "display": "Other",
+      "textual": false
+    },
+    {
+      "choiceId": "4",
+      "display": "Prefer not to say",
+      "textual": false
+    }
+  ]
+}

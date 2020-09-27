@@ -1,0 +1,19 @@
+{
+  "surveys": [
+    {
+      "id": "gklndshgdsglkn",
+      "name": "Survey_2",
+      "isActive": true
+    },
+    {
+      "id": "SV_bslkMpW1tsMStkp",
+      "name": "Survey_1",
+      "isActive": true
+    },
+    {
+      "id": "SV_d0WdqcyYmdkeqMZ",
+      "name": "Test Survey do not add this to local db!",
+      "isActive": true
+    }
+  ]
+}
