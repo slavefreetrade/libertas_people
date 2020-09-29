@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 
-class CustomForm extends StatefulWidget {
+class EditProfilePage extends StatefulWidget {
 
   @override
-  _CustomFormState createState() => _CustomFormState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _CustomFormState extends State<CustomForm> {
+class _EditProfilePageState extends State<EditProfilePage> {
 
 // FocusNode function Used to control field Item and pass to another field
   final _WorkAdressFocusNode = FocusNode();

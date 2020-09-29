@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/emmanuel_work/splash_screen.dart';
+import 'package:libertaspeople/pages/edit_profile_page.dart';
+import 'package:libertaspeople/pages/splash_screen.dart';
 
-import 'emmanuel_work/widgets/custom_form.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
@@ -104,7 +104,7 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               onTap: () {
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (BuildContext context) {
-                  return CustomForm();
+                  return EditProfilePage();
                 }));
               },
             ),
