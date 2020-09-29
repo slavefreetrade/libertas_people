@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/pages/emmanuel_work/splash_screen.dart';
+
+import 'emmanuel_work/widgets/custom_form.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
@@ -15,6 +18,15 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
         ),
         body: ListView(
           children: <Widget>[
+            ListTile(
+              title: Text("splash screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                      return new SplashScreen();
+                    }));
+              },
+            ),
             ListTile(
               title: Text("onboarding"),
               onTap: () {
@@ -90,7 +102,10 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             ListTile(
               title: Text("profile screen"),
               onTap: () {
-                print("nav to profile screen page");
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return CustomForm();
+                }));
               },
             ),
             ListTile(
