@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/emmanuel_work/profile_screen.dart';
 import 'package:libertaspeople/pages/emmanuel_work/splash_screen.dart';
+
+import 'emmanuel_work/widgets/custom_form.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override
@@ -17,12 +18,18 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: Text("onboarding"),
+              title: Text("splash screen"),
               onTap: () {
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (BuildContext context) {
                       return new SplashScreen();
                     }));
+              },
+            ),
+            ListTile(
+              title: Text("onboarding"),
+              onTap: () {
+
               },
             ),
             ListTile(
@@ -37,11 +44,11 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
                 print("nav to workplace id page");
               },
             ),
-
             ListTile(
-              title: Text("confirmation login_returning user"),
-              onTap: () { print("Confirm Page"); }
-            ),
+                title: Text("confirmation login_returning user"),
+                onTap: () {
+                  print("Confirm Page");
+                }),
             ListTile(
               title: Text("home_first time user"),
               onTap: () {
@@ -63,11 +70,11 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             ListTile(
               title: Text("profile screen"),
               onTap: () {
-                  Navigator.push(context,
-                      new MaterialPageRoute(builder: (BuildContext context) {
-                        return new ProfileScreen();
-                      }));
-                },
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return CustomForm();
+                }));
+              },
             ),
             ListTile(
               title: Text("profile screen #5"),
