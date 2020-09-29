@@ -1,0 +1,11 @@
+#include: package:strict_dart/analysis_options.yaml
+#
+#analyzer:
+#  exclude:
+#    - lib/l10n
+#    - lib/generated
+#    - lib/todo_practice_work
+#    - lib/pages/ui_development_page.dart
+#
+#  errors:
+#    prefer_mixin: ignore

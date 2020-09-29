@@ -6,8 +6,10 @@ import 'package:libertaspeople/pages/edit_profile_page.dart';
 import 'package:libertaspeople/pages/splash_screen.dart';
 
 import 'package:libertaspeople/pages/home/home_page.dart';
+import 'profile_creation/profile_creation_view.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
+  static const routeName = '/home';
   @override
   _UIDevelopmentPageState createState() => _UIDevelopmentPageState();
 }
@@ -43,11 +45,13 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               },
             ),
             ListTile(
-              title: Text("feat-profile creation"),
-              onTap: () {
-                print("nav to workplace id page");
-              },
+              title: Text('feat-profile creation'),
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(
+                builder: (_) => ProfileCreationView(),
+              )),
             ),
+
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
