@@ -25,7 +25,7 @@ class WelcomeBack extends StatelessWidget {
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
-              color: ColorConstants.greyHomePage,
+              color: ColorConstants.greyAboutPage,
               elevation: 0,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),

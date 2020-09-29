@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/souvik/home_page.dart';
+import 'package:libertaspeople/pages/home/home_page.dart';
 
 class UIDevelopmentPage extends StatefulWidget {
   @override

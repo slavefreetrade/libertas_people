@@ -31,7 +31,7 @@ class NoSurvey extends StatelessWidget {
               ),
               margin: EdgeInsets.all(0),
               elevation: 0,
-              color: ColorConstants.greyHomePage,
+              color: ColorConstants.greyAboutPage,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(

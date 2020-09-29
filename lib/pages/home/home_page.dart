@@ -25,7 +25,7 @@ class _MainHomePageState extends State<MainHomePage> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorConstants.darkBlue,
-        backgroundColor: ColorConstants.greyHomePage,
+        backgroundColor: ColorConstants.greyAboutPage,
         onTap: (ind) {
           setState(() {
             pageIndex = ind;
