@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/models/user_local_data_source.dart';
+import 'package:libertaspeople/pages/survey_question_page.dart';
+import 'package:libertaspeople/pages/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/thankyou_page.dart';
+import 'package:libertaspeople/pages/edit_profile_page.dart';
+import 'package:libertaspeople/pages/splash_screen.dart';
 
+import 'package:libertaspeople/pages/home/home_page.dart';
+import 'profile_creation/profile_creation_view.dart';
+//somethings might get wrong.
 class UIDevelopmentPage extends StatefulWidget {
+  static const routeName = '/home';
   @override
   _UIDevelopmentPageState createState() => _UIDevelopmentPageState();
 }
@@ -105,70 +113,137 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
               print("nav to _ page");
             },
           ),
-          FlatButton(
-            onPressed: () {
-              var result = UserLocalDataSource().fetchUniqueDeviceID();
-              print("$result");
-            },
-            color: Colors.orange,
-            child: Text(
-              "Test device id",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+        appBar: AppBar(
+          title: Text("Home"),
+        ),
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("splash screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                      return new SplashScreen();
+                    }));
+              },
+            ),
+            ListTile(
+              title: Text("onboarding"),
+              onTap: () {
+                print("nav to onboarding 1 page");
+              },
             ),
           ),
-          FlatButton(
-            onPressed: () {
-              var result =
-                  UserLocalDataSource().storePreferredLanguage("english");
-              print("$result");
-            },
-            color: Colors.orange,
-            child: Text(
-              "store language",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
           ),
-          FlatButton(
-            onPressed: () {
-              var result = UserLocalDataSource().getPreferredLanguage();
-              print("$result");
-            },
-            color: Colors.orange,
-            child: Text(
-              "fetch data storage",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+            ListTile(
+              title: Text('feat-profile creation'),
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(
+                builder: (_) => ProfileCreationView(),
+              )),
             ),
-          ),
-          FlatButton(
-            onPressed: () {
-              var result = UserLocalDataSource().storeUID("ddjd");
-              print("$result");
-            },
-            color: Colors.black,
-            child: Text(
-              "store language",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+
+            ListTile(
+              title: Text("confirmation login_returning user"),
+              onTap: () {
+                print("nav to confirmation login_returning user page");
+              },
             ),
-          ),
-          FlatButton(
-            onPressed: () {
-              var result = UserLocalDataSource().getUID();
-              print("$result");
-            },
-            color: Colors.black,
-            child: Text(
-              "fetch uid",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+            ListTile(
+              title: Text("home_first time user"),
+              onTap: () {
+                print("nav to home_first time user page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage(
+                        num: 1,
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("home_first no surveys"),
+              onTap: () {
+                print("nav to home_first no surveys page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage(
+                        num: 2,
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("home_returning user"),
+              onTap: () {
+                print("nav to home_returning user page");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainHomePage(
+                        num: 3,
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: Text("profile screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return EditProfilePage();
+                }));
+              },
+            ),
+            ListTile(
+              title: Text("profile screen #5"),
+              onTap: () {
+                print("nav to profile screen #5 page");
+              },
+            ),
+            ListTile(
+              title: Text("survey language"),
+              onTap: () {
+                print("nav to survey language page");
+              },
+            ),
+            ListTile(
+              title: Text("survey information"),
+              onTap: () {
+                print("nav to survey information page");
+              },
+            ),
+            ListTile(
+              title: Text("survey Q1"),
+              onTap: () {
+                Navigator.of(context).pushNamed(SurveyQuestionPage.routeName);
+                print("nav to survey Q1 page");
+              },
+            ),
+            ListTile(
+              title: Text("survey1 thank you"),
+              onTap: () {
+                print("nav to survey1 thank you page");
+                Navigator.of(context).pushNamed(SurveyThankyouPage.routeName);
+              },
+            ),
+            ListTile(
+              title: Text("thank you screen retr=u"),
+              onTap: () {
+                Navigator.of(context).pushNamed(ThankyouPage.routeName);
+                print("nav to _ page");
+              },
             ),
           ),
         ],

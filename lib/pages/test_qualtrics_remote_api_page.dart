@@ -10,10 +10,12 @@ class TestQualtricsRemoteAPIPage extends StatefulWidget {
   final String title;
 
   @override
-  _TestQualtricsRemoteAPIPageState createState() => _TestQualtricsRemoteAPIPageState();
+  _TestQualtricsRemoteAPIPageState createState() =>
+      _TestQualtricsRemoteAPIPageState();
 }
 
-class _TestQualtricsRemoteAPIPageState extends State<TestQualtricsRemoteAPIPage> {
+class _TestQualtricsRemoteAPIPageState
+    extends State<TestQualtricsRemoteAPIPage> {
   int _counter = 0;
   String sessionId;
 
