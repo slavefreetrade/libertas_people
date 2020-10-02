@@ -7,13 +7,16 @@ import '../../constants/colors.dart';
 
 class MainHomePage extends StatefulWidget {
   final num;
+
   MainHomePage({this.num});
+
   @override
   _MainHomePageState createState() => _MainHomePageState();
 }
 
 class _MainHomePageState extends State<MainHomePage> {
   int pageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
@@ -43,14 +46,58 @@ class _MainHomePageState extends State<MainHomePage> {
           ),
         ],
       ),
-      body: tabPages[pageIndex],
+//      body: tabPages[pageIndex],
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                    "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  height: 50,
+                  color: ColorConstants.darkBlue,
+                  child: Center(
+                    child: Text(
+                      "Libertas People",
+                      style: TextStyle(
+                        color: ColorConstants.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+              child: ListView(
+            children: <Widget>[
+              WelcomeBack(),
+              Welcome(),
+            ],
+          ))
+        ],
+      ),
     );
   }
 }
 
 class HomepageFirstTimeUser extends StatelessWidget {
   final num;
+
   HomepageFirstTimeUser({this.num});
+
   final theme = ThemeData();
   final String coverImage =
       "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"; //really big name so i thought making a variable would be better.
@@ -86,8 +133,8 @@ class HomepageFirstTimeUser extends StatelessWidget {
             if (num == 1)
               Container(
                 child: Welcome(
-                  deviceWidth: deviceWidth,
-                ),
+//                  deviceWidth: deviceWidth,
+                    ),
               ),
             if (num == 2)
               Container(
