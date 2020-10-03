@@ -12,26 +12,28 @@ void main() {
       expect(sessionInfo.questions.map((e) => e.toJson()).toList(),
           equals(_mockJsonData['questions']));
       expect(sessionInfo.done, equals(_mockJsonData['done']));
+      expect(sessionInfo.responses, equals(_mockJsonData['responses']));
     });
 
     test('mapping model to json', () {
       final sessionInfo = SessionInfoModel(
-        questions: [
-          QuestionModel(
-              display: 'Enter your workplace code',
-              type: QuestionType.te,
-              questionId: 'QID7',
-              options: QuestionOptionsModel())
-        ],
-        done: false,
-        sessionId: 'FS_6DpmZGOa9wRpimd',
-      );
+          questions: [
+            QuestionModel(
+                display: 'Enter your workplace code',
+                type: QuestionType.te,
+                questionId: 'QID7',
+                options: QuestionOptionsModel())
+          ],
+          done: false,
+          sessionId: 'FS_6DpmZGOa9wRpimd',
+          responses: <String, dynamic>{});
       final sessionInfoJson = sessionInfo.toJson();
 
       expect(sessionInfoJson['sessionId'], equals(sessionInfo.sessionId));
       expect(sessionInfoJson['done'], equals(sessionInfo.done));
       expect(sessionInfoJson['questions'],
           equals(sessionInfo.questions.map((e) => e.toJson()).toList()));
+      expect(sessionInfoJson['responses'], equals(sessionInfo.responses));
     });
   });
 }
@@ -64,6 +66,6 @@ const _mockJsonData = {
       'options': <String, dynamic>{}
     }
   ],
-  // 'responses': <String, dynamic>{},
+  'responses': <String, dynamic>{},
   'done': false
 };

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:libertaspeople/models/question_options_model.dart';
 
 import 'choice_model.dart';
+import 'question_options_model.dart';
 
 part 'question_model.g.dart';
 

@@ -13,6 +13,7 @@ SessionInfoModel _$SessionInfoModelFromJson(Map<String, dynamic> json) {
         .map((e) => QuestionModel.fromJson(e as Map<String, dynamic>))
         .toList(),
     done: json['done'] as bool,
+    responses: json['responses'] as Map<String, dynamic>,
   );
 }
 
@@ -21,4 +22,5 @@ Map<String, dynamic> _$SessionInfoModelToJson(SessionInfoModel instance) =>
       'sessionId': instance.sessionId,
       'questions': instance.questions.map((e) => e.toJson()).toList(),
       'done': instance.done,
+      'responses': instance.responses,
     };
