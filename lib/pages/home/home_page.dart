@@ -5,6 +5,7 @@ import 'home_page_content/widget2.dart';
 import 'home_page_content/widget3.dart';
 import '../../constants/colors.dart';
 
+// new implementation
 class MainHomePage extends StatefulWidget {
   final num;
 
@@ -83,6 +84,7 @@ class _MainHomePageState extends State<MainHomePage> {
           Expanded(
               child: ListView(
             children: <Widget>[
+              // only display one of these widgets
               WelcomeBack(),
               Welcome(),
             ],
@@ -93,6 +95,7 @@ class _MainHomePageState extends State<MainHomePage> {
   }
 }
 
+// Your previous implementation
 class HomepageFirstTimeUser extends StatelessWidget {
   final num;
 
