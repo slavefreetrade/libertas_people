@@ -1,4 +1,4 @@
-include: package:strict_dart/analysis_options.yaml
+#include: package:strict_dart/analysis_options.yaml
 
 analyzer:
   exclude:
@@ -6,6 +6,7 @@ analyzer:
     - lib/generated
     - lib/todo_practice_work
     - lib/pages/ui_development_page.dart
+    - lib/
 
   errors:
     prefer_mixin: ignore

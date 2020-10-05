@@ -3,11 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:libertaspeople/models/secret_model.dart';
 
 class TestQualtricsRemoteAPIPage extends StatefulWidget {
-  TestQualtricsRemoteAPIPage({Key key, this.title}) : super(key: key);
 
-  final String title;
 
   @override
   _TestQualtricsRemoteAPIPageState createState() =>
@@ -19,17 +18,22 @@ class _TestQualtricsRemoteAPIPageState
   int _counter = 0;
   String sessionId;
 
+  String surveyId = "SV_af0aK21x6XGzcYl";
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Test Qualtrics API"),
       ),
       body: Center(
         child: Column(
@@ -39,13 +43,13 @@ class _TestQualtricsRemoteAPIPageState
               child: Text("fetch survey list"),
               onPressed: () async {
                 try {
-                  String apiKey = "";
-                  String dataCenter = "";
+                  final SecretModel secrets = await SecretModel.load();
+                  String apiKey = secrets.apiKey;
+                  String dataCenter = secrets.dataCenter;
                   Map<String, String> headers = {
                     "x-api-token": apiKey,
                     "Content-Type": "application/json"
                   };
-                  Map<String, String> body = {'language': "EN"};
                   var response = await http.get(
                     "https://$dataCenter.qualtrics.com/API/v3/surveys",
                     headers: headers,
@@ -54,19 +58,18 @@ class _TestQualtricsRemoteAPIPageState
                   print("response code: ${response.statusCode}");
                   print("response body: ${response.body}");
                   sessionId = jsonDecode(response.body)['result']['sessionId'];
-                  log("sessionId = $sessionId");
                 } catch (e) {
                   print("exception: $e");
                 }
               },
             ),
             RaisedButton(
-              child: Text("fetch new session ID"),
+              child: Text("fetch new session"),
               onPressed: () async {
                 try {
-                  String apiKey = "";
-                  String dataCenter = "";
-                  String surveyId = "SV_d0WdqcyYmdkeqMZ";
+                  final SecretModel secrets = await SecretModel.load();
+                  String apiKey = secrets.apiKey;
+                  String dataCenter = secrets.dataCenter;
                   Map<String, String> headers = {
                     "x-api-token": apiKey,
                     "Content-Type": "application/json"
@@ -89,10 +92,11 @@ class _TestQualtricsRemoteAPIPageState
             RaisedButton(
               child: Text("fetch Current Session"),
               onPressed: () async {
+                print("fetching current session: $sessionId");
                 try {
-                  String apiKey = "";
-                  String dataCenter = "";
-                  String surveyId = "SV_bslkMpW1tsMStkp";
+                  final SecretModel secrets = await SecretModel.load();
+                  String apiKey = secrets.apiKey;
+                  String dataCenter = secrets.dataCenter;
                   Map<String, String> headers = {
                     "x-api-token": apiKey,
                     "Content-Type": "application/json"
@@ -106,8 +110,7 @@ class _TestQualtricsRemoteAPIPageState
                   print("response code: ${response.statusCode}");
                   Map map = jsonDecode(response.body);
                   debugPrint("body: ${map}", wrapWidth: 1024);
-                  print("session result keys; ${map['result'].keys}");
-                  print("session meta keys; ${map['meta'].keys}");
+
 
                   sessionId = map['result']['sessionId'];
                   print(map['result']['responses']);
@@ -121,8 +124,9 @@ class _TestQualtricsRemoteAPIPageState
               child: Text("answer text question"),
               onPressed: () async {
                 try {
-                  String apiKey = "";
-                  String dataCenter = "";
+                  final SecretModel secrets = await SecretModel.load();
+                  String apiKey = secrets.apiKey;
+                  String dataCenter = secrets.dataCenter;
                   String surveyId = "SV_bslkMpW1tsMStkp";
                   Map<String, String> headers = {
                     "x-api-token": apiKey,
@@ -150,8 +154,9 @@ class _TestQualtricsRemoteAPIPageState
               child: Text("answer mc question"),
               onPressed: () async {
                 try {
-                  String apiKey = "";
-                  String dataCenter = "";
+                  final SecretModel secrets = await SecretModel.load();
+                  String apiKey = secrets.apiKey;
+                  String dataCenter = secrets.dataCenter;
                   String surveyId = "SV_bslkMpW1tsMStkp";
                   Map<String, String> headers = {
                     "x-api-token": apiKey,

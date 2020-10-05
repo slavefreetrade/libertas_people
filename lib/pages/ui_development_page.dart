@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/pages/survey_question_page.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/test_qualtrics_remote_api_page.dart';
 import 'package:libertaspeople/pages/thankyou_page.dart';
 import 'package:libertaspeople/pages/edit_profile_page.dart';
 import 'package:libertaspeople/pages/splash_screen.dart';
@@ -23,6 +24,15 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
         ),
         body: ListView(
           children: <Widget>[
+            ListTile(
+              title: Text("test remote Api screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                      return new TestQualtricsRemoteAPIPage();
+                    }));
+              },
+            ),
             ListTile(
               title: Text("splash screen"),
               onTap: () {
