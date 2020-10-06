@@ -16,7 +16,6 @@ class QualtricsRemoteDataSource {
   String _getBody() => json.encode({'language': 'EN'});
 
   String _getBodyWithReponses(SurveyResponsesModel response) => json.encode({
-        'language': 'EN',
         'embeddedData': {'deviceID': response.deviceId},
         'advance': response.advance,
         'responses': response.answers
@@ -35,7 +34,7 @@ class QualtricsRemoteDataSource {
           'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions',
           headers: _getHeader(apiKey: secrets.apiKey),
           body: _getBody());
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return SessionInfoModel.fromJson(
             jsonDecode(response.body)['result'] as Map<String, dynamic>);
       } else {
@@ -59,7 +58,7 @@ class QualtricsRemoteDataSource {
     final SecretModel secrets = await SecretModel.load();
 
     try {
-      final response = await http.post(
+      final response = await http.get(
           'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}',
           headers: _getHeader(apiKey: secrets.apiKey));
       if (response.statusCode == 200) {
@@ -109,7 +108,7 @@ class QualtricsRemoteDataSource {
     final SecretModel secrets = await SecretModel.load();
 
     try {
-      final response = await http.post(
+      final response = await http.get(
           'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys',
           headers: _getHeader(apiKey: secrets.apiKey));
 

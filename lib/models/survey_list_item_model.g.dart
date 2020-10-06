@@ -8,7 +8,7 @@ part of 'survey_list_item_model.dart';
 
 SurveyListModel _$SurveyListModelFromJson(Map<String, dynamic> json) {
   return SurveyListModel(
-    surveys: (json['surveys'] as List)
+    elements: (json['elements'] as List)
         .map((e) => SurveyListItemModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
@@ -16,7 +16,7 @@ SurveyListModel _$SurveyListModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SurveyListModelToJson(SurveyListModel instance) =>
     <String, dynamic>{
-      'surveys': instance.surveys.map((e) => e.toJson()).toList(),
+      'elements': instance.elements.map((e) => e.toJson()).toList(),
     };
 
 SurveyListItemModel _$SurveyListItemModelFromJson(Map<String, dynamic> json) {

@@ -4,9 +4,9 @@ part 'survey_list_item_model.g.dart';
 
 @JsonSerializable(nullable: false, explicitToJson: true)
 class SurveyListModel {
-  List<SurveyListItemModel> surveys;
+  List<SurveyListItemModel> elements;
 
-  SurveyListModel({this.surveys});
+  SurveyListModel({this.elements});
   factory SurveyListModel.fromJson(Map<String, dynamic> json) =>
       _$SurveyListModelFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyListModelToJson(this);

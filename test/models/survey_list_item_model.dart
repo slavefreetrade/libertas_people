@@ -25,18 +25,18 @@ void main() {
     test('mapping model from json', () {
       final surveyList = SurveyListModel.fromJson(_mockListJsonData);
 
-      expect(surveyList.surveys.map((e) => e.toJson()).toList(),
-          equals(_mockListJsonData['surveys']));
+      expect(surveyList.elements.map((e) => e.toJson()).toList(),
+          equals(_mockListJsonData['elements']));
     });
 
     test('mapping model to json', () {
       final surveyList = SurveyListModel(
-        surveys: [SurveyListItemModel(isActive: true, name: 'survey', id: '2')],
+        elements: [SurveyListItemModel(isActive: true, name: 'survey', id: '2')],
       );
       final surveyListJson = surveyList.toJson();
 
-      expect(surveyListJson['surveys'],
-          equals(surveyList.surveys.map((e) => e.toJson()).toList()));
+      expect(surveyListJson['elements'],
+          equals(surveyList.elements.map((e) => e.toJson()).toList()));
     });
   });
 }
@@ -48,7 +48,7 @@ const _mockJsonData = {
 };
 
 const _mockListJsonData = {
-  'surveys': [
+  'elements': [
     {'id': 'gklndshgdsglkn', 'name': 'Survey_2', 'isActive': true},
     {'id': 'PK_asgdmnantkp', 'name': 'Survey_1', 'isActive': true},
     {'id': 'ALNFoafnjdsglkn', 'name': 'Survey_3', 'isActive': true},
