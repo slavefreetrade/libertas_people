@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
 import 'package:libertaspeople/pages/survey_question_page.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/test_qualtrics_remote_api_page.dart';
+import 'package:libertaspeople/pages/test_qualtrics_remote_data_source_page.dart';
 import 'package:libertaspeople/pages/thankyou_page.dart';
 import 'package:libertaspeople/pages/edit_profile_page.dart';
 import 'package:libertaspeople/pages/splash_screen.dart';
@@ -119,12 +122,32 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
         body: ListView(
           children: <Widget>[
             ListTile(
+              title: Text("test remote Api screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return new TestQualtricsRemoteAPIPage();
+                }));
+              },
+            ),
+            ListTile(
+              title: Text("test remote data source screen"),
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return TestQualtricsRemoteDataSourcePage(
+                    dataSource: QualtricsRemoteDataSource(),
+                  );
+                }));
+              },
+            ),
+            ListTile(
               title: Text("splash screen"),
               onTap: () {
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (BuildContext context) {
-                      return new SplashScreen();
-                    }));
+                  return new SplashScreen();
+                }));
               },
             ),
             ListTile(
@@ -137,12 +160,10 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
           ),
             ListTile(
               title: Text('feat-profile creation'),
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => ProfileCreationView(),
               )),
             ),
-
             ListTile(
               title: Text("confirmation login_returning user"),
               onTap: () {
