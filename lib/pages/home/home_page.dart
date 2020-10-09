@@ -35,11 +35,11 @@ class _MainHomePageState extends State<MainHomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Home"),
+            label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            title: Text("About Survey"),
+            label: "About Survey",
           ),
         ],
       ),
