@@ -26,6 +26,9 @@ dependencies:
 
   path_provider: ^1.6.18
   uuid: 2.2.2
+  http: ^0.12.2
+  flutter_secure_storage: ^3.3.4
+  device_info: ^0.4.2+8
   step_progress_indicator: ^0.2.4+7
   percent_indicator: ^2.1.7+4
   http: ^0.12.2
