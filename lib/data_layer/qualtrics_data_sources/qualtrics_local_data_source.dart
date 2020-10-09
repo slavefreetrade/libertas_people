@@ -63,7 +63,9 @@ class QualtricsLocalDataSource {
     List<dynamic> finalSurveyList = surveyList.map((element) {
       element['beginDate'] = initialDate;
       element['finalDate'] = DateTime.parse(element['beginDate'])
-          .add(Duration(days: 30))
+          .add(Duration(
+              days:
+                  30)) // for testing purposes, we might want to make the duration 2 days..?
           .toUtc()
           .toString();
       initialDate = element['finalDate'];
@@ -115,10 +117,18 @@ class QualtricsLocalDataSource {
     sessionFile.writeAsStringSync(json.encode(currentSession));
   }
 
-  Future<Map<String, dynamic>> get getCurrentSessionData async {
-    File sessionFile = await _sessionFile;
-    final String jsonString = sessionFile.readAsStringSync();
-    Map<String, dynamic> sessionMap = json.decode(jsonString);
+// May want to convert this to return a MODEL
+  Future<Map<String, dynamic>> get getStoredSessionMetaData async {
+    Map<String, dynamic> sessionMap;
+    try {
+      File sessionFile = await _sessionFile;
+      final String jsonString = sessionFile.readAsStringSync();
+      sessionMap = json.decode(jsonString);
+
+    } on FileSystemException {
+      sessionMap = {};
+      // We create a Model ourselves with no inputs
+    }
     return sessionMap;
   }
 

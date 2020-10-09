@@ -1,23 +1,32 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'home_page_content/widget1.dart';
-import 'home_page_content/widget2.dart';
-import 'home_page_content/widget3.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/pages/home/home_page_content/unfinished.dart';
+import 'package:libertaspeople/view_models/home_cubit.dart';
+import 'home_page_content/welcome.dart';
+import 'home_page_content/no_survey.dart';
+import 'home_page_content/welcome_back.dart';
 import '../../constants/colors.dart';
 
-class MainHomePage extends StatefulWidget {
+class HomePageScaffold extends StatefulWidget {
   final num;
-  MainHomePage({this.num});
+  HomePageScaffold({this.num});
   @override
-  _MainHomePageState createState() => _MainHomePageState();
+  _HomePageScaffoldState createState() => _HomePageScaffoldState();
 }
 
-class _MainHomePageState extends State<MainHomePage> {
+class _HomePageScaffoldState extends State<HomePageScaffold> {
+  @override
+  initState() {
+    super.initState();
+    context.bloc<HomeScreenCubit>().loadHomeScreen();
+  }
+
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
-      HomepageFirstTimeUser(
+      HomePageContent(
         num: widget.num,
       ),
       Container(),
@@ -48,9 +57,9 @@ class _MainHomePageState extends State<MainHomePage> {
   }
 }
 
-class HomepageFirstTimeUser extends StatelessWidget {
+class HomePageContent extends StatelessWidget {
   final num;
-  HomepageFirstTimeUser({this.num});
+  HomePageContent({this.num});
   final theme = ThemeData();
   final String coverImage =
       "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"; //really big name so i thought making a variable would be better.
@@ -83,48 +92,63 @@ class HomepageFirstTimeUser extends StatelessWidget {
                 ),
               ),
             ),
-            if (num == 1)
-              Container(
-                child: Welcome(
-                  deviceWidth: deviceWidth,
-                ),
+            Container(
+              child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
+                builder: (context, state) {
+                  if (state is LoadingHomeScreenState) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (state is UnfinishedSurveyHomeScreenState) {
+                    return UnfinishedSurvey(
+                        surveyID: state.surveyID, sessionID: state.sessionId);
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
-            if (num == 2)
-              Container(
-                child: NoSurvey(
-                  deviceWidth: deviceWidth,
-                ),
-              ),
-            if (num == 3)
-              Container(
-                child: WelcomeBack(
-                  deviceWidth: deviceWidth,
-                ),
-              ),
-            if (num != 2)
-              Padding(
-                padding: EdgeInsets.fromLTRB(55, 0.0, 65, 55),
-                child: Container(
-                  height: 50,
-                  child: FlatButton(
-                    onPressed: () {
-                      print("Fetching Surveys");
-                    },
-                    child: Text(
-                      "Take Survey",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    color: ColorConstants.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                ),
-              ),
+            ),
+            // if (num == 1)
+            //   Container(
+            //     child: Welcome(
+            //       deviceWidth: deviceWidth,
+            //     ),
+            //   ),
+            // if (num == 2)
+            //   Container(
+            //     child: NoSurvey(
+            //       deviceWidth: deviceWidth,
+            //     ),
+            //   ),
+            // if (num == 3)
+            //   Container(
+            //     child: WelcomeBack(
+            //       deviceWidth: deviceWidth,
+            //     ),
+            //   ),
+            // if (num != 2)
+            //   Padding(
+            //     padding: EdgeInsets.fromLTRB(55, 0.0, 65, 55),
+            //     child: Container(
+            //       height: 50,
+            //       child: FlatButton(
+            //         onPressed: () {
+            //           print("Fetching Surveys");
+            //         },
+            //         child: Text(
+            //           "Take Survey",
+            //           style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 24,
+            //             fontWeight: FontWeight.w700,
+            //           ),
+            //         ),
+            //         color: ColorConstants.orange,
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(40),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
           ],
         ),
       ),
