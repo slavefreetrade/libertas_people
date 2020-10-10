@@ -106,7 +106,7 @@ class WelcomeFirstTimeContent extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: Text("Finish Survey"),
+                  child: Text("Take Survey"),
                 ),
                 onPressed: () {
                   print("take first survey for surveyId: $firstSurveyId ");

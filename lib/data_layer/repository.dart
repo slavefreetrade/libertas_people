@@ -7,9 +7,10 @@ class Repository {
   QualtricsLocalDataSource qualtricsLocal = QualtricsLocalDataSource();
   UserLocalDataSource userLocal = UserLocalDataSource();
 
-  searchForUser() async {}
-
-  enterApp() async {}
+  Future<void> createUser() async {
+    String userId = await userLocal.fetchUniqueDeviceID();
+    await userLocal.storeUID(userId);
+  }
 
   Future<void> fetchAndStoreQualtricsSurveys() async {
     List<dynamic> surveyListFromQualtrics =

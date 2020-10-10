@@ -8,14 +8,14 @@ import 'home_page_content/no_survey_content.dart';
 import 'home_page_content/welcome_back_content.dart';
 import '../../constants/colors.dart';
 
-class HomePageScaffold extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final num;
-  HomePageScaffold({this.num});
+  HomePage({this.num});
   @override
-  _HomePageScaffoldState createState() => _HomePageScaffoldState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageScaffoldState extends State<HomePageScaffold> {
+class _HomePageState extends State<HomePage> {
   @override
   initState() {
     super.initState();
@@ -26,12 +26,6 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    // List<Widget> tabPages = [
-    //   HomePageContent(
-    //     num: widget.num,
-    //   ),
-    //   Container(),
-    // ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorConstants.darkBlue,

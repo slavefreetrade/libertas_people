@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // home: SplashScreen(),
-        home: HomePageScaffold(),
+        home: HomePage(),
 
         // initialRoute: '/',
         // routes: {
