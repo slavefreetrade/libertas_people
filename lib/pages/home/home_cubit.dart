@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_local_data_source.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
+import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/data_layer/user_data_sources/user_local_data_source.dart';
 import 'package:libertaspeople/models/survey_list_item_model.dart';
 
@@ -16,10 +18,10 @@ class FailureHomeScreenState extends HomeScreenState {
   FailureHomeScreenState(this.message);
 }
 
-class WelcomeHomeScreenState extends HomeScreenState {
+class WelcomeFirstTimeHomeScreenState extends HomeScreenState {
   final String firstSurveyId;
 
-  WelcomeHomeScreenState(this.firstSurveyId);
+  WelcomeFirstTimeHomeScreenState(this.firstSurveyId);
 }
 
 class NoSurveyHomeScreenState extends HomeScreenState {}
@@ -31,10 +33,13 @@ class WelcomeBackHomeScreenState extends HomeScreenState {
 }
 
 class UnfinishedSurveyHomeScreenState extends HomeScreenState {
-  final String surveyID;
+  final String surveyId;
   final String sessionId;
 
-  UnfinishedSurveyHomeScreenState(this.surveyID, this.sessionId);
+  UnfinishedSurveyHomeScreenState(
+    this.surveyId,
+    this.sessionId,
+  );
 }
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
@@ -44,20 +49,17 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   QualtricsLocalDataSource qualtricsLocal = QualtricsLocalDataSource();
   UserLocalDataSource userLocal = UserLocalDataSource();
 
+  final Repository repository = Repository();
+
   loadHomeScreen() async {
     try {
       emit(LoadingHomeScreenState());
 
-      List<dynamic> surveyListFromQualtrics =
-          await qualtricsRemote.getListOfAvailableSurveys();
-      surveyListFromQualtrics.forEach((survey) => print(survey));
-      await qualtricsLocal.storeSurveyList(surveyListFromQualtrics);
+      await repository.fetchAndStoreQualtricsSurveys();
 
-      await Future.delayed(Duration(seconds: 1));
-
-      // Could be a use case refactored into a repository
       Map<String, dynamic> storedSessionMetaData =
-          await qualtricsLocal.getStoredSessionMetaData;
+          await repository.fetchIncompleteSessionMetaData();
+
       if (storedSessionMetaData.containsKey("sessionID") &&
           storedSessionMetaData.containsKey("surveyID")) {
         emit(
@@ -69,33 +71,22 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         return;
       }
 
-      // Fetch first surveyID if incomplete
-      // Could be refactored into a repositroy
-      List<dynamic> listOfSurveys = await qualtricsLocal.fetchSurveyList();
-      // Map<String, dynamic> firstSurvey =
-      //     listOfSurveys.firstWhere((survey) => survey['name'] == "Survey_1");
-      // if (firstSurvey["isComplete"] == false) {
-      //   emit(WelcomeHomeScreenState(firstSurvey['id']));
-      //   return;
-      // }
-
-      final DateTime now = DateTime.now();
-
       Map<String, dynamic> currentSurveyForUser =
-          listOfSurveys.firstWhere((survey) {
-        DateTime beginningSurveyDate = DateTime.parse(survey["beginDate"]);
-        DateTime endSurveyDate = DateTime.parse(survey["finalDate"]);
-        return (now.isAfter(beginningSurveyDate) &&
-            now.isBefore(endSurveyDate));
-      });
-
-      print('currentSurveyForUser: $currentSurveyForUser');
+          await repository.fetchCurrentSurveyForUser();
 
       bool currentSurveyIsComplete = currentSurveyForUser['isComplete'];
       String currentSurveyId = currentSurveyForUser['id'];
 
+      print("currentSurveyForUser: $currentSurveyForUser");
+
       if (currentSurveyIsComplete) {
         emit(NoSurveyHomeScreenState());
+        return;
+      }
+
+      if (!currentSurveyIsComplete &&
+          currentSurveyForUser['name'] == "Survey_1") {
+        emit(WelcomeFirstTimeHomeScreenState(currentSurveyId));
         return;
       }
 

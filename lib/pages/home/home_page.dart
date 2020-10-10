@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:libertaspeople/pages/home/home_page_content/unfinished.dart';
-import 'package:libertaspeople/view_models/home_cubit.dart';
-import 'home_page_content/welcome.dart';
-import 'home_page_content/no_survey.dart';
-import 'home_page_content/welcome_back.dart';
+import 'package:libertaspeople/pages/home/home_page_content/unfinished_survey_content.dart';
+import 'package:libertaspeople/pages/home/home_cubit.dart';
+import 'home_page_content/welcome_first_time_content.dart';
+import 'home_page_content/no_survey_content.dart';
+import 'home_page_content/welcome_back_content.dart';
 import '../../constants/colors.dart';
 
 class HomePageScaffold extends StatefulWidget {
@@ -88,42 +88,44 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
             ),
           ),
           Expanded(
-              child: SingleChildScrollView(
-                  child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
-                    builder: (context, state) {
-                      if (state is LoadingHomeScreenState ||
-                          state is UninitializedHomeScreenState) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (state is UnfinishedSurveyHomeScreenState) {
-                        return UnfinishedSurvey(
-                            surveyID: state.surveyID,
-                            sessionID: state.sessionId);
-                      } else if (state is WelcomeHomeScreenState) {
-                        return Welcome(state.firstSurveyId);
-                      } else if (state is WelcomeBackHomeScreenState) {
-                        return WelcomeBack(state.surveyId);
-                      } else if (state is NoSurveyHomeScreenState) {
-                        return NoSurvey();
-                      } else if (state is FailureHomeScreenState) {
-                        return Center(
-                            child:
-                                Text("There was an issue: ${state.message}"));
-                      }
-                      return Center(
-                        child: Text(
-                            "There is an unexpected state in the bloc builder, this should be handled by development"),
-                      );
-                    },
-                  ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
+                        builder: (context, state) {
+                          if (state is LoadingHomeScreenState ||
+                              state is UninitializedHomeScreenState) {
+                            return Center(child: CircularProgressIndicator());
+                          } else if (state is UnfinishedSurveyHomeScreenState) {
+                            return UnfinishedSurveyContent(
+                                surveyId: state.surveyId,
+                                sessionId: state.sessionId);
+                          } else if (state is WelcomeFirstTimeHomeScreenState) {
+                            return WelcomeFirstTimeContent(state.firstSurveyId);
+                          } else if (state is WelcomeBackHomeScreenState) {
+                            return WelcomeBackContent(state.surveyId);
+                          } else if (state is NoSurveyHomeScreenState) {
+                            return NoSurveyContent();
+                          } else if (state is FailureHomeScreenState) {
+                            return Center(
+                                child: Text(
+                                    "There was an issue: ${state.message}"));
+                          }
+                          return Center(
+                            child: Text(
+                                "There is an unexpected state in the bloc builder, this should be handled by development"),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          )))
+          )
         ],
       ),
     );

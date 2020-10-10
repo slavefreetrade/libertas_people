@@ -73,8 +73,6 @@ class QualtricsLocalDataSource {
       return element;
     }).toList();
 
-    print(
-        "local survey list, sorted, and added proper date times: ${json.encode(finalSurveyList)}");
     surveyFile.writeAsStringSync(json.encode(finalSurveyList));
   }
 

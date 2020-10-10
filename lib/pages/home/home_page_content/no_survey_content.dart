@@ -1,17 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:libertaspeople/constants/colors.dart';
 
-class NoSurvey extends StatelessWidget {
-  final deviceWidth;
-  NoSurvey({this.deviceWidth});
+class NoSurveyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print("deviceWidth is $deviceWidth");
     return Container(
-      width: deviceWidth,
-      height: 200,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -23,7 +18,7 @@ class NoSurvey extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 16,
             ),
             Card(
               shape: RoundedRectangleBorder(

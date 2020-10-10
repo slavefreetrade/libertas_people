@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/constants/colors.dart';
 
-class Welcome extends StatelessWidget {
+class WelcomeFirstTimeContent extends StatelessWidget {
   final String firstSurveyId;
 
-  const Welcome(this.firstSurveyId);
+  const WelcomeFirstTimeContent(this.firstSurveyId);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class Welcome extends StatelessWidget {
       width: deviceWidth,
       height: 400,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,7 +27,7 @@ class Welcome extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 16,
             ),
             Text(
               "We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.",
@@ -94,6 +95,24 @@ class Welcome extends StatelessWidget {
                 ],
               ),
             ),
+            Center(
+              child: RaisedButton(
+                color: ColorConstants.orange,
+                highlightElevation: 2,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
+                  child: Text("Finish Survey"),
+                ),
+                onPressed: () {
+                  print("take first survey for surveyId: $firstSurveyId ");
+                },
+              ),
+            )
           ],
         ),
       ),

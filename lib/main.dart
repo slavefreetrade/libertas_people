@@ -6,7 +6,7 @@ import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey_question_page.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:libertaspeople/pages/thankyou_page.dart';
-import 'package:libertaspeople/view_models/home_cubit.dart';
+import 'package:libertaspeople/pages/home/home_cubit.dart';
 
 import 'constants/colors.dart';
 import 'generated/l10n.dart';

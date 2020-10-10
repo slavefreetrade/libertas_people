@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 
-class WelcomeBack extends StatelessWidget {
-  final String nextSurveyId;
-  WelcomeBack(this.nextSurveyId);
+class UnfinishedSurveyContent extends StatelessWidget {
+  final String surveyId;
+  final String sessionId;
+
+  UnfinishedSurveyContent({
+    @required this.surveyId,
+    @required this.sessionId,
+  });
+
   @override
   Widget build(BuildContext context) {
-    final double deviceWidth = MediaQuery.of(context).size.width;
     return Container(
-      // height: 200,
-      // width: deviceWidth,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Welcome back",
+              "You have a survey that has not been completed",
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
@@ -42,7 +45,7 @@ class WelcomeBack extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Text(
-                              "Your monthly survey with 10 binary questions is ready.",
+                              "Your survey for the month is unfinished. Please take a few minutes to finish it.",
                               softWrap: true,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -71,10 +74,11 @@ class WelcomeBack extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: Text("Take Survey"),
+                  child: Text("Finish Survey"),
                 ),
                 onPressed: () {
-                  print("start survey for surveyId: $nextSurveyId");
+                  print(
+                      "finish survey for surveyId: $surveyId \tsessionId: $sessionId");
                 },
               ),
             )
