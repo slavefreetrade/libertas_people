@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
+import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:libertaspeople/pages/survey_question_page.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:libertaspeople/pages/thankyou_page.dart';
@@ -27,8 +28,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeScreenCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => HomeScreenCubit()),
+        BlocProvider(create: (context) => SurveyCubit()),
+      ],
       child: MaterialApp(
         title: 'Libertas People',
         // ignore: prefer_const_literals_to_create_immutables

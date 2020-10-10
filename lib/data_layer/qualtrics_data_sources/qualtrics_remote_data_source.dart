@@ -21,17 +21,16 @@ class QualtricsRemoteDataSource {
         'responses': response.answers
       });
 
-  Future<SessionInfoModel> startSession(
-      {@required ApiRequestModel request}) async {
-    assert(
-        request != null || request.surveyId != null || request.surveyId.isEmpty,
+  // surveyId
+  Future<SessionInfoModel> startSession(String surveyId) async {
+    assert(surveyId != null || surveyId.isEmpty,
         'Could not start session with null or empty surveyId');
 
     final SecretModel secrets = await SecretModel.load();
 
     try {
       final response = await http.post(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions',
+          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions',
           headers: _getHeader(apiKey: secrets.apiKey),
           body: _getBody());
       if (response.statusCode == 201) {
@@ -45,21 +44,22 @@ class QualtricsRemoteDataSource {
     }
   }
 
-  Future<SessionInfoModel> getCurrentSession(
-      {@required ApiRequestModel request}) async {
-    assert(request != null,
+  Future<SessionInfoModel> getCurrentSession({
+    @required String surveyId,
+    @required String sessionId,
+  }) async {
+    assert(surveyId != null,
         'Could not get current session with null request model');
-    assert(
-        request != null || request.surveyId != null || request.surveyId.isEmpty,
+    assert(surveyId != null || surveyId.isEmpty,
         'Could not get current session with null or empty surveyId');
-    assert(request.sessionId != null || request.sessionId.isEmpty,
+    assert(sessionId != null || sessionId.isEmpty,
         'Could not get current session with null or empty sessionId');
 
     final SecretModel secrets = await SecretModel.load();
 
     try {
       final response = await http.get(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}',
+          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions/$sessionId',
           headers: _getHeader(apiKey: secrets.apiKey));
       if (response.statusCode == 200) {
         return SessionInfoModel.fromJson(

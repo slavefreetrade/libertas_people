@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/pages/survey/survey_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UnfinishedSurveyContent extends StatelessWidget {
   final String surveyId;
@@ -79,6 +81,8 @@ class UnfinishedSurveyContent extends StatelessWidget {
                 onPressed: () {
                   print(
                       "finish survey for surveyId: $surveyId \tsessionId: $sessionId");
+                  context.bloc<SurveyCubit>().returnToIncompletedSurveySession(
+                      surveyId: surveyId, sessionId: sessionId);
                 },
               ),
             )

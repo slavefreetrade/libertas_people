@@ -46,8 +46,7 @@ class _TestQualtricsRemoteDataSourcePageState
                   String surveyId = "SV_af0aK21x6XGzcYl";
                   final ApiRequestModel request =
                       ApiRequestModel(surveyId: surveyId);
-                  var response =
-                      await dataSource.startSession(request: request);
+                  var response = await dataSource.startSession(surveyId);
                   print("response returned ${response.toJson()}");
                 } catch (e) {
                   print("exception: $e");
@@ -61,10 +60,9 @@ class _TestQualtricsRemoteDataSourcePageState
                 try {
                   String surveyId = "SV_af0aK21x6XGzcYl";
                   String sessionId = "FS_3CZC0rA4TeBd0tA";
-                  final ApiRequestModel request =
-                      ApiRequestModel(surveyId: surveyId, sessionId: sessionId);
-                  var response =
-                      await dataSource.getCurrentSession(request: request);
+
+                  var response = await dataSource.getCurrentSession(
+                      surveyId: surveyId, sessionId: sessionId);
                   print("response returned ${response.toJson()}");
                 } catch (e) {
                   print("exception: $e");

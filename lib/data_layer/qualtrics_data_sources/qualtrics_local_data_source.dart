@@ -113,9 +113,15 @@ class QualtricsLocalDataSource {
   }
 
   Future<void> storeCurrentSessionData(
-      Map<String, dynamic> currentSession) async {
+    String surveyId,
+    String sessionId,
+  ) async {
+    final Map<String, dynamic> currentSessionData = {
+      "surveyId": surveyId,
+      "sessionId": sessionId
+    };
     File sessionFile = await _sessionFile;
-    sessionFile.writeAsStringSync(json.encode(currentSession));
+    sessionFile.writeAsStringSync(json.encode(currentSessionData));
   }
 
 // May want to convert this to return a MODEL

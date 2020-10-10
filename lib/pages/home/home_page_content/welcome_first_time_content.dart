@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/pages/survey/lauguage_selection_page.dart';
+import 'package:libertaspeople/pages/survey/survey_information_page.dart';
 
 class WelcomeFirstTimeContent extends StatelessWidget {
   final String firstSurveyId;
@@ -9,10 +11,8 @@ class WelcomeFirstTimeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double deviceWidth = MediaQuery.of(context).size.width;
-
     return Container(
-      width: deviceWidth,
+      width: MediaQuery.of(context).size.width,
       height: 400,
       child: Padding(
         padding: EdgeInsets.all(10.0),
@@ -109,7 +109,9 @@ class WelcomeFirstTimeContent extends StatelessWidget {
                   child: Text("Take Survey"),
                 ),
                 onPressed: () {
-                  print("take first survey for surveyId: $firstSurveyId ");
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          LanguageSelectionPage(firstSurveyId)));
                 },
               ),
             )

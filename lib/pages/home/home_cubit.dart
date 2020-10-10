@@ -54,12 +54,12 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       Map<String, dynamic> storedSessionMetaData =
           await repository.fetchIncompleteSessionMetaData();
 
-      if (storedSessionMetaData.containsKey("sessionID") &&
-          storedSessionMetaData.containsKey("surveyID")) {
+      if (storedSessionMetaData.containsKey("sessionId") &&
+          storedSessionMetaData.containsKey("surveyId")) {
         emit(
           UnfinishedSurveyHomeScreenState(
-            storedSessionMetaData['surveyID'],
-            storedSessionMetaData['sessionID'],
+            storedSessionMetaData['surveyId'],
+            storedSessionMetaData['sessionId'],
           ),
         );
         return;
