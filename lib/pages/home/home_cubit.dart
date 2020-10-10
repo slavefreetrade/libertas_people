@@ -42,12 +42,11 @@ class UnfinishedSurveyHomeScreenState extends HomeScreenState {
   );
 }
 
+/// After you emit a state from Cubit, and you want to stop the code from
+/// emitting a new state, make sure you call return; after emit();
+
 class HomeScreenCubit extends Cubit<HomeScreenState> {
   HomeScreenCubit() : super(UninitializedHomeScreenState());
-
-  QualtricsRemoteDataSource qualtricsRemote = QualtricsRemoteDataSource();
-  QualtricsLocalDataSource qualtricsLocal = QualtricsLocalDataSource();
-  UserLocalDataSource userLocal = UserLocalDataSource();
 
   final Repository repository = Repository();
 
@@ -76,8 +75,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       bool currentSurveyIsComplete = currentSurveyForUser['isComplete'];
       String currentSurveyId = currentSurveyForUser['id'];
-
-      print("currentSurveyForUser: $currentSurveyForUser");
 
       if (currentSurveyIsComplete) {
         emit(NoSurveyHomeScreenState());
