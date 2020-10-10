@@ -35,27 +35,15 @@ class QualtricsLocalDataSource {
   Future<void> storeSurveyList(List<dynamic> survey_qualtrics_json_list) async {
     File surveyFile = await _surveyListFile;
 
-// List<dynamic> surveyList = await fetchSurveyList();
-    print("surveyQualtircs list length; ${survey_qualtrics_json_list.length}");
-
     survey_qualtrics_json_list.removeWhere((survey) {
       return !(survey['name'] as String).contains("Survey_");
     });
 
-    print(
-        "altered survey json list length: ${survey_qualtrics_json_list.length}");
-
     survey_qualtrics_json_list.sort((dynamic surveyA, dynamic surveyB) {
-      // int indexA = surveyA['name'].length() - 1;
       int indexA =
           int.parse((surveyA['name'] as String).replaceAll("Survey_", ""));
-      print("indexA: ${indexA}");
-      // int surveyCountA = int.parse(surveyA['name'][indexA]);
-      // int indexB = surveyB['name'].length() - 1;
       int indexB =
           int.parse((surveyB['name'] as String).replaceAll("Survey_", ""));
-      print("indexB: ${indexB}");
-      // int surveyCountB = int.parse(surveyB['name'][indexB]);
 
       return indexA.compareTo(indexB);
     });
@@ -85,7 +73,8 @@ class QualtricsLocalDataSource {
       return element;
     }).toList();
 
-    print("local survey list: ${json.encode(finalSurveyList)}");
+    print(
+        "local survey list, sorted, and added proper date times: ${json.encode(finalSurveyList)}");
     surveyFile.writeAsStringSync(json.encode(finalSurveyList));
   }
 

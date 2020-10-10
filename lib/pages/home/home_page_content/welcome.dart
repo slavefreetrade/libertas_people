@@ -2,15 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
-  final deviceWidth;
-  Welcome({this.deviceWidth});
+  final String firstSurveyId;
+
+  const Welcome(this.firstSurveyId);
+
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+
     return Container(
       width: deviceWidth,
       height: 400,
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

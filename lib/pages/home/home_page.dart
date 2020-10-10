@@ -26,12 +26,12 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabPages = [
-      HomePageContent(
-        num: widget.num,
-      ),
-      Container(),
-    ];
+    // List<Widget> tabPages = [
+    //   HomePageContent(
+    //     num: widget.num,
+    //   ),
+    //   Container(),
+    // ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorConstants.darkBlue,
@@ -53,105 +53,78 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
           ),
         ],
       ),
-      body: tabPages[pageIndex],
-    );
-  }
-}
-
-class HomePageContent extends StatelessWidget {
-  final num;
-  HomePageContent({this.num});
-  final theme = ThemeData();
-  final String coverImage =
-      "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"; //really big name so i thought making a variable would be better.
-  @override
-  Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: Container(
-        height: deviceHeight,
-        width: deviceWidth,
-        child: ListView(
-          children: [
-            Container(
-              width: deviceWidth,
-              child: Image.asset(coverImage),
+      // body: tabPages[pageIndex],
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                    "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"),
+              ),
             ),
-            Container(
-              height: (deviceWidth / 375) * 73.89,
-              width: deviceWidth,
-              color: ColorConstants.darkBlue,
-              child: Center(
-                child: Text(
-                  "Libertas People",
-                  style: TextStyle(
-                    color: ColorConstants.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  height: 50,
+                  color: ColorConstants.darkBlue,
+                  child: Center(
+                    child: Text(
+                      "Libertas People",
+                      style: TextStyle(
+                        color: ColorConstants.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-            Container(
-              child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
-                builder: (context, state) {
-                  if (state is LoadingHomeScreenState) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (state is UnfinishedSurveyHomeScreenState) {
-                    return UnfinishedSurvey(
-                        surveyID: state.surveyID, sessionID: state.sessionId);
-                  }
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-              ),
+          ),
+          Expanded(
+              child: SingleChildScrollView(
+                  child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
+                    builder: (context, state) {
+                      if (state is LoadingHomeScreenState ||
+                          state is UninitializedHomeScreenState) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (state is UnfinishedSurveyHomeScreenState) {
+                        return UnfinishedSurvey(
+                            surveyID: state.surveyID,
+                            sessionID: state.sessionId);
+                      } else if (state is WelcomeHomeScreenState) {
+                        return Welcome(state.firstSurveyId);
+                      } else if (state is WelcomeBackHomeScreenState) {
+                        return WelcomeBack(state.surveyId);
+                      } else if (state is NoSurveyHomeScreenState) {
+                        return NoSurvey();
+                      } else if (state is FailureHomeScreenState) {
+                        return Center(
+                            child:
+                                Text("There was an issue: ${state.message}"));
+                      }
+                      return Center(
+                        child: Text(
+                            "There is an unexpected state in the bloc builder, this should be handled by development"),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            // if (num == 1)
-            //   Container(
-            //     child: Welcome(
-            //       deviceWidth: deviceWidth,
-            //     ),
-            //   ),
-            // if (num == 2)
-            //   Container(
-            //     child: NoSurvey(
-            //       deviceWidth: deviceWidth,
-            //     ),
-            //   ),
-            // if (num == 3)
-            //   Container(
-            //     child: WelcomeBack(
-            //       deviceWidth: deviceWidth,
-            //     ),
-            //   ),
-            // if (num != 2)
-            //   Padding(
-            //     padding: EdgeInsets.fromLTRB(55, 0.0, 65, 55),
-            //     child: Container(
-            //       height: 50,
-            //       child: FlatButton(
-            //         onPressed: () {
-            //           print("Fetching Surveys");
-            //         },
-            //         child: Text(
-            //           "Take Survey",
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 24,
-            //             fontWeight: FontWeight.w700,
-            //           ),
-            //         ),
-            //         color: ColorConstants.orange,
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(40),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-          ],
-        ),
+          )))
+        ],
       ),
     );
   }

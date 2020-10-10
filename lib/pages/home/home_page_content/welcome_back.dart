@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 
 class WelcomeBack extends StatelessWidget {
-  final deviceWidth;
-  WelcomeBack({this.deviceWidth});
+  final String nextSurveyId;
+  WelcomeBack(this.nextSurveyId);
   @override
   Widget build(BuildContext context) {
-    print("deviceWidth is $deviceWidth");
+    final double deviceWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: 200,
-      width: deviceWidth,
+      // height: 200,
+      // width: deviceWidth,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -22,6 +22,7 @@ class WelcomeBack extends StatelessWidget {
                 fontSize: 22,
               ),
             ),
+            SizedBox(height: 16),
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -56,6 +57,27 @@ class WelcomeBack extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 24,
+            ),
+            Center(
+              child: RaisedButton(
+                color: ColorConstants.orange,
+                highlightElevation: 2,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
+                  child: Text("Take Survey"),
+                ),
+                onPressed: () {
+                  print("start survey for surveyId: $nextSurveyId");
+                },
+              ),
+            )
           ],
         ),
       ),
