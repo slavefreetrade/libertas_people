@@ -32,8 +32,8 @@ class _TestQualtricsRemoteDataSourcePageState
               onPressed: () async {
                 try {
                   var response = await dataSource.getListOfAvailableSurveys();
-                  print(
-                      "response returned ${response.elements.map((e) => e.toJson())}");
+                  // print(
+                  //     "response returned ${response.elements.map((e) => e.toJson())}");
                 } catch (e) {
                   print("exception: $e");
                 }

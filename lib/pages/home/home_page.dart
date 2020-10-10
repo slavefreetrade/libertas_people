@@ -19,6 +19,7 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
   @override
   initState() {
     super.initState();
+
     context.bloc<HomeScreenCubit>().loadHomeScreen();
   }
 

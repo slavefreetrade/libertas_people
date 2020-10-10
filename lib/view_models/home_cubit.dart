@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_local_data_source.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
 import 'package:libertaspeople/data_layer/user_data_sources/user_local_data_source.dart';
+import 'package:libertaspeople/models/survey_list_item_model.dart';
 
 abstract class HomeScreenState {}
 
@@ -40,8 +41,17 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   loadHomeScreen() async {
     emit(LoadingHomeScreenState());
 
+    List<dynamic> surveyListFromQualtrics =
+        await qualtricsRemote.getListOfAvailableSurveys();
+    surveyListFromQualtrics.forEach((survey) => print(survey));
+    await qualtricsLocal.storeSurveyList(surveyListFromQualtrics);
+
     await Future.delayed(Duration(seconds: 1));
 
+    /*getCurrentSessionModel (Qulatrics local)
+
+if model has a sessionID and a surveyID (a session has not been completed)
+so display the “Finish survey Page”*/
     Map<String, dynamic> storedSessionMetaData =
         await qualtricsLocal.getStoredSessionMetaData;
 
@@ -56,7 +66,20 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
           storedSessionMetaData['sessionID'],
         ),
       );
+      return;
     }
+
+    List<dynamic> listOfSurveys = await qualtricsLocal.fetchSurveyList();
+
+/*
+
+if model is empty
+fetch list of surveys (qualtrics local)
+if first survey has not been completed -> Display Welcome onboard with survey ID
+
+next, find the next survey in survey list that pertains to todays date
+if that survey has been completed -> display No Surveys At the Moment
+if that survey has !completed -> display Welcome Back */
 
     // this is where I call all of the logic to determine what screen to show
 

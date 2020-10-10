@@ -104,7 +104,7 @@ class QualtricsRemoteDataSource {
     }
   }
 
-  Future<SurveyListModel> getListOfAvailableSurveys() async {
+  Future<List<dynamic>> getListOfAvailableSurveys() async {
     final SecretModel secrets = await SecretModel.load();
 
     try {
@@ -113,8 +113,10 @@ class QualtricsRemoteDataSource {
           headers: _getHeader(apiKey: secrets.apiKey));
 
       if (response.statusCode == 200) {
-        return SurveyListModel.fromJson(
-            jsonDecode(response.body)['result'] as Map<String, dynamic>);
+        print("response.body: ${response.body}");
+        return jsonDecode(response.body)['result']["elements"] as List<dynamic>;
+        // return SurveyListModel.fromJson(
+        //     jsonDecode(response.body)['result'] as Map<String, dynamic>);
       } else {
         throw Exception('@@@ Returned with Error code: ${response.statusCode}');
       }

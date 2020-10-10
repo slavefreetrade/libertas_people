@@ -36,15 +36,28 @@ class QualtricsLocalDataSource {
     File surveyFile = await _surveyListFile;
 
 // List<dynamic> surveyList = await fetchSurveyList();
-    print("list in storeSurvyLIst; $survey_qualtrics_json_list");
+    print("surveyQualtircs list length; ${survey_qualtrics_json_list.length}");
+
+    survey_qualtrics_json_list.removeWhere((survey) {
+      return !(survey['name'] as String).contains("Survey_");
+    });
+
+    print(
+        "altered survey json list length: ${survey_qualtrics_json_list.length}");
 
     survey_qualtrics_json_list.sort((dynamic surveyA, dynamic surveyB) {
-      int indexA = surveyA['name'].length() - 1;
-      int surveyCountA = int.parse(surveyA['name'][indexA]);
-      int indexB = surveyB['name'].length() - 1;
-      int surveyCountB = int.parse(surveyB['name'][indexB]);
+      // int indexA = surveyA['name'].length() - 1;
+      int indexA =
+          int.parse((surveyA['name'] as String).replaceAll("Survey_", ""));
+      print("indexA: ${indexA}");
+      // int surveyCountA = int.parse(surveyA['name'][indexA]);
+      // int indexB = surveyB['name'].length() - 1;
+      int indexB =
+          int.parse((surveyB['name'] as String).replaceAll("Survey_", ""));
+      print("indexB: ${indexB}");
+      // int surveyCountB = int.parse(surveyB['name'][indexB]);
 
-      return surveyCountA.compareTo(surveyCountB);
+      return indexA.compareTo(indexB);
     });
 
     List<dynamic> surveyList = survey_qualtrics_json_list.map((e) {
@@ -72,6 +85,7 @@ class QualtricsLocalDataSource {
       return element;
     }).toList();
 
+    print("local survey list: ${json.encode(finalSurveyList)}");
     surveyFile.writeAsStringSync(json.encode(finalSurveyList));
   }
 
@@ -124,7 +138,6 @@ class QualtricsLocalDataSource {
       File sessionFile = await _sessionFile;
       final String jsonString = sessionFile.readAsStringSync();
       sessionMap = json.decode(jsonString);
-
     } on FileSystemException {
       sessionMap = {};
       // We create a Model ourselves with no inputs
