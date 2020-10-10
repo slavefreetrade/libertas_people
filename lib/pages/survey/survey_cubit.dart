@@ -14,14 +14,11 @@ class LoadingSurveyState extends SurveyState {}
 
 class FillingOutQuestionSurveyState extends SurveyState {
   final int currentQuestionIndex;
-  final int previousQuestionIndex;
-  // maybe next index too;
 
   final QuestionModel question;
 
   FillingOutQuestionSurveyState({
     @required this.currentQuestionIndex,
-    @required this.previousQuestionIndex,
     @required this.question,
   });
 }
@@ -55,9 +52,7 @@ class SurveyCubit extends Cubit<SurveyState> {
     SessionInfoModel sessionInfo = await qualtricsRemote.getCurrentSession(
         surveyId: surveyId, sessionId: sessionId);
     emit(FillingOutQuestionSurveyState(
-        currentQuestionIndex: 1,
-        previousQuestionIndex: 2,
-        question: QuestionModel()));
+        currentQuestionIndex: 1, question: QuestionModel()));
   }
 
   answerQuestion() {}

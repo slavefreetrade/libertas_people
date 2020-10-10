@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
-import 'package:libertaspeople/pages/survey_question_page.dart';
-import 'package:libertaspeople/pages/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/survey/survey_question_page.dart';
+import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
 import 'package:libertaspeople/pages/test_qualtrics_remote_api_page.dart';
 import 'package:libertaspeople/pages/test_qualtrics_remote_data_source_page.dart';
-import 'package:libertaspeople/pages/thankyou_page.dart';
+import 'package:libertaspeople/pages/survey/thankyou_page.dart';
 import 'package:libertaspeople/pages/edit_profile_page.dart';
 import 'package:libertaspeople/pages/splash_screen.dart';
 

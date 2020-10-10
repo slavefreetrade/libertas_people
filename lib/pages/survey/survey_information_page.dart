@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:libertaspeople/pages/survey_question_page.dart';
+import 'package:libertaspeople/pages/survey/survey_question_page.dart';
 
 class SurveyInformationPage extends StatefulWidget {
   final String surveyId;

@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
-import 'package:libertaspeople/pages/survey_question_page.dart';
-import 'package:libertaspeople/pages/survey_thankyou_page.dart';
-import 'package:libertaspeople/pages/thankyou_page.dart';
+import 'package:libertaspeople/pages/survey/survey_question_page.dart';
+import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/survey/thankyou_page.dart';
 import 'package:libertaspeople/pages/home/home_cubit.dart';
 
 import 'constants/colors.dart';

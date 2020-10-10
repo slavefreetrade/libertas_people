@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/pages/home/home_page_content/unfinished_survey_content.dart';
 import 'package:libertaspeople/pages/home/home_cubit.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
-import '../survey_question_page.dart';
+import '../survey/survey_question_page.dart';
 import 'home_page_content/welcome_first_time_content.dart';
 import 'home_page_content/no_survey_content.dart';
 import 'home_page_content/welcome_back_content.dart';
