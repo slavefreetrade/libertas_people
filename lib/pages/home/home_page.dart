@@ -20,12 +20,6 @@ class _MainHomePageState extends State<MainHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabPages = [
-      HomepageFirstTimeUser(
-        num: widget.num,
-      ),
-      Container(),
-    ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: ColorConstants.darkBlue,
@@ -39,11 +33,11 @@ class _MainHomePageState extends State<MainHomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Home"),
+            label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            title: Text("About Survey"),
+            label: "About Survey",
           ),
         ],
       ),
@@ -82,13 +76,43 @@ class _MainHomePageState extends State<MainHomePage> {
             ),
           ),
           Expanded(
-              child: ListView(
-            children: <Widget>[
-              // only display one of these widgets
-              WelcomeBack(),
-              Welcome(),
-            ],
-          ))
+            child: ListView(
+              children: <Widget>[
+                // only display one of these widgets
+                if (widget.num == 1)
+                  Welcome()
+                else if (widget.num == 2)
+                  NoSurvey()
+                else
+                  WelcomeBack(),
+              ],
+            ),
+          ),
+          if (widget.num != 2)
+            Padding(
+              padding: EdgeInsets.fromLTRB(55, 0.0, 65, 55),
+              child: Container(
+                height: 50,
+                width: 300,
+                child: FlatButton(
+                  onPressed: () {
+                    print("Fetching Surveys");
+                  },
+                  child: Text(
+                    "Take Survey",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  color: ColorConstants.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -96,6 +120,8 @@ class _MainHomePageState extends State<MainHomePage> {
 }
 
 // Your previous implementation
+//i am leaving this here since if we are to make use
+//of bottom navigation bar we might need this.
 class HomepageFirstTimeUser extends StatelessWidget {
   final num;
 
