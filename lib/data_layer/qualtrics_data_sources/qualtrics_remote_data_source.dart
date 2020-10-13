@@ -17,7 +17,7 @@ class QualtricsRemoteDataSource {
 
   String _getBodyWithReponses(SurveyResponsesModel response) => json.encode({
         'embeddedData': {'deviceID': response.deviceId},
-        'advance': response.advance,
+        'advance': response.advance, // from what I can tell this means "end survey"
         'responses': response.answers
       });
 
@@ -72,7 +72,7 @@ class QualtricsRemoteDataSource {
     }
   }
 
-  Future<String> updateSession(
+  Future<Map>  updateSession(
       {@required ApiRequestModel request,
       @required SurveyResponsesModel surveyResponses}) async {
     assert(request != null,
@@ -95,8 +95,10 @@ class QualtricsRemoteDataSource {
       if (response.statusCode == 200) {
         final Map map = jsonDecode(response.body) as Map<String, dynamic>;
         final bool isDone = map['result']['done'] is String;
-        return isDone ? null : 'done';
+        // return isDone ? null : 'done';
+        return map['result'];
       } else {
+
         throw Exception('@@@ Returned with Error code: ${response.statusCode}');
       }
     } on Exception catch (e) {
