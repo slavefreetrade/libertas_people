@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/models/question_model.dart';
+import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SurveyQuestionPage extends StatefulWidget {
   static const routeName = '/survey-question-page';
 
-  SurveyQuestionPage();
+  final int questionIndex;
+  final int totalQuestionCount;
+  final QuestionModel question;
+
+  SurveyQuestionPage(this.questionIndex, this.totalQuestionCount, this.question);
 
   @override
   _SurveyQuestionPageState createState() => _SurveyQuestionPageState();
@@ -17,13 +24,16 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   bool _toggleNo = false;
   bool _toggleNext = false;
   bool _togglePrev = false;
-  var _attemptedQuestion = 1;
-  final _totalQuestion = 20;
+
+  int get _questionIndex => widget.questionIndex;
+  int get _totalCount => widget.totalQuestionCount;
+  QuestionModel get _question => widget.question;
 
   Future<bool> _onBackPressed() {
     return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
             title: const Text(
               'Are you sure want to leave?',
               textAlign: TextAlign.center,
@@ -51,20 +61,26 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               ),
             ],
           ),
-        ) ??
+    ) ??
         false;
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: ColorConstants.darkBlue,
-            title: Text("$_attemptedQuestion/$_totalQuestion"),
+            title: Text("${widget.questionIndex}/${widget.totalQuestionCount}"),
             centerTitle: true,
           ),
           body: Container(
@@ -76,8 +92,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   StepProgressIndicator(
-                    totalSteps: _totalQuestion,
-                    currentStep: _attemptedQuestion,
+                    totalSteps: _totalCount,
+                    currentStep: _questionIndex,
                     size: 20,
                     selectedColor: ColorConstants.lightBlue,
                     unselectedColor: Colors.grey,
@@ -87,7 +103,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                         vertical: 30, horizontal: 20),
                     height: height * 0.35,
                     child: Text(
-                      "Question1",
+                      _question.display,
                       style: const TextStyle(fontSize: 20),
                     ),
                   ),
@@ -191,7 +207,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                               setState(() {
                                 _toggleNext = true;
                                 _togglePrev = false;
-                                _attemptedQuestion = _attemptedQuestion + 1;
+                                // _attemptedQuestion = _attemptedQuestion + 1;
                               });
                             },
                             padding: const EdgeInsets.all(10.0),

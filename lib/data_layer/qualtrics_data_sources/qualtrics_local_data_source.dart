@@ -59,6 +59,7 @@ class QualtricsLocalDataSource {
       };
     }).toList();
 
+    // TODO move the updating of dates to complete to after submitting first survey
     var initialDate = DateTime.now().toUtc().toString();
 
     List<dynamic> finalSurveyList = surveyList.map((element) {
@@ -72,6 +73,8 @@ class QualtricsLocalDataSource {
       initialDate = element['finalDate'];
       return element;
     }).toList();
+
+    print('survey list inputted into local' + finalSurveyList.toString());
 
     surveyFile.writeAsStringSync(json.encode(finalSurveyList));
   }

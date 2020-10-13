@@ -9,9 +9,7 @@ import 'package:libertaspeople/pages/edit_profile_page.dart';
 import 'package:libertaspeople/pages/splash_screen.dart';
 
 import 'package:libertaspeople/pages/home/home_page.dart';
-// import 'profile_creation/profile_creation_view.dart';
 
-//somethings might get wrong.
 class UIDevelopmentPage extends StatefulWidget {
   static const routeName = '/home';
   @override

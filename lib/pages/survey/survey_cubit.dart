@@ -14,12 +14,15 @@ class LoadingSurveyState extends SurveyState {}
 
 class FillingOutQuestionSurveyState extends SurveyState {
   final int currentQuestionIndex;
-
+  final SessionInfoModel session;
   final QuestionModel question;
+  final int totalQuestionCount;
 
   FillingOutQuestionSurveyState({
     @required this.currentQuestionIndex,
+    @required this.session,
     @required this.question,
+    @required this.totalQuestionCount,
   });
 }
 
@@ -41,8 +44,24 @@ class SurveyCubit extends Cubit<SurveyState> {
     await qualtricsLocal.storeCurrentSessionData(
         surveyId, sessionInfo.sessionId);
 
+    print("survey ID : $surveyId");
+
     // answer initial question 0 and insert question Id
-    sessionInfo.questions.forEach((question) => print(question.questionId));
+    sessionInfo.questions.forEach((question) {
+      print("question");
+      print(question.questionId);
+      print(question.choices);
+    });
+
+    QuestionModel question = sessionInfo.questions
+        .firstWhere((question) => question.questionId.contains("1"));
+
+    emit(FillingOutQuestionSurveyState(
+        currentQuestionIndex: 1,
+        question: question,
+        totalQuestionCount: sessionInfo.questions.length
+        // session: sessionInfo,
+        ));
   }
 
   returnToIncompletedSurveySession({
@@ -51,8 +70,26 @@ class SurveyCubit extends Cubit<SurveyState> {
   }) async {
     SessionInfoModel sessionInfo = await qualtricsRemote.getCurrentSession(
         surveyId: surveyId, sessionId: sessionId);
+    sessionInfo.questions.forEach((question) {
+      print("question");
+      print(question.questionId);
+      print(question.display);
+      print(question.choices);
+    });
+
+    // TODO crunch logic to find out which was the last quesiton answered
+
+    // got to go through answers and figure out which havent been answered
+    QuestionModel question = sessionInfo.questions
+        .firstWhere((question) => question.questionId.contains("1")); // valid
+
     emit(FillingOutQuestionSurveyState(
-        currentQuestionIndex: 1, question: QuestionModel()));
+        currentQuestionIndex: 1,
+        question: question,
+        totalQuestionCount: sessionInfo.questions.length
+
+        // session: sessionInfo,
+        ));
   }
 
   answerQuestion() {}

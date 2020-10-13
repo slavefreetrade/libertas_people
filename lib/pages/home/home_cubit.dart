@@ -49,6 +49,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     try {
       emit(LoadingHomeScreenState());
 
+      // todo move this to onboarding
       await repository.fetchAndStoreQualtricsSurveys();
 
       Map<String, dynamic> storedSessionMetaData =

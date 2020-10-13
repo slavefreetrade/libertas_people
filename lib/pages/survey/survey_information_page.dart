@@ -22,7 +22,11 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
           if (state is FillingOutQuestionSurveyState) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => SurveyQuestionPage(),
+                builder: (context) => SurveyQuestionPage(
+                  state.currentQuestionIndex,
+                  state.totalQuestionCount,
+                  state.question,
+                ),
               ),
             );
           }
