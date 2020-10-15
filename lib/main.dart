@@ -10,6 +10,7 @@ import 'package:libertaspeople/pages/survey/thankyou_page.dart';
 import 'package:libertaspeople/pages/home/home_cubit.dart';
 
 import 'constants/colors.dart';
+import 'data_layer/repository.dart';
 import 'generated/l10n.dart';
 import 'pages/profile_creation/shared/fonts/app_fonts.dart';
 import 'pages/splash_screen.dart';
@@ -26,8 +27,12 @@ void main() {
 
 // ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    // todo move this to onboarding
+    Repository().fetchAndStoreQualtricsSurveys();
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeScreenCubit()),

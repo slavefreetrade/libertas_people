@@ -5,11 +5,11 @@ import "package:flutter_secure_storage/flutter_secure_storage.dart";
 import "package:device_info/device_info.dart";
 
 class UserLocalDataSource {
-  final storage = FlutterSecureStorage();
-  final devInfo = DeviceInfoPlugin();
+  final _storage = FlutterSecureStorage();
+  final _devInfo = DeviceInfoPlugin();
   storePreferredLanguage(String preferredLanguage) async {
     try {
-      await storage.write(key: "lan", value: preferredLanguage);
+      await _storage.write(key: "lan", value: preferredLanguage);
       return "Success";
     } catch (e) {
       return e.toString();
@@ -18,7 +18,7 @@ class UserLocalDataSource {
 
   getPreferredLanguage() async {
     try {
-      String result = await storage.read(key: "lan");
+      String result = await _storage.read(key: "lan");
       print("$result");
       return result;
     } catch (e) {
@@ -28,11 +28,11 @@ class UserLocalDataSource {
 
   fetchUniqueDeviceID() async {
     if (Platform.isAndroid) {
-      var androidInfo = await devInfo.androidInfo;
+      var androidInfo = await _devInfo.androidInfo;
       print("${androidInfo.id}");
       return "${androidInfo.androidId}";
     } else if (Platform.isIOS) {
-      IosDeviceInfo iosinfo = await devInfo.iosInfo;
+      IosDeviceInfo iosinfo = await _devInfo.iosInfo;
       print("${iosinfo.identifierForVendor}");
       return "${iosinfo.identifierForVendor}";
     } else {
@@ -45,7 +45,7 @@ class UserLocalDataSource {
 
   storeUID(String uniqueDeviceID) async {
     try {
-      await storage.write(key: "uid", value: uniqueDeviceID);
+      await _storage.write(key: "uid", value: uniqueDeviceID);
       print("success");
       return "Success";
     } catch (e) {
@@ -55,7 +55,7 @@ class UserLocalDataSource {
 
   getUID() async {
     try {
-      String result = await storage.read(key: "uid");
+      String result = await _storage.read(key: "uid");
       print("$result");
       return result;
     } catch (e) {

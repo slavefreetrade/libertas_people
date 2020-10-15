@@ -103,6 +103,7 @@ class QualtricsLocalDataSource {
   }
 
   Future<void> markSurveyAsComplete(String surveyId) async {
+    print('surveyId: $surveyId');
     List<dynamic> surveyList = await fetchSurveyList();
     File surveyFile = await _surveyListFile;
     List<dynamic> updatedSurveyList = surveyList.map((element) {

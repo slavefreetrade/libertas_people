@@ -26,6 +26,7 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
                   state.currentQuestionIndex,
                   state.totalQuestionCount,
                   state.question,
+                  state.previousAnswer
                 ),
               ),
             );

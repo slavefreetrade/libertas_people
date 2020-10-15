@@ -83,11 +83,13 @@ class WelcomeFirstTimeContent extends StatelessWidget {
                         height: 70,
                         child: Image.asset('assets/icons/im.png'),
                       ),
-                      Text(
-                        "Less than five minutes to complete",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                      Flexible(
+                        child: Text(
+                          "Less than five minutes to complete",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],

@@ -15,11 +15,16 @@ class QualtricsRemoteDataSource {
 
   String _getBody() => json.encode({'language': 'EN'});
 
-  String _getBodyWithReponses(SurveyResponsesModel response) => json.encode({
+  String _getBodyWithReponses(SurveyResponsesModel response) {
+
+    print("response.answers: ${response.answers}");
+
+    return json.encode({
         'embeddedData': {'deviceID': response.deviceId},
         'advance': response.advance, // from what I can tell this means "end survey"
         'responses': response.answers
       });
+  }
 
   // surveyId
   Future<SessionInfoModel> startSession(String surveyId) async {

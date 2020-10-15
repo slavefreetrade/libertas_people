@@ -24,6 +24,7 @@ class UnfinishedSurveyContent extends StatelessWidget {
                 state.currentQuestionIndex,
                 state.totalQuestionCount,
                 state.question,
+                state.previousAnswer
               ),
             ),
           );

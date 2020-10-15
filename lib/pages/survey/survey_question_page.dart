@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/models/question_model.dart';
+import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -12,15 +13,17 @@ class SurveyQuestionPage extends StatefulWidget {
   final int questionIndex;
   final int totalQuestionCount;
   final QuestionModel question;
+  final Map answer;
 
   SurveyQuestionPage(
-      this.questionIndex, this.totalQuestionCount, this.question);
+      this.questionIndex, this.totalQuestionCount, this.question, this.answer);
 
   @override
   _SurveyQuestionPageState createState() => _SurveyQuestionPageState();
 }
 
 class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   var incr = 0;
   bool _toggleYes = false;
   bool _toggleNo = false;
@@ -35,13 +38,37 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   bool get _isTextEntryQuestion => _question.choices == null;
 
+  Map<String, dynamic> _answer;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _answer = widget.answer;
+    print("_answer in survey quewiton page: ${_answer}");
+    if (_answer != null) {
+      if (_isTextEntryQuestion) {
+        setState(() {
+          _answer = {_question.questionId: _answer[_question.questionId]};
+          _textAnswerController.text = _answer[_question.questionId];
+        });
+      } else {
+        // todo handel setting previous answer here for MC
+        print("handle setting previous MC answer");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.clear), onPressed: _onBackPressed),
         backgroundColor: ColorConstants.darkBlue,
-        title: Text("${widget.questionIndex}/${widget.totalQuestionCount}"),
+        title: Text(
+            "${widget.questionIndex}/${widget.totalQuestionCount} : ${_question.questionId}"),
         centerTitle: true,
       ),
       body: BlocListener<SurveyCubit, SurveyState>(
@@ -52,23 +79,27 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                 builder: (context) => SurveyQuestionPage(
                     state.currentQuestionIndex,
                     state.totalQuestionCount,
-                    state.question),
+                    state.question,
+                    state.previousAnswer),
               ),
             );
-          }
-          if (state is ThankYouSurveyState) {
+          } else if (state is ThankYouSurveyState) {
+            print("is navigating to thank you page");
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SurveyThankyouPage()));
-          }
+          } else if (state is FailureSurveyState) {
+            print("survey cubit failure" + state.message);
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                // duration: Duration(milliseconds: 3000),
+                content: Text(state.message),
+              ),
+            );
 
-          if (state is FailureSurveyState) {
-            print(state.message);
             // TODO display to user the error and probably exit survey?
           }
         },
         child: Container(
-          // width: width,
-          // height: height,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -84,24 +115,30 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                     unselectedColor: Colors.grey,
                   ),
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                  // height: height * 0.35,
-                  child: Text(
-                    _question.display,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (_isTextEntryQuestion)
-                        _buildTextFieldAnswerWidget()
-                      else
-                        _buildMCAnswerOptionsWidget(),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 30, horizontal: 20),
+                          // height: height * 0.35,
+                          child: Text(
+                            _question.display,
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (_isTextEntryQuestion)
+                              _buildTextFieldAnswerWidget()
+                            else
+                              _buildMCAnswerOptionsWidget(),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 _nextAndPreviousButtons()
@@ -114,6 +151,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   }
 
   _nextAndPreviousButtons() {
+    bool isFinalQuestion = _questionIndex == _totalCount;
+
     return Padding(
       padding: EdgeInsets.all(16),
       child: Row(
@@ -124,7 +163,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                 : FlatButton.icon(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
-                      // TODO implement going backwards
+                      context.bloc<SurveyCubit>().previousQuestion();
                     },
                     padding: const EdgeInsets.all(10.0),
                     textColor: ColorConstants.lightBlue,
@@ -149,23 +188,31 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
             child: FlatButton.icon(
               icon: const Icon(Icons.arrow_forward),
               onPressed: () {
+                // validate a button has been pressed or a text has been entered
 
-                var answer;
-                if(_isTextEntryQuestion) {
-                  answer = {_question.questionId: _textAnswerController.text};
+                if (_answer == null) {
+                  _scaffoldKey.currentState.showSnackBar(
+                    SnackBar(
+                      duration: Duration(milliseconds: 1500),
+                      content: Text("Please provide an answer. Thanks!"),
+                    ),
+                  );
+                  print("must submit an answer");
+                  print("show alert in app");
+                  return;
                 }
 
-                context.bloc<SurveyCubit>().nextQuestion(answer);
-
-                // setState(() {
-                  // TODO implement going forward
-                // });
+                if (isFinalQuestion) {
+                  context.bloc<SurveyCubit>().completeSurvey(_answer);
+                } else {
+                  context.bloc<SurveyCubit>().nextQuestion(_answer);
+                }
               },
               padding: const EdgeInsets.all(10.0),
               textColor: ColorConstants.white,
               color: ColorConstants.lightBlue,
-              label: const Text(
-                "Next",
+              label: Text(
+                isFinalQuestion ? "Complete" : "Next",
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
@@ -186,9 +233,13 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
     return Padding(
       padding: EdgeInsets.all(16),
       child: TextField(
-        controller: _textAnswerController,
-        decoration: InputDecoration(border: OutlineInputBorder()),
-      ),
+          controller: _textAnswerController,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+          ),
+          onChanged: (newValue) {
+            _answer = {_question.questionId: newValue};
+          }),
     );
   }
 
@@ -198,19 +249,21 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
     _question.choices.forEach((choice) {
       questionChoiceButtons.add(FlatButton(
         onPressed: () {
-
-
-
-
           setState(() {
-            _toggleYes = true;
-            _toggleNo = false;
+            // _toggleYes = true;
+            // _toggleNo = false;
+
+            _answer = {
+              _question.questionId: {
+                choice.choiceId: {"selected": true}
+              }
+            };
           });
         },
         padding: const EdgeInsets.all(12.0),
         color: _toggleYes ? ColorConstants.darkBlue : ColorConstants.white,
         child: Text(
-          "Yes",
+          choice.display,
           style: TextStyle(
               fontSize: 20,
               color:
@@ -310,7 +363,10 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               ),
               SizedBox(height: 16),
               GestureDetector(
-                onTap: () => Navigator.of(context).pop(true),
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
                 child: const Text(
                   "Leave",
                   style: const TextStyle(

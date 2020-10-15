@@ -49,14 +49,10 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     try {
       emit(LoadingHomeScreenState());
 
-      // todo move this to onboarding
-      await repository.fetchAndStoreQualtricsSurveys();
-
       Map<String, dynamic> storedSessionMetaData =
           await repository.fetchIncompleteSessionMetaData();
 
-      if (storedSessionMetaData.containsKey("sessionId") &&
-          storedSessionMetaData.containsKey("surveyId")) {
+      if (storedSessionMetaData.containsKey("surveyId")) {
         emit(
           UnfinishedSurveyHomeScreenState(
             storedSessionMetaData['surveyId'],
