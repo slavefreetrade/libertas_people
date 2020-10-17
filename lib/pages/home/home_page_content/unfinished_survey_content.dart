@@ -84,7 +84,7 @@ class UnfinishedSurveyContent extends StatelessWidget {
                         "finish survey for surveyId: $surveyId \tsessionId: $sessionId");
                     context
                         .bloc<SurveyCubit>()
-                        .returnToIncompletedSurveySession(
+                        .returnToIncompleteSurveySession(
                             surveyId: surveyId, sessionId: sessionId);
                   },
                 ),

@@ -2,19 +2,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
-import 'package:libertaspeople/pages/survey/survey_question_page.dart';
-import 'package:libertaspeople/pages/survey_thankyou_page.dart';
-import 'package:libertaspeople/pages/survey/thankyou_page.dart';
 import 'package:libertaspeople/pages/home/home_cubit.dart';
-
 import 'constants/colors.dart';
-import 'data_layer/repository.dart';
 import 'generated/l10n.dart';
 import 'pages/profile_creation/shared/fonts/app_fonts.dart';
 import 'splash/splash_screen.dart';
-import 'pages/ui_development_page.dart';
 
 void main() {
   runApp(
@@ -27,10 +20,8 @@ void main() {
 
 // ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeScreenCubit()),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/models/question_model.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
+import 'package:libertaspeople/pages/survey/multiple_choice_button_column.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:libertaspeople/pages/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
@@ -27,7 +28,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var incr = 0;
   bool _toggleYes = false;
-  bool _toggleNo = false;
 
   int get _questionIndex => widget.questionIndex;
 
@@ -41,7 +41,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   Map<String, dynamic> _answer;
 
-  int _selectedMCIndex;
 
   @override
   void initState() {
@@ -139,7 +138,14 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                               if (_isTextEntryQuestion)
                                 _buildTextFieldAnswerWidget()
                               else
-                                _buildMCAnswerOptionsWidget(),
+                                // _buildMCAnswerOptionsWidget(),
+                                MultipleChoiceButtonColumn(
+                                  _question.questionId,
+                                  _question.choices,
+                                 updateAnswer: (Map<String, dynamic> answer) {
+                                    _answer = answer;
+                                  },
+                                )
                             ],
                           ),
                         ],
@@ -151,7 +157,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               ),
             ),
           ),
-         SurveyLoadingIndicator()
+          SurveyLoadingIndicator()
         ]),
       ),
     );
@@ -250,19 +256,15 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
     );
   }
 
+  // internal state will only be responsible for highlighting buttons
+  // will update parent state via callback
   _buildMCAnswerOptionsWidget() {
     List<Widget> questionChoiceButtons = [];
 
     _question.choices.forEach((choice) {
       questionChoiceButtons.add(FlatButton(
-
         onPressed: () {
           setState(() {
-            // _toggleYes = true;
-            // _toggleNo = false;
-
-            // TODO create an index to be selected
-            _selectedMCIndex = 0;
 
             _answer = {
               _question.questionId: {

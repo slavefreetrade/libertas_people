@@ -69,10 +69,11 @@ class SurveyCubit extends Cubit<SurveyState> {
     );
   }
 
-  returnToIncompletedSurveySession({
+  returnToIncompleteSurveySession({
     @required String surveyId,
     @required String sessionId,
   }) async {
+    if(state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
 
     Map<String, dynamic> sessionInfoMap =
@@ -133,11 +134,9 @@ class SurveyCubit extends Cubit<SurveyState> {
     if (state is FillingOutQuestionSurveyState) {
       int previousIndex =
           (state as FillingOutQuestionSurveyState).currentQuestionIndex - 1;
-      print('previous index : $previousIndex');
 
       emit(LoadingSurveyState());
 
-      // Prolly split into two calls?
       // Repo.findPreviousQuesitonAndAnswerByIndex()
       Map<String, dynamic> sessionInfoMap =
           await newQualtricsLocalDataSource.fetchSurveySession();
@@ -168,7 +167,6 @@ class SurveyCubit extends Cubit<SurveyState> {
     if (state is FillingOutQuestionSurveyState) {
       emit(LoadingSurveyState());
 
-      // Repo.StoreAnswer
       Map<String, dynamic> sessionInfoMap =
           await newQualtricsLocalDataSource.fetchSurveySession();
       SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
@@ -176,9 +174,7 @@ class SurveyCubit extends Cubit<SurveyState> {
       await newQualtricsLocalDataSource.storeEntireSurveySession(
           sessionInfoMap['surveyId'], sessionInfo);
 
-      // try to send session to API
       try {
-        // REPO.completeSession
         final String deviceId = await userLocal.fetchUniqueDeviceID();
 
         await qualtricsRemote.updateSession(
