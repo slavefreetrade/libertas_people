@@ -4,6 +4,7 @@ import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/models/question_model.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
+import 'package:libertaspeople/pages/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -99,53 +100,57 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
             // TODO display to user the error and probably exit survey?
           }
         },
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: StepProgressIndicator(
-                    totalSteps: _totalCount,
-                    currentStep: _questionIndex,
-                    size: 20,
-                    selectedColor: ColorConstants.lightBlue,
-                    unselectedColor: Colors.grey,
-                  ),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 30, horizontal: 20),
-                          // height: height * 0.35,
-                          child: Text(
-                            _question.display,
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            if (_isTextEntryQuestion)
-                              _buildTextFieldAnswerWidget()
-                            else
-                              _buildMCAnswerOptionsWidget(),
-                          ],
-                        ),
-                      ],
+        child: Stack(children: [
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 12.0, left: 12, bottom: 16),
+                    child: StepProgressIndicator(
+                      totalSteps: _totalCount,
+                      currentStep: _questionIndex,
+                      size: 20,
+                      selectedColor: ColorConstants.lightBlue,
+                      unselectedColor: Colors.grey,
                     ),
                   ),
-                ),
-                _nextAndPreviousButtons()
-              ],
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 30, horizontal: 20),
+                            // height: height * 0.35,
+                            child: Text(
+                              _question.display,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (_isTextEntryQuestion)
+                                _buildTextFieldAnswerWidget()
+                              else
+                                _buildMCAnswerOptionsWidget(),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  _nextAndPreviousButtons()
+                ],
+              ),
             ),
           ),
-        ),
+         SurveyLoadingIndicator()
+        ]),
       ),
     );
   }

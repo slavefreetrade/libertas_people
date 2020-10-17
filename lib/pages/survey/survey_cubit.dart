@@ -145,6 +145,7 @@ class SurveyCubit extends Cubit<SurveyState> {
         previousAnswerKey: sessionInfo.responses[previousAnswerKey]
       };
       print("previous andswer: $previousAnswer");
+
       // FIND QUESTION BY INDEX
       QuestionModel previousQuestion = sessionInfo.questions.firstWhere(
           (question) => question.questionId.contains(previousIndex.toString()));

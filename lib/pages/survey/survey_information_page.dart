@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/pages/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/pages/survey/survey_question_page.dart';
 
 class SurveyInformationPage extends StatefulWidget {
@@ -23,43 +24,58 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => SurveyQuestionPage(
-                  state.currentQuestionIndex,
-                  state.totalQuestionCount,
-                  state.question,
-                  state.previousAnswer
-                ),
+                    state.currentQuestionIndex,
+                    state.totalQuestionCount,
+                    state.question,
+                    state.previousAnswer),
               ),
             );
           }
         },
-        child: Center(
-          child: Column(
+        child: Stack(children: [
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Survey Information Page"),
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("survey info"),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  RaisedButton(
-                    child: Text("back"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  RaisedButton(
-                    child: Text("Start Survey"),
-                    onPressed: () {
-                      context.bloc<SurveyCubit>().startSurvey(widget.surveyId);
-                    },
-                  ),
-                ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    RaisedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Back"),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Start"),
+                      ),
+                      onPressed: () {
+                        context
+                            .bloc<SurveyCubit>()
+                            .startSurvey(widget.surveyId);
+                      },
+                    ),
+                  ],
+                ),
               )
             ],
           ),
-        ),
+          SurveyLoadingIndicator()
+        ]),
       ),
     );
   }

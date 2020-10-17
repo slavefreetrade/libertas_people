@@ -19,28 +19,42 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Expanded(
+            child: Center(
+
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Language Selection Page:\nCurrently English is the only language available", textAlign: TextAlign.center,),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("english is the only language available"),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RaisedButton(
-                child: Text("Cancel"),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              RaisedButton(
-                child: Text("Okay, continue to instructions"),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          SurveyInformationPage(widget.surveyId)));
-                },
-              ),
-            ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RaisedButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Back"),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                RaisedButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Next"),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            SurveyInformationPage(widget.surveyId)));
+                  },
+                ),
+              ],
+            ),
           )
         ],
       )),
