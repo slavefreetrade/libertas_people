@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
+import 'package:libertaspeople/models/stored_session_data_model.dart';
 
 abstract class HomeScreenState {}
 
@@ -37,7 +38,7 @@ class UnfinishedSurveyHomeScreenState extends HomeScreenState {
   );
 }
 
-/// After you emit a state from Cubit, and you want to stop the code from
+/// After you emit a state from Cubit, and you want to stop the function from
 /// emitting a new state, make sure you call return; after emit();
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
@@ -49,14 +50,14 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     try {
       emit(LoadingHomeScreenState());
 
-      Map<String, dynamic> storedSessionMetaData =
-          await repository.fetchIncompleteSessionMetaData();
+      final StoredSessionDataModel storedSessionData =
+          await repository.fetchIncompleteSessionData();
 
-      if (storedSessionMetaData.containsKey("surveyId")) {
+      if (storedSessionData != null) {
         emit(
           UnfinishedSurveyHomeScreenState(
-            storedSessionMetaData['surveyId'],
-            storedSessionMetaData['sessionId'],
+            storedSessionData.surveyId,
+            storedSessionData.sessionInfoModel.sessionId,
           ),
         );
         return;
@@ -64,6 +65,12 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       Map<String, dynamic> currentSurveyForUser =
           await repository.fetchCurrentSurveyForUser();
+
+      /// completed all surveys
+      if (currentSurveyForUser == null) {
+        emit(NoSurveyHomeScreenState());
+        return;
+      }
 
       bool currentSurveyIsComplete = currentSurveyForUser['isComplete'];
       String currentSurveyId = currentSurveyForUser['id'];
@@ -81,6 +88,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       emit(WelcomeBackHomeScreenState(currentSurveyId));
     } catch (e) {
+      print(e);
       emit(FailureHomeScreenState(e.toString()));
     }
   }

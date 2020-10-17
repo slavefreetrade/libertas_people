@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/pages/survey/survey_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WelcomeBackContent extends StatelessWidget {
   final String nextSurveyId;
+
   WelcomeBackContent(this.nextSurveyId);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,10 +72,16 @@ class WelcomeBackContent extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: Text("Take Survey"),
+                  child: BlocBuilder<SurveyCubit, SurveyState>(
+                      builder: (context, state) {
+                    if (state is LoadingSurveyState) {
+                      return CircularProgressIndicator();
+                    }
+                    return Text("Take Survey");
+                  }),
                 ),
                 onPressed: () {
-                  print("start survey for surveyId: $nextSurveyId");
+                  context.bloc<SurveyCubit>().startSurvey(nextSurveyId);
                 },
               ),
             )

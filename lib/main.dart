@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:libertaspeople/pages/survey/survey_question_page.dart';
-import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:libertaspeople/pages/survey/thankyou_page.dart';
 import 'package:libertaspeople/pages/home/home_cubit.dart';
 
@@ -13,7 +13,7 @@ import 'constants/colors.dart';
 import 'data_layer/repository.dart';
 import 'generated/l10n.dart';
 import 'pages/profile_creation/shared/fonts/app_fonts.dart';
-import 'pages/splash_screen.dart';
+import 'splash/splash_screen.dart';
 import 'pages/ui_development_page.dart';
 
 void main() {
@@ -30,8 +30,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo move this to onboarding
-    Repository().fetchAndStoreQualtricsSurveys();
 
     return MultiBlocProvider(
       providers: [
@@ -69,8 +67,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        // home: SplashScreen(),
-        home: HomePage(),
+        home: SplashScreen(),
+        // home: HomePage(),
 
         // initialRoute: '/',
         // routes: {

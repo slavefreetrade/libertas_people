@@ -15,22 +15,7 @@ class UnfinishedSurveyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SurveyCubit, SurveyState>(
-      listener: (context, state) {
-        if (state is FillingOutQuestionSurveyState) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => SurveyQuestionPage(
-                state.currentQuestionIndex,
-                state.totalQuestionCount,
-                state.question,
-                state.previousAnswer
-              ),
-            ),
-          );
-        }
-      },
-      child: Container(
+    return Container(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -107,7 +92,7 @@ class UnfinishedSurveyContent extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 }

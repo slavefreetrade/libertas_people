@@ -36,10 +36,11 @@ class UserLocalDataSource {
       print("${iosinfo.identifierForVendor}");
       return "${iosinfo.identifierForVendor}";
     } else {
-      throw PlatformException(
-        code: "Unsupported Platfrom",
-        message: "The plaform of the device is neither ios nor android",
-      );
+      return null;
+      // throw PlatformException(
+      //   code: "Unsupported Platfrom",
+      //   message: "The plaform of the device is neither ios nor android",
+      // );
     }
   }
 
@@ -53,13 +54,13 @@ class UserLocalDataSource {
     }
   }
 
-  getUID() async {
+  Future<String> getUID() async {
     try {
       String result = await _storage.read(key: "uid");
       print("$result");
       return result;
     } catch (e) {
-      return e.toString();
+      return null;
     }
   }
 }

@@ -49,8 +49,11 @@ class SurveyCubit extends Cubit<SurveyState> {
       NewQualtricsLocalDataSource();
 
   startSurvey(String surveyId) async {
+    if(state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
     SessionInfoModel sessionInfo = await qualtricsRemote.startSession(surveyId);
+
+    print("checkout session info questions");
 
     await newQualtricsLocalDataSource.storeEntireSurveySession(
         surveyId, sessionInfo);

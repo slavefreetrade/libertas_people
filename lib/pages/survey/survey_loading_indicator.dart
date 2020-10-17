@@ -8,8 +8,7 @@ class SurveyLoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SurveyCubit, SurveyState>(builder: (context, state) {
       if (state is LoadingSurveyState) {
-        return Expanded(
-            child: Container(
+        return Container(
           color: Colors.black38,
           child: Center(
               child: Container(
@@ -34,7 +33,7 @@ class SurveyLoadingIndicator extends StatelessWidget {
               ),
             ),
           )),
-        ));
+        );
       }
       return Container();
     });

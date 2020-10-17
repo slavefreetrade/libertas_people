@@ -5,7 +5,7 @@ import 'package:libertaspeople/models/question_model.dart';
 import 'package:libertaspeople/pages/home/home_page.dart';
 import 'package:libertaspeople/pages/survey/survey_cubit.dart';
 import 'package:libertaspeople/pages/survey/survey_loading_indicator.dart';
-import 'package:libertaspeople/pages/survey/survey_thankyou_page.dart';
+import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SurveyQuestionPage extends StatefulWidget {
@@ -40,6 +40,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   bool get _isTextEntryQuestion => _question.choices == null;
 
   Map<String, dynamic> _answer;
+
+  int _selectedMCIndex;
 
   @override
   void initState() {
@@ -253,10 +255,14 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
     _question.choices.forEach((choice) {
       questionChoiceButtons.add(FlatButton(
+
         onPressed: () {
           setState(() {
             // _toggleYes = true;
             // _toggleNo = false;
+
+            // TODO create an index to be selected
+            _selectedMCIndex = 0;
 
             _answer = {
               _question.questionId: {
@@ -291,59 +297,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: questionChoiceButtons,
     );
-
-    // return Column(
-    //   crossAxisAlignment: CrossAxisAlignment.stretch,
-    //   children: [
-    //     FlatButton(
-    //       onPressed: () {
-    //         setState(() {
-    //           _toggleYes = true;
-    //           _toggleNo = false;
-    //         });
-    //       },
-    //       padding: const EdgeInsets.all(12.0),
-    //       color: _toggleYes ? ColorConstants.darkBlue : ColorConstants.white,
-    //       child: Text(
-    //         "Yes",
-    //         style: TextStyle(
-    //             fontSize: 20,
-    //             color:
-    //                 _toggleYes ? ColorConstants.white : ColorConstants.darkBlue,
-    //             fontWeight: FontWeight.bold),
-    //       ),
-    //       shape: RoundedRectangleBorder(
-    //           side: BorderSide(
-    //               color: Colors.grey, width: 3, style: BorderStyle.solid),
-    //           borderRadius: BorderRadius.circular(10)),
-    //     ),
-    //     const SizedBox(
-    //       height: 20,
-    //     ),
-    //     FlatButton(
-    //       onPressed: () {
-    //         setState(() {
-    //           _toggleNo = true;
-    //           _toggleYes = false;
-    //         });
-    //       },
-    //       padding: const EdgeInsets.all(12.0),
-    //       color: _toggleNo ? ColorConstants.darkBlue : ColorConstants.white,
-    //       child: Text(
-    //         "No",
-    //         style: TextStyle(
-    //             fontSize: 20,
-    //             color:
-    //                 _toggleNo ? ColorConstants.white : ColorConstants.darkBlue,
-    //             fontWeight: FontWeight.bold),
-    //       ),
-    //       shape: RoundedRectangleBorder(
-    //           side: BorderSide(
-    //               color: Colors.grey, width: 3, style: BorderStyle.solid),
-    //           borderRadius: BorderRadius.circular(10)),
-    //     )
-    //   ],
-    // );
   }
 
   Future<bool> _onBackPressed() {
