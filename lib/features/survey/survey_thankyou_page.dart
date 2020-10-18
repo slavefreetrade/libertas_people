@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/pages/home/home_page.dart';
+import 'package:libertaspeople/features/home/home_page.dart';
 
 class SurveyThankyouPage extends StatelessWidget {
-  static const routeName = '/survey-thankyou-page';
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,6 @@ class SurveyThankyouPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 60, top: 10),
             child: FlatButton(
               onPressed: () {
-                print("clicked return button");
                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),

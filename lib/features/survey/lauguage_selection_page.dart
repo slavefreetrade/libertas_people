@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/pages/survey/survey_information_page.dart';
+import 'package:libertaspeople/features/survey/survey_information_page.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   final String surveyId;

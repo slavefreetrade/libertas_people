@@ -15,6 +15,8 @@ class QuestionModel {
   @JsonKey(nullable: true, includeIfNull: false)
   List<ChoiceModel> choices;
 
+  int get currentIndex => int.parse(this.questionId.replaceAll("QID", ""));
+
   QuestionModel({this.questionId, this.type, this.display, this.choices, this.options});
   factory QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);
   Map<String, dynamic> toJson() => _$QuestionModelToJson(this);

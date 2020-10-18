@@ -2,12 +2,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:libertaspeople/pages/survey/survey_cubit.dart';
-import 'package:libertaspeople/pages/home/home_cubit.dart';
+import 'package:libertaspeople/features/splash_screen.dart';
 import 'constants/colors.dart';
+import 'features/home/home_cubit.dart';
+import 'features/profile_creation/shared/fonts/app_fonts.dart';
+import 'features/survey/survey_cubit.dart';
 import 'generated/l10n.dart';
-import 'pages/profile_creation/shared/fonts/app_fonts.dart';
-import 'splash/splash_screen.dart';
 
 void main() {
   runApp(
@@ -48,7 +48,6 @@ class MyApp extends StatelessWidget {
           ),
           appBarTheme: const AppBarTheme(
             color: ColorConstants.darkBlue,
-//          centerTitle: true,
             elevation: 0,
             textTheme: TextTheme(
               headline6: TextStyle(
@@ -59,15 +58,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: SplashScreen(),
-        // home: HomePage(),
-
-        // initialRoute: '/',
-        // routes: {
-        //   '/': (ctx) => UIDevelopmentPage(),
-        //   SurveyQuestionPage.routeName: (ctx) => SurveyQuestionPage(),
-        //   ThankyouPage.routeName: (ctx) => ThankyouPage(),
-        //   SurveyThankyouPage.routeName: (ctx) => SurveyThankyouPage()
-        // },
       ),
     );
   }

@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/pages/survey/lauguage_selection_page.dart';
-import 'package:libertaspeople/pages/survey/survey_information_page.dart';
+import 'package:libertaspeople/features/survey/lauguage_selection_page.dart';
 
 class WelcomeFirstTimeContent extends StatelessWidget {
   final String firstSurveyId;

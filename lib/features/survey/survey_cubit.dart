@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/new_qualtrics_local_data_source.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_local_data_source.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
+import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/data_layer/user_data_sources/user_local_data_source.dart';
 import 'package:libertaspeople/models/api_request_model.dart';
 import 'package:libertaspeople/models/question_model.dart';
@@ -45,6 +46,8 @@ class SurveyCubit extends Cubit<SurveyState> {
   QualtricsLocalDataSource qualtricsLocal = QualtricsLocalDataSource();
   UserLocalDataSource userLocal = UserLocalDataSource();
 
+  final Repository repository = Repository();
+
   startSurvey(String surveyId) async {
     if (state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
@@ -52,16 +55,19 @@ class SurveyCubit extends Cubit<SurveyState> {
     // REPOSITORY.StartSession
     SessionInfoModel sessionInfo = await qualtricsRemote.startSession(surveyId);
     await qualtricsLocal.storeEntireSurveySession(surveyId, sessionInfo);
+    SessionInfoModel session = await repository.startSession(surveyId);
 
-    //REPOSITORY.getQuestionForIndex(int) -> QuestionModel
-    QuestionModel question = sessionInfo.questions
-        .firstWhere((question) => question.questionId.contains("1"));
+    // REPOSITORY.getQuestionForIndex(int) -> QuestionModel
+    // QuestionModel question = sessionInfo.questions
+    //     .firstWhere((question) => question.questionId.contains("1"));
+
+    QuestionModel question = await repository.getQuestionForIndex(1);
 
     emit(
       FillingOutQuestionSurveyState(
-          currentQuestionIndex: 1,
+          currentQuestionIndex: question.currentIndex,
           question: question,
-          totalQuestionCount: sessionInfo.questions.length),
+          totalQuestionCount: session.questions.length),
     );
   }
 
@@ -72,7 +78,6 @@ class SurveyCubit extends Cubit<SurveyState> {
     if (state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
 
-
     // ALREADY EXISTS??? / COULD KEEP IN REPO LAYER
     // REPOSITORY.FetchCurrentSession
     // TODO DATA MODEL
@@ -81,21 +86,24 @@ class SurveyCubit extends Cubit<SurveyState> {
     SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
 
     // REPOSITORY.findNextQuestionForIncompleteSurvey
-    Map<String, dynamic> responses = sessionInfo.responses;
-    int lastIndexAnswered = 1;
-    responses.forEach((key, value) {
-      int keyToInteger = int.parse(key.replaceAll("QID", ""));
-      if (keyToInteger > lastIndexAnswered) {
-        lastIndexAnswered = keyToInteger;
-      }
-    });
-    int nextIndex = lastIndexAnswered + 1;
-    QuestionModel question = sessionInfo.questions.firstWhere((question) =>
-        question.questionId.contains(nextIndex.toString())); // valid
+    // Map<String, dynamic> responses = sessionInfo.responses;
+    // int lastIndexAnswered = 1;
+    // responses.forEach((key, value) {
+    //   int keyToInteger = int.parse(key.replaceAll("QID", ""));
+    //   if (keyToInteger > lastIndexAnswered) {
+    //     lastIndexAnswered = keyToInteger;
+    //   }
+    // });
+    // int nextIndex = lastIndexAnswered + 1;
+    // QuestionModel question = sessionInfo.questions.firstWhere((question) =>
+    //     question.questionId.contains(nextIndex.toString())); // valid
+
+    QuestionModel question =
+        await repository.getNextQuestionForIncompleteSurvey();
 
     emit(
       FillingOutQuestionSurveyState(
-        currentQuestionIndex: nextIndex,
+        currentQuestionIndex: question.currentIndex,
         question: question,
         totalQuestionCount: sessionInfo.questions.length,
       ),
@@ -111,18 +119,27 @@ class SurveyCubit extends Cubit<SurveyState> {
 
       // REPOSITORY.StoreAnswer()
       // REPOSITORY.getQuestionForIndex (already exists)
+
+      // TODO REMOVE THIS WHEN ADDING INDEX AND TOTAL COUNT TO QUESTION MODEL
       Map<String, dynamic> sessionInfoMap =
           await qualtricsLocal.fetchSurveySession();
       SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
-      sessionInfo.responses.addAll(answer);
-      await qualtricsLocal.storeEntireSurveySession(
-          sessionInfoMap['surveyId'], sessionInfo);
+      // sessionInfo.responses.addAll(answer);
+      // await qualtricsLocal.storeEntireSurveySession(
+      //     sessionInfoMap['surveyId'], sessionInfo);
+      await repository.storeAnswer(answer);
+
+      QuestionModel nextQuestion =
+          await repository.getQuestionForIndex(nextIndex);
+      Map<String, dynamic> previousAnswer =
+          await repository.getPreviousAnswerByIndex(nextIndex);
 
       emit(
         FillingOutQuestionSurveyState(
             currentQuestionIndex: nextIndex,
-            question: sessionInfo.questions[nextIndex - 1],
-            totalQuestionCount: sessionInfo.questions.length),
+            question: nextQuestion,
+            totalQuestionCount: sessionInfo.questions.length,
+            previousAnswer: previousAnswer),
       );
     }
   }
@@ -131,22 +148,26 @@ class SurveyCubit extends Cubit<SurveyState> {
     if (state is FillingOutQuestionSurveyState) {
       int previousIndex =
           (state as FillingOutQuestionSurveyState).currentQuestionIndex - 1;
-
+      print("previous index: $previousIndex");
       emit(LoadingSurveyState());
 
       // REPOSITORY.findPreviousAnswerByIndex()
       Map<String, dynamic> sessionInfoMap =
           await qualtricsLocal.fetchSurveySession();
       SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
-      String previousAnswerKey = sessionInfo.responses.keys
-          .firstWhere((key) => key.contains(previousIndex.toString()));
-      Map<String, dynamic> previousAnswer = {
-        previousAnswerKey: sessionInfo.responses[previousAnswerKey]
-      };
+      // String previousAnswerKey = sessionInfo.responses.keys
+      //     .firstWhere((key) => key.contains(previousIndex.toString()));
+      // Map<String, dynamic> previousAnswer = {
+      //   previousAnswerKey: sessionInfo.responses[previousAnswerKey]
+      // };
+      Map<String, dynamic> previousAnswer =
+          await repository.getPreviousAnswerByIndex(previousIndex);
 
       // REPOSITORY.getQuestionForIndex (already exists)
-      QuestionModel previousQuestion = sessionInfo.questions.firstWhere(
-          (question) => question.questionId.contains(previousIndex.toString()));
+      // QuestionModel previousQuestion = sessionInfo.questions.firstWhere(
+      //     (question) => question.questionId.contains(previousIndex.toString()));
+      QuestionModel previousQuestion =
+          await repository.getQuestionForIndex(previousIndex);
 
       emit(
         FillingOutQuestionSurveyState(
@@ -165,36 +186,38 @@ class SurveyCubit extends Cubit<SurveyState> {
 
       // REPOSITORY.StoreAnswer
       //TODO data model here
-      Map<String, dynamic> sessionInfoMap =
-          await qualtricsLocal.fetchSurveySession();
-      SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
-      sessionInfo.responses.addAll(answer);
-      await qualtricsLocal.storeEntireSurveySession(
-          sessionInfoMap['surveyId'], sessionInfo);
+      // Map<String, dynamic> sessionInfoMap =
+      //     await qualtricsLocal.fetchSurveySession();
+      // SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+      // sessionInfo.responses.addAll(answer);
+      // await qualtricsLocal.storeEntireSurveySession(
+      //     sessionInfoMap['surveyId'], sessionInfo);
+      await repository.storeAnswer(answer);
 
       try {
-        final String deviceId = await userLocal.fetchUniqueDeviceID();
-
-        // REPOSITORY.completeSession()
-        await qualtricsRemote.updateSession(
-          request: ApiRequestModel(
-            surveyId: sessionInfoMap['surveyId'],
-            sessionId: sessionInfo.sessionId,
-          ),
-          surveyResponses: SurveyResponsesModel(
-            answers: sessionInfo.responses,
-            advance: true,
-            deviceId: deviceId,
-          ),
-        );
-        await qualtricsLocal.markSurveyAsComplete(sessionInfoMap['surveyId']);
-        await qualtricsLocal.deleteCurrentSessionData();
-        //todo if survey's beginDate is null or title is Survey_1 update all surveys dates
+        await repository.completeSession();
+        // final String deviceId = await userLocal.fetchUniqueDeviceID();
+        //
+        // // REPOSITORY.completeSession()
+        // await qualtricsRemote.updateSession(
+        //   request: ApiRequestModel(
+        //     surveyId: sessionInfoMap['surveyId'],
+        //     sessionId: sessionInfo.sessionId,
+        //   ),
+        //   surveyResponses: SurveyResponsesModel(
+        //     answers: sessionInfo.responses,
+        //     advance: true,
+        //     deviceId: deviceId,
+        //   ),
+        // );
+        // await qualtricsLocal.markSurveyAsComplete(sessionInfoMap['surveyId']);
+        // await qualtricsLocal.deleteCurrentSessionData();
+        // //todo if survey's beginDate is null or title is Survey_1 update all surveys dates
 
         emit(ThankYouSurveyState());
       } catch (e) {
-        print("exception submitting survey: $e");
-        print(e.toString());
+        // TODO May want to handle different type of exceptions being thrown.
+        // Once case that will happen alot is that they dont have service (NetworkTimeoutException)
         emit(FailureSurveyState(
             "we are unable to submit your survey at this time, Developer note: I recommend implementing a background fetch process that will automatically try to submit a failed survey"));
       }

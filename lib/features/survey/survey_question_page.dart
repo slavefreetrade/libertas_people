@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/features/survey/survey_cubit.dart';
+import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
+import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
 import 'package:libertaspeople/models/question_model.dart';
-import 'package:libertaspeople/pages/home/home_page.dart';
-import 'package:libertaspeople/pages/survey/multiple_choice_button_column.dart';
-import 'package:libertaspeople/pages/survey/survey_cubit.dart';
-import 'package:libertaspeople/pages/survey/survey_loading_indicator.dart';
-import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+
+import 'multiple_choice_button_column.dart';
 
 class SurveyQuestionPage extends StatefulWidget {
   static const routeName = '/survey-question-page';
@@ -17,8 +18,8 @@ class SurveyQuestionPage extends StatefulWidget {
   final QuestionModel question;
   final Map answer;
 
-  SurveyQuestionPage(
-      this.questionIndex, this.totalQuestionCount, this.question, this.answer);
+  SurveyQuestionPage(this.questionIndex, this.totalQuestionCount, this.question,
+      this.answer);
 
   @override
   _SurveyQuestionPageState createState() => _SurveyQuestionPageState();
@@ -26,8 +27,6 @@ class SurveyQuestionPage extends StatefulWidget {
 
 class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  var incr = 0;
-  bool _toggleYes = false;
 
   int get _questionIndex => widget.questionIndex;
 
@@ -41,24 +40,19 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   Map<String, dynamic> _answer;
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    _answer = widget.answer;
+
     print("_answer in survey quewiton page: ${_answer}");
-    if (_answer != null) {
+    if (widget.answer != null) {
+      _answer = widget.answer;
       if (_isTextEntryQuestion) {
-        setState(() {
-          _answer = {_question.questionId: _answer[_question.questionId]};
-          _textAnswerController.text = _answer[_question.questionId];
-        });
-      } else {
-        // todo handel setting previous answer here for MC
-        print("handle setting previous MC answer");
+        _textAnswerController.text = _answer[_question.questionId];
       }
+      setState(() {});
     }
   }
 
@@ -70,7 +64,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
         leading: IconButton(icon: Icon(Icons.clear), onPressed: _onBackPressed),
         backgroundColor: ColorConstants.darkBlue,
         title: Text(
-            "${widget.questionIndex}/${widget.totalQuestionCount} : ${_question.questionId}"),
+            "${widget.questionIndex}/${widget.totalQuestionCount} : ${_question
+                .questionId}"),
         centerTitle: true,
       ),
       body: BlocListener<SurveyCubit, SurveyState>(
@@ -78,11 +73,12 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
           if (state is FillingOutQuestionSurveyState) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => SurveyQuestionPage(
-                    state.currentQuestionIndex,
-                    state.totalQuestionCount,
-                    state.question,
-                    state.previousAnswer),
+                builder: (context) =>
+                    SurveyQuestionPage(
+                        state.currentQuestionIndex,
+                        state.totalQuestionCount,
+                        state.question,
+                        state.previousAnswer),
               ),
             );
           } else if (state is ThankYouSurveyState) {
@@ -138,13 +134,14 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                               if (_isTextEntryQuestion)
                                 _buildTextFieldAnswerWidget()
                               else
-                                // _buildMCAnswerOptionsWidget(),
+                              // _buildMCAnswerOptionsWidget(),
                                 MultipleChoiceButtonColumn(
                                   _question.questionId,
                                   _question.choices,
-                                 updateAnswer: (Map<String, dynamic> answer) {
+                                  updateAnswer: (Map<String, dynamic> answer) {
                                     _answer = answer;
                                   },
+                                  previousAnswer: _answer,
                                 )
                             ],
                           ),
@@ -174,25 +171,25 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
             child: _questionIndex == 1
                 ? Container()
                 : FlatButton.icon(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      context.bloc<SurveyCubit>().previousQuestion();
-                    },
-                    padding: const EdgeInsets.all(10.0),
-                    textColor: ColorConstants.lightBlue,
-                    color: ColorConstants.white,
-                    label: const Text(
-                      "Previous",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            color: ColorConstants.lightBlue,
-                            width: 2,
-                            style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                context.bloc<SurveyCubit>().previousQuestion();
+              },
+              padding: const EdgeInsets.all(10.0),
+              textColor: ColorConstants.lightBlue,
+              color: ColorConstants.white,
+              label: const Text(
+                "Previous",
+                style: const TextStyle(
+                    fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: ColorConstants.lightBlue,
+                      width: 2,
+                      style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(10)),
+            ),
           ),
           const SizedBox(
             width: 8,
@@ -227,7 +224,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               label: Text(
                 isFinalQuestion ? "Complete" : "Next",
                 style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               shape: RoundedRectangleBorder(
                   side: BorderSide(
@@ -258,8 +255,9 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   Future<bool> _onBackPressed() {
     return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
             title: const Text(
               'Are you sure want to leave?',
               textAlign: TextAlign.center,
@@ -290,7 +288,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               ),
             ],
           ),
-        ) ??
+    ) ??
         false;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
-import 'package:libertaspeople/pages/home/home_page.dart';
+import 'package:libertaspeople/features/home/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

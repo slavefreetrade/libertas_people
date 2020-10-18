@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/models/choice_model.dart';
-import 'package:libertaspeople/models/question_model.dart';
 
 class MultipleChoiceButtonColumn extends StatefulWidget {
   final String questionId;
   final List<ChoiceModel> choices;
   final Function(Map<String, dynamic> answer) updateAnswer;
+  final Map<String, dynamic> previousAnswer;
 
   const MultipleChoiceButtonColumn(
     this.questionId,
     this.choices, {
     @required this.updateAnswer,
+        this.previousAnswer,
   });
 
   @override
@@ -23,15 +24,24 @@ class _MultipleChoiceButtonColumnState
     extends State<MultipleChoiceButtonColumn> {
   String _toggledId;
 
-  // on tapping button, set toggleId to that choices ID, and then call callback to update parent
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(widget.previousAnswer != null) {
+      print("previous answer: ${widget.previousAnswer}");
+      print("previous toggled index: ${widget.previousAnswer[widget.questionId].keys.first}");
+      setState(() {
+        _toggledId = widget.previousAnswer[widget.questionId].keys.first;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return _buildMCAnswerOptionsWidget();
   }
 
-  // internal state will only be responsible for highlighting buttons
-  // will update parent state via callback
   _buildMCAnswerOptionsWidget() {
     List<Widget> questionChoiceButtons = [];
 
@@ -46,7 +56,11 @@ class _MultipleChoiceButtonColumnState
               choice.choiceId: {"selected": true}
             }
           };
+          // print("selected answer: $answer");
+          // print("value for id: ${answer[widget.questionId].keys.first}");
+
           widget.updateAnswer(answer);
+
         },
         padding: const EdgeInsets.all(12.0),
         color: _toggledId == choice.choiceId
