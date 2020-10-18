@@ -64,8 +64,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
         leading: IconButton(icon: Icon(Icons.clear), onPressed: _onBackPressed),
         backgroundColor: ColorConstants.darkBlue,
         title: Text(
-            "${widget.questionIndex}/${widget.totalQuestionCount} : ${_question
-                .questionId}"),
+            "${widget.questionIndex}/${widget.totalQuestionCount}"),
         centerTitle: true,
       ),
       body: BlocListener<SurveyCubit, SurveyState>(
