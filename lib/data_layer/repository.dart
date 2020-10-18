@@ -12,9 +12,30 @@ class Repository {
   QualtricsLocalDataSource qualtricsLocal = QualtricsLocalDataSource();
   UserLocalDataSource userLocal = UserLocalDataSource();
 
+  Future<bool> userExists() async {
+    final String uid = await userLocal.getUID();
+    if (uid == null) {
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> createUser() async {
+    String userId = await userLocal.fetchUniqueDeviceID();
+    await userLocal.storeUID(userId);
+  }
+
+
   Future<SessionInfoModel> startSession(String surveyId) async {
     SessionInfoModel sessionInfo = await qualtricsRemote.startSession(surveyId);
     await qualtricsLocal.storeEntireSurveySession(surveyId, sessionInfo);
+    return sessionInfo;
+  }
+
+  Future<SessionInfoModel> returnToPreviousSession() async{
+    Map<String, dynamic> sessionInfoMap =
+        await qualtricsLocal.fetchSurveySession();
+    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
     return sessionInfo;
   }
 
@@ -45,7 +66,6 @@ class Repository {
     return previousAnswer;
   }
 
-  // TODO add index and total question count to question object
   Future<QuestionModel> getNextQuestionForIncompleteSurvey() async {
     Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
@@ -75,24 +95,12 @@ class Repository {
         sessionInfoMap['surveyId'], sessionInfo);
   }
 
-  Future<bool> userExists() async {
-    final String uid = await userLocal.getUID();
-    if (uid == null) {
-      return false;
-    }
-    return true;
-  }
 
-  Future<void> createUser() async {
-    String userId = await userLocal.fetchUniqueDeviceID();
-    await userLocal.storeUID(userId);
-  }
-
-  Future<void> fetchAndStoreQualtricsSurveys() async {
+  Future<void> fetchAndStoreQualtricsSurveys(int surveyFrequencyInMinutes) async {
     List<dynamic> surveyListFromQualtrics =
         await qualtricsRemote.getListOfAvailableSurveys();
     surveyListFromQualtrics.forEach((survey) => print(survey));
-    await qualtricsLocal.storeSurveyList(surveyListFromQualtrics);
+    await qualtricsLocal.storeSurveyList(surveyListFromQualtrics, surveyFrequencyInMinutes);
   }
 
   Future<StoredSessionDataModel> fetchIncompleteSessionData() async {
@@ -101,6 +109,7 @@ class Repository {
     return storedSessionDataModel;
   }
 
+  // TODO this could return a data model instead of a Map
   Future<Map<String, dynamic>> fetchCurrentSurveyForUser() async {
     List<dynamic> listOfSurveys = await qualtricsLocal.fetchSurveyList();
 
@@ -138,6 +147,7 @@ class Repository {
     );
     await qualtricsLocal.markSurveyAsComplete(sessionInfoMap['surveyId']);
     await qualtricsLocal.deleteCurrentSessionData();
+
     //todo if survey's beginDate is null or title is Survey_1 update all surveys dates
   }
 }

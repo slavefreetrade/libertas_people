@@ -12,7 +12,6 @@ class QualtricsLocalDataSource {
     return directory.path;
   }
 
-  // Todo: rename _surveyListFile
   Future<File> get _surveyListFile async {
     final path = await _localPath;
     return File('$path/survey_list.txt');
@@ -35,14 +34,17 @@ class QualtricsLocalDataSource {
     return surveyList;
   }
 
-  Future<void> storeSurveyList(List<dynamic> survey_qualtrics_json_list) async {
+  Future<void> storeSurveyList(
+    List<dynamic> surveyQualtricsJsonList,
+    int surveyFrequencyInMinutes,
+  ) async {
     File surveyFile = await _surveyListFile;
 
-    survey_qualtrics_json_list.removeWhere((survey) {
+    surveyQualtricsJsonList.removeWhere((survey) {
       return !(survey['name'] as String).contains("Survey_");
     });
 
-    survey_qualtrics_json_list.sort((dynamic surveyA, dynamic surveyB) {
+    surveyQualtricsJsonList.sort((dynamic surveyA, dynamic surveyB) {
       int indexA =
           int.parse((surveyA['name'] as String).replaceAll("Survey_", ""));
       int indexB =
@@ -51,7 +53,7 @@ class QualtricsLocalDataSource {
       return indexA.compareTo(indexB);
     });
 
-    List<dynamic> surveyList = survey_qualtrics_json_list.map((e) {
+    List<dynamic> surveyList = surveyQualtricsJsonList.map((e) {
       return {
         "id": e['id'],
         "name": e['name'],
@@ -70,7 +72,7 @@ class QualtricsLocalDataSource {
       element['finalDate'] = DateTime.parse(element['beginDate'])
           .add(Duration(
               minutes:
-                  2)) // for testing purposes, we might want to make the duration 2 days..?
+                  surveyFrequencyInMinutes)) // for testing purposes, we might want to make the duration 2 days..?
           .toUtc()
           .toString();
       initialDate = element['finalDate'];
@@ -119,15 +121,13 @@ class QualtricsLocalDataSource {
     surveyFile.writeAsStringSync(jsonString, mode: FileMode.writeOnly);
   }
 
-
   Future storeEntireSurveySession(
       String surveyId, SessionInfoModel sessionInfo) async {
-
     // just in case the questions come in UNORDERED, sort them
     sessionInfo.questions
         .sort((QuestionModel questionA, QuestionModel questionB) {
-      int indexA = int.parse(questionA.questionId.replaceAll("QID",""));
-      int indexB = int.parse(questionB.questionId.replaceAll("QID",""));
+      int indexA = int.parse(questionA.questionId.replaceAll("QID", ""));
+      int indexB = int.parse(questionB.questionId.replaceAll("QID", ""));
       return indexA.compareTo(indexB);
     });
 
@@ -145,10 +145,14 @@ class QualtricsLocalDataSource {
 
     final String jsonString = sessionFile.readAsStringSync();
     Map sessionMap = json.decode(jsonString);
-    SessionInfoModel sessionInfo = SessionInfoModel.fromJson(sessionMap['sessionInfoModel']);
+    SessionInfoModel sessionInfo =
+        SessionInfoModel.fromJson(sessionMap['sessionInfoModel']);
     // QuestionModel question = await
 
-    Map<String, dynamic> result = {"surveyId" : sessionMap['surveyId'], "sessionInfoModel": sessionInfo};
+    Map<String, dynamic> result = {
+      "surveyId": sessionMap['surveyId'],
+      "sessionInfoModel": sessionInfo
+    };
     return result;
   }
 

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:libertaspeople/features/splash_screen.dart';
+import 'package:libertaspeople/shared_ui_elements/fonts/app_fonts.dart';
 import 'constants/colors.dart';
 import 'features/home/home_cubit.dart';
-import 'features/profile_creation/shared/fonts/app_fonts.dart';
 import 'features/survey/survey_cubit.dart';
 import 'generated/l10n.dart';
 

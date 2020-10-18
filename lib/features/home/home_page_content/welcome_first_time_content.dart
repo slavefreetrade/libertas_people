@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/survey/lauguage_selection_page.dart';
 
-class WelcomeFirstTimeContent extends StatelessWidget {
+class WelcomeFirstTimeContent extends StatefulWidget {
   final String firstSurveyId;
 
   const WelcomeFirstTimeContent(this.firstSurveyId);
 
+  @override
+  _WelcomeFirstTimeContentState createState() => _WelcomeFirstTimeContentState();
+}
+
+class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,12 +113,16 @@ class WelcomeFirstTimeContent extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: Text("Take Survey"),
+                  child: _isLoading ? CircularProgressIndicator():  Text("Take Survey"),
                 ),
                 onPressed: () {
+                  setState((){_isLoading = true;});
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          LanguageSelectionPage(firstSurveyId)));
+                          LanguageSelectionPage(widget.firstSurveyId)));
+                  setState(() {
+                    _isLoading = false;
+                  });
                 },
               ),
             )

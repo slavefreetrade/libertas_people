@@ -7,6 +7,7 @@ import "package:device_info/device_info.dart";
 class UserLocalDataSource {
   final _storage = FlutterSecureStorage();
   final _devInfo = DeviceInfoPlugin();
+
   storePreferredLanguage(String preferredLanguage) async {
     try {
       await _storage.write(key: "lan", value: preferredLanguage);

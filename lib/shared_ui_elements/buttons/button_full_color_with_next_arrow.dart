@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../constants/colors.dart';
+import 'package:libertaspeople/constants/colors.dart';
 import 'base_button_widget.dart';
 
 class ButtonFullColorWithNextArrow extends BaseButton {
