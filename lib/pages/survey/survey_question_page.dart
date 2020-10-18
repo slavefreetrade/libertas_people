@@ -256,51 +256,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
     );
   }
 
-  // internal state will only be responsible for highlighting buttons
-  // will update parent state via callback
-  _buildMCAnswerOptionsWidget() {
-    List<Widget> questionChoiceButtons = [];
-
-    _question.choices.forEach((choice) {
-      questionChoiceButtons.add(FlatButton(
-        onPressed: () {
-          setState(() {
-
-            _answer = {
-              _question.questionId: {
-                choice.choiceId: {"selected": true}
-              }
-            };
-          });
-        },
-        padding: const EdgeInsets.all(12.0),
-        color: _toggleYes ? ColorConstants.darkBlue : ColorConstants.white,
-        child: Text(
-          choice.display,
-          style: TextStyle(
-              fontSize: 20,
-              color:
-                  _toggleYes ? ColorConstants.white : ColorConstants.darkBlue,
-              fontWeight: FontWeight.bold),
-        ),
-        shape: RoundedRectangleBorder(
-            side: BorderSide(
-                color: Colors.grey, width: 3, style: BorderStyle.solid),
-            borderRadius: BorderRadius.circular(10)),
-      ));
-      questionChoiceButtons.add(
-        const SizedBox(
-          height: 20,
-        ),
-      );
-    });
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: questionChoiceButtons,
-    );
-  }
-
   Future<bool> _onBackPressed() {
     return showDialog(
           context: context,
@@ -313,8 +268,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               'It will only take a couple more minutes to finish.If you leave,your answers will be saved.',
             ),
             actions: <Widget>[
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(false),
+              FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
                 child: const Text(
                   "Continue",
                   style: const TextStyle(
@@ -322,8 +277,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                 ),
               ),
               SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {
+              FlatButton(
+                onPressed: () {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => HomePage()));
                 },

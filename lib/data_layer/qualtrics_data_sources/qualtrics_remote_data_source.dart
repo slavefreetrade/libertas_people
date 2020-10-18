@@ -17,8 +17,6 @@ class QualtricsRemoteDataSource {
 
   String _getBodyWithReponses(SurveyResponsesModel response) {
 
-    print("response.answers: ${response.answers}");
-
     return json.encode({
         'embeddedData': {'deviceID': response.deviceId},
         'advance': response.advance, // from what I can tell this means "end survey"
@@ -111,6 +109,7 @@ class QualtricsRemoteDataSource {
     }
   }
 
+  // TODO Data Model
   Future<List<dynamic>> getListOfAvailableSurveys() async {
     final SecretModel secrets = await SecretModel.load();
 

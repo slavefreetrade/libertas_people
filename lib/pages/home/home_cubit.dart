@@ -63,6 +63,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         return;
       }
 
+      // TODO data model
       Map<String, dynamic> currentSurveyForUser =
           await repository.fetchCurrentSurveyForUser();
 
@@ -75,6 +76,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       bool currentSurveyIsComplete = currentSurveyForUser['isComplete'];
       String currentSurveyId = currentSurveyForUser['id'];
 
+      /// Completed current survey but not all
       if (currentSurveyIsComplete) {
         emit(NoSurveyHomeScreenState());
         return;
