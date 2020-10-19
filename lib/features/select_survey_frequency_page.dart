@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
-import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/features/tab_bar_controller.dart';
 
 class SelectSurveyFrequencyPage extends StatefulWidget {
   @override
@@ -25,7 +25,7 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
       await repo.createUser();
       await repo.fetchAndStoreQualtricsSurveys(_frequency.inMinutes);
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+          .pushReplacement(MaterialPageRoute(builder: (context) => TabBarController()));
     }
   }
 

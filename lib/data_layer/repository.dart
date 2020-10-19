@@ -25,14 +25,13 @@ class Repository {
     await userLocal.storeUID(userId);
   }
 
-
   Future<SessionInfoModel> startSession(String surveyId) async {
     SessionInfoModel sessionInfo = await qualtricsRemote.startSession(surveyId);
     await qualtricsLocal.storeEntireSurveySession(surveyId, sessionInfo);
     return sessionInfo;
   }
 
-  Future<SessionInfoModel> returnToPreviousSession() async{
+  Future<SessionInfoModel> returnToPreviousSession() async {
     Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
     SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
@@ -55,8 +54,10 @@ class Repository {
     Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
     SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
-    String previousAnswerKey = sessionInfo.responses.keys
-        .firstWhere((key) => key.contains(previousIndex.toString()), orElse: (){return null;});
+    String previousAnswerKey = sessionInfo.responses.keys.firstWhere(
+        (key) => key.contains(previousIndex.toString()), orElse: () {
+      return null;
+    });
     if (previousAnswerKey == null) {
       return null;
     }
@@ -83,7 +84,13 @@ class Repository {
 
     // TODO handle FIRST WHERE orElse case
     QuestionModel question = sessionInfo.questions.firstWhere(
-        (question) => question.questionId.contains(nextIndex.toString()));
+        (question) => question.questionId.contains(nextIndex.toString()),
+        orElse: () => null);
+
+    if (question == null) {
+      question = sessionInfo.questions.firstWhere((question) =>
+          question.questionId.contains((nextIndex - 1).toString()));
+    }
 
     return question;
   }
@@ -97,12 +104,13 @@ class Repository {
         sessionInfoMap['surveyId'], sessionInfo);
   }
 
-
-  Future<void> fetchAndStoreQualtricsSurveys(int surveyFrequencyInMinutes) async {
+  Future<void> fetchAndStoreQualtricsSurveys(
+      int surveyFrequencyInMinutes) async {
     List<dynamic> surveyListFromQualtrics =
         await qualtricsRemote.getListOfAvailableSurveys();
     surveyListFromQualtrics.forEach((survey) => print(survey));
-    await qualtricsLocal.storeSurveyList(surveyListFromQualtrics, surveyFrequencyInMinutes);
+    await qualtricsLocal.storeSurveyList(
+        surveyListFromQualtrics, surveyFrequencyInMinutes);
   }
 
   Future<StoredSessionDataModel> fetchIncompleteSessionData() async {
