@@ -32,7 +32,12 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Select Survey Frequency")),
+      appBar: AppBar(
+        title: FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text("Select Survey Frequency"),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

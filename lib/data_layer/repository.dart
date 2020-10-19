@@ -80,6 +80,8 @@ class Repository {
       }
     });
     int nextIndex = lastIndexAnswered + 1;
+
+    // TODO handle FIRST WHERE orElse case
     QuestionModel question = sessionInfo.questions.firstWhere(
         (question) => question.questionId.contains(nextIndex.toString()));
 
