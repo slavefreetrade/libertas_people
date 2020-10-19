@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/qualtrics_data_sources/qualtrics_remote_data_source.dart';
+import 'package:libertaspeople/pages/about/about.dart';
 import 'package:libertaspeople/pages/survey_question_page.dart';
 import 'package:libertaspeople/pages/survey_thankyou_page.dart';
 import 'package:libertaspeople/pages/test_qualtrics_remote_api_page.dart';
@@ -262,6 +263,16 @@ class _UIDevelopmentPageState extends State<UIDevelopmentPage> {
             title: Text("thank you screen retr=u"),
             onTap: () {
               Navigator.of(context).pushNamed(ThankyouPage.routeName);
+              print("nav to _ page");
+            },
+          ),
+          ListTile(
+            title: Text("About"),
+            onTap: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (BuildContext context) {
+                return AboutPage();
+              }));
               print("nav to _ page");
             },
           ),

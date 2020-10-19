@@ -13,6 +13,7 @@ import 'generated/l10n.dart';
 import 'pages/profile_creation/shared/fonts/app_fonts.dart';
 import 'pages/splash_screen.dart';
 import 'pages/ui_development_page.dart';
+import 'pages/ui_development_page.dart';
 
 void main() {
   runApp(
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // home: SplashScreen(),
-        home: HomePage(),
+        home: UIDevelopmentPage(),
 
         // initialRoute: '/',
         // routes: {
