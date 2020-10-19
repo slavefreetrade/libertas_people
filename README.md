@@ -1,5 +1,72 @@
 # libertaspeople
 
+## Overview
+
+In it's current state, this application is capable of creating a user automatically on the device, and allows that user to take surveys pulled in from the Qualtrics API. 
+
+#### Sections:
+1) Survey Management (for developers)
+2) Survey Management (for Qualtrics Administrators)
+3) User Identification
+4) Current Outstanding Work
+5) Architecture:
+    - Repositories and Usecases
+    - Data Sources
+    - Cubit State management
+    - SetState state management
+    - Additional Notes
+
+
+### Survey Management (for developers)
+The user's device is responsible for keeping track of which survey needs to be taken at which moment. A Json blob is stored of all of the surveys (labled "Survey_<number>") and whether that survey has been completed or not, start/end dates etc. (See libertas_people/assets/mock_data/survey_list_for_local_storage.json for an example). 
+
+The Qualtrics API does not allow for user management for survey takers. Looking forward in the future, a microservice may be necessary to manage users, and send out custom push notifications to their devices. The above json file could be copied in the microservice along to a reference for each user.
+
+Currently, an entire survey session is stored on the device locally, with its questions, possible responses, and answers to be submitted. Upon completing the last question, the application tries to send the survey response in one API request to qualtrics.
+
+Upon success, the user is notified, the current session is deleted from the phone, and the survey's 'completed' boolean is updated in the survey_list_for_local_storage.json file.
+
+If their is a failure to submit the survey (due to a lack of service) the user will be notified, but the survey is not automatically sent to Qualtics (See outstanding work below)
+
+### Survey Management (Qualtrics Administrators)
+There are a few things to note when creating new surveys within the Qualtrics Dashboard.
+
+The dashboard allows you to edit the question ID's (QID) for each survey question, but I would not rely on the dashboard to properly update the QID behind the scenes. The API will return the old QIDs to the mobile application and the question order will potentially be disorganized.
+
+My recommendation (albeit it is a pain) is to verify that you have the proper order of your questions before you create the survey. In development I have had to delete a survey completely to restructure the order of the questions. Luckily the 10 question surveys are not too long to type back in. (There may be different ways for the App to handle the survey order, but for now, unfortunately, this will be required).
+
+The application currently only handles one block for a survey. Also, the app does not support skip logic (answer question #2 a certain way and skip to question #5). That will require editing of the app logic if that functionality is desired. 
+
+To link a survey to a user, we are sending the deviceID (as a Unique Device ID) in the headers of the survey submission. Make sure you set 'Embedded Data' for each survey. To add this, within the edit screen for a survey, select 'Survey Flow' -> add 'Embedded Data' -> create a field for 'deviceID'. Make sure to keep 'deviceID' in the proper case (avoid entering 'deviceId' or 'deviceid')
+
+### User Identification
+Currently User Identification (UID) is handled by a Unique Device ID, which is generated whenever a user downloads an application. The issue with this current solution for UID, is that when a user deletes the app from their phone, they will lose their UID, and basically have to start the entire years survey over. This can work in the short term for testing, but for production, there should be a more stable solution for UID that allows to accomodate user anonymity. 
+
+The plan for production was for a survey to be available for each month, but for now, the user will be able to select the interval of how frequently they can take the survey (to allow for more rapid testing). 
+
+### Oustanding Work
+
+0) before tuesday - prevent crash on returning to almost completed survey
+
+1) background syncing 
+2) local notifications
+3) internationalization
+4) more stable user identificaion with anonymity
+5) microservice with user management, survey management, and push notifications
+
+## Architecture
+
+### Repository and Usecases
+
+### DataSources
+
+### Cubit (with BlocBuilder/Listener widgets)
+
+### SetState
+
+
+
+
 ## APIs
 
 Our application will be communicating with 3 datasource classes
