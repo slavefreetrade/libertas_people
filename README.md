@@ -46,8 +46,6 @@ The plan for production was for a survey to be available for each month, but for
 
 ### Oustanding Work
 
-0) before tuesday - prevent crash on returning to almost completed survey
-
 1) background syncing 
 2) local notifications
 3) internationalization
