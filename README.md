@@ -63,7 +63,10 @@ The plan for production was for a survey to be available for each month, but for
 2) There is a bug where if you dont answer the 1st question and you leave the session, and then return to that session, you will go to the second survey question while leaving the first question unanswered. All other cases upon leaving hte survey incomplete will correctly send you to the next incomplete answer. Look at the 
 getNextQuestionForIncompleteSurvey() function in repository.dart.
 
-#### Outstanding features 
+#### Outstanding features
+
+- There is no check against a correct/incorrect workplace ID. This may be handled by the Qualtrics API, but that needs further research in the Qualtrics documentation. 
+
 - Update survey frequency upon completion of first survey. Currently the survey frequency is set in the QualtricsLocalDataSource.storeSurveyList function(). This is called in Repository.fetchAndStoreQualtricsSurvey() which is called upon user creation. in QualtricsLocalDataSource.storeSurveyList, I would pull out the funcitonality that sets the date time for begin and end dates for each survey, and implment that instead as a seperate LocalDataSource call when calling Repository.completeSession (upon completing the first survey)
 
 - Background Syncing. With how the survey session is stored and managed locally up until submission, there is a chance that the submission will fail due to a network time out or no network available. If that is the case, I think it would be a useful feature to implement https://pub.dev/packages/background_fetch to have the app automatically try to resend that survey. Basically you should be able to call Repository.completeSession() within the background fetch call back. 
