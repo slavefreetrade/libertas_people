@@ -5,10 +5,11 @@
 In it's current state, this application is capable of creating a user automatically on the device, and allows that user to take surveys pulled in from the Qualtrics API. 
 
 #### Sections:
+0) Project Setup
 1) Survey Management (for developers)
 2) Survey Management (for Qualtrics Administrators)
 3) User Identification
-4) Current Outstanding Work
+4) Current Outstanding Work and Bugs
 5) Architecture:
     - Repositories and Usecases
     - Data Sources
@@ -16,8 +17,12 @@ In it's current state, this application is capable of creating a user automatica
     - SetState state management
     - Additional Notes
 
+### 0. Project Setup
+Make sure to have Android Studio installed and the Flutter SDK. This is the official documentation for installing Flutter on your platform.
 
-### Survey Management (for developers)
+In assets/ directory, make sure you add a secrets.json file and copy in the appropriate datacenter and apiKey json contents. secrets.json is referenced in the .gitignore and should not be committed to source control. If the api key is compromised, a new api key can be generated via the Qualtrics Dashboard. 
+
+### 1. Survey Management (for developers)
 The user's device is responsible for keeping track of which survey needs to be taken at which moment. A Json blob is stored of all of the surveys (labled "Survey_<number>") and whether that survey has been completed or not, start/end dates etc. (See libertas_people/assets/mock_data/survey_list_for_local_storage.json for an example). 
 
 The Qualtrics API does not allow for user management for survey takers. Looking forward in the future, a microservice may be necessary to manage users, and send out custom push notifications to their devices. The above json file could be copied in the microservice along to a reference for each user.
@@ -28,7 +33,7 @@ Upon success, the user is notified, the current session is deleted from the phon
 
 If their is a failure to submit the survey (due to a lack of service) the user will be notified, but the survey is not automatically sent to Qualtics (See outstanding work below)
 
-### Survey Management (Qualtrics Administrators)
+### 2. Survey Management (Qualtrics Administrators)
 There are a few things to note when creating new surveys within the Qualtrics Dashboard.
 
 The dashboard allows you to edit the question ID's (QID) for each survey question, but I would not rely on the dashboard to properly update the QID behind the scenes. The API will return the old QIDs to the mobile application and the question order will potentially be disorganized.
@@ -39,28 +44,55 @@ The application currently only handles one block for a survey. Also, the app doe
 
 To link a survey to a user, we are sending the deviceID (as a Unique Device ID) in the headers of the survey submission. Make sure you set 'Embedded Data' for each survey. To add this, within the edit screen for a survey, select 'Survey Flow' -> add 'Embedded Data' -> create a field for 'deviceID'. Make sure to keep 'deviceID' in the proper case (avoid entering 'deviceId' or 'deviceid')
 
-### User Identification
-Currently User Identification (UID) is handled by a Unique Device ID, which is generated whenever a user downloads an application. The issue with this current solution for UID, is that when a user deletes the app from their phone, they will lose their UID, and basically have to start the entire years survey over. This can work in the short term for testing, but for production, there should be a more stable solution for UID that allows to accomodate user anonymity. 
+### 3. User Identification
+Currently User Identificatiohttps://github.com/slavefreetradegithub/libertas_people/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-descn (UID) is handled by a Unique Device ID, which is generated whenever a user downloads an application. The issue with this current solution for UID, is that when a user deletes the app from their phone, they will lose their UID, and basically have to start the entire years survey over. This can work in the short term for testing, but for production, there should be a more stable solution for UID that allows to accomodate user anonymity. 
 
 The plan for production was for a survey to be available for each month, but for now, the user will be able to select the interval of how frequently they can take the survey (to allow for more rapid testing). 
 
-### Oustanding Work
+### 4. Oustanding Work and Bugs
 
-1) background syncing 
-2) local notifications
-3) internationalization
-4) more stable user identificaion with anonymity
-5) microservice with user management, survey management, and push notifications
+#### UI Pages to implement
+1) Language Selection Page
+2) Survey Information Page (before first survey)
+3) About Libertas People page/tab off of the home screen
+4) Clean up Appearance of About Survey Page/tab off of home screen
+5) Onboarding Pages
+
+
+#### Bugs
+1) Hitting back button when on About Survey Page/Tab when a survey is in session but not completed pops you into the Survey, which is not the expected behavior. You should go back to the home screen from that navigation. I believe this issue has to do with how the navigation is being 'pushed' and 'popped' when exiting the survey. Try using Push replacement to leave the survey
+
+2) There is a bug where if you dont answer the 1st question and you leave the session, and then return to that session, you will go to the second survey question while leaving the first question unanswered. All other cases upon leaving hte survey incomplete will correctly send you to the next incomplete answer. Look at the 
+getNextQuestionForIncompleteSurvey() function in repository.dart.
+
+#### Outstanding features
+1) Update survey frequency upon completion of first survey - currently the survey frequency is set in the QualtricsLocalDataSource.storeSurveyList function(). This is called in Repository.fetchAndStoreQualtricsSurvey() which is called upon user creation. in QualtricsLocalDataSource.storeSurveyList, I would pull out the funcitonality that sets the date time for begin and end dates for each survey, and implment that instead as a seperate LocalDataSource call when calling Repository.completeSession (upon completing the first survey)
+
+2) background syncing 
+3) local notifications
+4) internationalization
+5) more stable user identificaion with anonymity
+6) microservice with user management, survey management, and push notifications
 
 ## Architecture
 
-### Repository and Usecases
-
 ### DataSources
+There are 3 data sources, Qualtrics Remote, Qualtrics Local, and User Local.
 
-### Cubit (with BlocBuilder/Listener widgets)
+Qualtrics Remote holds functions that are reponsible for communicating with the Qualtrics API directly. This includes starting a session, fetching lists of surveys, submitting a survey, etc. Make sure that you include a secrets.json file in your project for the api to work as expected.
 
-### SetState
+Qualtrics Local holds functions that are responsible for storing survey and session data locally on the device. Currently the app manages a survey session locally and the Qualtrics Local datasource is responsible for updating that local session with submitted answers, fetching previous answers and questions, etc. It also is responsible for storing lists of surveys that the user needs to complete.
+
+User Local holds functions responsible for fetching and setting the deviceId (as the UID), and also storing language preferences. If you decide to implement an authentication process that involves a micro service, I recommend creating a User Remote datasource to handle any api calls.  
+
+### Repository and Usecases
+Currently there is only one repository class and it is located in lib/data_layer. This repository holds functions that execute usecases. These usecase calls will pull and push data to and from the appropriate data sources, and allow the developer to call the usecases anywhere in the app. There are some instances where a repository is called directly in a widget, and there are instances where a Cubit will call the repository. 
+
+It doesnt matter what state management is used for a feature, ideally these repository calls could be called from any state manager(Widgets, Change Notifiers, Blocs, and Cubits)
+
+
+### Cubit (with BlocBuilder/Listener/Provider widgets)
+
 
 
 
