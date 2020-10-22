@@ -74,7 +74,7 @@ getNextQuestionForIncompleteSurvey() function in repository.dart.
 
 - A more stable user identificaion process with anonymity. The current user identification (with a unique device ID) may make it difficult to submit to apple for review. Also, that unique device id will change if the user deletes and reinstalls the application, which will create old accounts
 
-- Microservice with user management, survey management, and push notifications. The QualtricsLocalDataSource currently manages all of the survey 
+- Microservice with user management, survey management, and push notifications. The QualtricsLocalDataSource currently manages all of the surveys for a User. Most of this functionality, along with Storing users could be managed in a MicroService remotely if desired. Not sure if this is totally needed. I believe it is dependent on how detailed of notifications are necessary, and also how user identification is ultimately implemented. 
 
 ### 5. Architecture
 
