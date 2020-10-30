@@ -15,9 +15,10 @@ class _AboutPageState extends State<AboutPage> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: ColorConstants.darkBlue,
         title: Text(
-          'About',
+          'About Survey',
         ),
         centerTitle: true,
       ),
@@ -105,12 +106,12 @@ class _AboutPageState extends State<AboutPage> {
                               onTap: () {
                                 Navigator.push(context, new MaterialPageRoute(
                                     builder: (BuildContext context) {
-                                  return Principle(
-                                    logo: prin['logo'],
-                                    title: prin['title'],
-                                    text: prin['text'],
-                                  );
-                                }));
+                                      return Principle(
+                                        logo: prin['logo'],
+                                        title: prin['title'],
+                                        text: prin['text'],
+                                      );
+                                    }));
                               },
                               child: Container(
                                 width: 300,
@@ -130,7 +131,7 @@ class _AboutPageState extends State<AboutPage> {
                   width: 240,
                   margin: const EdgeInsets.only(bottom: 20),
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(40)),
+                  BoxDecoration(borderRadius: BorderRadius.circular(40)),
                   child: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40)),

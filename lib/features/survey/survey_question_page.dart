@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/features/tab_bar_controller.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
@@ -58,105 +57,107 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.clear), onPressed: _onBackPressed),
-        backgroundColor: ColorConstants.darkBlue,
-        title: Text(
-            "${widget.questionIndex}/${widget.totalQuestionCount}"),
-        centerTitle: true,
-      ),
-      body: BlocListener<SurveyCubit, SurveyState>(
-        listener: (context, state) {
-          if (state is FillingOutQuestionSurveyState) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) =>
-                    SurveyQuestionPage(
-                        state.currentQuestionIndex,
-                        state.totalQuestionCount,
-                        state.question,
-                        state.previousAnswer),
-              ),
-            );
-          } else if (state is ThankYouSurveyState) {
-            print("is navigating to thank you page");
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => SurveyThankyouPage()));
-          } else if (state is FailureSurveyState) {
-            print("survey cubit failure" + state.message);
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                // duration: Duration(milliseconds: 3000),
-                content: Text(state.message),
-              ),
-            );
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          leading: IconButton(icon: Icon(Icons.clear), onPressed: _onBackPressed),
+          backgroundColor: ColorConstants.darkBlue,
+          title: Text(
+              "${widget.questionIndex}/${widget.totalQuestionCount}"),
+          centerTitle: true,
+        ),
+        body: BlocListener<SurveyCubit, SurveyState>(
+          listener: (context, state) {
+            if (state is FillingOutQuestionSurveyState) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) =>
+                      SurveyQuestionPage(
+                          state.currentQuestionIndex,
+                          state.totalQuestionCount,
+                          state.question,
+                          state.previousAnswer),
+                ),
+              );
+            } else if (state is ThankYouSurveyState) {
+              print("is navigating to thank you page");
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => SurveyThankyouPage()));
+            } else if (state is FailureSurveyState) {
+              print("survey cubit failure" + state.message);
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  // duration: Duration(milliseconds: 3000),
+                  content: Text(state.message),
+                ),
+              );
 
-            // TODO display to user the error and probably exit survey?
-          }
-        },
-        child: Stack(children: [
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        right: 12.0, left: 12, bottom: 16),
-                    child: StepProgressIndicator(
-                      totalSteps: _totalCount,
-                      currentStep: _questionIndex,
-                      size: 20,
-                      selectedColor: ColorConstants.lightBlue,
-                      unselectedColor: Colors.grey,
-                    ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 30, horizontal: 20),
-                            // height: height * 0.35,
-                            child: Text(
-                              _question.display,
-                              style: const TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (_isTextEntryQuestion)
-                                _buildTextFieldAnswerWidget()
-                              else
-                              // _buildMCAnswerOptionsWidget(),
-                                MultipleChoiceButtonColumn(
-                                  _question.questionId,
-                                  _question.choices,
-                                  updateAnswer: (Map<String, dynamic> answer) {
-                                    _answer = answer;
-                                  },
-                                  previousAnswer: _answer,
-                                )
-                            ],
-                          ),
-                        ],
+              // TODO display to user the error and probably exit survey?
+            }
+          },
+          child: Stack(children: [
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          right: 12.0, left: 12, bottom: 16),
+                      child: StepProgressIndicator(
+                        totalSteps: _totalCount,
+                        currentStep: _questionIndex,
+                        size: 20,
+                        selectedColor: ColorConstants.lightBlue,
+                        unselectedColor: Colors.grey,
                       ),
                     ),
-                  ),
-                  _nextAndPreviousButtons()
-                ],
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 30, horizontal: 20),
+                              // height: height * 0.35,
+                              child: Text(
+                                _question.display,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                if (_isTextEntryQuestion)
+                                  _buildTextFieldAnswerWidget()
+                                else
+                                // _buildMCAnswerOptionsWidget(),
+                                  MultipleChoiceButtonColumn(
+                                    _question.questionId,
+                                    _question.choices,
+                                    updateAnswer: (Map<String, dynamic> answer) {
+                                      _answer = answer;
+                                    },
+                                    previousAnswer: _answer,
+                                  )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    _nextAndPreviousButtons()
+                  ],
+                ),
               ),
             ),
-          ),
-          SurveyLoadingIndicator()
-        ]),
-      ),
-    );
+            SurveyLoadingIndicator()
+          ]),
+        ),
+      ),);
   }
 
   _nextAndPreviousButtons() {
@@ -276,8 +277,9 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               SizedBox(height: 16),
               FlatButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => TabBarController()));
+                  //TODO: a better alternative is to use popUntil, but we need to use named routes first
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   "Leave",
