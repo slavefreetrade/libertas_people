@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:libertaspeople/models/survey_list_item_model.dart';
 
 import '../../models/api_request_model.dart';
 import '../../models/secret_model.dart';
@@ -97,7 +96,7 @@ class QualtricsRemoteDataSource {
           body: _getBodyWithReponses(surveyResponses));
       if (response.statusCode == 200) {
         final Map map = jsonDecode(response.body) as Map<String, dynamic>;
-        final bool isDone = map['result']['done'] is String;
+        //final bool isDone = map['result']['done'] is String;
         // return isDone ? null : 'done';
         return map['result'];
       } else {

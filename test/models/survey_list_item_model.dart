@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:libertaspeople/models/choice_model.dart';
 import 'package:libertaspeople/models/survey_list_item_model.dart';
 
 void main() {
