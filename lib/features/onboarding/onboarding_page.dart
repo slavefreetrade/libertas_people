@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
 
-class OnboardingPage1 extends StatefulWidget {
+class OnboardingPage extends StatefulWidget {
   @override
-  _OnboardingPage1State createState() => _OnboardingPage1State();
+  _OnboardingPageState createState() => _OnboardingPageState();
 }
 
-class _OnboardingPage1State extends State<OnboardingPage1> {
+class _OnboardingPageState extends State<OnboardingPage> {
   int _currentPage = 0;
   PageController _controller = PageController();
 
@@ -58,9 +58,9 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
                       onPageChanged: _onchanged,
                       controller: _controller,
                       children: [
-                        Image.asset('assets/on-boarding screen 1.png'),
-                        Image.asset('assets/on-boarding screen 2.png'),
-                        Image.asset('assets/on-boarding screen 3.png')
+                        Image.asset('assets/onboarding-1.png'),
+                        Image.asset('assets/onboarding-2.png'),
+                        Image.asset('assets/onboarding-3.png')
                       ],
                     ),
                   ),
