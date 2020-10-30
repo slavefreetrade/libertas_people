@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
-import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/features/tab_bar_controller.dart';
 import 'package:libertaspeople/features/select_survey_frequency_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       return;
     }
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => TabBarController()));
   }
 
   @override

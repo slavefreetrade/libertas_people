@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/features/tab_bar_controller.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
@@ -277,7 +277,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               FlatButton(
                 onPressed: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                      MaterialPageRoute(builder: (context) => TabBarController()));
                 },
                 child: const Text(
                   "Leave",

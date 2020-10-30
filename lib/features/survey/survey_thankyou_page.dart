@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/features/home/home_page.dart';
+import 'package:libertaspeople/features/tab_bar_controller.dart';
 
 class SurveyThankyouPage extends StatelessWidget {
 
@@ -100,7 +100,7 @@ class SurveyThankyouPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 60, top: 10),
             child: FlatButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => TabBarController()));
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
               color: ColorConstants.orange,

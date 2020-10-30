@@ -1,60 +1,19 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/home/home_page_content/unfinished_survey_content.dart';
-import 'package:libertaspeople/features/home/home_cubit.dart';
+import 'package:libertaspeople/features/home/home_page_content/welcome_back_content.dart';
+import 'package:libertaspeople/features/home/home_page_content/welcome_first_time_content.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
-import '../survey/survey_question_page.dart';
-import 'home_page_content/welcome_first_time_content.dart';
-import 'home_page_content/no_survey_content.dart';
-import 'home_page_content/welcome_back_content.dart';
-import '../../constants/colors.dart';
+import 'package:libertaspeople/features/survey/survey_question_page.dart';
 
-class HomePage extends StatefulWidget {
-  final num;
+import '../home_cubit.dart';
+import 'no_survey_content.dart';
 
-  HomePage({this.num});
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  initState() {
-    super.initState();
-
-    context.bloc<HomeScreenCubit>().loadHomeScreen();
-  }
-
-  int pageIndex = 0;
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: ColorConstants.darkBlue,
-        backgroundColor: ColorConstants.greyAboutPage,
-        onTap: (ind) {
-          setState(() {
-            pageIndex = ind;
-          });
-        },
-        currentIndex: pageIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: "About Survey",
-          ),
-        ],
-      ),
-      // body: tabPages[pageIndex],
-
-      body: BlocListener<SurveyCubit, SurveyState>(
+    return BlocListener<SurveyCubit, SurveyState>(
         listener: (context, state) {
           if (state is FillingOutQuestionSurveyState) {
             Navigator.of(context).push(
@@ -146,8 +105,6 @@ class _HomePageState extends State<HomePage> {
               ),
             )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
