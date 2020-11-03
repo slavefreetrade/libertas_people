@@ -21,30 +21,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "aFieldOrAFarm" : MessageLookupByLibrary.simpleMessage("A field or a farm"),
-    "anOfficeOrAFactory" : MessageLookupByLibrary.simpleMessage("An office or a factory"),
-    "areYouAManagerInYourDepartment" : MessageLookupByLibrary.simpleMessage("Are you a manager in your department?"),
-    "back" : MessageLookupByLibrary.simpleMessage("Back"),
-    "close" : MessageLookupByLibrary.simpleMessage("Close"),
-    "female" : MessageLookupByLibrary.simpleMessage("Female"),
-    "from15To18Years" : MessageLookupByLibrary.simpleMessage("15-18 years"),
-    "from19To25Years" : MessageLookupByLibrary.simpleMessage("19-25 years"),
-    "from26To39Years" : MessageLookupByLibrary.simpleMessage("26-39 years"),
-    "from40To59Years" : MessageLookupByLibrary.simpleMessage("40-59 years"),
-    "lessThan15Years" : MessageLookupByLibrary.simpleMessage("< 15 years"),
-    "male" : MessageLookupByLibrary.simpleMessage("Male"),
-    "moreThan60Years" : MessageLookupByLibrary.simpleMessage("> 60 years"),
-    "next" : MessageLookupByLibrary.simpleMessage("Next"),
-    "no" : MessageLookupByLibrary.simpleMessage("No"),
-    "other" : MessageLookupByLibrary.simpleMessage("Other"),
-    "pleaseEnterTheWorkplaceIdThat" : MessageLookupByLibrary.simpleMessage("Please enter the workplace ID that you have been given (by email or by workplace manager)"),
-    "pleaseEnterWorkplaceId" : MessageLookupByLibrary.simpleMessage("Please enter workplace ID."),
-    "pleaseSelectAnAnswer" : MessageLookupByLibrary.simpleMessage("Please select an answer."),
-    "preferNotToSay" : MessageLookupByLibrary.simpleMessage("Prefer not to say"),
-    "whatIsYourGender" : MessageLookupByLibrary.simpleMessage("What is your gender?"),
-    "whichAgeGroupAreYouIn" : MessageLookupByLibrary.simpleMessage("Which age group are you in?"),
-    "workplaceId" : MessageLookupByLibrary.simpleMessage("Workplace ID"),
-    "yes" : MessageLookupByLibrary.simpleMessage("Yes"),
-    "yourWorkplaceIs" : MessageLookupByLibrary.simpleMessage("Your workplace is")
+    "afterTheInitialSurveyYouWillReceive10QuestionsEachMonth" : MessageLookupByLibrary.simpleMessage("After the initial survey, you will receive 10 questions each month."),
+    "asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly" : MessageLookupByLibrary.simpleMessage("As part of monitoring, you are asked to fill out the survey regularly."),
+    "dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey" : MessageLookupByLibrary.simpleMessage("Don’t worry, we’ll notify you when it’s time to update your survey."),
+    "letsGetStarted" : MessageLookupByLibrary.simpleMessage("Let\'s get started!"),
+    "skip" : MessageLookupByLibrary.simpleMessage("Skip"),
+    "thisMonthsSurveyIsReadyForYou" : MessageLookupByLibrary.simpleMessage("“This month’s survey is ready for you!”"),
+    "welcome" : MessageLookupByLibrary.simpleMessage("Welcome!"),
+    "youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn" : MessageLookupByLibrary.simpleMessage("You are invited to take part in the staff survey that plays an important part in monitoring human rights conditions at work places."),
+    "youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey" : MessageLookupByLibrary.simpleMessage("You will answer 20 multiple choice questions the first time you access the survey.")
   };
 }

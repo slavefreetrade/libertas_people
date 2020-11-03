@@ -18,6 +18,7 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
   bool _isLoading = false;
 
   _enterApp() async {
+    //TODO: the logic here will be moved to on-boarding page when ready
     if (!_isLoading) {
       setState(() {
         _isLoading = true;

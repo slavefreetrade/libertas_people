@@ -9,6 +9,8 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+// ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
+// ignore_for_file: avoid_redundant_argument_values
 
 class S {
   S();
@@ -33,251 +35,91 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Workplace ID`
-  String get workplaceId {
+  /// `You are invited to take part in the staff survey that plays an important part in monitoring human rights conditions at work places.`
+  String get youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn {
     return Intl.message(
-      'Workplace ID',
-      name: 'workplaceId',
+      'You are invited to take part in the staff survey that plays an important part in monitoring human rights conditions at work places.',
+      name: 'youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter the workplace ID that you have been given (by email or by workplace manager)`
-  String get pleaseEnterTheWorkplaceIdThat {
+  /// `You will answer 20 multiple choice questions the first time you access the survey.`
+  String get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
     return Intl.message(
-      'Please enter the workplace ID that you have been given (by email or by workplace manager)',
-      name: 'pleaseEnterTheWorkplaceIdThat',
+      'You will answer 20 multiple choice questions the first time you access the survey.',
+      name: 'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter workplace ID.`
-  String get pleaseEnterWorkplaceId {
+  /// `As part of monitoring, you are asked to fill out the survey regularly.`
+  String get asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly {
     return Intl.message(
-      'Please enter workplace ID.',
-      name: 'pleaseEnterWorkplaceId',
+      'As part of monitoring, you are asked to fill out the survey regularly.',
+      name: 'asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly',
       desc: '',
       args: [],
     );
   }
 
-  /// `What is your gender?`
-  String get whatIsYourGender {
+  /// `After the initial survey, you will receive 10 questions each month.`
+  String get afterTheInitialSurveyYouWillReceive10QuestionsEachMonth {
     return Intl.message(
-      'What is your gender?',
-      name: 'whatIsYourGender',
+      'After the initial survey, you will receive 10 questions each month.',
+      name: 'afterTheInitialSurveyYouWillReceive10QuestionsEachMonth',
       desc: '',
       args: [],
     );
   }
 
-  /// `Male`
-  String get male {
+  /// `“This month’s survey is ready for you!”`
+  String get thisMonthsSurveyIsReadyForYou {
     return Intl.message(
-      'Male',
-      name: 'male',
+      '“This month’s survey is ready for you!”',
+      name: 'thisMonthsSurveyIsReadyForYou',
       desc: '',
       args: [],
     );
   }
 
-  /// `Female`
-  String get female {
+  /// `Don’t worry, we’ll notify you when it’s time to update your survey.`
+  String get dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey {
     return Intl.message(
-      'Female',
-      name: 'female',
+      'Don’t worry, we’ll notify you when it’s time to update your survey.',
+      name: 'dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `Other`
-  String get other {
+  /// `Welcome!`
+  String get welcome {
     return Intl.message(
-      'Other',
-      name: 'other',
+      'Welcome!',
+      name: 'welcome',
       desc: '',
       args: [],
     );
   }
 
-  /// `Prefer not to say`
-  String get preferNotToSay {
+  /// `Skip`
+  String get skip {
     return Intl.message(
-      'Prefer not to say',
-      name: 'preferNotToSay',
+      'Skip',
+      name: 'skip',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please select an answer.`
-  String get pleaseSelectAnAnswer {
+  /// `Let's get started!`
+  String get letsGetStarted {
     return Intl.message(
-      'Please select an answer.',
-      name: 'pleaseSelectAnAnswer',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your workplace is`
-  String get yourWorkplaceIs {
-    return Intl.message(
-      'Your workplace is',
-      name: 'yourWorkplaceIs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An office or a factory`
-  String get anOfficeOrAFactory {
-    return Intl.message(
-      'An office or a factory',
-      name: 'anOfficeOrAFactory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `A field or a farm`
-  String get aFieldOrAFarm {
-    return Intl.message(
-      'A field or a farm',
-      name: 'aFieldOrAFarm',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Which age group are you in?`
-  String get whichAgeGroupAreYouIn {
-    return Intl.message(
-      'Which age group are you in?',
-      name: 'whichAgeGroupAreYouIn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `< 15 years`
-  String get lessThan15Years {
-    return Intl.message(
-      '< 15 years',
-      name: 'lessThan15Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `15-18 years`
-  String get from15To18Years {
-    return Intl.message(
-      '15-18 years',
-      name: 'from15To18Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `19-25 years`
-  String get from19To25Years {
-    return Intl.message(
-      '19-25 years',
-      name: 'from19To25Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `26-39 years`
-  String get from26To39Years {
-    return Intl.message(
-      '26-39 years',
-      name: 'from26To39Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `40-59 years`
-  String get from40To59Years {
-    return Intl.message(
-      '40-59 years',
-      name: 'from40To59Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `> 60 years`
-  String get moreThan60Years {
-    return Intl.message(
-      '> 60 years',
-      name: 'moreThan60Years',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Are you a manager in your department?`
-  String get areYouAManagerInYourDepartment {
-    return Intl.message(
-      'Are you a manager in your department?',
-      name: 'areYouAManagerInYourDepartment',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Yes`
-  String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No`
-  String get no {
-    return Intl.message(
-      'No',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Close`
-  String get close {
-    return Intl.message(
-      'Close',
-      name: 'close',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Next`
-  String get next {
-    return Intl.message(
-      'Next',
-      name: 'next',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Back`
-  String get back {
-    return Intl.message(
-      'Back',
-      name: 'back',
+      'Let\'s get started!',
+      name: 'letsGetStarted',
       desc: '',
       args: [],
     );
