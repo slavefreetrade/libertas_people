@@ -8,7 +8,7 @@ import '../../survey/lauguage_selection_page.dart';
 class WelcomeFirstTimeContent extends StatefulWidget {
   final String firstSurveyId;
 
-  const WelcomeFirstTimeContent({Key key, this.firstSurveyId})
+  const WelcomeFirstTimeContent({Key key, @required this.firstSurveyId})
       : super(key: key);
 
   @override

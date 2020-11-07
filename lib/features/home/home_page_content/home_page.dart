@@ -74,7 +74,8 @@ class HomePage extends StatelessWidget {
                         builder: (context, state) {
                           if (state is LoadingHomeScreenState ||
                               state is UninitializedHomeScreenState) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           } else if (state is UnfinishedSurveyHomeScreenState) {
                             print('state.surveyID: ${state.surveyId}');
                             print('state.sessionId: ${state.sessionId}');
@@ -82,7 +83,8 @@ class HomePage extends StatelessWidget {
                                 surveyId: state.surveyId,
                                 sessionId: state.sessionId);
                           } else if (state is WelcomeFirstTimeHomeScreenState) {
-                            return WelcomeFirstTimeContent(state.firstSurveyId);
+                            return WelcomeFirstTimeContent(
+                                firstSurveyId: state.firstSurveyId);
                           } else if (state is WelcomeBackHomeScreenState) {
                             return WelcomeBackContent(state.surveyId);
                           } else if (state is NoSurveyHomeScreenState) {
