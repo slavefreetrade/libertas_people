@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+
+import '../colors.dart';
 
 class ButtonOrangeColor extends StatelessWidget {
   final String label;

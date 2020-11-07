@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/app_fonts.dart';
 
 class Principle extends StatelessWidget {
   final String logo;
@@ -13,7 +15,7 @@ class Principle extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Principle"),
+        title: Text(S.of(context).principle),
       ),
       body: Container(
         width: width,
@@ -53,7 +55,7 @@ class Principle extends StatelessWidget {
                   text,
                   style: const TextStyle(
                       fontSize: 17,
-                      fontFamily: 'Helvetica Neue',
+                      fontFamily: AppFonts.helveticaNeue,
                       fontWeight: FontWeight.w400),
                 ),
               ),

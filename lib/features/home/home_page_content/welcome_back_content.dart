@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 class WelcomeBackContent extends StatelessWidget {
   final String nextSurveyId;
@@ -17,7 +19,7 @@ class WelcomeBackContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Welcome back",
+              S.of(context).welcomeBack,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
@@ -35,7 +37,7 @@ class WelcomeBackContent extends StatelessWidget {
                   children: [
                     Container(
                       height: 50,
-                      child: Image.asset('assets/icons/Group 129.png'),
+                      child: Image.asset(AppImages.group129),
                     ),
                     Flexible(
                       child: Column(
@@ -43,7 +45,9 @@ class WelcomeBackContent extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
                             child: Text(
-                              "Your monthly survey with 10 binary questions is ready.",
+                              S
+                                  .of(context)
+                                  .yourMonthlySurveyWith10BinaryQuestionsIsReady,
                               softWrap: true,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
@@ -77,7 +81,7 @@ class WelcomeBackContent extends StatelessWidget {
                     if (state is LoadingSurveyState) {
                       return CircularProgressIndicator();
                     }
-                    return Text("Take Survey");
+                    return Text(S.of(context).takeSurvey);
                   }),
                 ),
                 onPressed: () {

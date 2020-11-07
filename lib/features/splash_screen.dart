@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/features/onboarding/onboarding_page.dart';
 import 'package:libertaspeople/features/tab_bar_controller.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,10 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final String PlaceHolderLogoImage = 'assets/slavefreetrade_logo.png';
-
-  final String placeholdLogoText = "assets/slavefreetrade_logo_text.png";
-
   Repository repo = Repository();
 
   @override
@@ -47,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 height: 175.0,
                 width: 175.0,
-                child: Image.asset(PlaceHolderLogoImage),
+                child: Image.asset(AppImages.logoImage),
               ),
             ],
           ),
@@ -58,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 height: 50.0,
                 width: 250.0,
-                child: Image.asset(placeholdLogoText),
+                child: Image.asset(AppImages.logoText),
               ),
             ],
           ),

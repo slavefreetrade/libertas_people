@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/about/about_data.dart';
 import 'package:libertaspeople/features/about/principle.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -16,7 +18,7 @@ class _AboutPageState extends State<AboutPage> {
         automaticallyImplyLeading: false,
         backgroundColor: AppColors.darkBlue,
         title: Text(
-          'About Survey',
+          S.of(context).aboutSurvey,
         ),
         centerTitle: true,
       ),
@@ -25,19 +27,21 @@ class _AboutPageState extends State<AboutPage> {
           padding: const EdgeInsets.only(top: 16.0, left: 25, right: 25),
           child: Column(
             children: [
-              const Text(
-                'The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way. ',
+              Text(
+                S
+                    .of(context)
+                    .theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure,
                 style: const TextStyle(
-                    fontFamily: 'Helvetica Neue',
                     fontWeight: FontWeight.w400,
                     fontSize: 17.0,
                     wordSpacing: 3.5),
               ),
               const SizedBox(height: 11),
-              const Text(
-                  'Our survey is based on the 10 human right principles on international law. ',
+              Text(
+                  S
+                      .of(context)
+                      .ourSurveyIsBasedOnThe10HumanRightPrinciplesOnInternationalLaw,
                   style: const TextStyle(
-                      fontFamily: 'Helvetica Neue',
                       fontWeight: FontWeight.w400,
                       fontSize: 17.0,
                       wordSpacing: 3.5)),
@@ -45,14 +49,13 @@ class _AboutPageState extends State<AboutPage> {
               Row(
                 children: [
                   Image.asset(
-                    'assets/slavefreetrade_logo.png',
+                    AppImages.logoImage,
                     height: 48.88,
                     width: 47,
                   ),
-                  const Text(
-                    'Read more about slavefreetrade',
+                  Text(
+                    S.of(context).readMoreAboutSlavefreetrade,
                     style: const TextStyle(
-                        fontFamily: 'Helvetica Neue',
                         fontWeight: FontWeight.w400,
                         fontSize: 17.0,
                         wordSpacing: 3.5),
@@ -60,10 +63,8 @@ class _AboutPageState extends State<AboutPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              const Text(
-                  'Tap on each button to read more about each principle:',
+              Text(S.of(context).tapOnEachButtonToReadMoreAboutEachPrinciple,
                   style: const TextStyle(
-                      fontFamily: 'Helvetica Neue',
                       fontWeight: FontWeight.w400,
                       fontSize: 17.0,
                       wordSpacing: 3.5)),
@@ -79,7 +80,7 @@ class _AboutPageState extends State<AboutPage> {
                   crossAxisSpacing: 12,
                   crossAxisCount: 2,
                   childAspectRatio: 6 / 2,
-                  children: ABOUT_DATA.map((prin) {
+                  children: getAboutData(context).map((prin) {
                     return Container(
                       width: 150,
                       height: 55,
@@ -95,8 +96,8 @@ class _AboutPageState extends State<AboutPage> {
                           }));
                         },
                         child: Image(
-                            image: AssetImage(prin['image']),
-                            fit: BoxFit.fill,
+                          image: AssetImage(prin['image']),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     );
@@ -115,12 +116,11 @@ class _AboutPageState extends State<AboutPage> {
                         borderRadius: BorderRadius.circular(40)),
                     color: AppColors.orange,
                     onPressed: () {},
-                    child: const Text(
-                      'Take survey',
+                    child: Text(
+                      S.of(context).takeSurvey,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: 'Helvetica Neue',
                         fontWeight: FontWeight.w700,
                         fontSize: 24.0,
                       ),

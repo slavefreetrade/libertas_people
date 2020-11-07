@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class OnBoardingTabView extends StatelessWidget {
   final String topText;

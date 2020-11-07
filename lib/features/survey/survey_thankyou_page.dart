@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/tab_bar_controller.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
-class SurveyThankyouPage extends StatelessWidget {
-
+class SurveyThankYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -33,12 +34,12 @@ class SurveyThankyouPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Image(
-                      image: const AssetImage("assets/iconthankyou.png"),
+                      image: const AssetImage(AppImages.thankYou),
                       height: 130,
                       width: 130,
                     ),
-                    const Text(
-                      "Thank you",
+                    Text(
+                      S.of(context).thankYou,
                       style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 35,
@@ -54,8 +55,10 @@ class SurveyThankyouPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: const Text(
-              "You have completed the first survey and your answer have been submitted.",
+            child: Text(
+              S
+                  .of(context)
+                  .youHaveCompletedTheFirstSurveyAndYourAnswerHaveBeenSubmitted,
               style: const TextStyle(fontSize: 18),
             ),
           ),
@@ -63,8 +66,8 @@ class SurveyThankyouPage extends StatelessWidget {
             height: 25,
           ),
           Center(
-            child: const Text(
-              "What happens next",
+            child: Text(
+              S.of(context).whatHappensNext,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
@@ -80,18 +83,20 @@ class SurveyThankyouPage extends StatelessWidget {
                       width: 50,
                       height: 50,
                       child: const Image(
-                          image: const AssetImage("assets/iconcalendar.png"))),
-                  title: const Text(
-                      "For the next 10 months you will receive 10 questions per month here in the app."),
+                          image: const AssetImage(AppImages.calendar))),
+                  title: Text(S
+                      .of(context)
+                      .forTheNext10MonthsYouWillReceive10QuestionsPerMonthHereInTheApp),
                 ),
                 ListTile(
                   leading: Container(
                       width: 50,
                       height: 50,
-                      child: const Image(
-                          image: const AssetImage("assets/iconbell.png"))),
-                  title: const Text(
-                      "You will get a monthly notification on your phone once the questions are ready.You can then open the app and complete the 10 questions."),
+                      child:
+                          const Image(image: const AssetImage(AppImages.bell))),
+                  title: Text(S
+                      .of(context)
+                      .youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan),
                 ),
               ],
             ),
@@ -100,12 +105,13 @@ class SurveyThankyouPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 60, top: 10),
             child: FlatButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => TabBarController()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => TabBarController()));
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
               color: AppColors.orange,
-              child: const Text(
-                "Return Home",
+              child: Text(
+                S.of(context).returnHome,
                 style: const TextStyle(
                     fontSize: 20,
                     color: AppColors.white,

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/survey/lauguage_selection_page.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 class WelcomeFirstTimeContent extends StatefulWidget {
   final String firstSurveyId;
@@ -9,7 +11,8 @@ class WelcomeFirstTimeContent extends StatefulWidget {
   const WelcomeFirstTimeContent(this.firstSurveyId);
 
   @override
-  _WelcomeFirstTimeContentState createState() => _WelcomeFirstTimeContentState();
+  _WelcomeFirstTimeContentState createState() =>
+      _WelcomeFirstTimeContentState();
 }
 
 class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
@@ -25,7 +28,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Welcome onboard!",
+              S.of(context).welcomeOnboard,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
@@ -35,7 +38,9 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
               height: 16,
             ),
             Text(
-              "We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.",
+              S
+                  .of(context)
+                  .weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -55,10 +60,10 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                       children: [
                         Container(
                           height: 50,
-                          child: Image.asset('assets/icons/ima.png'),
+                          child: Image.asset(AppImages.ima),
                         ),
                         Text(
-                          "Always anonymous",
+                          S.of(context).alwaysAnonymous,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -71,10 +76,10 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     children: [
                       Container(
                         height: 70,
-                        child: Image.asset('assets/icons/i.png'),
+                        child: Image.asset(AppImages.i),
                       ),
                       Text(
-                        "Only binary questions",
+                        S.of(context).onlyBinaryQuestions,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -86,11 +91,11 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     children: [
                       Container(
                         height: 70,
-                        child: Image.asset('assets/icons/im.png'),
+                        child: Image.asset(AppImages.im),
                       ),
                       Flexible(
                         child: Text(
-                          "Less than five minutes to complete",
+                          S.of(context).lessThanFiveMinutesToComplete,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
@@ -113,10 +118,14 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: _isLoading ? CircularProgressIndicator():  Text("Take Survey"),
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : Text(S.of(context).takeSurvey),
                 ),
                 onPressed: () {
-                  setState((){_isLoading = true;});
+                  setState(() {
+                    _isLoading = true;
+                  });
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
                           LanguageSelectionPage(widget.firstSurveyId)));

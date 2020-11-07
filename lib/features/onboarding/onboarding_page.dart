@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/constants/images.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/generated/l10n.dart';
 import 'package:libertaspeople/shared_ui_elements/buttons/button_orange_color.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 import '../select_survey_frequency_page.dart';
 import 'onboarding_tab_view.dart';
@@ -43,7 +43,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         bottomText: S
             .of(context)
             .youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey,
-        imagePath: AppImagePaths.onBoarding1,
+        imagePath: AppImages.onBoarding1,
       ),
       OnBoardingTabView(
         topText: S
@@ -52,13 +52,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
         bottomText: S
             .of(context)
             .afterTheInitialSurveyYouWillReceive10QuestionsEachMonth,
-        imagePath: AppImagePaths.onBoarding2,
+        imagePath: AppImages.onBoarding2,
       ),
       OnBoardingTabView(
         topText: S.of(context).thisMonthsSurveyIsReadyForYou,
         bottomText:
             S.of(context).dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey,
-        imagePath: AppImagePaths.onBoarding3,
+        imagePath: AppImages.onBoarding3,
       ),
     ];
 

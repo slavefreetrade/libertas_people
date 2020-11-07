@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/home/home_page_content/unfinished_survey_content.dart';
 import 'package:libertaspeople/features/home/home_page_content/welcome_back_content.dart';
 import 'package:libertaspeople/features/home/home_page_content/welcome_first_time_content.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_question_page.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 import '../home_cubit.dart';
 import 'no_survey_content.dart';
@@ -35,8 +37,8 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                      "assets/woman-falling-in-line-holding-each-other-1206059 1.jpg"),
+                  image:
+                      AssetImage(AppImages.womenFallingInLineHoldingEachOther),
                 ),
               ),
               child: Column(
@@ -48,7 +50,7 @@ class HomePage extends StatelessWidget {
                     color: AppColors.darkBlue,
                     child: Center(
                       child: Text(
-                        "Libertas People",
+                        S.of(context).libertasPeople,
                         style: TextStyle(
                           color: AppColors.white,
                           fontSize: 32,
@@ -90,11 +92,11 @@ class HomePage extends StatelessWidget {
                             } else if (state is FailureHomeScreenState) {
                               return Center(
                                   child: Text(
-                                      "There was an issue: ${state.message}"));
+                                      S.of(context).thereWasAnIssue(state.message)));
                             }
                             return Center(
                               child: Text(
-                                  "There is an unexpected state in the bloc builder, this should be handled by development"),
+                                  S.of(context).thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment),
                             );
                           },
                         ),

@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class NoSurveyContent extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class NoSurveyContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Your surveys",
+              S.of(context).yourSurveys,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
@@ -30,7 +31,9 @@ class NoSurveyContent extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "You have no surveys at the moment. We will notify you when there is a new survey available.",
+                  S
+                      .of(context)
+                      .youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable,
                   softWrap: true,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,

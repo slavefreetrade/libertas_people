@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class ThankyouPage extends StatefulWidget {
+class ThankYouPage extends StatefulWidget {
   static const routeName = '/thankyou';
 
   @override
-  _ThankyouPageState createState() => _ThankyouPageState();
+  _ThankYouPageState createState() => _ThankYouPageState();
 }
 
-class _ThankyouPageState extends State<ThankyouPage> {
+class _ThankYouPageState extends State<ThankYouPage> {
   final _progressValue = 10.0;
 
   final _totalValue = 20.0;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/generated/l10n.dart';
+
+import '../colors.dart';
 
 class ButtonBorderedWithBackArrow extends StatelessWidget {
   final Function() onPressed;
