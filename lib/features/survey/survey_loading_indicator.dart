@@ -27,7 +27,7 @@ class SurveyLoadingIndicator extends StatelessWidget {
                 children: [
                   Text("Loading"),
                   CircularProgressIndicator(
-                    backgroundColor: ColorConstants.orange,
+                    backgroundColor: AppColors.orange,
                   ),
                 ],
               ),

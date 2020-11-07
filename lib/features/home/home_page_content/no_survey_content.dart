@@ -26,7 +26,7 @@ class NoSurveyContent extends StatelessWidget {
               ),
               margin: EdgeInsets.all(0),
               elevation: 0,
-              color: ColorConstants.greyAboutPage,
+              color: AppColors.greyAboutPage,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(

@@ -25,7 +25,7 @@ class OnBoardingTabView extends StatelessWidget {
             softWrap: true,
             textAlign: TextAlign.left,
             style: TextStyle(
-                color: ColorConstants.darkBlue,
+                color: AppColors.darkBlue,
                 fontSize: 17.0,
                 fontWeight: FontWeight.w300,
                 wordSpacing: 3.5),
@@ -40,7 +40,7 @@ class OnBoardingTabView extends StatelessWidget {
           maxLines: 3,
           softWrap: true,
           style: TextStyle(
-              color: ColorConstants.darkBlue,
+              color: AppColors.darkBlue,
               fontSize: 22.0,
               fontWeight: FontWeight.w300,
               wordSpacing: 3.5),

@@ -91,7 +91,7 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
-                color: ColorConstants.orange,
+                color: AppColors.orange,
                 child: _isLoading
                     ? CircularProgressIndicator()
                     : Text("Enter App"),

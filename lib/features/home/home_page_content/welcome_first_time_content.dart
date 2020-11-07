@@ -104,7 +104,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
             ),
             Center(
               child: RaisedButton(
-                color: ColorConstants.orange,
+                color: AppColors.orange,
                 highlightElevation: 2,
                 elevation: 8,
                 shape: RoundedRectangleBorder(

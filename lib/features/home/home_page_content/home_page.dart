@@ -45,12 +45,12 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     height: 50,
-                    color: ColorConstants.darkBlue,
+                    color: AppColors.darkBlue,
                     child: Center(
                       child: Text(
                         "Libertas People",
                         style: TextStyle(
-                          color: ColorConstants.white,
+                          color: AppColors.white,
                           fontSize: 32,
                           fontWeight: FontWeight.w700,
                         ),

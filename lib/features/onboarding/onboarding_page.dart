@@ -77,7 +77,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: TextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.w700,
-                        color: ColorConstants.orange),
+                        color: AppColors.orange),
                   ),
                   SizedBox(height: 10),
                   Expanded(
@@ -114,7 +114,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     S.of(context).skip,
                     style: TextStyle(
                       fontSize: 14,
-                      color: ColorConstants.darkBlue,
+                      color: AppColors.darkBlue,
                     ),
                   ),
                 ),
@@ -138,8 +138,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: (index == _currentPage)
-                      ? ColorConstants.orange
-                      : ColorConstants.greyAboutPage));
+                      ? AppColors.orange
+                      : AppColors.greyAboutPage));
         },
       ),
     );

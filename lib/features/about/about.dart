@@ -14,7 +14,7 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: ColorConstants.darkBlue,
+        backgroundColor: AppColors.darkBlue,
         title: Text(
           'About Survey',
         ),
@@ -113,7 +113,7 @@ class _AboutPageState extends State<AboutPage> {
                 child: FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)),
-                    color: ColorConstants.orange,
+                    color: AppColors.orange,
                     onPressed: () {},
                     child: const Text(
                       'Take survey',

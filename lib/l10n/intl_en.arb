@@ -7,5 +7,15 @@
  "dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey": "Don’t worry, we’ll notify you when it’s time to update your survey.",
  "welcome": "Welcome!",
  "skip": "Skip",
- "letsGetStarted": "Let's get started!"
+ "letsGetStarted": "Let's get started!",
+ "back": "Back",
+ "previous": "Previous",
+ "complete": "Complete",
+ "next": "Next",
+ "information": "Information",
+ "yourValuableInputIn5Minutes": "Your valuable input in 5 minutes",
+ "pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations": "Please answer freely based on your  own experiences and observations.",
+ "nobodyShouldTellYouWhatToAnswerOrControlYouWhenYouTakeTheSurvey": "Nobody should tell you what to answer or control you when you take the survey.",
+ "completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour": "Completing the survey will not expose you to any risk or repercussion with your manager or employer.",
+ "questionsMarkedWithAStarSymbolAreObligatoryToAnswer": "Questions marked with a * are obligatory to answer."
 }

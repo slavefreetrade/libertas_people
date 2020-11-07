@@ -124,6 +124,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous`
+  String get previous {
+    return Intl.message(
+      'Previous',
+      name: 'previous',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete`
+  String get complete {
+    return Intl.message(
+      'Complete',
+      name: 'complete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information`
+  String get information {
+    return Intl.message(
+      'Information',
+      name: 'information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your valuable input in 5 minutes`
+  String get yourValuableInputIn5Minutes {
+    return Intl.message(
+      'Your valuable input in 5 minutes',
+      name: 'yourValuableInputIn5Minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please answer freely based on your  own experiences and observations.`
+  String get pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations {
+    return Intl.message(
+      'Please answer freely based on your  own experiences and observations.',
+      name: 'pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nobody should tell you what to answer or control you when you take the survey.`
+  String get nobodyShouldTellYouWhatToAnswerOrControlYouWhenYouTakeTheSurvey {
+    return Intl.message(
+      'Nobody should tell you what to answer or control you when you take the survey.',
+      name: 'nobodyShouldTellYouWhatToAnswerOrControlYouWhenYouTakeTheSurvey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completing the survey will not expose you to any risk or repercussion with your manager or employer.`
+  String get completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour {
+    return Intl.message(
+      'Completing the survey will not expose you to any risk or repercussion with your manager or employer.',
+      name: 'completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Questions marked with a * are obligatory to answer.`
+  String get questionsMarkedWithAStarSymbolAreObligatoryToAnswer {
+    return Intl.message(
+      'Questions marked with a * are obligatory to answer.',
+      name: 'questionsMarkedWithAStarSymbolAreObligatoryToAnswer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

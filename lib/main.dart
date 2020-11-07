@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         theme: ThemeData(
-          backgroundColor: ColorConstants.backgroundColor,
+          backgroundColor: AppColors.backgroundColor,
           primarySwatch: Colors.blue,
           fontFamily: AppFonts.helveticaNeue,
           buttonTheme: const ButtonThemeData(
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
           appBarTheme: const AppBarTheme(
-            color: ColorConstants.darkBlue,
+            color: AppColors.darkBlue,
             elevation: 0,
             textTheme: TextTheme(
               headline6: TextStyle(

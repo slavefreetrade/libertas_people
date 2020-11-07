@@ -27,7 +27,7 @@ class WelcomeBackContent extends StatelessWidget {
             Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
-              color: ColorConstants.greyAboutPage,
+              color: AppColors.greyAboutPage,
               elevation: 0,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -63,7 +63,7 @@ class WelcomeBackContent extends StatelessWidget {
             ),
             Center(
               child: RaisedButton(
-                color: ColorConstants.orange,
+                color: AppColors.orange,
                 highlightElevation: 2,
                 elevation: 8,
                 shape: RoundedRectangleBorder(

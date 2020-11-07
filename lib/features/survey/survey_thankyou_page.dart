@@ -23,7 +23,7 @@ class SurveyThankyouPage extends StatelessWidget {
                     bottomRight: Radius.circular(80)),
                 child: Container(
                   height: height * 0.35,
-                  color: ColorConstants.darkBlue,
+                  color: AppColors.darkBlue,
                 ),
               ),
               Positioned(
@@ -40,7 +40,7 @@ class SurveyThankyouPage extends StatelessWidget {
                     const Text(
                       "Thank you",
                       style: const TextStyle(
-                          color: ColorConstants.white,
+                          color: AppColors.white,
                           fontSize: 35,
                           fontWeight: FontWeight.bold),
                     )
@@ -103,12 +103,12 @@ class SurveyThankyouPage extends StatelessWidget {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => TabBarController()));
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
-              color: ColorConstants.orange,
+              color: AppColors.orange,
               child: const Text(
                 "Return Home",
                 style: const TextStyle(
                     fontSize: 20,
-                    color: ColorConstants.white,
+                    color: AppColors.white,
                     fontWeight: FontWeight.bold),
               ),
               shape: RoundedRectangleBorder(

@@ -27,8 +27,8 @@ class _TabBarControllerState extends State<TabBarController> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: ColorConstants.darkBlue,
-        backgroundColor: ColorConstants.greyAboutPage,
+        selectedItemColor: AppColors.darkBlue,
+        backgroundColor: AppColors.greyAboutPage,
         onTap: (ind) {
           setState(() {
             pageIndex = ind;
