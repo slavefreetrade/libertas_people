@@ -93,8 +93,8 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
               child: RaisedButton(
                 color: AppColors.orange,
                 child: _isLoading
-                    ? CircularProgressIndicator()
-                    : Text("Enter App"),
+                    ? const CircularProgressIndicator()
+                    : Text('Enter App'),
                 onPressed: _enterApp,
               ),
             )

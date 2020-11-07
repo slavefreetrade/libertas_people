@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/features/about/about_data.dart';
-import 'package:libertaspeople/features/about/principle.dart';
-import 'package:libertaspeople/generated/l10n.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
-import 'package:libertaspeople/shared_ui_elements/images.dart';
+
+import '../../generated/l10n.dart';
+import '../../shared_ui_elements/colors.dart';
+import '../../shared_ui_elements/images.dart';
+import 'about_data.dart';
+import 'principle.dart';
 
 class AboutPage extends StatefulWidget {
+  const AboutPage({Key key}) : super(key: key);
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }
@@ -74,29 +77,29 @@ class _AboutPageState extends State<AboutPage> {
                 child: GridView.count(
                   primary: false,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.all(10),
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(10),
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   crossAxisCount: 2,
                   childAspectRatio: 6 / 2,
-                  children: getAboutData(context).map((prin) {
+                  children: getAboutData(context).map((principle) {
                     return Container(
                       width: 150,
                       height: 55,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, new MaterialPageRoute(
+                          Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext context) {
                             return Principle(
-                              logo: prin['logo'],
-                              title: prin['title'],
-                              text: prin['text'],
+                              logo: principle['logo'],
+                              title: principle['title'],
+                              text: principle['text'],
                             );
                           }));
                         },
                         child: Image(
-                          image: AssetImage(prin['image']),
+                          image: AssetImage(principle['image']),
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -119,7 +122,7 @@ class _AboutPageState extends State<AboutPage> {
                     child: Text(
                       S.of(context).takeSurvey,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                         fontSize: 24.0,

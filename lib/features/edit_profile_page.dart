@@ -83,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Form(
           key: _form,
           child: Padding(
-            padding: EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
+            padding: const EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
             child: ListView(
               children: [
                 Column(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import '../../shared_ui_elements/colors.dart';
 
 class OnBoardingTabView extends StatelessWidget {
   final String topText;
@@ -18,13 +18,13 @@ class OnBoardingTabView extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 7),
           child: Text(
             topText,
             maxLines: 4,
             softWrap: true,
             textAlign: TextAlign.left,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColors.darkBlue,
                 fontSize: 17.0,
                 fontWeight: FontWeight.w300,
@@ -39,7 +39,7 @@ class OnBoardingTabView extends StatelessWidget {
           textAlign: TextAlign.center,
           maxLines: 3,
           softWrap: true,
-          style: TextStyle(
+          style: const TextStyle(
               color: AppColors.darkBlue,
               fontSize: 22.0,
               fontWeight: FontWeight.w300,
