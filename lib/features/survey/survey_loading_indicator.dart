@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
+import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class SurveyLoadingIndicator extends StatelessWidget {
   @override
@@ -25,9 +26,9 @@ class SurveyLoadingIndicator extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("Loading"),
+                  Text(S.of(context).loading),
                   CircularProgressIndicator(
-                    backgroundColor: ColorConstants.orange,
+                    backgroundColor: AppColors.orange,
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/features/survey/survey_information_page.dart';
+import 'package:libertaspeople/generated/l10n.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   final String surveyId;
@@ -14,7 +15,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Select Language")),
+      appBar: AppBar(title: Text(S.of(context).selectLanguage)),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +25,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
 
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Language Selection Page:\nCurrently English is the only language available", textAlign: TextAlign.center,),
+                child: Text(S.of(context).languageSelectionPageCurrentlyEnglishIsTheOnlyLanguageAvailable, textAlign: TextAlign.center,),
               ),
             ),
           ),
@@ -36,7 +37,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
                 RaisedButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Back"),
+                    child: Text(S.of(context).back),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -45,7 +46,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
                 RaisedButton(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Next"),
+                    child: Text(S.of(context).next),
                   ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(

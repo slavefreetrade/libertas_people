@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/features/about/about_data.dart';
-import 'package:libertaspeople/features/about/principle.dart';
+
+import '../../generated/l10n.dart';
+import '../../shared_ui_elements/colors.dart';
+import '../../shared_ui_elements/images.dart';
+import 'about_data.dart';
+import 'principle.dart';
 
 class AboutPage extends StatefulWidget {
+  const AboutPage({Key key}) : super(key: key);
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }
@@ -14,9 +19,9 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: ColorConstants.darkBlue,
+        backgroundColor: AppColors.darkBlue,
         title: Text(
-          'About Survey',
+          S.of(context).aboutSurvey,
         ),
         centerTitle: true,
       ),
@@ -25,19 +30,21 @@ class _AboutPageState extends State<AboutPage> {
           padding: const EdgeInsets.only(top: 16.0, left: 25, right: 25),
           child: Column(
             children: [
-              const Text(
-                'The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way. ',
+              Text(
+                S
+                    .of(context)
+                    .theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure,
                 style: const TextStyle(
-                    fontFamily: 'Helvetica Neue',
                     fontWeight: FontWeight.w400,
                     fontSize: 17.0,
                     wordSpacing: 3.5),
               ),
               const SizedBox(height: 11),
-              const Text(
-                  'Our survey is based on the 10 human right principles on international law. ',
+              Text(
+                  S
+                      .of(context)
+                      .ourSurveyIsBasedOnThe10HumanRightPrinciplesOnInternationalLaw,
                   style: const TextStyle(
-                      fontFamily: 'Helvetica Neue',
                       fontWeight: FontWeight.w400,
                       fontSize: 17.0,
                       wordSpacing: 3.5)),
@@ -45,14 +52,13 @@ class _AboutPageState extends State<AboutPage> {
               Row(
                 children: [
                   Image.asset(
-                    'assets/slavefreetrade_logo.png',
+                    AppImages.logoImage,
                     height: 48.88,
                     width: 47,
                   ),
-                  const Text(
-                    'Read more about slavefreetrade',
+                  Text(
+                    S.of(context).readMoreAboutSlavefreetrade,
                     style: const TextStyle(
-                        fontFamily: 'Helvetica Neue',
                         fontWeight: FontWeight.w400,
                         fontSize: 17.0,
                         wordSpacing: 3.5),
@@ -60,10 +66,8 @@ class _AboutPageState extends State<AboutPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              const Text(
-                  'Tap on each button to read more about each principle:',
+              Text(S.of(context).tapOnEachButtonToReadMoreAboutEachPrinciple,
                   style: const TextStyle(
-                      fontFamily: 'Helvetica Neue',
                       fontWeight: FontWeight.w400,
                       fontSize: 17.0,
                       wordSpacing: 3.5)),
@@ -73,30 +77,30 @@ class _AboutPageState extends State<AboutPage> {
                 child: GridView.count(
                   primary: false,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.all(10),
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(10),
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   crossAxisCount: 2,
                   childAspectRatio: 6 / 2,
-                  children: ABOUT_DATA.map((prin) {
+                  children: getAboutData(context).map((principle) {
                     return Container(
                       width: 150,
                       height: 55,
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, new MaterialPageRoute(
+                          Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext context) {
                             return Principle(
-                              logo: prin['logo'],
-                              title: prin['title'],
-                              text: prin['text'],
+                              logo: principle['logo'],
+                              title: principle['title'],
+                              text: principle['text'],
                             );
                           }));
                         },
                         child: Image(
-                            image: AssetImage(prin['image']),
-                            fit: BoxFit.fill,
+                          image: AssetImage(principle['image']),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     );
@@ -113,14 +117,13 @@ class _AboutPageState extends State<AboutPage> {
                 child: FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)),
-                    color: ColorConstants.orange,
+                    color: AppColors.orange,
                     onPressed: () {},
-                    child: const Text(
-                      'Take survey',
+                    child: Text(
+                      S.of(context).takeSurvey,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
-                        fontFamily: 'Helvetica Neue',
                         fontWeight: FontWeight.w700,
                         fontSize: 24.0,
                       ),

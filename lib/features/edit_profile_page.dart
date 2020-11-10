@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class EditProfilePage extends StatefulWidget {
 
@@ -83,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Form(
           key: _form,
           child: Padding(
-            padding: EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
+            padding: const EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
             child: ListView(
               children: [
                 Column(
@@ -101,7 +101,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     SizedBox(height: 5.0,),
                     TextFormField(
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0
                       ),
@@ -114,7 +114,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         hintText: "0000000",
                         hintStyle: TextStyle(
-                            color: ColorConstants.darkBlue,
+                            color: AppColors.darkBlue,
                             fontFamily: "WorkSansLight",
                             fontWeight: FontWeight.w700,
                             fontSize: 20.0
@@ -131,7 +131,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                       onFieldSubmitted: (_){
@@ -168,7 +168,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     SizedBox(height: 5.0,),
                     TextFormField(
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w700,
                           fontSize: 20.0
                       ),
@@ -181,7 +181,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         hintText: "XXXXXXXX street XX, XXXX City",
                         hintStyle: TextStyle(
-                            color: ColorConstants.darkBlue,
+                            color: AppColors.darkBlue,
                             fontFamily: "WorkSansLight",
                             fontWeight: FontWeight.w700,
                             fontSize: 20.0
@@ -198,7 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                       maxLines: 2,
@@ -278,7 +278,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       },
                       value: _genderStyle,
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0
                       ),
@@ -295,7 +295,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
@@ -335,7 +335,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         );
                       }).toList(),
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0
                       ),
@@ -364,7 +364,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
@@ -426,7 +426,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 //                    focusNode: _ageGroupFocusNode,
                       icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0
                       ),
@@ -441,7 +441,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
@@ -501,7 +501,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       },
                       value: _managerValuerCurrent,
                       style: TextStyle(
-                          color: ColorConstants.darkBlue,
+                          color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
                           fontSize: 20.0
                       ),
@@ -516,7 +516,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: ColorConstants.orange),
+                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
@@ -530,7 +530,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       borderRadius: BorderRadius.circular(40),
                       child: RaisedButton(
                           padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
-                          color: isEnabled ? ColorConstants.orange : Colors.grey,
+                          color: isEnabled ? AppColors.orange : Colors.grey,
                           child: Text("Save", style: TextStyle(color: Colors.white, fontSize: 22.0 ),),
                           onPressed: isEnabled ? _saveForm : null
                       ),

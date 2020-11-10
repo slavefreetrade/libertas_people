@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/models/choice_model.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class MultipleChoiceButtonColumn extends StatefulWidget {
   final String questionId;
@@ -64,15 +64,15 @@ class _MultipleChoiceButtonColumnState
         },
         padding: const EdgeInsets.all(12.0),
         color: _toggledId == choice.choiceId
-            ? ColorConstants.darkBlue
-            : ColorConstants.white,
+            ? AppColors.darkBlue
+            : AppColors.white,
         child: Text(
           choice.display,
           style: TextStyle(
               fontSize: 20,
               color: _toggledId == choice.choiceId
-                  ? ColorConstants.white
-                  : ColorConstants.darkBlue,
+                  ? AppColors.white
+                  : AppColors.darkBlue,
               fontWeight: FontWeight.bold),
         ),
         shape: RoundedRectangleBorder(

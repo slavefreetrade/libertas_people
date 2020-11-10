@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class ThankyouPage extends StatefulWidget {
+class ThankYouPage extends StatefulWidget {
   static const routeName = '/thankyou';
 
   @override
-  _ThankyouPageState createState() => _ThankyouPageState();
+  _ThankYouPageState createState() => _ThankYouPageState();
 }
 
-class _ThankyouPageState extends State<ThankyouPage> {
+class _ThankYouPageState extends State<ThankYouPage> {
   final _progressValue = 10.0;
 
   final _totalValue = 20.0;
@@ -32,7 +32,7 @@ class _ThankyouPageState extends State<ThankyouPage> {
                     bottomRight: Radius.circular(80)),
                 child: Container(
                   height: height * 0.45,
-                  color: ColorConstants.darkBlue,
+                  color: AppColors.darkBlue,
                 ),
               ),
               Positioned(
@@ -57,22 +57,22 @@ class _ThankyouPageState extends State<ThankyouPage> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25.0,
-                                color: ColorConstants.orange),
+                                color: AppColors.orange),
                           ),
                           const Text(
                             "surveys completed",
-                            style: const TextStyle(color: ColorConstants.white),
+                            style: const TextStyle(color: AppColors.white),
                           )
                         ],
                       ),
                       circularStrokeCap: CircularStrokeCap.butt,
                       backgroundColor: Colors.grey,
-                      progressColor: ColorConstants.lightBlue,
+                      progressColor: AppColors.lightBlue,
                     ),
                     const Text(
                       "Thank you",
                       style: const TextStyle(
-                          color: ColorConstants.white,
+                          color: AppColors.white,
                           fontSize: 35,
                           fontWeight: FontWeight.bold),
                     )
@@ -116,12 +116,12 @@ class _ThankyouPageState extends State<ThankyouPage> {
                 print("clicked return button");
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
-              color: ColorConstants.orange,
+              color: AppColors.orange,
               child: const Text(
                 "Return Home",
                 style: const TextStyle(
                     fontSize: 20,
-                    color: ColorConstants.white,
+                    color: AppColors.white,
                     fontWeight: FontWeight.bold),
               ),
               shape: RoundedRectangleBorder(

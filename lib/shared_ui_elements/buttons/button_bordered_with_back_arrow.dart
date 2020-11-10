@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
-import 'base_button_widget.dart';
+import 'package:libertaspeople/generated/l10n.dart';
 
-class ButtonBorderedWithBackArrow extends BaseButton {
+import '../colors.dart';
+
+class ButtonBorderedWithBackArrow extends StatelessWidget {
   final Function() onPressed;
-  final String label;
+  final String previousButtonLabel;
 
   const ButtonBorderedWithBackArrow(
-      {@required this.onPressed,
-      @required this.label,
-      Key key})
-      : assert(label != null, 'ButtonBordered text input should not be null'),
-        assert(onPressed != null, 'ButtonBordered onPressed input should not be null'),
-        super(
-          onPressedBtn: onPressed,
-          labelBtn: label,
-          isLeftArrowBtn: true,
-          colorBtn: ColorConstants.white,
-          colorTxt: ColorConstants.lightBlue,
-          colorBorder: ColorConstants.lightBlue,
-          key: key);
+      {Key key, this.onPressed, this.previousButtonLabel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      onPressed: onPressed,
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
+      textColor: AppColors.lightBlue,
+      color: AppColors.white,
+      child: Row(
+        children: [
+          Expanded(
+            child: const Icon(Icons.arrow_back_ios),
+          ),
+          Text(
+            previousButtonLabel ?? S.of(context).previous,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: AppColors.lightBlue, width: 2, style: BorderStyle.solid),
+          borderRadius: BorderRadius.circular(10)),
+    );
+  }
 }

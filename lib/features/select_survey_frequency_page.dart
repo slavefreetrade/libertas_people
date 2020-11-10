@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/features/tab_bar_controller.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class SelectSurveyFrequencyPage extends StatefulWidget {
   @override
@@ -91,10 +91,10 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
-                color: ColorConstants.orange,
+                color: AppColors.orange,
                 child: _isLoading
-                    ? CircularProgressIndicator()
-                    : Text("Enter App"),
+                    ? const CircularProgressIndicator()
+                    : Text('Enter App'),
                 onPressed: _enterApp,
               ),
             )

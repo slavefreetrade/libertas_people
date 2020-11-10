@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
-import 'base_button_widget.dart';
+import 'package:libertaspeople/generated/l10n.dart';
 
-class ButtonFullColorWithNextArrow extends BaseButton {
+import '../colors.dart';
+
+class ButtonFullColorWithNextArrow extends StatelessWidget {
   final Function() onPressed;
-  final String label;
-
+  final bool isFinalQuestion;
   const ButtonFullColorWithNextArrow(
-      {@required this.onPressed, @required this.label, Key key})
-      : assert(label != null, 'ButtonFullColor text input should not be null'),
-        assert(onPressed != null,
-            'ButtonFullColor onPressed input should not be null'),
-        super(
-            onPressedBtn: onPressed,
-            labelBtn: label,
-            isRightArrowBtn: true,
-            colorBtn: ColorConstants.lightBlue,
-            colorTxt: ColorConstants.white,
-            colorBorder: ColorConstants.lightBlue,
-            key: key);
+      {Key key, this.onPressed, this.isFinalQuestion})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      onPressed: onPressed,
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
+      textColor: AppColors.white,
+      color: AppColors.lightBlue,
+      child: Row(
+        children: [
+          Expanded(child: Text(
+            isFinalQuestion ? S.of(context).complete : S.of(context).next,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),),
+          const Icon(Icons.arrow_forward_ios)
+        ],
+      ),
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: AppColors.lightBlue, width: 2, style: BorderStyle.solid),
+          borderRadius: BorderRadius.circular(10)),
+    );
+  }
 }

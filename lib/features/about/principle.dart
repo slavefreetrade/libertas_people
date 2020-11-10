@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import '../../generated/l10n.dart';
+import '../../shared_ui_elements/app_fonts.dart';
 
 class Principle extends StatelessWidget {
   final String logo;
   final String title;
   final String text;
 
-  Principle({this.logo, this.title, this.text});
+  const Principle({Key key, this.logo, this.title, this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Principle"),
+        title: Text(S.of(context).principle),
       ),
       body: Container(
         width: width,
@@ -48,16 +51,14 @@ class Principle extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
-              child: Container(
-                child: Text(
-                  text,
-                  style: const TextStyle(
-                      fontSize: 17,
-                      fontFamily: 'Helvetica Neue',
-                      fontWeight: FontWeight.w400),
-                ),
+              child: Text(
+                text,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontFamily: AppFonts.helveticaNeue,
+                    fontWeight: FontWeight.w400),
               ),
-            )
+            ),
           ],
         ),
       ),

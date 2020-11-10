@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:libertaspeople/data_layer/repository.dart';
-import 'package:libertaspeople/models/stored_session_data_model.dart';
+import '../../data_layer/repository.dart';
+import '../../models/stored_session_data_model.dart';
 
 abstract class HomeScreenState {}
 
@@ -46,7 +46,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   final Repository repository = Repository();
 
-  loadHomeScreen() async {
+  Future<void> loadHomeScreen() async {
     try {
       emit(LoadingHomeScreenState());
 
@@ -64,7 +64,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       }
 
       // TODO data model
-      Map<String, dynamic> currentSurveyForUser =
+      final Map<String, dynamic> currentSurveyForUser =
           await repository.fetchCurrentSurveyForUser();
 
       /// completed all surveys
@@ -73,8 +73,8 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         return;
       }
 
-      bool currentSurveyIsComplete = currentSurveyForUser['isComplete'];
-      String currentSurveyId = currentSurveyForUser['id'];
+      final bool currentSurveyIsComplete = currentSurveyForUser['isComplete'] as bool;
+      final String currentSurveyId = currentSurveyForUser['id'] as String;
 
       /// Completed current survey but not all
       if (currentSurveyIsComplete) {
@@ -83,13 +83,13 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       }
 
       if (!currentSurveyIsComplete &&
-          currentSurveyForUser['name'] == "Survey_1") {
+          currentSurveyForUser['name'] == 'Survey_1') {
         emit(WelcomeFirstTimeHomeScreenState(currentSurveyId));
         return;
       }
 
       emit(WelcomeBackHomeScreenState(currentSurveyId));
-    } catch (e) {
+    } on Exception catch (e) {
       print(e);
       emit(FailureHomeScreenState(e.toString()));
     }

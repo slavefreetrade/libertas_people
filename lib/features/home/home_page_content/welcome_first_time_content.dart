@@ -1,15 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/constants/colors.dart';
-import 'package:libertaspeople/features/survey/lauguage_selection_page.dart';
+import '../../../generated/l10n.dart';
+import '../../../shared_ui_elements/colors.dart';
+import '../../../shared_ui_elements/images.dart';
+
+import '../../survey/lauguage_selection_page.dart';
 
 class WelcomeFirstTimeContent extends StatefulWidget {
   final String firstSurveyId;
 
-  const WelcomeFirstTimeContent(this.firstSurveyId);
+  const WelcomeFirstTimeContent({Key key, @required this.firstSurveyId})
+      : super(key: key);
 
   @override
-  _WelcomeFirstTimeContentState createState() => _WelcomeFirstTimeContentState();
+  _WelcomeFirstTimeContentState createState() =>
+      _WelcomeFirstTimeContentState();
 }
 
 class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
@@ -20,29 +24,31 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
       width: MediaQuery.of(context).size.width,
       height: 400,
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Welcome onboard!",
-              style: TextStyle(
+              S.of(context).welcomeOnboard,
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Text(
-              "We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.",
-              style: TextStyle(
+              S
+                  .of(context)
+                  .weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
               softWrap: true,
             ),
-            SizedBox(
+            const SizedBox(
               height: 13,
             ),
             Expanded(
@@ -50,16 +56,16 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 11.0),
+                    padding: const EdgeInsets.only(left: 11.0),
                     child: Row(
                       children: [
                         Container(
                           height: 50,
-                          child: Image.asset('assets/icons/ima.png'),
+                          child: Image.asset(AppImages.ima),
                         ),
                         Text(
-                          "Always anonymous",
-                          style: TextStyle(
+                          S.of(context).alwaysAnonymous,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -71,11 +77,11 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     children: [
                       Container(
                         height: 70,
-                        child: Image.asset('assets/icons/i.png'),
+                        child: Image.asset(AppImages.i),
                       ),
                       Text(
-                        "Only binary questions",
-                        style: TextStyle(
+                        S.of(context).onlyBinaryQuestions,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
@@ -86,12 +92,12 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     children: [
                       Container(
                         height: 70,
-                        child: Image.asset('assets/icons/im.png'),
+                        child: Image.asset(AppImages.im),
                       ),
                       Flexible(
                         child: Text(
-                          "Less than five minutes to complete",
-                          style: TextStyle(
+                          S.of(context).lessThanFiveMinutesToComplete,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
@@ -104,19 +110,16 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
             ),
             Center(
               child: RaisedButton(
-                color: ColorConstants.orange,
+                color: AppColors.orange,
                 highlightElevation: 2,
                 elevation: 8,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100),
                 ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
-                  child: _isLoading ? CircularProgressIndicator():  Text("Take Survey"),
-                ),
                 onPressed: () {
-                  setState((){_isLoading = true;});
+                  setState(() {
+                    _isLoading = true;
+                  });
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
                           LanguageSelectionPage(widget.firstSurveyId)));
@@ -124,6 +127,13 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     _isLoading = false;
                   });
                 },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
+                  child: _isLoading
+                      ? const CircularProgressIndicator()
+                      : Text(S.of(context).takeSurvey),
+                ),
               ),
             )
           ],
