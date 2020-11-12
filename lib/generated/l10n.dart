@@ -35,70 +35,70 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `You are invited to take part in the staff survey that plays an important part in monitoring human rights conditions at work places.`
+  /// `Thank you for downloading the Libertas People App. You are invited to participate in slavefreetrade's decent work conditions assessment and monitoring system.`
   String get youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn {
     return Intl.message(
-      'You are invited to take part in the staff survey that plays an important part in monitoring human rights conditions at work places.',
+      'Thank you for downloading the Libertas People App. You are invited to participate in slavefreetrade\'s decent work conditions assessment and monitoring system.',
       name: 'youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn',
       desc: '',
       args: [],
     );
   }
 
-  /// `You will answer 20 multiple choice questions the first time you access the survey.`
+  /// `As part of our assessment process, we are asking you some questions about your workplace.`
   String get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
     return Intl.message(
-      'You will answer 20 multiple choice questions the first time you access the survey.',
+      'As part of our assessment process, we are asking you some questions about your workplace.',
       name: 'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `As part of monitoring, you are asked to fill out the survey regularly.`
+  /// `As part of monitoring, after a first initial survey, you will receive a few questions on a regular basis and you will be notified through this app.`
   String get asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly {
     return Intl.message(
-      'As part of monitoring, you are asked to fill out the survey regularly.',
+      'As part of monitoring, after a first initial survey, you will receive a few questions on a regular basis and you will be notified through this app.',
       name: 'asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly',
       desc: '',
       args: [],
     );
   }
 
-  /// `After the initial survey, you will receive 10 questions each month.`
+  /// `Everyone in your workplace has been invited to do the same.`
   String get afterTheInitialSurveyYouWillReceive10QuestionsEachMonth {
     return Intl.message(
-      'After the initial survey, you will receive 10 questions each month.',
+      'Everyone in your workplace has been invited to do the same.',
       name: 'afterTheInitialSurveyYouWillReceive10QuestionsEachMonth',
       desc: '',
       args: [],
     );
   }
 
-  /// `“This month’s survey is ready for you!”`
+  /// `Be part of this project. Everyone's voice counts.`
   String get thisMonthsSurveyIsReadyForYou {
     return Intl.message(
-      '“This month’s survey is ready for you!”',
+      'Be part of this project. Everyone\'s voice counts.',
       name: 'thisMonthsSurveyIsReadyForYou',
       desc: '',
       args: [],
     );
   }
 
-  /// `Don’t worry, we’ll notify you when it’s time to update your survey.`
+  /// `Start`
   String get dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey {
     return Intl.message(
-      'Don’t worry, we’ll notify you when it’s time to update your survey.',
+      'Start',
       name: 'dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `Welcome!`
+  /// `Welcome`
   String get welcome {
     return Intl.message(
-      'Welcome!',
+      'Welcome',
       name: 'welcome',
       desc: '',
       args: [],
@@ -115,10 +115,10 @@ class S {
     );
   }
 
-  /// `Let's get started!`
+  /// `Let's get started`
   String get letsGetStarted {
     return Intl.message(
-      'Let\'s get started!',
+      'Let\'s get started',
       name: 'letsGetStarted',
       desc: '',
       args: [],
@@ -245,10 +245,10 @@ class S {
     );
   }
 
-  /// `It will only take a couple more minutes to finish. If you leave,your answers will be saved.`
+  /// `It will only take a couple more minutes to finish. If you leave, your answers will be saved.`
   String get itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved {
     return Intl.message(
-      'It will only take a couple more minutes to finish. If you leave,your answers will be saved.',
+      'It will only take a couple more minutes to finish. If you leave, your answers will be saved.',
       name: 'itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved',
       desc: '',
       args: [],
@@ -495,50 +495,50 @@ class S {
     );
   }
 
-  /// `You have completed the first survey and your answer have been submitted.`
+  /// `Your answers have been correctly submitted.`
   String get youHaveCompletedTheFirstSurveyAndYourAnswerHaveBeenSubmitted {
     return Intl.message(
-      'You have completed the first survey and your answer have been submitted.',
+      'Your answers have been correctly submitted.',
       name: 'youHaveCompletedTheFirstSurveyAndYourAnswerHaveBeenSubmitted',
       desc: '',
       args: [],
     );
   }
 
-  /// `What happens next`
+  /// `What happens next?`
   String get whatHappensNext {
     return Intl.message(
-      'What happens next',
+      'What happens next?',
       name: 'whatHappensNext',
       desc: '',
       args: [],
     );
   }
 
-  /// `For the next 10 months you will receive 10 questions per month here in the app.`
+  /// `You will get new questions on a regular basis here in the app.`
   String get forTheNext10MonthsYouWillReceive10QuestionsPerMonthHereInTheApp {
     return Intl.message(
-      'For the next 10 months you will receive 10 questions per month here in the app.',
+      'You will get new questions on a regular basis here in the app.',
       name: 'forTheNext10MonthsYouWillReceive10QuestionsPerMonthHereInTheApp',
       desc: '',
       args: [],
     );
   }
 
-  /// `You will get a monthly notification on your phone once the questions are ready. You can then open the app and complete the 10 questions.`
+  /// `You don't have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.`
   String get youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan {
     return Intl.message(
-      'You will get a monthly notification on your phone once the questions are ready. You can then open the app and complete the 10 questions.',
+      'You don\'t have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.',
       name: 'youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan',
       desc: '',
       args: [],
     );
   }
 
-  /// `Return Home`
+  /// `Home`
   String get returnHome {
     return Intl.message(
-      'Return Home',
+      'Home',
       name: 'returnHome',
       desc: '',
       args: [],
@@ -575,10 +575,10 @@ class S {
     );
   }
 
-  /// `Our survey is based on the 10 human right principles on international law.`
+  /// `The assessment is based on our 10 human rights principles for decent work derived from international law.`
   String get ourSurveyIsBasedOnThe10HumanRightPrinciplesOnInternationalLaw {
     return Intl.message(
-      'Our survey is based on the 10 human right principles on international law.',
+      'The assessment is based on our 10 human rights principles for decent work derived from international law.',
       name: 'ourSurveyIsBasedOnThe10HumanRightPrinciplesOnInternationalLaw',
       desc: '',
       args: [],
