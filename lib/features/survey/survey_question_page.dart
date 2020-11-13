@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/features/tab_bar_controller.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
@@ -43,10 +44,9 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    print("_answer in survey quewiton page: ${_answer}");
+    print("_answer in survey quesiton page: ${_answer}");
     if (widget.answer != null) {
       _answer = widget.answer;
       if (_isTextEntryQuestion) {
@@ -213,7 +213,9 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               textAlign: TextAlign.center,
             ),
             content: Text(
-              S.of(context).itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved,
+              S
+                  .of(context)
+                  .itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved,
             ),
             actions: <Widget>[
               FlatButton(
@@ -227,7 +229,10 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               SizedBox(height: 16),
               FlatButton(
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => TabBarController()),
+                      (route) => route.isFirst);
                 },
                 child: Text(
                   S.of(context).leave,
