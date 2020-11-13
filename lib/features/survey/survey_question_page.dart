@@ -229,11 +229,10 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               SizedBox(height: 16),
               FlatButton(
                 onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                           builder: (context) => TabBarController()),
-                      (route) => false);
+                      (route) => route.isFirst);
                 },
                 child: Text(
                   S.of(context).leave,
