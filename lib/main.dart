@@ -1,7 +1,7 @@
-import 'package:device_preview/device_preview.dart';
+// import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/shared_ui_elements/app_fonts.dart';
@@ -10,13 +10,13 @@ import 'shared_ui_elements/colors.dart';
 import 'features/splash_screen.dart';
 import 'generated/l10n.dart';
 
-
 void main() {
   runApp(
-    DevicePreview(
-      enabled: false, //!kReleaseMode,
-      builder: (context) => MyApp(),
-    ),
+    // DevicePreview(
+    //  enabled: false, //!kReleaseMode,
+    // builder: (context) =>
+    MyApp(),
+    //  ),
   );
 }
 
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Libertas People',
         localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
+          // GlobalMaterialLocalizations.delegate,
+          // GlobalWidgetsLocalizations.delegate,
           S.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
