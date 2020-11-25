@@ -73,7 +73,7 @@ class Repository {
     SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
 
     Map<String, dynamic> responses = sessionInfo.responses;
-    int lastIndexAnswered = 1;
+    int lastIndexAnswered = 0;
     responses.forEach((key, value) {
       int keyToInteger = int.parse(key.replaceAll("QID", ""));
       if (keyToInteger > lastIndexAnswered) {
