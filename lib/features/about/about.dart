@@ -56,12 +56,16 @@ class _AboutPageState extends State<AboutPage> {
                     height: 48.88,
                     width: 47,
                   ),
-                  Text(
-                    S.of(context).readMoreAboutSlavefreetrade,
-                    style: const TextStyle(
+                  Flexible(
+                    child: Text(
+                      S.of(context).readMoreAboutSlavefreetrade,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 17.0,
-                        wordSpacing: 3.5),
+                        wordSpacing: 3.5,
+                      ),
+                      softWrap: true,
+                    ),
                   )
                 ],
               ),
@@ -82,28 +86,79 @@ class _AboutPageState extends State<AboutPage> {
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   crossAxisCount: 2,
-                  childAspectRatio: 6 / 2,
+                  childAspectRatio: 5 / 2,
                   children: getAboutData(context).map((principle) {
-                    return Container(
-                      width: 150,
-                      height: 55,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return Principle(
-                              logo: principle['logo'],
-                              title: principle['title'],
-                              text: principle['text'],
-                            );
-                          }));
-                        },
-                        child: Image(
-                          image: AssetImage(principle['image']),
-                          fit: BoxFit.fill,
+                    return FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10,
                         ),
                       ),
+                      textColor: Colors.white,
+                      color: Color(principle['color']),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              principle['id'],
+                              style: TextStyle(
+                                  fontSize: 28, fontWeight: FontWeight.w300),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 8.0,
+                                right: 8.0,
+                              ),
+                              child: Image.asset(
+                                principle['image'],
+                                width: principle['image_size'],
+                              ),
+                            ),
+                            Flexible(
+                              child: Text(
+                                principle['title'].substring(
+                                    0, principle['title'].length - 1),
+                                style: TextStyle(
+                                  fontSize: principle['size'],
+                                ),
+                                softWrap: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return Principle(
+                            logo: principle['logo'],
+                            title: principle['title'],
+                            text: principle['text'],
+                          );
+                        }));
+                      },
                     );
+                    //  return Container(
+                    //   width: 150,
+                    //   height: 55,
+                    //   child: GestureDetector(
+                    //      onTap: () {
+                    //       Navigator.push(context, MaterialPageRoute(
+                    //             builder: (BuildContext context) {
+                    //           return Principle(
+                    //             logo: principle['logo'],
+                    //             title: principle['title'],
+                    //             text: principle['text'],
+                    //           );
+                    //         }));
+                    //       },
+                    //      child: Image(
+                    //        image: AssetImage(principle['image']),
+                    //        fit: BoxFit.fill,
+                    //       ),
+                    //     ),
+                    //  );
                   }).toList(),
                 ),
               ),
