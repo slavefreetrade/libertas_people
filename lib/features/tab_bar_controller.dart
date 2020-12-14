@@ -7,7 +7,6 @@ import 'home/home_page_content/home_page.dart';
 import '../shared_ui_elements/colors.dart';
 
 class TabBarController extends StatefulWidget {
-
   @override
   _TabBarControllerState createState() => _TabBarControllerState();
 }
@@ -22,7 +21,11 @@ class _TabBarControllerState extends State<TabBarController> {
 
   int pageIndex = 0;
 
-  List<Widget> _pages = [HomePage(), AboutPage()];
+  void _animateToPage(int index) {
+    setState(() {
+      pageIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +33,7 @@ class _TabBarControllerState extends State<TabBarController> {
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.darkBlue,
         backgroundColor: AppColors.greyAboutPage,
-        onTap: (int index) {
-          setState(() {
-            pageIndex = index;
-          });
-        },
+        onTap: _animateToPage,
         currentIndex: pageIndex,
         items: [
           BottomNavigationBarItem(
@@ -47,7 +46,16 @@ class _TabBarControllerState extends State<TabBarController> {
           ),
         ],
       ),
-      body: _pages[pageIndex],
+      body: _getPage(),
     );
+  }
+
+  Widget _getPage() {
+    switch (pageIndex) {
+      case 0:
+        return HomePage();
+      default:
+        return AboutPage(onTakeSurveyPressed: () => _animateToPage(0));
+    }
   }
 }
