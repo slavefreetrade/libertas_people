@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/features/survey/survey_information_page.dart';
 import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/buttons/button_bordered_with_back_arrow.dart';
+import 'package:libertaspeople/shared_ui_elements/buttons/button_full_color_with_next_arrow.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   final String surveyId;
@@ -34,68 +36,31 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(48, 16, 48, 16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FlatButton(
-                  padding: EdgeInsets.fromLTRB(8.0, 8.0, 12.0, 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.chevron_left,
-                        size: 30,
-                      ),
-                      Text(
-                        S.of(context).back,
-                        style: TextStyle(
-                          fontSize: 22,
-                        ),
-                      ),
-                    ],
+                Expanded(
+                  child: ButtonBorderedWithBackArrow(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    previousButtonLabel: "Back",
                   ),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 2,
-                      color: Colors.blue,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      7,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
                 ),
-                FlatButton(
-                  padding: EdgeInsets.fromLTRB(12.0, 8.0, 8.0, 8.0),
-                  color: Colors.blue,
-                  child: Row(
-                    children: [
-                      Text(
-                        S.of(context).next,
-                        style: TextStyle(
-                          // color: Colors.white,
-                          fontSize: 22,
+                const SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: ButtonFullColorWithNextArrow(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SurveyInformationPage(widget.surveyId),
                         ),
-                      ),
-                      Icon(
-                        Icons.chevron_right,
-                        size: 30,
-                      )
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            SurveyInformationPage(widget.surveyId),
-                      ),
-                    );
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
+                      );
+                    },
+                    isFinalQuestion: false,
                   ),
                 ),
               ],
