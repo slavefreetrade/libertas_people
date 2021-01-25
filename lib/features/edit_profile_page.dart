@@ -2,27 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class EditProfilePage extends StatefulWidget {
-
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-
 // FocusNode function Used to control field Item and pass to another field
-  final _WorkAdressFocusNode = FocusNode();
-  final _managerFocusNode = FocusNode();
-  final _GenderFocusNode = FocusNode();
-  final _workplaceTypeFocusNode = FocusNode();
-  final _ageGroupFocusNode = FocusNode();
+  final workAdressFocusNode = FocusNode();
+  final managerFocusNode = FocusNode();
+  final genderFocusNode = FocusNode();
+  final workplaceTypeFocusNode = FocusNode();
+  final ageGroupFocusNode = FocusNode();
 
   List<String> gender = ["Male", "Female"];
   List<String> workplaceType = ["An office", "A field or a farm", "Other"];
   List<String> ageGroup = ["18-25 years", "26-39 years", "40-60 years"];
   List<String> manager = ["Yes", "No"];
 
-  String _workID;
-  String _workAddress;
   String _genderStyle = "Female";
   String _workplaceTypeCurrent = "An office";
   String _agegroupcurrent = "26-39 years";
@@ -35,36 +31,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void dispose() {
     super.dispose();
-    _WorkAdressFocusNode.dispose();
-    _managerFocusNode.dispose();
-    _GenderFocusNode.dispose();
-    _workplaceTypeFocusNode.dispose();
+    workAdressFocusNode.dispose();
+    managerFocusNode.dispose();
+    genderFocusNode.dispose();
+    workplaceTypeFocusNode.dispose();
   }
 
-  // Function used to valid Form
-  _saveForm(){
+  void saveForm() {
     final valid = _form.currentState.validate();
-    if(!valid){
+    if (!valid) {
       return;
     }
     _form.currentState.save();
-
-    print("****************** Print current Form Valuer **********************");
-    print("Work ID: $_workID");
-    print("Work Address: $_workAddress ");
-    print("Your Gender: ${_genderStyle}");
-    print("Workplace Type: ${_workplaceTypeCurrent}");
-    print("Your age group: ${_agegroupcurrent}");
-    print("You are manager: ${_managerValuerCurrent}");
   }
 
-  readWriteField(){
+  void readWriteField() {
     setState(() {
       isReadOnly = false;
     });
   }
 
-  enableButton(){
+  void enableButton() {
     setState(() {
       isEnabled = true;
     });
@@ -74,8 +61,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
           setState(() {
             isReadOnly = true;
           });
@@ -83,138 +70,137 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Form(
           key: _form,
           child: Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
+            padding: const EdgeInsets.only(
+                top: 25.0, left: 35.0, right: 35.0, bottom: 25.0),
             child: ListView(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-                    Text(
+                    const Text(
                       "Workplace ID",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     TextFormField(
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20.0
-                      ),
-                      readOnly: isReadOnly ? true : false,
+                          fontSize: 20.0),
+                      readOnly: isReadOnly,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: readWriteField
-                        ),
+                            icon: const Icon(Icons.edit),
+                            onPressed: readWriteField),
                         hintText: "0000000",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: AppColors.darkBlue,
                             fontFamily: "WorkSansLight",
                             fontWeight: FontWeight.w700,
-                            fontSize: 20.0
-                        ),
+                            fontSize: 20.0),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
-                      onFieldSubmitted: (_){
-                        FocusScope.of(context).requestFocus(_WorkAdressFocusNode);
+                      onFieldSubmitted: (_) {
+                        FocusScope.of(context)
+                            .requestFocus(workAdressFocusNode);
                       },
                       // ignore: missing_return
-                      validator: (value){
-                        String itemTovalidate = (value.toString()).trim();
-                        if(value.isEmpty){
+                      validator: (value) {
+                        final String itemTovalidate = (value.toString()).trim();
+                        if (value.isEmpty) {
                           return "Please provide your Workplace ID";
-                        } else if(itemTovalidate.length == 0){
+                        } else if (itemTovalidate.isEmpty) {
                           return "Your Workplace ID cannot be empty";
                         }
                         return null;
                       },
-                      onSaved: (value){
-                        _workID = value;
-                      },
+                      onSaved: (value) {},
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0,),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Work address",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w700
-                      ),
+                          fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     TextFormField(
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.0
-                      ),
-                      readOnly: isReadOnly ? true : false,
+                          fontSize: 20.0),
+                      readOnly: isReadOnly,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        suffixIcon:  IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: readWriteField
-                        ),
+                        suffixIcon: IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: readWriteField),
                         hintText: "XXXXXXXX street XX, XXXX City",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: AppColors.darkBlue,
                             fontFamily: "WorkSansLight",
                             fontWeight: FontWeight.w700,
-                            fontSize: 20.0
-                        ),
+                            fontSize: 20.0),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
                       maxLines: 2,
                       keyboardType: TextInputType.multiline,
-                      focusNode: _WorkAdressFocusNode,
-                      onFieldSubmitted: (_){
-                        FocusScope.of(context).requestFocus(_GenderFocusNode);
+                      focusNode: workAdressFocusNode,
+                      onFieldSubmitted: (_) {
+                        FocusScope.of(context).requestFocus(genderFocusNode);
                       },
-                      onSaved: (value){
-                        _workAddress = value;
-                      },
-                      validator: (value){
-                        String itemTovalidate = (value.toString()).trim();
-                        if(value.isEmpty){
+                      onSaved: (value) {},
+                      validator: (value) {
+                        final String itemTovalidate = (value.toString()).trim();
+                        if (value.isEmpty) {
                           return "Please provide your Work Address";
-                        } else if(itemTovalidate.length <= 4){
+                        } else if (itemTovalidate.length <= 4) {
                           return "Your Address cannot be less than 4 letters";
                         }
                         return null;
@@ -222,108 +208,118 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0,),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Gender",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     DropdownButtonFormField(
-
                       items: gender.map((String genderItem) {
                         Icon currentSelect;
-                        if(genderItem == _genderStyle){
-                          currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                        if (genderItem == _genderStyle) {
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.green);
                         } else {
-                          currentSelect = Icon(
-                              Icons.check_circle_outline, color: Colors.grey);
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.grey);
                         }
-                        return new DropdownMenuItem(
+                        return DropdownMenuItem(
                             value: genderItem,
                             child: Padding(
-                              padding: EdgeInsets.only(top: 0.0),
+                              padding: const EdgeInsets.only(),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text(genderItem),
                                   currentSelect
                                 ],
                               ),
-                            )
-                        );
+                            ));
                       }).toList(),
-                      onChanged: (newValue){
-                        FocusScope.of(context).requestFocus(_workplaceTypeFocusNode);
+                      onChanged: (newValue) {
+                        FocusScope.of(context)
+                            .requestFocus(workplaceTypeFocusNode);
                         setState(() {
-                          _genderStyle = newValue;
+                          _genderStyle = newValue as String;
                         });
                       },
-                      onSaved: (newValue){
+                      onSaved: (newValue) {
                         setState(() {
-                          _genderStyle = newValue;
+                          _genderStyle = newValue as String;
                         });
                       },
-                      validator: (newValue){
-                        if(newValue.isEmpty){
+                      validator: (String newValue) {
+                        if (newValue.isEmpty) {
                           return "Please provide a value";
                         }
                         return null;
                       },
                       value: _genderStyle,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20.0
-                      ),
+                          fontSize: 20.0),
 //                    focusNode: _GenderFocusNode,
-                      icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 35.0,
+                      ),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Workplace type",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     DropdownButtonFormField(
                       items: workplaceType.map((String workplaceTypeItem) {
                         Icon currentSelect;
-                        if(workplaceTypeItem == _workplaceTypeCurrent){
-                          currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                        if (workplaceTypeItem == _workplaceTypeCurrent) {
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.green);
                         } else {
-                          currentSelect = Icon(
-                              Icons.check_circle_outline, color: Colors.grey);
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.grey);
                         }
-                        return new DropdownMenuItem(
+                        return DropdownMenuItem(
                             value: workplaceTypeItem,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -331,24 +327,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 Text(workplaceTypeItem),
                                 currentSelect
                               ],
-                            )
-                        );
+                            ));
                       }).toList(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20.0
+                          fontSize: 20.0),
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 35.0,
                       ),
-                      icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
-                      onChanged: (newValue){
-                        FocusScope.of(context).requestFocus(_ageGroupFocusNode);
+                      onChanged: (newValue) {
+                        FocusScope.of(context).requestFocus(ageGroupFocusNode);
                         setState(() {
-                          _workplaceTypeCurrent = newValue;
+                          _workplaceTypeCurrent = newValue as String;
                         });
                       },
-                      onSaved: (value){
+                      onSaved: (value) {
                         setState(() {
-                          _workplaceTypeCurrent = value;
+                          _workplaceTypeCurrent = value as String;
                         });
                       },
 //                    focusNode: _workplaceTypeFocusNode,
@@ -356,44 +353,47 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Age group",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     DropdownButtonFormField(
                       items: ageGroup.map((String ageGroupItem) {
-
                         Icon currentSelect;
-                        if(ageGroupItem == _agegroupcurrent){
-                          currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                        if (ageGroupItem == _agegroupcurrent) {
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.green);
                         } else {
-                          currentSelect = Icon(
-                              Icons.check_circle_outline, color: Colors.grey);
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.grey);
                         }
-                        return new DropdownMenuItem(
+                        return DropdownMenuItem(
                             value: ageGroupItem,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -401,76 +401,80 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 Text(ageGroupItem),
                                 currentSelect
                               ],
-                            )
-                        );
+                            ));
                       }).toList(),
-                      onChanged: (newValue){
-                        FocusScope.of(context).requestFocus(_managerFocusNode);
+                      onChanged: (newValue) {
+                        FocusScope.of(context).requestFocus(managerFocusNode);
                         enableButton();
                         setState(() {
-                          _agegroupcurrent = newValue;
+                          _agegroupcurrent = newValue as String;
                         });
                       },
-                      onSaved: (value){
+                      onSaved: (value) {
                         setState(() {
-                          _agegroupcurrent = value;
+                          _agegroupcurrent = value as String;
                         });
                       },
                       value: _agegroupcurrent,
-                      validator: (value){
-                        if(value.isEmpty){
+                      validator: (String value) {
+                        if (value.isEmpty) {
                           return "Please provide a value";
                         }
                         return null;
                       },
 //                    focusNode: _ageGroupFocusNode,
-                      icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
-                      style: TextStyle(
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 35.0,
+                      ),
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20.0
-                      ),
+                          fontSize: 20.0),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Manager",
                       style: TextStyle(
                           fontSize: 16.0,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      ),
+                          fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 5.0,),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
                     DropdownButtonFormField(
                       items: manager.map((managerItem) {
-
                         Icon currentSelect;
-                        if(managerItem == _managerValuerCurrent){
-                          currentSelect =  Icon(Icons.check_circle_outline, color: Colors.green);
+                        if (managerItem == _managerValuerCurrent) {
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.green);
                         } else {
-                          currentSelect = Icon(
-                              Icons.check_circle_outline, color: Colors.grey);
+                          currentSelect = const Icon(Icons.check_circle_outline,
+                              color: Colors.grey);
                         }
-                        return new DropdownMenuItem(
+                        return DropdownMenuItem(
                           value: managerItem,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -482,62 +486,70 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         );
                       }).toList(),
 //                    focusNode: _managerFocusNode,
-                      icon: Icon(Icons.keyboard_arrow_down, size: 35.0,),
-                      onChanged: (newValue){
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        size: 35.0,
+                      ),
+                      onChanged: (newValue) {
                         setState(() {
-                          _managerValuerCurrent = newValue;
+                          _managerValuerCurrent = newValue as String;
                         });
                       },
-                      onSaved: (value){
+                      onSaved: (value) {
                         setState(() {
-                          _managerValuerCurrent = value;
+                          _managerValuerCurrent = value as String;
                         });
                       },
-                      validator: (value){
-                        if(value.isEmpty){
+                      validator: (String value) {
+                        if (value.isEmpty) {
                           return "Please provide a value";
                         }
                         return null;
                       },
                       value: _managerValuerCurrent,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColors.darkBlue,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20.0
-                      ),
+                          fontSize: 20.0),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 1.2),
+                          borderSide: const BorderSide(width: 1.2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 2.5, color: Colors.grey),
+                          borderSide:
+                              const BorderSide(width: 2.5, color: Colors.grey),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(width: 3.0, color: AppColors.orange),
+                          borderSide: const BorderSide(
+                              width: 3.0, color: AppColors.orange),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(40),
                       child: RaisedButton(
-                          padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
-                          color: isEnabled ? AppColors.orange : Colors.grey,
-                          child: Text("Save", style: TextStyle(color: Colors.white, fontSize: 22.0 ),),
-                          onPressed: isEnabled ? _saveForm : null
+                        padding: const EdgeInsets.only(
+                            top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
+                        color: isEnabled ? AppColors.orange : Colors.grey,
+                        onPressed: isEnabled ? saveForm : null,
+                        child: const Text(
+                          "Save",
+                          style: TextStyle(color: Colors.white, fontSize: 22.0),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
               ],
             ),
           ),

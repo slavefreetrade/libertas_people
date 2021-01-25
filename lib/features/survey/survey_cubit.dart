@@ -44,13 +44,13 @@ class SurveyCubit extends Cubit<SurveyState> {
 
   final Repository repository = Repository();
 
-  startSurvey(String surveyId) async {
+  Future<void> startSurvey(String surveyId) async {
     if (state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
 
-    SessionInfoModel session = await repository.startSession(surveyId);
+    final SessionInfoModel session = await repository.startSession(surveyId);
 
-    QuestionModel question = await repository.getQuestionForIndex(1);
+    final QuestionModel question = await repository.getQuestionForIndex(1);
 
     emit(
       FillingOutQuestionSurveyState(
@@ -60,16 +60,17 @@ class SurveyCubit extends Cubit<SurveyState> {
     );
   }
 
-  returnToIncompleteSurveySession({
+  Future<void> returnToIncompleteSurveySession({
     @required String surveyId,
     @required String sessionId,
   }) async {
     if (state is LoadingSurveyState) return;
     emit(LoadingSurveyState());
 
-    SessionInfoModel sessionInfo = await repository.returnToPreviousSession();
+    final SessionInfoModel sessionInfo =
+        await repository.returnToPreviousSession();
 
-    QuestionModel question =
+    final QuestionModel question =
         await repository.getNextQuestionForIncompleteSurvey();
 
     emit(
@@ -81,19 +82,19 @@ class SurveyCubit extends Cubit<SurveyState> {
     );
   }
 
-  nextQuestion(Map answer) async {
+  Future<void> nextQuestion(Map<String, dynamic> answer) async {
     if (state is FillingOutQuestionSurveyState) {
-      int nextIndex =
+      final nextIndex =
           (state as FillingOutQuestionSurveyState).currentQuestionIndex + 1;
-      int totalQuestionCount = (state as FillingOutQuestionSurveyState).totalQuestionCount;
+      final totalQuestionCount =
+          (state as FillingOutQuestionSurveyState).totalQuestionCount;
 
       emit(LoadingSurveyState());
 
       await repository.storeAnswer(answer);
 
-      QuestionModel nextQuestion =
-          await repository.getQuestionForIndex(nextIndex);
-      Map<String, dynamic> previousAnswer =
+      final nextQuestion = await repository.getQuestionForIndex(nextIndex);
+      final previousAnswer =
           await repository.getPreviousAnswerByIndex(nextIndex);
 
       emit(
@@ -106,17 +107,18 @@ class SurveyCubit extends Cubit<SurveyState> {
     }
   }
 
-  previousQuestion() async {
+  Future<void> previousQuestion() async {
     if (state is FillingOutQuestionSurveyState) {
-      int previousIndex =
+      final int previousIndex =
           (state as FillingOutQuestionSurveyState).currentQuestionIndex - 1;
-      int totalQuestionCount = (state as FillingOutQuestionSurveyState).totalQuestionCount;
+      final int totalQuestionCount =
+          (state as FillingOutQuestionSurveyState).totalQuestionCount;
       emit(LoadingSurveyState());
 
-      Map<String, dynamic> previousAnswer =
+      final Map<String, dynamic> previousAnswer =
           await repository.getPreviousAnswerByIndex(previousIndex);
 
-      QuestionModel previousQuestion =
+      final QuestionModel previousQuestion =
           await repository.getQuestionForIndex(previousIndex);
 
       emit(
@@ -130,7 +132,7 @@ class SurveyCubit extends Cubit<SurveyState> {
     }
   }
 
-  completeSurvey(Map answer) async {
+  Future<void> completeSurvey(Map<String, dynamic> answer) async {
     if (state is FillingOutQuestionSurveyState) {
       emit(LoadingSurveyState());
 

@@ -4,10 +4,10 @@ import "package:flutter_secure_storage/flutter_secure_storage.dart";
 import "package:device_info/device_info.dart";
 
 class UserLocalDataSource {
-  final _storage = FlutterSecureStorage();
+  final _storage = const FlutterSecureStorage();
   final _devInfo = DeviceInfoPlugin();
 
-  storePreferredLanguage(String preferredLanguage) async {
+  Future<String> storePreferredLanguage(String preferredLanguage) async {
     try {
       await _storage.write(key: "lan", value: preferredLanguage);
       return "Success";
@@ -16,25 +16,22 @@ class UserLocalDataSource {
     }
   }
 
-  getPreferredLanguage() async {
+  Future<String> getPreferredLanguage() async {
     try {
-      String result = await _storage.read(key: "lan");
-      print("$result");
+      final String result = await _storage.read(key: "lan");
       return result;
     } catch (e) {
       return e.toString();
     }
   }
 
-  fetchUniqueDeviceID() async {
+  Future<String> fetchUniqueDeviceID() async {
     if (Platform.isAndroid) {
-      var androidInfo = await _devInfo.androidInfo;
-      print("${androidInfo.id}");
-      return "${androidInfo.androidId}";
+      final androidInfo = await _devInfo.androidInfo;
+      return androidInfo.androidId;
     } else if (Platform.isIOS) {
-      IosDeviceInfo iosinfo = await _devInfo.iosInfo;
-      print("${iosinfo.identifierForVendor}");
-      return "${iosinfo.identifierForVendor}";
+      final iosInfo = await _devInfo.iosInfo;
+      return iosInfo.identifierForVendor;
     } else {
       return null;
       // throw PlatformException(
@@ -44,10 +41,9 @@ class UserLocalDataSource {
     }
   }
 
-  storeUID(String uniqueDeviceID) async {
+  Future<String> storeUID(String uniqueDeviceID) async {
     try {
       await _storage.write(key: "uid", value: uniqueDeviceID);
-      print("success");
       return "Success";
     } catch (e) {
       return e.toString();
@@ -56,8 +52,7 @@ class UserLocalDataSource {
 
   Future<String> getUID() async {
     try {
-      String result = await _storage.read(key: "uid");
-      print("$result");
+      final String result = await _storage.read(key: "uid");
       return result;
     } catch (e) {
       return null;

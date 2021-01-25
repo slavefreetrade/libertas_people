@@ -23,14 +23,12 @@ class QualtricsLocalDataSource {
   }
 
   Future<List<dynamic>> fetchSurveyList() async {
-    File surveyFile = await _surveyListFile;
+    final File surveyFile = await _surveyListFile;
     List<dynamic> surveyList;
-    if ((await surveyFile.exists())) {
-      print("survey file exists");
-      String fileContents = surveyFile.readAsStringSync();
-      surveyList = json.decode(fileContents);
+    if (await surveyFile.exists()) {
+      final String fileContents = surveyFile.readAsStringSync();
+      surveyList = json.decode(fileContents) as List<dynamic>;
     }
-    print("survey list file: $surveyList");
     return surveyList;
   }
 
@@ -38,22 +36,22 @@ class QualtricsLocalDataSource {
     List<dynamic> surveyQualtricsJsonList,
     int surveyFrequencyInMinutes,
   ) async {
-    File surveyFile = await _surveyListFile;
+    final File surveyFile = await _surveyListFile;
 
     surveyQualtricsJsonList.removeWhere((survey) {
       return !(survey['name'] as String).contains("Survey_");
     });
 
     surveyQualtricsJsonList.sort((dynamic surveyA, dynamic surveyB) {
-      int indexA =
+      final int indexA =
           int.parse((surveyA['name'] as String).replaceAll("Survey_", ""));
-      int indexB =
+      final int indexB =
           int.parse((surveyB['name'] as String).replaceAll("Survey_", ""));
 
       return indexA.compareTo(indexB);
     });
 
-    List<dynamic> surveyList = surveyQualtricsJsonList.map((e) {
+    final List<dynamic> surveyList = surveyQualtricsJsonList.map((e) {
       return {
         "id": e['id'],
         "name": e['name'],
@@ -67,51 +65,48 @@ class QualtricsLocalDataSource {
     // TODO move the updating of dates to complete to after submitting first survey
     var initialDate = DateTime.now().toUtc().toString();
 
-    List<dynamic> finalSurveyList = surveyList.map((element) {
+    final List<dynamic> finalSurveyList = surveyList.map((element) {
       element['beginDate'] = initialDate;
-      element['finalDate'] = DateTime.parse(element['beginDate'])
+      element['finalDate'] = DateTime.parse(element['beginDate'] as String)
           .add(Duration(
               minutes:
                   surveyFrequencyInMinutes)) // for testing purposes, we might want to make the duration 2 days..?
           .toUtc()
           .toString();
-      initialDate = element['finalDate'];
+      initialDate = element['finalDate'] as String;
       return element;
     }).toList();
-
-    print('survey list inputted into local' + finalSurveyList.toString());
 
     surveyFile.writeAsStringSync(json.encode(finalSurveyList));
   }
 
   Future<String> fetchNextSurveyId() async {
-    List<dynamic> surveyList = await fetchSurveyList();
+    final List<dynamic> surveyList = await fetchSurveyList();
 
-    var currentDateTime = DateTime.now();
+    final currentDateTime = DateTime.now();
 
     String id;
     for (int i = 0; i < surveyList.length; i++) {
-      int j = i + 1;
+      final int j = i + 1;
       if (surveyList.elementAt(i)['isComplete'] == true) {
         if (surveyList.elementAt(j)['isComplete'] == false) {
-          if (currentDateTime.isAfter(
-                  DateTime.parse(surveyList.elementAt(j)['beginDate'])) &&
-              currentDateTime.isBefore(
-                  DateTime.parse(surveyList.elementAt(j)['finalDate']))) {
-            id = surveyList.elementAt(j)['id'];
+          if (currentDateTime.isAfter(DateTime.parse(
+                  surveyList.elementAt(j)['beginDate'] as String)) &&
+              currentDateTime.isBefore(DateTime.parse(
+                  surveyList.elementAt(j)['finalDate'] as String))) {
+            id = surveyList.elementAt(j)['id'] as String;
             break;
           }
         }
       }
     }
-    return id ?? null;
+    return id;
   }
 
   Future<void> markSurveyAsComplete(String surveyId) async {
-    print('surveyId: $surveyId');
-    List<dynamic> surveyList = await fetchSurveyList();
-    File surveyFile = await _surveyListFile;
-    List<dynamic> updatedSurveyList = surveyList.map((element) {
+    final List<dynamic> surveyList = await fetchSurveyList();
+    final File surveyFile = await _surveyListFile;
+    final List<dynamic> updatedSurveyList = surveyList.map((element) {
       if (element['id'] == surveyId) {
         element['isComplete'] = true;
       }
@@ -126,8 +121,8 @@ class QualtricsLocalDataSource {
     // just in case the questions come in UNORDERED, sort them
     sessionInfo.questions
         .sort((QuestionModel questionA, QuestionModel questionB) {
-      int indexA = int.parse(questionA.questionId.replaceAll("QID", ""));
-      int indexB = int.parse(questionB.questionId.replaceAll("QID", ""));
+      final int indexA = int.parse(questionA.questionId.replaceAll("QID", ""));
+      final int indexB = int.parse(questionB.questionId.replaceAll("QID", ""));
       return indexA.compareTo(indexB);
     });
 
@@ -135,23 +130,23 @@ class QualtricsLocalDataSource {
       "surveyId": surveyId,
       "sessionInfoModel": sessionInfo.toJson()
     };
-    File sessionFile = await _sessionFile;
+    final File sessionFile = await _sessionFile;
     sessionFile.writeAsStringSync(json.encode(currentSessionData));
   }
 
   /// Response may be null
   Future<Map<String, dynamic>> fetchSurveySession() async {
-    File sessionFile = await _sessionFile;
+    final sessionFile = await _sessionFile;
 
-    final String jsonString = sessionFile.readAsStringSync();
-    Map sessionMap = json.decode(jsonString);
-    SessionInfoModel sessionInfo =
-        SessionInfoModel.fromJson(sessionMap['sessionInfoModel']);
+    final jsonString = sessionFile.readAsStringSync();
+    final sessionInfoMap = json.decode(jsonString) as Map<String, dynamic>;
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
     // QuestionModel question = await
 
-    Map<String, dynamic> result = {
-      "surveyId": sessionMap['surveyId'],
-      "sessionInfoModel": sessionInfo
+    final Map<String, dynamic> result = {
+      "surveyId": sessionInfoMap['surveyId'],
+      "sessionInfoModel": sessionInfo.toJson(),
     };
     return result;
   }
@@ -172,12 +167,11 @@ class QualtricsLocalDataSource {
     // Map<String, dynamic> sessionMap;
     StoredSessionDataModel sessionData;
     try {
-      File sessionFile = await _sessionFile;
-      final String jsonString = sessionFile.readAsStringSync();
-      Map<String, dynamic> sessionMap = json.decode(jsonString);
+      final sessionFile = await _sessionFile;
+      final jsonString = sessionFile.readAsStringSync();
+      final sessionMap = json.decode(jsonString) as Map<String, dynamic>;
       sessionData = StoredSessionDataModel.fromJson(sessionMap);
     } catch (e) {
-      print(e);
       // sessionMap = {};
       // We create a Model ourselves with no inputs
       return null;
@@ -187,7 +181,7 @@ class QualtricsLocalDataSource {
   }
 
   Future<void> deleteCurrentSessionData() async {
-    File sessionFile = await _sessionFile;
+    final File sessionFile = await _sessionFile;
     if (await sessionFile.exists()) {
       await sessionFile.delete();
     }

@@ -9,40 +9,39 @@ class UnfinishedSurveyContent extends StatelessWidget {
   final String surveyId;
   final String sessionId;
 
-  UnfinishedSurveyContent({
+  const UnfinishedSurveyContent({
     @required this.surveyId,
     @required this.sessionId,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.of(context).youHaveASurveyThatHasNotBeenCompleted,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 22,
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            S.of(context).youHaveASurveyThatHasNotBeenCompleted,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 22,
             ),
-            SizedBox(height: 16),
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              color: AppColors.greyAboutPage,
-              elevation: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 50,
-                      child: Image.asset(AppImages.group129),
-                    ),
+          ),
+          const SizedBox(height: 16),
+          Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            color: AppColors.greyAboutPage,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Image.asset(AppImages.group129),
+                  ),
                     Flexible(
                       child: Column(
                         children: [
@@ -51,10 +50,10 @@ class UnfinishedSurveyContent extends StatelessWidget {
                             child: Text(
                               S.of(context).yourSurveyForTheMonthIsUnfinishedPleaseTakeAFewMinutesToFinishIt,
                               softWrap: true,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                              ),
+                              style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
                             ),
                           ),
                         ],
@@ -64,36 +63,35 @@ class UnfinishedSurveyContent extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 24,
-            ),
+          const SizedBox(
+            height: 24,
+          ),
             Center(
               child: RaisedButton(
                 color: AppColors.orange,
-                highlightElevation: 2,
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: BlocBuilder<SurveyCubit, SurveyState>(
-                      builder: (context, state) {
-                    if (state is LoadingSurveyState) {
-                      return CircularProgressIndicator();
-                    }
-                    return Text(S.of(context).finishSurvey);
-                  }),
-                ),
-                onPressed: () {
-                  context.bloc<SurveyCubit>().returnToIncompleteSurveySession(
-                      surveyId: surveyId, sessionId: sessionId);
-                },
+              highlightElevation: 2,
+              elevation: 8,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
               ),
+              onPressed: () {
+                context.read<SurveyCubit>().returnToIncompleteSurveySession(
+                    surveyId: surveyId, sessionId: sessionId);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: BlocBuilder<SurveyCubit, SurveyState>(
+                    builder: (context, state) {
+                  if (state is LoadingSurveyState) {
+                    return const CircularProgressIndicator();
+                  }
+                  return Text(S.of(context).finishSurvey);
+                }),
+              ),
+            ),
             )
           ],
         ),
-      ),
     );
   }
 }
