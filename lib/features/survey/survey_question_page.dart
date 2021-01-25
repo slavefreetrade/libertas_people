@@ -85,7 +85,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SurveyThankYouPage()));
             } else if (state is FailureSurveyState) {
-              ScaffoldMessenger.of(context).showSnackBar(
+              Scaffold.of(context).showSnackBar(
                 SnackBar(
                   // duration: Duration(milliseconds: 3000),
                   content: Text(state.message),
@@ -155,8 +155,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                       // validate a button has been pressed or a text has been entered
 
                       if (_answer == null) {
-                        ScaffoldMessenger.of(_scaffoldKey.currentContext)
-                            .showSnackBar(
+                        _scaffoldKey.currentState.showSnackBar(
                           SnackBar(
                             duration: const Duration(milliseconds: 1500),
                             content:
