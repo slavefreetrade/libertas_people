@@ -67,8 +67,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               icon: Icon(Icons.clear),
               onPressed: () => _onBackPressed(context)),
           backgroundColor: AppColors.darkBlue,
-          title: Text("${widget.questionIndex}/${widget.totalQuestionCount}"),
-          centerTitle: true,
         ),
         body: BlocListener<SurveyCubit, SurveyState>(
           listener: (context, state) {
