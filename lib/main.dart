@@ -4,9 +4,9 @@ import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/shared_ui_elements/app_fonts.dart';
 
-import 'shared_ui_elements/colors.dart';
 import 'features/splash_screen.dart';
 import 'generated/l10n.dart';
+import 'shared_ui_elements/colors.dart';
 
 void main() {
   runApp(MyApp());

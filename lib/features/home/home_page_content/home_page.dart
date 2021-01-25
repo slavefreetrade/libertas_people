@@ -77,8 +77,6 @@ class HomePage extends StatelessWidget {
                             return const Center(
                                 child: CircularProgressIndicator());
                           } else if (state is UnfinishedSurveyHomeScreenState) {
-                            print('state.surveyID: ${state.surveyId}');
-                            print('state.sessionId: ${state.sessionId}');
                             return UnfinishedSurveyContent(
                                 surveyId: state.surveyId,
                                 sessionId: state.sessionId);
@@ -88,7 +86,7 @@ class HomePage extends StatelessWidget {
                           } else if (state is WelcomeBackHomeScreenState) {
                             return WelcomeBackContent(state.surveyId);
                           } else if (state is NoSurveyHomeScreenState) {
-                            return NoSurveyContent();
+                            return const NoSurveyContent();
                           } else if (state is FailureHomeScreenState) {
                             return Center(
                                 child: Text(S

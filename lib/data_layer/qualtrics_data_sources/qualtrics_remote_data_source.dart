@@ -74,7 +74,7 @@ class QualtricsRemoteDataSource {
     }
   }
 
-  Future<Map>  updateSession(
+  Future<void> updateSession(
       {@required ApiRequestModel request,
       @required SurveyResponsesModel surveyResponses}) async {
     assert(request != null,
@@ -95,12 +95,13 @@ class QualtricsRemoteDataSource {
           headers: _getHeader(apiKey: secrets.apiKey),
           body: _getBodyWithReponses(surveyResponses));
       if (response.statusCode == 200) {
-        final Map map = jsonDecode(response.body) as Map<String, dynamic>;
+        //final Map map = jsonDecode(response.body) as Map<String, dynamic>;
+
         //final bool isDone = map['result']['done'] is String;
         // return isDone ? null : 'done';
-        return map['result'];
-      } else {
 
+        //return map['result'];
+      } else {
         throw Exception('@@@ Returned with Error code: ${response.statusCode}');
       }
     } on Exception catch (e) {
@@ -118,7 +119,6 @@ class QualtricsRemoteDataSource {
           headers: _getHeader(apiKey: secrets.apiKey));
 
       if (response.statusCode == 200) {
-        print("response.body: ${response.body}");
         return jsonDecode(response.body)['result']["elements"] as List<dynamic>;
         // return SurveyListModel.fromJson(
         //     jsonDecode(response.body)['result'] as Map<String, dynamic>);

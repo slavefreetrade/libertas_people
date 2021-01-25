@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/features/about/about.dart';
 import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/generated/l10n.dart';
-import 'home/home_page_content/home_page.dart';
+
 import '../shared_ui_elements/colors.dart';
+import 'home/home_page_content/home_page.dart';
 
 class TabBarController extends StatefulWidget {
   @override
@@ -13,10 +14,9 @@ class TabBarController extends StatefulWidget {
 
 class _TabBarControllerState extends State<TabBarController> {
   @override
-  initState() {
+  void initState() {
     super.initState();
-
-    context.bloc<HomeScreenCubit>().loadHomeScreen();
+    context.read<HomeScreenCubit>().loadHomeScreen();
   }
 
   int pageIndex = 0;
@@ -37,11 +37,11 @@ class _TabBarControllerState extends State<TabBarController> {
         currentIndex: pageIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: S.of(context).home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
+            icon: const Icon(Icons.info),
             label: S.of(context).aboutSurvey,
           ),
         ],
@@ -53,7 +53,7 @@ class _TabBarControllerState extends State<TabBarController> {
   Widget _getPage() {
     switch (pageIndex) {
       case 0:
-        return HomePage();
+        return const HomePage();
       default:
         return AboutPage(onTakeSurveyPressed: () => _animateToPage(0));
     }
