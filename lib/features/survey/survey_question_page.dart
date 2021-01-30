@@ -8,7 +8,6 @@ import 'package:libertaspeople/features/survey/widgets/next_previous_buttons.dar
 import 'package:libertaspeople/generated/l10n.dart';
 import 'package:libertaspeople/models/question_model.dart';
 import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'multiple_choice_button_column.dart';
 
@@ -66,8 +65,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               icon: const Icon(Icons.clear),
               onPressed: () => _onBackPressed(context)),
           backgroundColor: AppColors.darkBlue,
-          title: Text("${widget.questionIndex}/${widget.totalQuestionCount}"),
-          centerTitle: true,
         ),
         body: BlocListener<SurveyCubit, SurveyState>(
           listener: (context, state) {
@@ -101,16 +98,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        right: 12.0, left: 12, bottom: 16),
-                    child: StepProgressIndicator(
-                      totalSteps: _totalCount,
-                      currentStep: _questionIndex,
-                      size: 20,
-                      selectedColor: AppColors.lightBlue,
-                    ),
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
