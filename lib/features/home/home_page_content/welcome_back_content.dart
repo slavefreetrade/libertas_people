@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/generated/l10n.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
-import 'package:libertaspeople/shared_ui_elements/images.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class WelcomeBackContent extends StatelessWidget {
   final String nextSurveyId;

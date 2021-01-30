@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/models/choice_model.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class MultipleChoiceButtonColumn extends StatefulWidget {
   final String questionId;

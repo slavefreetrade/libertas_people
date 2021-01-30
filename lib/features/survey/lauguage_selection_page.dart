@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/features/survey/survey_information_page.dart';
 import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
   final String surveyId;
@@ -22,7 +23,6 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
         children: [
           Expanded(
             child: Center(
-
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -43,7 +43,7 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    previousButtonLabel: Text(S.of(context).back),
+                    previousButtonLabel: S.of(context).back,
                   ),
                 ),
                 const SizedBox(
