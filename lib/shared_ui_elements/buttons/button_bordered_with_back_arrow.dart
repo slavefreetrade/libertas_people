@@ -18,10 +18,13 @@ class ButtonBorderedWithBackArrow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
       textColor: AppColors.lightBlue,
       color: AppColors.white,
+      shape: RoundedRectangleBorder(
+          side: const BorderSide(color: AppColors.lightBlue, width: 2),
+          borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
-          Expanded(
-            child: const Icon(Icons.arrow_back_ios),
+          const Expanded(
+            child: Icon(Icons.arrow_back_ios),
           ),
           Text(
             previousButtonLabel ?? S.of(context).previous,
@@ -29,10 +32,6 @@ class ButtonBorderedWithBackArrow extends StatelessWidget {
           ),
         ],
       ),
-      shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: AppColors.lightBlue, width: 2, style: BorderStyle.solid),
-          borderRadius: BorderRadius.circular(10)),
     );
   }
 }

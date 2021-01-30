@@ -27,7 +27,7 @@ class Principle extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: 100,
                   height: 100,
                   child: Image(
@@ -37,7 +37,7 @@ class Principle extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                Container(
+                SizedBox(
                   width: width * 0.6,
                   child: Text(
                     title,

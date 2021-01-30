@@ -21,29 +21,32 @@ class Repository {
   }
 
   Future<void> createUser() async {
-    String userId = await userLocal.fetchUniqueDeviceID();
+    final String userId = await userLocal.fetchUniqueDeviceID();
     await userLocal.storeUID(userId);
   }
 
   Future<SessionInfoModel> startSession(String surveyId) async {
-    SessionInfoModel sessionInfo = await qualtricsRemote.startSession(surveyId);
+    final SessionInfoModel sessionInfo =
+        await qualtricsRemote.startSession(surveyId);
     await qualtricsLocal.storeEntireSurveySession(surveyId, sessionInfo);
     return sessionInfo;
   }
 
   Future<SessionInfoModel> returnToPreviousSession() async {
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
     return sessionInfo;
   }
 
   Future<QuestionModel> getQuestionForIndex(int index) async {
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
 
-    QuestionModel question = sessionInfo.questions.firstWhere(
+    final QuestionModel question = sessionInfo.questions.firstWhere(
         (question) => question.questionId.contains(index.toString()));
 
     return question;
@@ -51,88 +54,88 @@ class Repository {
 
   Future<Map<String, dynamic>> getPreviousAnswerByIndex(
       int previousIndex) async {
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
-    String previousAnswerKey = sessionInfo.responses.keys.firstWhere(
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
+    final String previousAnswerKey = sessionInfo.responses.keys.firstWhere(
         (key) => key.contains(previousIndex.toString()), orElse: () {
       return null;
     });
     if (previousAnswerKey == null) {
       return null;
     }
-    Map<String, dynamic> previousAnswer = {
+    final Map<String, dynamic> previousAnswer = {
       previousAnswerKey: sessionInfo.responses[previousAnswerKey]
     };
     return previousAnswer;
   }
 
   Future<QuestionModel> getNextQuestionForIncompleteSurvey() async {
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
 
-    Map<String, dynamic> responses = sessionInfo.responses;
+    final Map<String, dynamic> responses = sessionInfo.responses;
     int lastIndexAnswered = 0;
     responses.forEach((key, value) {
-      int keyToInteger = int.parse(key.replaceAll("QID", ""));
+      final int keyToInteger = int.parse(key.replaceAll("QID", ""));
       if (keyToInteger > lastIndexAnswered) {
         lastIndexAnswered = keyToInteger;
       }
     });
-    int nextIndex = lastIndexAnswered + 1;
+    final int nextIndex = lastIndexAnswered + 1;
 
     // TODO handle FIRST WHERE orElse case
     QuestionModel question = sessionInfo.questions.firstWhere(
         (question) => question.questionId.contains(nextIndex.toString()),
         orElse: () => null);
 
-    if (question == null) {
-      question = sessionInfo.questions.firstWhere((question) =>
-          question.questionId.contains((nextIndex - 1).toString()));
-    }
-
-    return question;
+    return question ??= sessionInfo.questions.firstWhere(
+        (question) => question.questionId.contains((nextIndex - 1).toString()));
   }
 
   Future<void> storeAnswer(Map<String, dynamic> answer) async {
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
     sessionInfo.responses.addAll(answer);
     await qualtricsLocal.storeEntireSurveySession(
-        sessionInfoMap['surveyId'], sessionInfo);
+        sessionInfoMap['surveyId'] as String, sessionInfo);
   }
 
   Future<void> fetchAndStoreQualtricsSurveys(
       int surveyFrequencyInMinutes) async {
-    List<dynamic> surveyListFromQualtrics =
+    final List<dynamic> surveyListFromQualtrics =
         await qualtricsRemote.getListOfAvailableSurveys();
-    surveyListFromQualtrics.forEach((survey) => print(survey));
     await qualtricsLocal.storeSurveyList(
         surveyListFromQualtrics, surveyFrequencyInMinutes);
   }
 
   Future<StoredSessionDataModel> fetchIncompleteSessionData() async {
-    StoredSessionDataModel storedSessionDataModel =
+    final StoredSessionDataModel storedSessionDataModel =
         await qualtricsLocal.getStoredSessionData;
     return storedSessionDataModel;
   }
 
   // TODO this could return a data model instead of a Map
   Future<Map<String, dynamic>> fetchCurrentSurveyForUser() async {
-    List<dynamic> listOfSurveys = await qualtricsLocal.fetchSurveyList();
+    final List<dynamic> listOfSurveys = await qualtricsLocal.fetchSurveyList();
 
     final DateTime now = DateTime.now();
 
-    Map<String, dynamic> currentSurveyForUser =
+    final Map<String, dynamic> currentSurveyForUser =
         listOfSurveys.firstWhere((survey) {
-      DateTime beginningSurveyDate = DateTime.parse(survey["beginDate"]);
-      DateTime endSurveyDate = DateTime.parse(survey["finalDate"]);
-      return (now.isAfter(beginningSurveyDate) && now.isBefore(endSurveyDate));
+      final DateTime beginningSurveyDate =
+          DateTime.parse(survey["beginDate"] as String);
+      final DateTime endSurveyDate =
+          DateTime.parse(survey["finalDate"] as String);
+      return now.isAfter(beginningSurveyDate) && now.isBefore(endSurveyDate);
     }, orElse: () {
       return null;
-    });
+    }) as Map<String, dynamic>;
 
     return currentSurveyForUser;
   }
@@ -140,13 +143,14 @@ class Repository {
   Future<void> completeSession() async {
     final String deviceId = await userLocal.fetchUniqueDeviceID();
 
-    Map<String, dynamic> sessionInfoMap =
+    final Map<String, dynamic> sessionInfoMap =
         await qualtricsLocal.fetchSurveySession();
-    SessionInfoModel sessionInfo = sessionInfoMap['sessionInfoModel'];
+    final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
+        sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
 
     await qualtricsRemote.updateSession(
       request: ApiRequestModel(
-        surveyId: sessionInfoMap['surveyId'],
+        surveyId: sessionInfoMap['surveyId'] as String,
         sessionId: sessionInfo.sessionId,
       ),
       surveyResponses: SurveyResponsesModel(
@@ -155,7 +159,8 @@ class Repository {
         deviceId: deviceId,
       ),
     );
-    await qualtricsLocal.markSurveyAsComplete(sessionInfoMap['surveyId']);
+    await qualtricsLocal
+        .markSurveyAsComplete(sessionInfoMap['surveyId'] as String);
     await qualtricsLocal.deleteCurrentSessionData();
 
     //todo if survey's beginDate is null or title is Survey_1 update all surveys dates

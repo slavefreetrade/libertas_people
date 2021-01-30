@@ -17,19 +17,20 @@ class ButtonFullColorWithNextArrow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
       textColor: AppColors.white,
       color: AppColors.lightBlue,
+      shape: RoundedRectangleBorder(
+          side: const BorderSide(color: AppColors.lightBlue, width: 2),
+          borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
-          Expanded(child: Text(
-            isFinalQuestion ? S.of(context).complete : S.of(context).next,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),),
+          Expanded(
+            child: Text(
+              isFinalQuestion ? S.of(context).complete : S.of(context).next,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
           const Icon(Icons.arrow_forward_ios)
         ],
       ),
-      shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: AppColors.lightBlue, width: 2, style: BorderStyle.solid),
-          borderRadius: BorderRadius.circular(10)),
     );
   }
 }

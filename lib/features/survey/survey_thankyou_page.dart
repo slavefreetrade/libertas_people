@@ -7,19 +7,18 @@ import 'package:libertaspeople/shared_ui_elements/images.dart';
 class SurveyThankYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       width: width,
       height: height,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(80),
                     bottomRight: Radius.circular(80)),
                 child: Container(
@@ -34,7 +33,7 @@ class SurveyThankYouPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Image(
-                      image: const AssetImage(AppImages.thankYou),
+                      image: AssetImage(AppImages.thankYou),
                       height: 130,
                       width: 130,
                     ),
@@ -79,21 +78,19 @@ class SurveyThankYouPage extends StatelessWidget {
               padding: const EdgeInsets.all(6.0),
               children: <Widget>[
                 ListTile(
-                  leading: Container(
+                  leading: const SizedBox(
                       width: 50,
                       height: 50,
-                      child: const Image(
-                          image: const AssetImage(AppImages.calendar))),
+                      child: Image(image: AssetImage(AppImages.calendar))),
                   title: Text(S
                       .of(context)
                       .forTheNext10MonthsYouWillReceive10QuestionsPerMonthHereInTheApp),
                 ),
                 ListTile(
-                  leading: Container(
+                  leading: const SizedBox(
                       width: 50,
                       height: 50,
-                      child:
-                          const Image(image: const AssetImage(AppImages.bell))),
+                      child: Image(image: AssetImage(AppImages.bell))),
                   title: Text(S
                       .of(context)
                       .youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan),
@@ -110,6 +107,8 @@ class SurveyThankYouPage extends StatelessWidget {
               },
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
               color: AppColors.orange,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
               child: Text(
                 S.of(context).returnHome,
                 style: const TextStyle(
@@ -117,8 +116,6 @@ class SurveyThankYouPage extends StatelessWidget {
                     color: AppColors.white,
                     fontWeight: FontWeight.bold),
               ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
             ),
           ),
         ],

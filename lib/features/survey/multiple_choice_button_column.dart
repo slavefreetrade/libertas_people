@@ -12,7 +12,7 @@ class MultipleChoiceButtonColumn extends StatefulWidget {
     this.questionId,
     this.choices, {
     @required this.updateAnswer,
-        this.previousAnswer,
+    this.previousAnswer,
   });
 
   @override
@@ -28,44 +28,43 @@ class _MultipleChoiceButtonColumnState
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.previousAnswer != null) {
-      print("previous answer: ${widget.previousAnswer}");
-      print("previous toggled index: ${widget.previousAnswer[widget.questionId].keys.first}");
+    if (widget.previousAnswer != null) {
       setState(() {
-        _toggledId = widget.previousAnswer[widget.questionId].keys.first;
+        _toggledId =
+            widget.previousAnswer[widget.questionId].keys.first as String;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildMCAnswerOptionsWidget();
+    return buildMCAnswerOptionsWidget();
   }
 
-  _buildMCAnswerOptionsWidget() {
-    List<Widget> questionChoiceButtons = [];
+  Widget buildMCAnswerOptionsWidget() {
+    final List<Widget> questionChoiceButtons = [];
 
-    widget.choices.forEach((choice) {
+    for (final choice in widget.choices) {
       questionChoiceButtons.add(FlatButton(
         onPressed: () {
           setState(() {
             _toggledId = choice.choiceId;
           });
-          Map<String, dynamic> answer = {
+          final Map<String, dynamic> answer = {
             widget.questionId: {
               choice.choiceId: {"selected": true}
             }
           };
-          // print("selected answer: $answer");
-          // print("value for id: ${answer[widget.questionId].keys.first}");
 
           widget.updateAnswer(answer);
-
         },
         padding: const EdgeInsets.all(12.0),
         color: _toggledId == choice.choiceId
             ? AppColors.darkBlue
             : AppColors.white,
+        shape: RoundedRectangleBorder(
+            side: const BorderSide(color: Colors.grey, width: 3),
+            borderRadius: BorderRadius.circular(10)),
         child: Text(
           choice.display,
           style: TextStyle(
@@ -75,17 +74,13 @@ class _MultipleChoiceButtonColumnState
                   : AppColors.darkBlue,
               fontWeight: FontWeight.bold),
         ),
-        shape: RoundedRectangleBorder(
-            side: BorderSide(
-                color: Colors.grey, width: 3, style: BorderStyle.solid),
-            borderRadius: BorderRadius.circular(10)),
       ));
       questionChoiceButtons.add(
         const SizedBox(
           height: 20,
         ),
       );
-    });
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

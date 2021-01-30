@@ -16,14 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _handleNavigation();
+    handleNavigation();
   }
 
-  _handleNavigation() async {
+  Future<void> handleNavigation() async {
     final bool doesExist = await repo.userExists();
     if (!doesExist) {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => OnboardingPage()));
+          MaterialPageRoute(builder: (context) => const OnboardingPage()));
       return;
     }
     Navigator.of(context).pushReplacement(
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: 175.0,
                 width: 175.0,
                 child: Image.asset(AppImages.logoImage),
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 height: 50.0,
                 width: 250.0,
                 child: Image.asset(AppImages.logoText),

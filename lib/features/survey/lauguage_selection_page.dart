@@ -35,24 +35,24 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(S.of(context).back),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
                 ),
                 RaisedButton(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(S.of(context).next),
-                  ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
                             SurveyInformationPage(widget.surveyId)));
                   },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(S.of(context).next),
+                  ),
                 ),
               ],
             ),
