@@ -90,7 +90,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       emit(WelcomeBackHomeScreenState(currentSurveyId));
     } on Exception catch (e) {
-      print(e);
       emit(FailureHomeScreenState(e.toString()));
     }
   }

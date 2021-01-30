@@ -7,7 +7,7 @@ import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
 import 'package:libertaspeople/features/survey/widgets/next_previous_buttons.dart';
 import 'package:libertaspeople/generated/l10n.dart';
 import 'package:libertaspeople/models/question_model.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'multiple_choice_button_column.dart';
@@ -20,7 +20,7 @@ class SurveyQuestionPage extends StatefulWidget {
   final QuestionModel question;
   final Map answer;
 
-  SurveyQuestionPage(
+  const SurveyQuestionPage(
       this.questionIndex, this.totalQuestionCount, this.question, this.answer);
 
   @override
@@ -46,11 +46,10 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   void initState() {
     super.initState();
 
-    print("_answer in survey quesiton page: ${_answer}");
     if (widget.answer != null) {
-      _answer = widget.answer;
+      _answer = widget.answer as Map<String, dynamic>;
       if (_isTextEntryQuestion) {
-        _textAnswerController.text = _answer[_question.questionId];
+        _textAnswerController.text = _answer[_question.questionId] as String;
       }
       setState(() {});
     }
@@ -64,7 +63,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
         key: _scaffoldKey,
         appBar: AppBar(
           leading: IconButton(
-              icon: Icon(Icons.clear),
+              icon: const Icon(Icons.clear),
               onPressed: () => _onBackPressed(context)),
           backgroundColor: AppColors.darkBlue,
         ),
@@ -81,11 +80,9 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                 ),
               );
             } else if (state is ThankYouSurveyState) {
-              print("is navigating to thank you page");
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SurveyThankYouPage()));
             } else if (state is FailureSurveyState) {
-              print("survey cubit failure" + state.message);
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   // duration: Duration(milliseconds: 3000),
@@ -110,7 +107,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                       currentStep: _questionIndex,
                       size: 20,
                       selectedColor: AppColors.lightBlue,
-                      unselectedColor: Colors.grey,
                     ),
                   ),
                   Expanded(
@@ -151,7 +147,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                     isFinalQuestion: _questionIndex == _totalCount,
                     isFirstQuestion: _questionIndex == 1,
                     onBackPressed: () {
-                      context.bloc<SurveyCubit>().previousQuestion();
+                      context.read<SurveyCubit>().previousQuestion();
                     },
                     onNextPressed: () {
                       // validate a button has been pressed or a text has been entered
@@ -159,22 +155,20 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                       if (_answer == null) {
                         _scaffoldKey.currentState.showSnackBar(
                           SnackBar(
-                            duration: Duration(milliseconds: 1500),
+                            duration: const Duration(milliseconds: 1500),
                             content:
                                 Text(S.of(context).pleaseProvideAnAnswerThanks),
                           ),
                         );
-                        print("must submit an answer");
-                        print("show alert in app");
                         return;
                       }
 
                       final isFinalQuestion = _questionIndex == _totalCount;
 
                       if (isFinalQuestion) {
-                        context.bloc<SurveyCubit>().completeSurvey(_answer);
+                        context.read<SurveyCubit>().completeSurvey(_answer);
                       } else {
-                        context.bloc<SurveyCubit>().nextQuestion(_answer);
+                        context.read<SurveyCubit>().nextQuestion(_answer);
                       }
                     },
                   ),
@@ -188,12 +182,12 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
     );
   }
 
-  _buildTextFieldAnswerWidget() {
+  Widget _buildTextFieldAnswerWidget() {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: TextField(
           controller: _textAnswerController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: OutlineInputBorder(),
           ),
           onChanged: (newValue) {
@@ -203,44 +197,43 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   }
 
   Future<bool> _onBackPressed(BuildContext context) {
-    return showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              S.of(context).areYouSureWantToLeave,
-              textAlign: TextAlign.center,
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          S.of(context).areYouSureWantToLeave,
+          textAlign: TextAlign.center,
+        ),
+        content: Text(
+          S
+              .of(context)
+              .itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved,
+        ),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(
+              S.of(context).continueText,
+              style:
+                  const TextStyle(color: AppColors.blueAboutPage, fontSize: 17),
             ),
-            content: Text(
-              S
-                  .of(context)
-                  .itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved,
-            ),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text(
-                  S.of(context).continueText,
-                  style: const TextStyle(
-                      color: AppColors.blueAboutPage, fontSize: 17),
-                ),
-              ),
-              SizedBox(height: 16),
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => TabBarController()),
-                      (route) => route.isFirst);
-                },
-                child: Text(
-                  S.of(context).leave,
-                  style: const TextStyle(
-                      color: AppColors.blueAboutPage, fontSize: 17),
-                ),
-              ),
-            ],
           ),
-        ) ??
-        false;
+          const SizedBox(height: 16),
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => TabBarController()),
+                  (route) => route.isFirst);
+            },
+            child: Text(
+              S.of(context).leave,
+              style:
+                  const TextStyle(color: AppColors.blueAboutPage, fontSize: 17),
+            ),
+          ),
+        ],
+      ),
+    );
+    return Future.value(false);
   }
 }

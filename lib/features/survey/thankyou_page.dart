@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ThankYouPage extends StatefulWidget {
@@ -16,10 +16,10 @@ class _ThankYouPageState extends State<ThankYouPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       height: height,
       width: width,
       child: Column(
@@ -27,7 +27,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(80),
                     bottomRight: Radius.circular(80)),
                 child: Container(
@@ -46,22 +46,20 @@ class _ThankYouPageState extends State<ThankYouPage> {
                       animation: true,
                       animationDuration: 1500,
                       lineWidth: 22.0,
-                      percent: (_progressValue / _totalValue),
+                      percent: _progressValue / _totalValue,
                       center: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            _progressValue.toStringAsFixed(0) +
-                                "/" +
-                                _totalValue.toStringAsFixed(0),
-                            style: TextStyle(
+                            "${_progressValue.toStringAsFixed(0)}/${_totalValue.toStringAsFixed(0)}",
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25.0,
                                 color: AppColors.orange),
                           ),
                           const Text(
                             "surveys completed",
-                            style: const TextStyle(color: AppColors.white),
+                            style: TextStyle(color: AppColors.white),
                           )
                         ],
                       ),
@@ -71,7 +69,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
                     ),
                     const Text(
                       "Thank you",
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: AppColors.white,
                           fontSize: 35,
                           fontWeight: FontWeight.bold),
@@ -84,27 +82,25 @@ class _ThankYouPageState extends State<ThankYouPage> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: const Text(
+          const Padding(
+            padding: EdgeInsets.all(12.0),
+            child: Text(
               "We appreciate your engagement and time! Your answers will have a big impact in helping us determine the human rights conditions in your workplace.",
-              style: const TextStyle(fontSize: 17),
+              style: TextStyle(fontSize: 17),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
+              children: const [
+                Text(
                   "Your next survey",
-                  style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "XX.XX.XX",
-                  style: const TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -112,20 +108,18 @@ class _ThankYouPageState extends State<ThankYouPage> {
           Padding(
             padding: EdgeInsets.only(bottom: height * 0.04),
             child: FlatButton(
-              onPressed: () {
-                print("clicked return button");
-              },
+              onPressed: () {},
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
               color: AppColors.orange,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
               child: const Text(
                 "Return Home",
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 20,
                     color: AppColors.white,
                     fontWeight: FontWeight.bold),
               ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
             ),
           ),
         ],

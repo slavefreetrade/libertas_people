@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:libertaspeople/generated/l10n.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class SurveyLoadingIndicator extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class SurveyLoadingIndicator extends StatelessWidget {
           color: Colors.black38,
           child: Center(
               child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -27,7 +27,7 @@ class SurveyLoadingIndicator extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(S.of(context).loading),
-                  CircularProgressIndicator(
+                  const CircularProgressIndicator(
                     backgroundColor: AppColors.orange,
                   ),
                 ],

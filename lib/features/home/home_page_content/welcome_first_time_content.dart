@@ -20,7 +20,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 400,
       child: Padding(
@@ -59,7 +59,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                     padding: const EdgeInsets.only(left: 11.0),
                     child: Row(
                       children: [
-                        Container(
+                        SizedBox(
                           height: 50,
                           child: Image.asset(AppImages.ima),
                         ),
@@ -75,7 +75,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 70,
                         child: Image.asset(AppImages.i),
                       ),
@@ -90,7 +90,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 70,
                         child: Image.asset(AppImages.im),
                       ),
@@ -128,8 +128,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                   });
                 },
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40.0, vertical: 0),
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: _isLoading
                       ? const CircularProgressIndicator()
                       : Text(S.of(context).takeSurvey),

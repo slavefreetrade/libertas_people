@@ -7,7 +7,8 @@ import 'about_data.dart';
 import 'principle.dart';
 
 class AboutPage extends StatefulWidget {
-  const AboutPage({Key key}) : super(key: key);
+  final Function() onTakeSurveyPressed;
+  const AboutPage({Key key, this.onTakeSurveyPressed}) : super(key: key);
 
   @override
   _AboutPageState createState() => _AboutPageState();
@@ -95,32 +96,42 @@ class _AboutPageState extends State<AboutPage> {
                         ),
                       ),
                       textColor: Colors.white,
-                      color: Color(principle['color']),
+                      color: Color(principle['color'] as int),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return Principle(
+                            logo: principle['logo'] as String,
+                            title: principle['title'] as String,
+                            text: principle['text'] as String,
+                          );
+                        }));
+                      },
                       child: Padding(
-                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                         child: Row(
                           children: [
                             Text(
-                              principle['id'],
-                              style: TextStyle(
+                              principle['id'] as String,
+                              style: const TextStyle(
                                   fontSize: 28, fontWeight: FontWeight.w300),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 left: 8.0,
                                 right: 8.0,
                               ),
                               child: Image.asset(
-                                principle['image'],
-                                width: principle['image_size'],
+                                principle['image'] as String,
+                                width: principle['image_size'] as double,
                               ),
                             ),
                             Flexible(
                               child: Text(
                                 principle['title'].substring(
-                                    0, principle['title'].length - 1),
+                                    0, principle['title'].length - 1) as String,
                                 style: TextStyle(
-                                  fontSize: principle['size'],
+                                  fontSize: principle['size'] as double,
                                 ),
                                 softWrap: true,
                               ),
@@ -128,37 +139,7 @@ class _AboutPageState extends State<AboutPage> {
                           ],
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return Principle(
-                            logo: principle['logo'],
-                            title: principle['title'],
-                            text: principle['text'],
-                          );
-                        }));
-                      },
                     );
-                    //  return Container(
-                    //   width: 150,
-                    //   height: 55,
-                    //   child: GestureDetector(
-                    //      onTap: () {
-                    //       Navigator.push(context, MaterialPageRoute(
-                    //             builder: (BuildContext context) {
-                    //           return Principle(
-                    //             logo: principle['logo'],
-                    //             title: principle['title'],
-                    //             text: principle['text'],
-                    //           );
-                    //         }));
-                    //       },
-                    //      child: Image(
-                    //        image: AssetImage(principle['image']),
-                    //        fit: BoxFit.fill,
-                    //       ),
-                    //     ),
-                    //  );
                   }).toList(),
                 ),
               ),
@@ -173,7 +154,7 @@ class _AboutPageState extends State<AboutPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)),
                     color: AppColors.orange,
-                    onPressed: () {},
+                    onPressed: widget.onTakeSurveyPressed,
                     child: Text(
                       S.of(context).takeSurvey,
                       textAlign: TextAlign.center,

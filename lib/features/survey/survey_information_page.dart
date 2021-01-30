@@ -6,7 +6,7 @@ import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/features/survey/survey_question_page.dart';
 import 'package:libertaspeople/features/survey/widgets/next_previous_buttons.dart';
 import 'package:libertaspeople/generated/l10n.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class SurveyInformationPage extends StatefulWidget {
   final String surveyId;
@@ -48,7 +48,7 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            SizedBox(height: 30),
+                            const SizedBox(height: 30),
                             Text(
                               S.of(context).yourValuableInputIn5Minutes,
                               style: const TextStyle(
@@ -57,30 +57,31 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
                                   fontWeight: FontWeight.w500),
                               softWrap: true,
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                             _buildRowItem(S
                                 .of(context)
                                 .pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             _buildRowItem(S
                                 .of(context)
                                 .nobodyShouldTellYouWhatToAnswerOrControlYouWhenYouTakeTheSurvey),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             _buildRowItem(S
                                 .of(context)
                                 .completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             _buildRowItem(S
                                 .of(context)
                                 .questionsMarkedWithAStarSymbolAreObligatoryToAnswer),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                           ]),
                     ),
                   ),
                   NextPreviousButtons(
                     onBackPressed: () => Navigator.pop(context),
-                    onNextPressed: () => context
-                        .bloc<SurveyCubit>()
+                    onNextPressed: () =>
+                        context
+                        .read<SurveyCubit>()
                         .startSurvey(widget.surveyId),
                     previousButtonLabel: S.of(context).back,
                   )
@@ -104,16 +105,16 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
               height: 30,
               width: 30,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(15),
                 ),
                 border: Border.all(width: 3, color: AppColors.darkBlue),
               ),
             ),
-            Icon(Icons.check, color: AppColors.orange),
+            const Icon(Icons.check, color: AppColors.orange),
           ],
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Flexible(
           child: Text(
             text,

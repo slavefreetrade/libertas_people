@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../generated/l10n.dart';
@@ -18,19 +19,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SurveyCubit, SurveyState>(
-        listener: (context, state) {
-          if (state is FillingOutQuestionSurveyState) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => SurveyQuestionPage(
-                    state.currentQuestionIndex,
-                    state.totalQuestionCount,
-                    state.question,
-                    state.previousAnswer),
-              ),
-            );
-          }
-        },
+      listener: (context, state) {
+        if (state is FillingOutQuestionSurveyState) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => SurveyQuestionPage(
+                  state.currentQuestionIndex,
+                  state.totalQuestionCount,
+                  state.question,
+                  state.previousAnswer),
+            ),
+          );
+        }
+      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark,
         child: Column(
           children: <Widget>[
             Container(
@@ -77,8 +80,6 @@ class HomePage extends StatelessWidget {
                             return const Center(
                                 child: CircularProgressIndicator());
                           } else if (state is UnfinishedSurveyHomeScreenState) {
-                            print('state.surveyID: ${state.surveyId}');
-                            print('state.sessionId: ${state.sessionId}');
                             return UnfinishedSurveyContent(
                                 surveyId: state.surveyId,
                                 sessionId: state.sessionId);
@@ -88,7 +89,7 @@ class HomePage extends StatelessWidget {
                           } else if (state is WelcomeBackHomeScreenState) {
                             return WelcomeBackContent(state.surveyId);
                           } else if (state is NoSurveyHomeScreenState) {
-                            return NoSurveyContent();
+                            return const NoSurveyContent();
                           } else if (state is FailureHomeScreenState) {
                             return Center(
                                 child: Text(S
@@ -108,6 +109,8 @@ class HomePage extends StatelessWidget {
               ),
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

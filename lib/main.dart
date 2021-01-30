@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
-import 'package:libertaspeople/shared_ui_elements/app_fonts.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
-import 'shared_ui_elements/colors.dart';
 import 'features/splash_screen.dart';
 import 'generated/l10n.dart';
+import 'shared_ui_elements/colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
           appBarTheme: const AppBarTheme(
+            brightness: Brightness.dark,
             color: AppColors.darkBlue,
             elevation: 0,
             textTheme: TextTheme(
