@@ -99,16 +99,6 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        right: 12.0, left: 12, bottom: 16),
-                    child: StepProgressIndicator(
-                      totalSteps: _totalCount,
-                      currentStep: _questionIndex,
-                      size: 20,
-                      selectedColor: AppColors.lightBlue,
-                    ),
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
