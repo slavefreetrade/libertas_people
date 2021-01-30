@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/features/tab_bar_controller.dart';
-import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
+import 'package:libertaspeople/shared_ui_elements/colors.dart';
 
 class SelectSurveyFrequencyPage extends StatefulWidget {
   @override
@@ -94,9 +94,7 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
                 color: AppColors.orange,
                 onPressed: enterApp,
                 child: _isLoading
-                    ? const CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      )
+                    ? const CircularProgressIndicator()
                     : const Text('Enter App'),
               ),
             )
