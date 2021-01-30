@@ -1,38 +1,45 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+name: Bug Report
+about: Something wrong? Create a report to help us improve
+title: ""
+labels: needs:triage, source:public, bug
+assignees: ""
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Summary
 
-**To Reproduce**
+A clear and concise description of what the problem is, from the user's perspective
+
+## Reproduction Steps
+
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+## Expected Behavior
+
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## System
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+- Device: [e.g. iPhone6]
+- OS: [e.g. iOS8.1]
+- App Version: [1.2.0+14]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Additional Context
 
-**Additional context**
 Add any other context about the problem here.
+
+## Screenshots
+
+<details>
+<summary>Screenshots</summary>
+Add any relevant screenshots here
+</details>
+
+## Checklist:
+
+- [ ] Searched the [existing issues](https://github.com/slavefreetrade/libertas_people/issues) to ensure you are not creating a duplicate.
