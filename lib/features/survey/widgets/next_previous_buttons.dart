@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/shared_ui_elements/buttons/button_bordered_with_back_arrow.dart';
-import 'package:libertaspeople/shared_ui_elements/buttons/button_full_color_with_next_arrow.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class NextPreviousButtons extends StatelessWidget {
   final bool isFirstQuestion;

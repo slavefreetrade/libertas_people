@@ -6,7 +6,7 @@ import 'package:libertaspeople/features/survey/survey_loading_indicator.dart';
 import 'package:libertaspeople/features/survey/survey_question_page.dart';
 import 'package:libertaspeople/features/survey/widgets/next_previous_buttons.dart';
 import 'package:libertaspeople/generated/l10n.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class SurveyInformationPage extends StatefulWidget {
   final String surveyId;

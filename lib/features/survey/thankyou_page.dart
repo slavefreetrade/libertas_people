@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ThankYouPage extends StatefulWidget {
