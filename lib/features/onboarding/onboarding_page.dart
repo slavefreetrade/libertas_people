@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../data_layer/repository.dart';
+import '../../features/privacyPolicyAndTerms/privacy_policy_page.dart';
 import '../../generated/l10n.dart';
 import '../../shared_ui_elements/buttons/button_orange_color.dart';
 import '../../shared_ui_elements/colors.dart';
 import '../../shared_ui_elements/images.dart';
-import '../select_survey_frequency_page.dart';
 import 'onboarding_tab_view.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -31,8 +31,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   void _onLetsGetStartedButtonClick() {
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SelectSurveyFrequencyPage()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const PrivacyPolicyPage(
+              shouldShowAccept: true,
+            )));
   }
 
   @override

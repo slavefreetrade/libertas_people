@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../features/privacyPolicyAndTerms/privacy_policy_page.dart';
+import '../../features/privacyPolicyAndTerms/terms_and_conditions_page.dart';
 import '../../generated/l10n.dart';
 import '../../shared_ui_elements/colors.dart';
 import '../../shared_ui_elements/images.dart';
@@ -8,6 +10,7 @@ import 'principle.dart';
 
 class AboutPage extends StatefulWidget {
   final Function() onTakeSurveyPressed;
+
   const AboutPage({Key key, this.onTakeSurveyPressed}) : super(key: key);
 
   @override
@@ -25,6 +28,22 @@ class _AboutPageState extends State<AboutPage> {
           S.of(context).aboutSurvey,
         ),
         centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {
+                S.of(context).privacyPolicy,
+                S.of(context).termsAndConditions
+              }.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -170,5 +189,15 @@ class _AboutPageState extends State<AboutPage> {
         ),
       ),
     );
+  }
+
+  void handleClick(String value) {
+    if (value == S.of(context).privacyPolicy) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const PrivacyPolicyPage()));
+    } else if (value == S.of(context).termsAndConditions) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const TermsAndConditionsPage()));
+    }
   }
 }
