@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:libertaspeople/data_layer/repository.dart';
 import 'package:libertaspeople/features/onboarding/onboarding_page.dart';
 import 'package:libertaspeople/features/tab_bar_controller.dart';
-import 'package:libertaspeople/shared_ui_elements/images.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

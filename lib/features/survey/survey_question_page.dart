@@ -7,7 +7,7 @@ import 'package:libertaspeople/features/survey/survey_thankyou_page.dart';
 import 'package:libertaspeople/features/survey/widgets/next_previous_buttons.dart';
 import 'package:libertaspeople/generated/l10n.dart';
 import 'package:libertaspeople/models/question_model.dart';
-import 'package:libertaspeople/shared_ui_elements/colors.dart';
+import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'multiple_choice_button_column.dart';
