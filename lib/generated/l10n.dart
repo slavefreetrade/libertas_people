@@ -14,22 +14,23 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-  
+
   static S current;
-  
-  static const AppLocalizationDelegate delegate =
-    AppLocalizationDelegate();
+
+  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name); 
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       S.current = S();
-      
+
       return S.current;
     });
-  } 
+  }
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -46,10 +47,12 @@ class S {
   }
 
   /// `As part of our assessment process, we are asking you some questions about your workplace.`
-  String get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
+  String
+      get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
     return Intl.message(
       'As part of our assessment process, we are asking you some questions about your workplace.',
-      name: 'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
+      name:
+          'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
       desc: '',
       args: [],
     );
@@ -206,10 +209,12 @@ class S {
   }
 
   /// `Completing the survey will not expose you to any risk or repercussion with your manager or employer.`
-  String get completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour {
+  String
+      get completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour {
     return Intl.message(
       'Completing the survey will not expose you to any risk or repercussion with your manager or employer.',
-      name: 'completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour',
+      name:
+          'completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour',
       desc: '',
       args: [],
     );
@@ -246,10 +251,12 @@ class S {
   }
 
   /// `It will only take a couple more minutes to finish. If you leave, your answers will be saved.`
-  String get itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved {
+  String
+      get itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved {
     return Intl.message(
       'It will only take a couple more minutes to finish. If you leave, your answers will be saved.',
-      name: 'itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved',
+      name:
+          'itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved',
       desc: '',
       args: [],
     );
@@ -296,10 +303,12 @@ class S {
   }
 
   /// `There is an unexpected state in the bloc builder, this should be handled by development`
-  String get thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment {
+  String
+      get thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment {
     return Intl.message(
       'There is an unexpected state in the bloc builder, this should be handled by development',
-      name: 'thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment',
+      name:
+          'thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment',
       desc: '',
       args: [],
     );
@@ -316,10 +325,12 @@ class S {
   }
 
   /// `You have no surveys at the moment. We will notify you when there is a new survey available.`
-  String get youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable {
+  String
+      get youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable {
     return Intl.message(
       'You have no surveys at the moment. We will notify you when there is a new survey available.',
-      name: 'youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable',
+      name:
+          'youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable',
       desc: '',
       args: [],
     );
@@ -396,10 +407,12 @@ class S {
   }
 
   /// `We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.`
-  String get weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn {
+  String
+      get weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn {
     return Intl.message(
       'We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.',
-      name: 'weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn',
+      name:
+          'weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn',
       desc: '',
       args: [],
     );
@@ -526,10 +539,12 @@ class S {
   }
 
   /// `You don't have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.`
-  String get youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan {
+  String
+      get youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan {
     return Intl.message(
       'You don\'t have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.',
-      name: 'youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan',
+      name:
+          'youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan',
       desc: '',
       args: [],
     );
@@ -586,10 +601,12 @@ class S {
   }
 
   /// `The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way.`
-  String get theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure {
+  String
+      get theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure {
     return Intl.message(
       'The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way.',
-      name: 'theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure',
+      name:
+          'theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure',
       desc: '',
       args: [],
     );
@@ -815,10 +832,10 @@ class S {
     );
   }
 
-  /// `Privacy Policy Content\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Ipsum faucibus vitae aliquet nec. In fermentum et sollicitudin ac orci phasellus egestas tellus rutrum. Vulputate odio ut enim blandit volutpat maecenas volutpat. Viverra maecenas accumsan lacus vel facilisis volutpat est. Nisi vitae suscipit tellus mauris a. Facilisi cras fermentum odio eu feugiat. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Ultricies mi eget mauris pharetra et ultrices neque. In vitae turpis massa sed elementum tempus egestas. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Nulla pharetra diam sit amet nisl. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Dignissim diam quis enim lobortis scelerisque fermentum. Ac auctor augue mauris augue neque gravida in. Aliquet bibendum enim facilisis gravida neque convallis a. Et ultrices neque ornare aenean euismod. Sed risus pretium quam vulputate dignissim suspendisse in est ante.\n\nLorem mollis aliquam ut porttitor leo. Feugiat vivamus at augue eget arcu dictum varius duis at. Amet cursus sit amet dictum sit amet justo donec enim. Sollicitudin nibh sit amet commodo nulla. Aliquet risus feugiat in ante metus dictum at tempor. Ultrices tincidunt arcu non sodales neque. Duis at consectetur lorem donec massa sapien faucibus et molestie. Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sed nisi lacus sed viverra. Nunc eget lorem dolor sed viverra. Felis donec et odio pellentesque diam. Sed viverra tellus in hac habitasse platea. Nec sagittis aliquam malesuada bibendum. Est ante in nibh mauris cursus mattis molestie a iaculis.\n\nSemper viverra nam libero justo laoreet sit amet cursus sit. Diam in arcu cursus euismod quis viverra. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget nullam. Non tellus orci ac auctor augue mauris augue. Amet nulla facilisi morbi tempus. Orci eu lobortis elementum nibh tellus molestie nunc non blandit. Pretium nibh ipsum consequat nisl vel pretium lectus. Amet justo donec enim diam vulputate ut pharetra. Nulla posuere sollicitudin aliquam ultrices. Enim tortor at auctor urna nunc id.\n\nRisus feugiat in ante metus dictum at. Dictum sit amet justo donec enim. Et egestas quis ipsum suspendisse ultrices gravida. Hac habitasse platea dictumst quisque sagittis. Cras tincidunt lobortis feugiat vivamus at augue eget arcu. Eu turpis egestas pretium aenean. Tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Adipiscing bibendum est ultricies integer. Et tortor consequat id porta nibh venenatis cras. Orci a scelerisque purus semper eget duis at. Et netus et malesuada fames ac turpis egestas. Volutpat commodo sed egestas egestas.\n\nMalesuada fames ac turpis egestas integer eget. Iaculis nunc sed augue lacus viverra vitae congue eu. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Arcu vitae elementum curabitur vitae nunc. Proin fermentum leo vel orci porta non. Ut pharetra sit amet aliquam id diam. Auctor elit sed vulputate mi sit amet mauris commodo quis. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Morbi leo urna molestie at elementum. Dolor sit amet consectetur adipiscing. Vitae proin sagittis nisl rhoncus mattis rhoncus. Tempus egestas sed sed risus pretium. Non odio euismod lacinia at. In massa tempor nec feugiat nisl pretium fusce. Dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Cras semper auctor neque vitae tempus quam.`
+  /// `Purpose\nThe vision of slavefreetrade is a “A World Made in Freedom”.  We use data and analysis to give us the evidence to achieve our vision and mission. \n\nScope\nThis privacy notice applies to all personal data obtained and used by slavefreetrade for the purpose of achieving our mission “Powering human rights in workplaces globally”. \n\nData Privacy Policy\nOur mission demands target audience behaviour change.  Thus, access to data is granted based on the following question: “What does the target audience need to know to modify their behaviour towards becoming slave free?”. Slavefreetrade provides information to this target audience whilst protecting individual privacy and commercial in confidence information. At slavefreetrade we take privacy seriously. Identifiable Individual answers are NEVER published. Commercial in confidence information such as a detailed member’s supply chain are also protected. \n\nWhat privacy data do we collect in Libertas People?\n	-	Description\n		A survey of staff in a workplace and their assessment of their human rights in the workplace.\n	-	Personal details\n		Name, email, phone, IMEI  \n\n\nHow do we collect your data?\nYou directly provide slavefreetrade with most of the data we collect.  We collect data and process data when you: \n	1)	Become a member organisation and fill out our Web Survey or Interview. \n	2)	Volunteer to fill out our Workforce Assessment via Web App or Mobile App survey. \n	3)	Sign up to our Mobile App as a Good Campaigner. \n	4)	Subscribe to our website or visit our website (via cookies). \n	5)	Connect with us on social media \n\nHow will we use your data?\nSlavefreetrade uses your data so that we can\n	1)	Record an organisations performance in human rights and track the human rights record of its supply chain. Establish a working relationship with the organisation contact to improve human rights.\n	2)	Record an individual’s actual experience of human rights in the workplace and ensure the record is authentic without duress or persuasion.\n	3)	Goods Campaign – Use a groundswell of activists to influence organisational change to end modern slavery.\n	4)	Email our subscribers of the latest news and developments.\n	5)	Use our social media connections to update and influence a global movement to reduce modern slavery. \n\nHow do we store your data?\nSlavefreetrade stores your data at X\nDescribe security precautions taken here\nDescribe time period here (retention period)\nDescribe de-identification process here  \n\nMarketing\nWhen you subscribe to slavefreetrade via our website we will send you updates and news from slavefreetrade.  If you have agreed to subscribe you may always opt out at a later date. \nYou have the right at any time to stop slavefreetrade from contacting you. \nIf you wish to unsubscribe please click here: xxxxxxxx \n\nWhat are your data protection rights?\nSlavefreetrade would like to make sure you are fully aware of all your data protection rights.  Every user is entitled to the following: \n	-	The right to access – You have the right to request slavefreetrade for copies of your personal data. \n	-	The right to rectification – You have the right to request that slavefreetrade correct any information you believe is inaccurate.  You also have the right to request slavefreetrade complete information you believe is incomplete. \n	-	The right to erasure – You have the right to request that slavefreetrade erase your personal data under certain conditions. \n	-	The right to restrict processing – You have the right to request that slavefreetrade restrict the processing of your personal data, under certain conditions. \n	-	The right to object to processing – You have the right to object to slavefreetrade processing your personal data, under certain conditions. \n	-	The right to data portability – You have the right to request that slavefreetrade transfer the data that we have collected to another organisation, or directly to you, under certain conditions. \n	-	If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us at our email: \nXxx \nxxxxxx \n\nPrivacy policies on other websites\nSlavefreetrade website contains links to other websites.  Our privacy policy only applies to our website and data, so if you link on another website you should read their privacy policy. \n\nChanges to our privacy policy\nOur privacy policy is under regular review and we place updates on this web page.  The privacy policy was last updated on xxxx \n\nHow to contact us\nIf you have any questions about slavefreetrades privacy notice, the data we hold on you or you would like to exercise of your data protection rights, please do not hesitate to contact us: \nEmail \nCall \nWrite \n\nHow to contact the appropriate authority\nShould you wish to report a complaint or if you feel slavefreetrade has not addressed your concern in a satisfactory manner, you may contact the Information Commissioner’s Office \nEmail \nAddress \n`
   String get privacyPolicyContent {
     return Intl.message(
-      'Privacy Policy Content\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Ipsum faucibus vitae aliquet nec. In fermentum et sollicitudin ac orci phasellus egestas tellus rutrum. Vulputate odio ut enim blandit volutpat maecenas volutpat. Viverra maecenas accumsan lacus vel facilisis volutpat est. Nisi vitae suscipit tellus mauris a. Facilisi cras fermentum odio eu feugiat. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Ultricies mi eget mauris pharetra et ultrices neque. In vitae turpis massa sed elementum tempus egestas. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Nulla pharetra diam sit amet nisl. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Dignissim diam quis enim lobortis scelerisque fermentum. Ac auctor augue mauris augue neque gravida in. Aliquet bibendum enim facilisis gravida neque convallis a. Et ultrices neque ornare aenean euismod. Sed risus pretium quam vulputate dignissim suspendisse in est ante.\n\nLorem mollis aliquam ut porttitor leo. Feugiat vivamus at augue eget arcu dictum varius duis at. Amet cursus sit amet dictum sit amet justo donec enim. Sollicitudin nibh sit amet commodo nulla. Aliquet risus feugiat in ante metus dictum at tempor. Ultrices tincidunt arcu non sodales neque. Duis at consectetur lorem donec massa sapien faucibus et molestie. Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Sed nisi lacus sed viverra. Nunc eget lorem dolor sed viverra. Felis donec et odio pellentesque diam. Sed viverra tellus in hac habitasse platea. Nec sagittis aliquam malesuada bibendum. Est ante in nibh mauris cursus mattis molestie a iaculis.\n\nSemper viverra nam libero justo laoreet sit amet cursus sit. Diam in arcu cursus euismod quis viverra. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget nullam. Non tellus orci ac auctor augue mauris augue. Amet nulla facilisi morbi tempus. Orci eu lobortis elementum nibh tellus molestie nunc non blandit. Pretium nibh ipsum consequat nisl vel pretium lectus. Amet justo donec enim diam vulputate ut pharetra. Nulla posuere sollicitudin aliquam ultrices. Enim tortor at auctor urna nunc id.\n\nRisus feugiat in ante metus dictum at. Dictum sit amet justo donec enim. Et egestas quis ipsum suspendisse ultrices gravida. Hac habitasse platea dictumst quisque sagittis. Cras tincidunt lobortis feugiat vivamus at augue eget arcu. Eu turpis egestas pretium aenean. Tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Adipiscing bibendum est ultricies integer. Et tortor consequat id porta nibh venenatis cras. Orci a scelerisque purus semper eget duis at. Et netus et malesuada fames ac turpis egestas. Volutpat commodo sed egestas egestas.\n\nMalesuada fames ac turpis egestas integer eget. Iaculis nunc sed augue lacus viverra vitae congue eu. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Arcu vitae elementum curabitur vitae nunc. Proin fermentum leo vel orci porta non. Ut pharetra sit amet aliquam id diam. Auctor elit sed vulputate mi sit amet mauris commodo quis. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent. Morbi leo urna molestie at elementum. Dolor sit amet consectetur adipiscing. Vitae proin sagittis nisl rhoncus mattis rhoncus. Tempus egestas sed sed risus pretium. Non odio euismod lacinia at. In massa tempor nec feugiat nisl pretium fusce. Dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Cras semper auctor neque vitae tempus quam.',
+      'Purpose\nThe vision of slavefreetrade is a “A World Made in Freedom”.  We use data and analysis to give us the evidence to achieve our vision and mission. \n\nScope\nThis privacy notice applies to all personal data obtained and used by slavefreetrade for the purpose of achieving our mission “Powering human rights in workplaces globally”. \n\nData Privacy Policy\nOur mission demands target audience behaviour change.  Thus, access to data is granted based on the following question: “What does the target audience need to know to modify their behaviour towards becoming slave free?”. Slavefreetrade provides information to this target audience whilst protecting individual privacy and commercial in confidence information. At slavefreetrade we take privacy seriously. Identifiable Individual answers are NEVER published. Commercial in confidence information such as a detailed member’s supply chain are also protected. \n\nWhat privacy data do we collect in Libertas People?\n	-	Description\n		A survey of staff in a workplace and their assessment of their human rights in the workplace.\n	-	Personal details\n		Name, email, phone, IMEI  \n\n\nHow do we collect your data?\nYou directly provide slavefreetrade with most of the data we collect.  We collect data and process data when you: \n	1)	Become a member organisation and fill out our Web Survey or Interview. \n	2)	Volunteer to fill out our Workforce Assessment via Web App or Mobile App survey. \n	3)	Sign up to our Mobile App as a Good Campaigner. \n	4)	Subscribe to our website or visit our website (via cookies). \n	5)	Connect with us on social media \n\nHow will we use your data?\nSlavefreetrade uses your data so that we can\n	1)	Record an organisations performance in human rights and track the human rights record of its supply chain. Establish a working relationship with the organisation contact to improve human rights.\n	2)	Record an individual’s actual experience of human rights in the workplace and ensure the record is authentic without duress or persuasion.\n	3)	Goods Campaign – Use a groundswell of activists to influence organisational change to end modern slavery.\n	4)	Email our subscribers of the latest news and developments.\n	5)	Use our social media connections to update and influence a global movement to reduce modern slavery. \n\nHow do we store your data?\nSlavefreetrade stores your data at X\nDescribe security precautions taken here\nDescribe time period here (retention period)\nDescribe de-identification process here  \n\nMarketing\nWhen you subscribe to slavefreetrade via our website we will send you updates and news from slavefreetrade.  If you have agreed to subscribe you may always opt out at a later date. \nYou have the right at any time to stop slavefreetrade from contacting you. \nIf you wish to unsubscribe please click here: xxxxxxxx \n\nWhat are your data protection rights?\nSlavefreetrade would like to make sure you are fully aware of all your data protection rights.  Every user is entitled to the following: \n	-	The right to access – You have the right to request slavefreetrade for copies of your personal data. \n	-	The right to rectification – You have the right to request that slavefreetrade correct any information you believe is inaccurate.  You also have the right to request slavefreetrade complete information you believe is incomplete. \n	-	The right to erasure – You have the right to request that slavefreetrade erase your personal data under certain conditions. \n	-	The right to restrict processing – You have the right to request that slavefreetrade restrict the processing of your personal data, under certain conditions. \n	-	The right to object to processing – You have the right to object to slavefreetrade processing your personal data, under certain conditions. \n	-	The right to data portability – You have the right to request that slavefreetrade transfer the data that we have collected to another organisation, or directly to you, under certain conditions. \n	-	If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us at our email: \nXxx \nxxxxxx \n\nPrivacy policies on other websites\nSlavefreetrade website contains links to other websites.  Our privacy policy only applies to our website and data, so if you link on another website you should read their privacy policy. \n\nChanges to our privacy policy\nOur privacy policy is under regular review and we place updates on this web page.  The privacy policy was last updated on xxxx \n\nHow to contact us\nIf you have any questions about slavefreetrades privacy notice, the data we hold on you or you would like to exercise of your data protection rights, please do not hesitate to contact us: \nEmail \nCall \nWrite \n\nHow to contact the appropriate authority\nShould you wish to report a complaint or if you feel slavefreetrade has not addressed your concern in a satisfactory manner, you may contact the Information Commissioner’s Office \nEmail \nAddress \n',
       name: 'privacyPolicyContent',
       desc: '',
       args: [],
@@ -857,8 +874,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
