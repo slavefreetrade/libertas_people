@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "39173011454",
+    "project_id": "libertaspeople-d7db6",
+    "storage_bucket": "libertaspeople-d7db6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39173011454:android:ab26dedf6e9c24569172af",
+        "android_client_info": {
+          "package_name": "com.slavefreetrade.libertaspeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39173011454-8q8ojmdkdd4caap7v0v2bhn200l8v1pn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhYDUacg1kssbraDy0ByXzwwdvPfcZSL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39173011454-8q8ojmdkdd4caap7v0v2bhn200l8v1pn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

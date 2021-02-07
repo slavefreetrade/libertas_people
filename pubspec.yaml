@@ -9,9 +9,11 @@ environment:
 
 dependencies:
   device_info: ^1.0.0
+  firebase_messaging: ^7.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^6.1.1
+  flutter_local_notifications: ^4.0.0
   flutter_secure_storage: ^3.3.4
   flutter_svg: ^0.18.0
   http: ^0.12.2
