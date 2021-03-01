@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data_layer/repository.dart';
 import '../../models/stored_session_data_model.dart';
+import '../../services/notification_service.dart';
 
 abstract class HomeScreenState {}
 
@@ -45,6 +46,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   HomeScreenCubit() : super(UninitializedHomeScreenState());
 
   final Repository repository = Repository();
+  final NotificationServiceI notificationService = NotificationService();
 
   Future<void> loadHomeScreen() async {
     try {
@@ -54,6 +56,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
           await repository.fetchIncompleteSessionData();
 
       if (storedSessionData != null) {
+        notificationService.subscribeToSurveyNotCompletedNotification();
         emit(
           UnfinishedSurveyHomeScreenState(
             storedSessionData.surveyId,
@@ -69,25 +72,30 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
       /// completed all surveys
       if (currentSurveyForUser == null) {
+        notificationService.subscribeToSurveyCompletedNotification();
         emit(NoSurveyHomeScreenState());
         return;
       }
 
-      final bool currentSurveyIsComplete = currentSurveyForUser['isComplete'] as bool;
+      final bool currentSurveyIsComplete =
+          currentSurveyForUser['isComplete'] as bool;
       final String currentSurveyId = currentSurveyForUser['id'] as String;
 
       /// Completed current survey but not all
       if (currentSurveyIsComplete) {
+        notificationService.subscribeToSurveyCompletedNotification();
         emit(NoSurveyHomeScreenState());
         return;
       }
 
       if (!currentSurveyIsComplete &&
           currentSurveyForUser['name'] == 'Survey_1') {
+        notificationService.subscribeToSurveyNotOpenedNotification();
         emit(WelcomeFirstTimeHomeScreenState(currentSurveyId));
         return;
       }
 
+      notificationService.subscribeToSurveyNotOpenedNotification();
       emit(WelcomeBackHomeScreenState(currentSurveyId));
     } on Exception catch (e) {
       emit(FailureHomeScreenState(e.toString()));

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../data_layer/repository.dart';
 import '../../features/privacyPolicyAndTerms/privacy_policy_page.dart';
 import '../../generated/l10n.dart';
+import '../../services/notification_service.dart';
 import '../../shared_ui_elements/buttons/button_orange_color.dart';
 import '../../shared_ui_elements/colors.dart';
 import '../../shared_ui_elements/images.dart';
@@ -35,6 +36,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
         builder: (context) => const PrivacyPolicyPage(
               shouldShowAccept: true,
             )));
+  }
+
+  @override
+  void initState() {
+    NotificationService().subscribeToOnBoardingNotCompletedNotification();
+    super.initState();
   }
 
   @override

@@ -2,13 +2,15 @@ name: libertaspeople
 description: Human rights surveying app
 
 publish_to: "none"
-version: 0.1.0+1
+version: 0.2.1+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   device_info: ^1.0.0
+  firebase_core: ^0.7.0
+  firebase_messaging: ^8.0.0-dev.14
   flutter:
     sdk: flutter
   flutter_bloc: ^6.1.1
