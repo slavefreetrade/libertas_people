@@ -28,5 +28,5 @@ jobs:
       - run: flutter analyze
       - run: flutter test
 #      - run: flutter build aot
-    - run: flutter build apk
+      - run: flutter build apk
 #    - run: flutter build ios --release --no-codesign
