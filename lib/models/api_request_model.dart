@@ -2,11 +2,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'api_request_model.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable()
 class ApiRequestModel {
   String sessionId;
 
-  @JsonKey(nullable: true, includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   String surveyId;
 
   ApiRequestModel({this.sessionId, this.surveyId});

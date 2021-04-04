@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'survey_list_item_model.g.dart';
 
-@JsonSerializable(nullable: false, explicitToJson: true)
+@JsonSerializable(explicitToJson: true)
 class SurveyListModel {
   List<SurveyListItemModel> elements;
 
@@ -12,7 +12,7 @@ class SurveyListModel {
   Map<String, dynamic> toJson() => _$SurveyListModelToJson(this);
 }
 
-@JsonSerializable(nullable: false)
+@JsonSerializable()
 class SurveyListItemModel {
   String id;
   String name;

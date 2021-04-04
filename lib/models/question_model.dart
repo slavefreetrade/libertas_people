@@ -5,14 +5,14 @@ import 'question_options_model.dart';
 
 part 'question_model.g.dart';
 
-@JsonSerializable(nullable: false, explicitToJson: true)
+@JsonSerializable(explicitToJson: true)
 class QuestionModel {
   String questionId;
   QuestionType type;
   String display;
   QuestionOptionsModel options;
 
-  @JsonKey(nullable: true, includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   List<ChoiceModel> choices;
 
   int get currentIndex => int.parse(questionId.replaceAll("QID", ""));

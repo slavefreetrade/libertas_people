@@ -64,18 +64,24 @@ class WelcomeBackContent extends StatelessWidget {
             height: 24,
           ),
           Center(
-            child: RaisedButton(
-              color: AppColors.orange,
-              highlightElevation: 2,
-              elevation: 8,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(8),
+                backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
               ),
               onPressed: () {
                 context.read<SurveyCubit>().startSurvey(nextSurveyId);
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 15,
+                ),
                 child: BlocBuilder<SurveyCubit, SurveyState>(
                     builder: (context, state) {
                   if (state is LoadingSurveyState) {

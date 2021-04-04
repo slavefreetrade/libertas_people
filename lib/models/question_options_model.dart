@@ -2,12 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'question_options_model.g.dart';
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class QuestionOptionsModel {
-  @JsonKey(nullable: true, includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   List<String> columnLabels;
 
-  @JsonKey(nullable: true, includeIfNull: false)
+  @JsonKey(includeIfNull: false)
   bool multiSelect;
 
   QuestionOptionsModel({this.columnLabels, this.multiSelect});

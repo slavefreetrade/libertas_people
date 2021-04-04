@@ -45,7 +45,7 @@ class _MultipleChoiceButtonColumnState
     final List<Widget> questionChoiceButtons = [];
 
     for (final choice in widget.choices) {
-      questionChoiceButtons.add(FlatButton(
+      questionChoiceButtons.add(TextButton(
         onPressed: () {
           setState(() {
             _toggledId = choice.choiceId;
@@ -58,13 +58,21 @@ class _MultipleChoiceButtonColumnState
 
           widget.updateAnswer(answer);
         },
-        padding: const EdgeInsets.all(12.0),
-        color: _toggledId == choice.choiceId
-            ? AppColors.darkBlue
-            : AppColors.white,
-        shape: RoundedRectangleBorder(
-            side: const BorderSide(color: Colors.grey, width: 3),
-            borderRadius: BorderRadius.circular(10)),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.all(12.0),
+          ),
+          backgroundColor: MaterialStateProperty.all(
+            _toggledId == choice.choiceId
+                ? AppColors.darkBlue
+                : AppColors.white,
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+                side: const BorderSide(color: Colors.grey, width: 3),
+                borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
         child: Text(
           choice.display,
           style: TextStyle(

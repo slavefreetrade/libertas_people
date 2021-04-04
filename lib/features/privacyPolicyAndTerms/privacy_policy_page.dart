@@ -34,10 +34,16 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
           ),
           const SizedBox(height: 20),
           if (widget.shouldShowAccept)
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
-              color: AppColors.orange,
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  AppColors.orange,
+                ),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const TermsAndConditionsPage(

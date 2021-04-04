@@ -41,44 +41,52 @@ class UnfinishedSurveyContent extends StatelessWidget {
                     height: 50,
                     child: Image.asset(AppImages.group129),
                   ),
-                    Flexible(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              S.of(context).yourSurveyForTheMonthIsUnfinishedPleaseTakeAFewMinutesToFinishIt,
-                              softWrap: true,
-                              style: const TextStyle(
+                  Flexible(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            S
+                                .of(context)
+                                .yourSurveyForTheMonthIsUnfinishedPleaseTakeAFewMinutesToFinishIt,
+                            softWrap: true,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
-                            ),
                           ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
+          ),
           const SizedBox(
             height: 24,
           ),
-            Center(
-              child: RaisedButton(
-                color: AppColors.orange,
-              highlightElevation: 2,
-              elevation: 8,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100),
+          Center(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(8),
+                backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
               ),
               onPressed: () {
                 context.read<SurveyCubit>().returnToIncompleteSurveySession(
                     surveyId: surveyId, sessionId: sessionId);
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 15,
+                ),
                 child: BlocBuilder<SurveyCubit, SurveyState>(
                     builder: (context, state) {
                   if (state is LoadingSurveyState) {
@@ -88,9 +96,9 @@ class UnfinishedSurveyContent extends StatelessWidget {
                 }),
               ),
             ),
-            )
-          ],
-        ),
+          )
+        ],
+      ),
     );
   }
 }

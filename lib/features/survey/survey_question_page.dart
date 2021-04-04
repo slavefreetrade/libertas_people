@@ -82,7 +82,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SurveyThankYouPage()));
             } else if (state is FailureSurveyState) {
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   // duration: Duration(milliseconds: 3000),
                   content: Text(state.message),
@@ -142,7 +142,8 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                       // validate a button has been pressed or a text has been entered
 
                       if (_answer == null) {
-                        _scaffoldKey.currentState.showSnackBar(
+                        ScaffoldMessenger.of(_scaffoldKey.currentContext)
+                            .showSnackBar(
                           SnackBar(
                             duration: const Duration(milliseconds: 1500),
                             content:
@@ -199,7 +200,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
               .itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved,
         ),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(
               S.of(context).continueText,
@@ -208,7 +209,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
             ),
           ),
           const SizedBox(height: 16),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => TabBarController()),

@@ -34,10 +34,14 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
           ),
           const SizedBox(height: 20),
           if (widget.shouldShowAccept)
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
-              color: AppColors.orange,
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => SelectSurveyFrequencyPage()));

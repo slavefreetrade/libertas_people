@@ -90,8 +90,10 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
                 "This will allow for users in production to be able to start the first survey at any time"),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
-                color: AppColors.orange,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                ),
                 onPressed: enterApp,
                 child: _isLoading
                     ? const CircularProgressIndicator()

@@ -29,9 +29,8 @@ class QualtricsRemoteDataSource {
         'Could not start session with null or empty surveyId');
 
     final SecretModel secrets = await SecretModel.load();
-    final uri = Uri(
-        path:
-            'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions');
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/$surveyId/sessions');
 
     try {
       final response = await http.post(uri,
@@ -59,9 +58,8 @@ class QualtricsRemoteDataSource {
         'Could not get current session with null or empty sessionId');
 
     final SecretModel secrets = await SecretModel.load();
-    final uri = Uri(
-        path:
-            'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions/$sessionId');
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/$surveyId/sessions/$sessionId');
 
     try {
       final response =
@@ -91,9 +89,8 @@ class QualtricsRemoteDataSource {
         'Could not get update session with null response');
 
     final SecretModel secrets = await SecretModel.load();
-    final uri = Uri(
-        path:
-            'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}');
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}');
 
     try {
       final response = await http.post(uri,
@@ -118,7 +115,7 @@ class QualtricsRemoteDataSource {
   Future<List<dynamic>> getListOfAvailableSurveys() async {
     final SecretModel secrets = await SecretModel.load();
     final uri =
-        Uri(path: 'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys');
+        Uri.https('${secrets.dataCenter}.qualtrics.com', '/API/v3/surveys');
 
     try {
       final response =
