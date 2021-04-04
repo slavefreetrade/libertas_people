@@ -14,23 +14,22 @@ import 'intl/messages_all.dart';
 
 class S {
   S();
-
+  
   static S current;
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       S.current = S();
-
+      
       return S.current;
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
@@ -47,12 +46,10 @@ class S {
   }
 
   /// `As part of our assessment process, we are asking you some questions about your workplace.`
-  String
-      get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
+  String get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
     return Intl.message(
       'As part of our assessment process, we are asking you some questions about your workplace.',
-      name:
-          'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
+      name: 'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
       desc: '',
       args: [],
     );
@@ -209,12 +206,10 @@ class S {
   }
 
   /// `Completing the survey will not expose you to any risk or repercussion with your manager or employer.`
-  String
-      get completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour {
+  String get completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour {
     return Intl.message(
       'Completing the survey will not expose you to any risk or repercussion with your manager or employer.',
-      name:
-          'completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour',
+      name: 'completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour',
       desc: '',
       args: [],
     );
@@ -251,12 +246,10 @@ class S {
   }
 
   /// `It will only take a couple more minutes to finish. If you leave, your answers will be saved.`
-  String
-      get itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved {
+  String get itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved {
     return Intl.message(
       'It will only take a couple more minutes to finish. If you leave, your answers will be saved.',
-      name:
-          'itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved',
+      name: 'itWillOnlyTakeACoupleMoreMinutesToFinishIfYouLeaveYourAnswersWillBeSaved',
       desc: '',
       args: [],
     );
@@ -303,12 +296,10 @@ class S {
   }
 
   /// `There is an unexpected state in the bloc builder, this should be handled by development`
-  String
-      get thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment {
+  String get thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment {
     return Intl.message(
       'There is an unexpected state in the bloc builder, this should be handled by development',
-      name:
-          'thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment',
+      name: 'thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment',
       desc: '',
       args: [],
     );
@@ -325,12 +316,10 @@ class S {
   }
 
   /// `You have no surveys at the moment. We will notify you when there is a new survey available.`
-  String
-      get youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable {
+  String get youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable {
     return Intl.message(
       'You have no surveys at the moment. We will notify you when there is a new survey available.',
-      name:
-          'youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable',
+      name: 'youHaveNoSurveysAtTheMomentWeWillNotifyYouWhenThereIsANewSurveyAvailable',
       desc: '',
       args: [],
     );
@@ -407,12 +396,10 @@ class S {
   }
 
   /// `We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.`
-  String
-      get weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn {
+  String get weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn {
     return Intl.message(
       'We are happy that you want to take part in our survey that plays an important part in monitoring human rights conditions at work places.',
-      name:
-          'weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn',
+      name: 'weAreHappyThatYouWantToTakePartInOurSurveyThatPlaysAnImportantPartIn',
       desc: '',
       args: [],
     );
@@ -539,12 +526,10 @@ class S {
   }
 
   /// `You don't have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.`
-  String
-      get youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan {
+  String get youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan {
     return Intl.message(
       'You don\'t have to worry about that. You will get a notification on your phone once the new questions are ready. You can then open the app and respond to them.',
-      name:
-          'youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan',
+      name: 'youWillGetAMonthlyNotificationOnYourPhoneOnceTheQuestionsAreReadyYouCan',
       desc: '',
       args: [],
     );
@@ -601,12 +586,10 @@ class S {
   }
 
   /// `The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way.`
-  String
-      get theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure {
+  String get theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure {
     return Intl.message(
       'The Libertas People app is how we deliver human rights questions to you in a secure, anonymous, and confidential way.',
-      name:
-          'theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure',
+      name: 'theLibertasPeopleAppIsHowWeDeliverHumanRightsQuestionsToYouInASecure',
       desc: '',
       args: [],
     );
