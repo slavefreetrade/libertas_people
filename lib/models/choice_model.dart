@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'choice_model.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable()
 class ChoiceModel {
   String choiceId;
   String display;

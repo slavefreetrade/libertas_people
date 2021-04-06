@@ -536,10 +536,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(40),
-                      child: RaisedButton(
-                        padding: const EdgeInsets.only(
-                            top: 15.0, bottom: 15.0, left: 70.0, right: 70.0),
-                        color: isEnabled ? AppColors.orange : Colors.grey,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                            const EdgeInsets.only(
+                                top: 15.0,
+                                bottom: 15.0,
+                                left: 70.0,
+                                right: 70.0),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                              isEnabled ? AppColors.orange : Colors.grey),
+                        ),
                         onPressed: isEnabled ? saveForm : null,
                         child: const Text(
                           "Save",

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:libertaspeople/models/session_info_model.dart';
 part 'stored_session_data_model.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable()
 class StoredSessionDataModel {
   final String surveyId;
   final SessionInfoModel sessionInfoModel;

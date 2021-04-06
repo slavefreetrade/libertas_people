@@ -99,15 +99,21 @@ class SurveyThankYouPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 60, top: 10),
-            child: FlatButton(
+            child: TextButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                  const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                ),
+                backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => TabBarController()));
               },
-              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
-              color: AppColors.orange,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
               child: Text(
                 S.of(context).returnHome,
                 style: const TextStyle(

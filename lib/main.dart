@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:libertaspeople/environment_config.dart';
 
 import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SurveyCubit()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: !EnvironmentConfig.isProd,
         title: 'Libertas People',
         localizationsDelegates: const [
           S.delegate,

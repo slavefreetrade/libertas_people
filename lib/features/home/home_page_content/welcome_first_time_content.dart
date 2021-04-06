@@ -109,12 +109,15 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
               ),
             ),
             Center(
-              child: RaisedButton(
-                color: AppColors.orange,
-                highlightElevation: 2,
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(8),
+                  backgroundColor: MaterialStateProperty.all(AppColors.orange),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                 ),
                 onPressed: () {
                   setState(() {

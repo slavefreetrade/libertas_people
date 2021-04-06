@@ -14,14 +14,17 @@ class ButtonOrangeColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      color: AppColors.orange,
-      highlightElevation: 2,
-      elevation: 8,
-      onPressed: onPressed,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(100),
+    return ElevatedButton(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(8),
+        backgroundColor: MaterialStateProperty.all(AppColors.orange),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+        ),
       ),
+      onPressed: onPressed,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
         child: Text(label),

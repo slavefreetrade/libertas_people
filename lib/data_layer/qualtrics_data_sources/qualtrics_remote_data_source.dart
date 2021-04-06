@@ -15,12 +15,12 @@ class QualtricsRemoteDataSource {
   String _getBody() => json.encode({'language': 'EN'});
 
   String _getBodyWithReponses(SurveyResponsesModel response) {
-
     return json.encode({
-        'embeddedData': {'deviceID': response.deviceId},
-        'advance': response.advance, // from what I can tell this means "end survey"
-        'responses': response.answers
-      });
+      'embeddedData': {'deviceID': response.deviceId},
+      'advance':
+          response.advance, // from what I can tell this means "end survey"
+      'responses': response.answers
+    });
   }
 
   // surveyId
@@ -29,12 +29,12 @@ class QualtricsRemoteDataSource {
         'Could not start session with null or empty surveyId');
 
     final SecretModel secrets = await SecretModel.load();
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/$surveyId/sessions');
 
     try {
-      final response = await http.post(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions',
-          headers: _getHeader(apiKey: secrets.apiKey),
-          body: _getBody());
+      final response = await http.post(uri,
+          headers: _getHeader(apiKey: secrets.apiKey), body: _getBody());
       if (response.statusCode == 201) {
         return SessionInfoModel.fromJson(
             jsonDecode(response.body)['result'] as Map<String, dynamic>);
@@ -58,11 +58,12 @@ class QualtricsRemoteDataSource {
         'Could not get current session with null or empty sessionId');
 
     final SecretModel secrets = await SecretModel.load();
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/$surveyId/sessions/$sessionId');
 
     try {
-      final response = await http.get(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/$surveyId/sessions/$sessionId',
-          headers: _getHeader(apiKey: secrets.apiKey));
+      final response =
+          await http.get(uri, headers: _getHeader(apiKey: secrets.apiKey));
       if (response.statusCode == 200) {
         return SessionInfoModel.fromJson(
             jsonDecode(response.body)['result'] as Map<String, dynamic>);
@@ -88,10 +89,11 @@ class QualtricsRemoteDataSource {
         'Could not get update session with null response');
 
     final SecretModel secrets = await SecretModel.load();
+    final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
+        '/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}');
 
     try {
-      final response = await http.post(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys/${request.surveyId}/sessions/${request.sessionId}',
+      final response = await http.post(uri,
           headers: _getHeader(apiKey: secrets.apiKey),
           body: _getBodyWithReponses(surveyResponses));
       if (response.statusCode == 200) {
@@ -112,11 +114,12 @@ class QualtricsRemoteDataSource {
   // TODO Data Model
   Future<List<dynamic>> getListOfAvailableSurveys() async {
     final SecretModel secrets = await SecretModel.load();
+    final uri =
+        Uri.https('${secrets.dataCenter}.qualtrics.com', '/API/v3/surveys');
 
     try {
-      final response = await http.get(
-          'https://${secrets.dataCenter}.qualtrics.com/API/v3/surveys',
-          headers: _getHeader(apiKey: secrets.apiKey));
+      final response =
+          await http.get(uri, headers: _getHeader(apiKey: secrets.apiKey));
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body)['result']["elements"] as List<dynamic>;

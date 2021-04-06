@@ -13,14 +13,24 @@ class ButtonBorderedWithBackArrow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: onPressed,
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
-      textColor: AppColors.lightBlue,
-      color: AppColors.white,
-      shape: RoundedRectangleBorder(
-          side: const BorderSide(color: AppColors.lightBlue, width: 2),
-          borderRadius: BorderRadius.circular(10)),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
+        ),
+        textStyle: MaterialStateProperty.all(
+          const TextStyle(color: AppColors.lightBlue),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          AppColors.white,
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+              side: const BorderSide(color: AppColors.lightBlue, width: 2),
+              borderRadius: BorderRadius.circular(10)),
+        ),
+      ),
       child: Row(
         children: [
           const Expanded(

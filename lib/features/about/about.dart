@@ -108,14 +108,18 @@ class _AboutPageState extends State<AboutPage> {
                   crossAxisCount: 2,
                   childAspectRatio: 5 / 2,
                   children: getAboutData(context).map((principle) {
-                    return FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          10,
+                    return TextButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color(principle['color'] as int),
+                        ),
+                        textStyle: MaterialStateProperty.all(
+                          const TextStyle(color: Colors.white),
                         ),
                       ),
-                      textColor: Colors.white,
-                      color: Color(principle['color'] as int),
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
@@ -133,7 +137,9 @@ class _AboutPageState extends State<AboutPage> {
                             Text(
                               principle['id'] as String,
                               style: const TextStyle(
-                                  fontSize: 28, fontWeight: FontWeight.w300),
+                                  color: AppColors.white,
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w300),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -150,6 +156,7 @@ class _AboutPageState extends State<AboutPage> {
                                 principle['title'].substring(
                                     0, principle['title'].length - 1) as String,
                                 style: TextStyle(
+                                  color: AppColors.white,
                                   fontSize: principle['size'] as double,
                                 ),
                                 softWrap: true,
@@ -169,10 +176,14 @@ class _AboutPageState extends State<AboutPage> {
                 margin: const EdgeInsets.only(bottom: 20),
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    color: AppColors.orange,
+                child: TextButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(AppColors.orange)),
                     onPressed: widget.onTakeSurveyPressed,
                     child: Text(
                       S.of(context).takeSurvey,

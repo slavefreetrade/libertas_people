@@ -107,12 +107,20 @@ class _ThankYouPageState extends State<ThankYouPage> {
           ),
           Padding(
             padding: EdgeInsets.only(bottom: height * 0.04),
-            child: FlatButton(
+            child: TextButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                  const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                ),
+                backgroundColor: MaterialStateProperty.all(
+                  AppColors.orange,
+                ),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                ),
+              ),
               onPressed: () {},
-              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
-              color: AppColors.orange,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
               child: const Text(
                 "Return Home",
                 style: TextStyle(
