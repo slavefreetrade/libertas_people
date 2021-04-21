@@ -127,7 +127,7 @@ class Repository {
     final DateTime now = DateTime.now();
 
     final Map<String, dynamic> currentSurveyForUser =
-        listOfSurveys.firstWhere((survey) {
+        listOfSurveys?.firstWhere((survey) {
       final DateTime beginningSurveyDate =
           DateTime.parse(survey["beginDate"] as String);
       final DateTime endSurveyDate =
