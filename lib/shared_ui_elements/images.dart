@@ -1,7 +1,7 @@
 class AppImages {
   static const String manOnPiddle = 'assets/man_on_piddle.svg';
-  static const String onBoarding1 = 'assets/onboarding-1.png';
-  static const String onBoarding2 = 'assets/onboarding-2.png';
+  static const String onBoarding1 = 'assets/onboarding-1.svg';
+  static const String onBoarding2 = 'assets/onboarding-2.svg';
   static const String onBoarding3 = 'assets/onboarding-3.png';
   static const String womenFallingInLineHoldingEachOther = 'assets/woman-falling-in-line-holding-each-other-1206059 1.jpg';
   static const String group129 = 'assets/icons/Group 129.png';

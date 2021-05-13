@@ -54,6 +54,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             .of(context)
             .youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey,
         imagePath: AppImages.onBoarding1,
+        isSvg: true,
       ),
       OnBoardingTabView(
         topText: S
@@ -63,6 +64,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             .of(context)
             .afterTheInitialSurveyYouWillReceive10QuestionsEachMonth,
         imagePath: AppImages.onBoarding2,
+        isSvg: true,
       ),
       OnBoardingTabView(
         topText: S.of(context).thisMonthsSurveyIsReadyForYou,
