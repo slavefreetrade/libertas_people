@@ -6,13 +6,9 @@ import 'package:libertaspeople/shared_ui_elements/shared_ui_elements.dart';
 class SurveyThankYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: SizedBox(
-      width: width,
-      height: height,
-      child: Column(
+      body: Column(
         children: [
           Stack(
             children: [
@@ -97,34 +93,17 @@ class SurveyThankYouPage extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 60, top: 10),
-            child: TextButton(
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 45, vertical: 15),
-                ),
-                backgroundColor: MaterialStateProperty.all(AppColors.orange),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => TabBarController()));
-              },
-              child: Text(
-                S.of(context).returnHome,
-                style: const TextStyle(
-                    fontSize: 20,
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+          const SizedBox(height: 20),
+          ButtonOrangeColor(
+            label: S.of(context).returnHome,
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => TabBarController()));
+            },
           ),
+          const SizedBox(height: 50),
         ],
       ),
-    ));
+    );
   }
 }

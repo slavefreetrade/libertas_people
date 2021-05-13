@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
-import '../../shared_ui_elements/colors.dart';
 import '../../shared_ui_elements/buttons/button_orange_color.dart';
+import '../../shared_ui_elements/colors.dart';
 import '../select_survey_frequency_page.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
