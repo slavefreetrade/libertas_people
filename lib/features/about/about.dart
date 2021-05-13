@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:libertaspeople/shared_ui_elements/buttons/button_orange_color.dart';
 
 import '../../features/privacyPolicyAndTerms/privacy_policy_page.dart';
 import '../../features/privacyPolicyAndTerms/terms_and_conditions_page.dart';
@@ -170,31 +171,11 @@ class _AboutPageState extends State<AboutPage> {
                 ),
               ),
               const SizedBox(height: 30),
-              Container(
-                height: 54,
-                width: 240,
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                child: TextButton(
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40)),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all(AppColors.orange)),
-                    onPressed: widget.onTakeSurveyPressed,
-                    child: Text(
-                      S.of(context).takeSurvey,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24.0,
-                      ),
-                    )),
-              )
+              ButtonOrangeColor(
+                  onPressed: widget.onTakeSurveyPressed,
+                  label: S.of(context).takeSurvey,
+                ),
+              const SizedBox(height: 30),
             ],
           ),
         ),

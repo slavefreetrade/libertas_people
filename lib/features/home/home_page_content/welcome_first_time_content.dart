@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../generated/l10n.dart';
-import '../../../shared_ui_elements/colors.dart';
+import '../../../shared_ui_elements/buttons/button_orange_color.dart';
 import '../../../shared_ui_elements/images.dart';
 
 import '../../survey/survey_information_page.dart';
@@ -108,39 +108,27 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                 ],
               ),
             ),
-            Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(8),
-                  backgroundColor: MaterialStateProperty.all(AppColors.orange),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          SurveyInformationPage(widget.firstSurveyId),
-                    ),
-                  );
-                  setState(() {
-                    _isLoading = false;
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: _isLoading
-                      ? const CircularProgressIndicator()
-                      : Text(S.of(context).takeSurvey),
-                ),
+            if (_isLoading)
+              const Center(child: CircularProgressIndicator())
+            else
+              Center(
+                child: ButtonOrangeColor(
+                    label: S.of(context).takeSurvey,
+                    onPressed: () {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SurveyInformationPage(widget.firstSurveyId),
+                        ),
+                      );
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    }),
               ),
-            )
           ],
         ),
       ),

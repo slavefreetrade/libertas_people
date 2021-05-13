@@ -67,36 +67,21 @@ class UnfinishedSurveyContent extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          Center(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                elevation: MaterialStateProperty.all(8),
-                backgroundColor: MaterialStateProperty.all(AppColors.orange),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
+          BlocBuilder<SurveyCubit, SurveyState>(builder: (context, state) {
+            if (state is LoadingSurveyState) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return Center(
+                child: ButtonOrangeColor(
+                  label: S.of(context).finishSurvey,
+                  onPressed: () {
+                    context.read<SurveyCubit>().returnToIncompleteSurveySession(
+                        surveyId: surveyId, sessionId: sessionId);
+                  },
                 ),
-              ),
-              onPressed: () {
-                context.read<SurveyCubit>().returnToIncompleteSurveySession(
-                    surveyId: surveyId, sessionId: sessionId);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40.0,
-                  vertical: 15,
-                ),
-                child: BlocBuilder<SurveyCubit, SurveyState>(
-                    builder: (context, state) {
-                  if (state is LoadingSurveyState) {
-                    return const CircularProgressIndicator();
-                  }
-                  return Text(S.of(context).finishSurvey);
-                }),
-              ),
-            ),
-          )
+              );
+            }
+          }),
         ],
       ),
     );

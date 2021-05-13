@@ -14,20 +14,24 @@ class ButtonOrangeColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
       style: ButtonStyle(
-        elevation: MaterialStateProperty.all(8),
         backgroundColor: MaterialStateProperty.all(AppColors.orange),
         shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         ),
       ),
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        child: Text(label),
+        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 5),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 22,
+          ),
+        ),
       ),
     );
   }
