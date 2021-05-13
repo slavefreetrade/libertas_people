@@ -8,7 +8,7 @@ class SurveyThankYouPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
           Stack(
             children: [
@@ -44,9 +44,7 @@ class SurveyThankYouPage extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
@@ -56,21 +54,17 @@ class SurveyThankYouPage extends StatelessWidget {
               style: const TextStyle(fontSize: 18),
             ),
           ),
-          const SizedBox(
-            height: 25,
-          ),
+          const SizedBox(height: 25),
           Center(
             child: Text(
               S.of(context).whatHappensNext,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(6.0),
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Column(
               children: <Widget>[
                 ListTile(
                   leading: const SizedBox(
@@ -94,12 +88,15 @@ class SurveyThankYouPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          ButtonOrangeColor(
-            label: S.of(context).returnHome,
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => TabBarController()));
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ButtonOrangeColor(
+              label: S.of(context).returnHome,
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => TabBarController()));
+              },
+            ),
           ),
           const SizedBox(height: 50),
         ],
