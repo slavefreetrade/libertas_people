@@ -89,7 +89,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       }
 
       if (!currentSurveyIsComplete &&
-          currentSurveyForUser['name'] == 'Survey_1') {
+          currentSurveyForUser['name'] == 'Survey_2') {
         notificationService.subscribeToSurveyNotOpenedNotification();
         emit(WelcomeFirstTimeHomeScreenState(currentSurveyId));
         return;

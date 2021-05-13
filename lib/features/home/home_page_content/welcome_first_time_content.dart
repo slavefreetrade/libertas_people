@@ -3,7 +3,7 @@ import '../../../generated/l10n.dart';
 import '../../../shared_ui_elements/colors.dart';
 import '../../../shared_ui_elements/images.dart';
 
-import '../../survey/lauguage_selection_page.dart';
+import '../../survey/survey_information_page.dart';
 
 class WelcomeFirstTimeContent extends StatefulWidget {
   final String firstSurveyId;
@@ -123,9 +123,12 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                   setState(() {
                     _isLoading = true;
                   });
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       builder: (context) =>
-                          LanguageSelectionPage(widget.firstSurveyId)));
+                          SurveyInformationPage(widget.firstSurveyId),
+                    ),
+                  );
                   setState(() {
                     _isLoading = false;
                   });
