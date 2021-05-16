@@ -25,24 +25,26 @@ class OnBoardingTabView extends StatelessWidget {
           child: Text(
             topText,
             softWrap: true,
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.justify,
             style: const TextStyle(
                 color: AppColors.darkBlue,
-                fontSize: 17.0,
+                fontSize: 17,
                 fontWeight: FontWeight.w300,
                 wordSpacing: 3.5),
           ),
         ),
+        const SizedBox(height: 25),
         Expanded(
           child: isSvg ? SvgPicture.asset(imagePath) : Image.asset(imagePath),
         ),
+        const SizedBox(height: 25),
         Text(
           bottomText,
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.justify,
           softWrap: true,
           style: const TextStyle(
               color: AppColors.darkBlue,
-              fontSize: 22.0,
+              fontSize: 17,
               fontWeight: FontWeight.w300,
               wordSpacing: 3.5),
         ),

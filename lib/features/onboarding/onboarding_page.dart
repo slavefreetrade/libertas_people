@@ -68,8 +68,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       ),
       OnBoardingTabView(
         topText: S.of(context).thisMonthsSurveyIsReadyForYou,
-        bottomText:
-            S.of(context).dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey,
+        bottomText: '',
         imagePath: AppImages.onBoarding3,
       ),
     ];
@@ -81,15 +80,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Text(
                 S.of(context).welcome,
                 style: const TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 25,
                     fontWeight: FontWeight.w700,
                     color: AppColors.orange),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Expanded(
                 child: PageView(
                   onPageChanged: _onSwipe,
