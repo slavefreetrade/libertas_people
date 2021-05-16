@@ -39,14 +39,14 @@ class QualtricsLocalDataSource {
     final File surveyFile = await _surveyListFile;
 
     surveyQualtricsJsonList.removeWhere((survey) {
-      return !(survey['name'] as String).contains("Survey_");
+      return !(survey['name'] as String).contains("WA_Continuous_");
     });
 
     surveyQualtricsJsonList.sort((dynamic surveyA, dynamic surveyB) {
       final int indexA =
-          int.parse((surveyA['name'] as String).replaceAll("Survey_", ""));
+          int.parse((surveyA['name'] as String).replaceAll("WA_Continuous_", ""));
       final int indexB =
-          int.parse((surveyB['name'] as String).replaceAll("Survey_", ""));
+          int.parse((surveyB['name'] as String).replaceAll("WA_Continuous_", ""));
 
       return indexA.compareTo(indexB);
     });
