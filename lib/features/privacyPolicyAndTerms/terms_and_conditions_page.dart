@@ -31,6 +31,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
         children: [
           Text(
             S.of(context).termsAndConditionsContent,
+            textAlign: TextAlign.justify,
             style: const TextStyle(fontSize: 14.0, wordSpacing: 3.5),
           ),
           const SizedBox(height: 20),
