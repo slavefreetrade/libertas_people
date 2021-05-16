@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/features/about/about.dart';
 import 'package:libertaspeople/features/home/home_cubit.dart';
 import 'package:libertaspeople/generated/l10n.dart';
+import 'package:libertaspeople/shared_ui_elements/images.dart';
 
 import '../shared_ui_elements/colors.dart';
 import 'home/home_page_content/home_page.dart';
@@ -41,7 +42,14 @@ class _TabBarControllerState extends State<TabBarController> {
             label: S.of(context).home,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.info),
+            icon: Image.asset(
+              AppImages.logoImage,
+              height: 26,
+              width: 26,
+              color: pageIndex == 0
+                  ? Colors.black54
+                  : AppColors.darkBlue,
+            ),
             label: S.of(context).aboutSurvey,
           ),
         ],
