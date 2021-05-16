@@ -545,10 +545,10 @@ class S {
     );
   }
 
-  /// `Principle`
+  /// `Principles`
   String get principle {
     return Intl.message(
-      'Principle',
+      'Principles',
       name: 'principle',
       desc: '',
       args: [],
@@ -595,10 +595,10 @@ class S {
     );
   }
 
-  /// `NO FORCED LABOR:`
+  /// `NO FORCED LABOR AND NO HUMAN TRAFFICKING:`
   String get noForcedLabor {
     return Intl.message(
-      'NO FORCED LABOR:',
+      'NO FORCED LABOR AND NO HUMAN TRAFFICKING:',
       name: 'noForcedLabor',
       desc: '',
       args: [],
