@@ -31,8 +31,8 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
         children: [
           Text(
             S.of(context).privacyPolicyContent,
-            textAlign: TextAlign.justify,
-            style: const TextStyle(fontSize: 14.0, wordSpacing: 3.5),
+            textAlign: TextAlign.start,
+            style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
           ),
           const SizedBox(height: 20),
           if (widget.shouldShowAccept)

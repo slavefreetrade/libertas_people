@@ -10,15 +10,14 @@ import '../../models/survey_reponses_model.dart';
 
 class QualtricsRemoteDataSource {
   Map<String, String> _getHeader({@required String apiKey}) =>
-      {'x-api-token': apiKey, 'Content-Type': 'application/json'};
+      {'X-API-TOKEN': apiKey, 'Content-Type': 'application/json'};
 
   String _getBody() => json.encode({'language': 'EN'});
 
-  String _getBodyWithReponses(SurveyResponsesModel response) {
+  String _getBodyWithResponses(SurveyResponsesModel response) {
     return json.encode({
       'embeddedData': {'deviceID': response.deviceId},
-      'advance':
-          response.advance, // from what I can tell this means "end survey"
+      'advance': response.advance,
       'responses': response.answers
     });
   }
@@ -30,7 +29,7 @@ class QualtricsRemoteDataSource {
 
     final SecretModel secrets = await SecretModel.load();
     final uri = Uri.https('${secrets.dataCenter}.qualtrics.com',
-        '/API/v3/surveys/$surveyId/sessions');
+        'API/v3/surveys/$surveyId/sessions');
 
     try {
       final response = await http.post(uri,
@@ -39,6 +38,7 @@ class QualtricsRemoteDataSource {
         return SessionInfoModel.fromJson(
             jsonDecode(response.body)['result'] as Map<String, dynamic>);
       } else {
+        final reason = String.fromCharCodes(response.bodyBytes);
         throw Exception('@@@ Returned with Error code: ${response.statusCode}');
       }
     } on Exception catch (e) {
@@ -95,7 +95,7 @@ class QualtricsRemoteDataSource {
     try {
       final response = await http.post(uri,
           headers: _getHeader(apiKey: secrets.apiKey),
-          body: _getBodyWithReponses(surveyResponses));
+          body: _getBodyWithResponses(surveyResponses));
       if (response.statusCode == 200) {
         //final Map map = jsonDecode(response.body) as Map<String, dynamic>;
 

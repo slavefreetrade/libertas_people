@@ -68,46 +68,41 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      BlocBuilder<HomeScreenCubit, HomeScreenState>(
-                        builder: (context, state) {
-                          if (state is LoadingHomeScreenState ||
-                              state is UninitializedHomeScreenState) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          } else if (state is UnfinishedSurveyHomeScreenState) {
-                            return UnfinishedSurveyContent(
-                                surveyId: state.surveyId,
-                                sessionId: state.sessionId);
-                          } else if (state is WelcomeFirstTimeHomeScreenState) {
-                            return WelcomeFirstTimeContent(
-                                firstSurveyId: state.firstSurveyId);
-                          } else if (state is WelcomeBackHomeScreenState) {
-                            return WelcomeBackContent(state.surveyId);
-                          } else if (state is NoSurveyHomeScreenState) {
-                            return const NoSurveyContent();
-                          } else if (state is FailureHomeScreenState) {
-                            return Center(
-                                child: Text(S
-                                    .of(context)
-                                    .thereWasAnIssue(state.message)));
-                          }
-                          return Center(
-                            child: Text(S
-                                .of(context)
-                                .thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment),
-                          );
-                        },
-                      ),
-                    ],
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 35),
+                children: <Widget>[
+                  BlocBuilder<HomeScreenCubit, HomeScreenState>(
+                    builder: (context, state) {
+                      if (state is LoadingHomeScreenState ||
+                          state is UninitializedHomeScreenState) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (state is UnfinishedSurveyHomeScreenState) {
+                        return UnfinishedSurveyContent(
+                            surveyId: state.surveyId,
+                            sessionId: state.sessionId);
+                      } else if (state is WelcomeFirstTimeHomeScreenState) {
+                        return WelcomeFirstTimeContent(
+                            firstSurveyId: state.firstSurveyId);
+                      } else if (state is WelcomeBackHomeScreenState) {
+                        return WelcomeBackContent(state.surveyId);
+                      } else if (state is NoSurveyHomeScreenState) {
+                        return const NoSurveyContent();
+                      } else if (state is FailureHomeScreenState) {
+                        return Center(
+                            child: Text(
+                                S.of(context).thereWasAnIssue(state.message)));
+                      }
+                      return Center(
+                        child: Text(S
+                            .of(context)
+                            .thereIsAnUnexpectedStateInTheBlocBuilderThisShouldBeHandledByDevelopment),
+                      );
+                    },
                   ),
-                ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),

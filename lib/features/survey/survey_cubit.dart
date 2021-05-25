@@ -146,7 +146,7 @@ class SurveyCubit extends Cubit<SurveyState> {
       } catch (e) {
         // TODO May want to handle different type of exceptions being thrown.
         emit(FailureSurveyState(
-            "we are unable to submit your survey at this time, Developer note: I recommend implementing a background fetch process that will automatically try to submit a failed survey"));
+            "We are unable to submit your survey at this time."));
       }
     }
   }

@@ -26,7 +26,6 @@ class _MultipleChoiceButtonColumnState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.previousAnswer != null) {
       setState(() {
@@ -69,7 +68,7 @@ class _MultipleChoiceButtonColumnState
           ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.grey, width: 3),
+                side: const BorderSide(color: AppColors.darkBlue, width: 1),
                 borderRadius: BorderRadius.circular(10)),
           ),
         ),

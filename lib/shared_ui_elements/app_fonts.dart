@@ -1,3 +1,3 @@
 class AppFonts {
-  static const String helveticaNeue = 'HelveticaNeue';
+  static const String roboto = 'Roboto';
 }

@@ -70,9 +70,9 @@ class _SurveyInformationPageState extends State<SurveyInformationPage> {
                                 .of(context)
                                 .completingTheSurveyWillNotExposeYouToAnyRiskOrRepercussionWithYour),
                             const SizedBox(height: 25),
-                            _buildRowItem(S
-                                .of(context)
-                                .questionsMarkedWithAStarSymbolAreObligatoryToAnswer),
+                            // _buildRowItem(S
+                            //     .of(context)
+                            //     .questionsMarkedWithAStarSymbolAreObligatoryToAnswer),
                             const SizedBox(height: 25),
                           ]),
                     ),

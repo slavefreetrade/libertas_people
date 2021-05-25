@@ -11,73 +11,70 @@ class WelcomeBackContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            S.of(context).welcomeBack,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 22,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          S.of(context).welcomeBack,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 22,
           ),
-          const SizedBox(height: 16),
-          Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: AppColors.greyAboutPage,
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: Image.asset(AppImages.group129),
-                  ),
-                  Flexible(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            S
-                                .of(context)
-                                .yourMonthlySurveyWith10BinaryQuestionsIsReady,
-                            softWrap: true,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                            ),
+        ),
+        const SizedBox(height: 16),
+        Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          color: AppColors.greyAboutPage,
+          elevation: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: Image.asset(AppImages.group129),
+                ),
+                Flexible(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          S
+                              .of(context)
+                              .yourMonthlySurveyWith10BinaryQuestionsIsReady,
+                          softWrap: true,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          const SizedBox(
-            height: 24,
-          ),
-          BlocBuilder<SurveyCubit, SurveyState>(builder: (context, state) {
-            if (state is LoadingSurveyState) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return Center(
-                child: ButtonOrangeColor(
-                    label: S.of(context).takeSurvey,
-                    onPressed: () {
-                      context.read<SurveyCubit>().startSurvey(nextSurveyId);
-                    }),
-              );
-            }
-          }),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        BlocBuilder<SurveyCubit, SurveyState>(builder: (context, state) {
+          if (state is LoadingSurveyState) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return Center(
+              child: ButtonOrangeColor(
+                  label: S.of(context).takeSurvey,
+                  onPressed: () {
+                    context.read<SurveyCubit>().startSurvey(nextSurveyId);
+                  }),
+            );
+          }
+        }),
+      ],
     );
   }
 }

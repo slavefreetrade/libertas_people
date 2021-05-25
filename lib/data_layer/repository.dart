@@ -46,8 +46,16 @@ class Repository {
     final SessionInfoModel sessionInfo = SessionInfoModel.fromJson(
         sessionInfoMap['sessionInfoModel'] as Map<String, dynamic>);
 
+    //final questionIdList = sessionInfo.questions
+    //         .map((e) => int.parse(e.questionId.replaceAll('QID', '')))
+    //         .toList();
+    //     final questionNumber = questionIdList.where((e) => index >= e).first;
+    //     final questionIndex = questionIdList.indexOf(questionNumber);
+    //     final QuestionModel question = sessionInfo.questions[questionIndex];
+
     final QuestionModel question = sessionInfo.questions.firstWhere(
-        (question) => question.questionId.contains(index.toString()));
+        (question) =>
+            int.parse(question.questionId.replaceAll('QID', '')) >= index);
 
     return question;
   }

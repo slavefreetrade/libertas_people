@@ -24,6 +24,7 @@ class NextPreviousButtons extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 5,
             child: isFirstQuestion
                 ? Container()
                 : ButtonBorderedWithBackArrow(
@@ -31,10 +32,9 @@ class NextPreviousButtons extends StatelessWidget {
                     previousButtonLabel: previousButtonLabel,
                   ),
           ),
-          const SizedBox(
-            width: 8,
-          ),
+          const Spacer(),
           Expanded(
+            flex: 5,
             child: ButtonFullColorWithNextArrow(
               onPressed: onNextPressed,
               isFinalQuestion: isFinalQuestion,

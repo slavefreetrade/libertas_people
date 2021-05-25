@@ -35,70 +35,70 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Thank you for downloading the Libertas People App!\n\n You are invited to participate in slavefreetrade's decent working conditions assessment.`
+  /// `Text Replace`
   String get youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn {
     return Intl.message(
-      'Thank you for downloading the Libertas People App!\n\n You are invited to participate in slavefreetrade\'s decent working conditions assessment.',
+      'Text Replace',
       name: 'youAreInvitedToTakePartInTheStaffSurveyThatPlaysAn',
       desc: '',
       args: [],
     );
   }
 
-  /// `As part of our assessment, we will be asking you some questions about your workplace.`
+  /// `Thank you for downloading the Libertas People App! You are invited to participate in slavefreetrade's decent working conditions assessment. As part of our assessment, we will be asking you some questions about your workplace.`
   String get youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey {
     return Intl.message(
-      'As part of our assessment, we will be asking you some questions about your workplace.',
+      'Thank you for downloading the Libertas People App! You are invited to participate in slavefreetrade\'s decent working conditions assessment. As part of our assessment, we will be asking you some questions about your workplace.',
       name: 'youWillAnswer20MultipleChoiceQuestionsTheFirstTimeYouAccessTheSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `As part of continuous monitoring, after the initial workplace assessment, you will be asked to answer some questions on a regular basis.`
+  /// `Text Replace`
   String get asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly {
     return Intl.message(
-      'As part of continuous monitoring, after the initial workplace assessment, you will be asked to answer some questions on a regular basis.',
+      'Text Replace',
       name: 'asPartOfMonitoringYouAreAskedToFillOutTheSurveyRegularly',
       desc: '',
       args: [],
     );
   }
 
-  /// `You will be notified on this app when your next questionnaire is ready.`
+  /// `As part of continuous monitoring, after the initial workplace assessment, you will be asked to answer some questions on a regular basis. You will be notified on this app when your next questionnaire is ready.`
   String get afterTheInitialSurveyYouWillReceive10QuestionsEachMonth {
     return Intl.message(
-      'You will be notified on this app when your next questionnaire is ready.',
+      'As part of continuous monitoring, after the initial workplace assessment, you will be asked to answer some questions on a regular basis. You will be notified on this app when your next questionnaire is ready.',
       name: 'afterTheInitialSurveyYouWillReceive10QuestionsEachMonth',
       desc: '',
       args: [],
     );
   }
 
-  /// `It's great to have you onboard. Everyone's voice counts!`
+  /// `text replace`
   String get thisMonthsSurveyIsReadyForYou {
     return Intl.message(
-      'It\'s great to have you onboard. Everyone\'s voice counts!',
+      'text replace',
       name: 'thisMonthsSurveyIsReadyForYou',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `It's great to have you onboard. Everyone's voice counts!`
   String get dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey {
     return Intl.message(
-      '',
+      'It\'s great to have you onboard. Everyone\'s voice counts!',
       name: 'dontWorryWellNotifyYouWhenItsTimeToUpdateYourSurvey',
       desc: '',
       args: [],
     );
   }
 
-  /// `Welcome`
+  /// `Welcome!`
   String get welcome {
     return Intl.message(
-      'Welcome',
+      'Welcome!',
       name: 'welcome',
       desc: '',
       args: [],
@@ -445,10 +445,10 @@ class S {
     );
   }
 
-  /// `About Survey`
+  /// `About`
   String get aboutSurvey {
     return Intl.message(
-      'About Survey',
+      'About',
       name: 'aboutSurvey',
       desc: '',
       args: [],
@@ -595,10 +595,10 @@ class S {
     );
   }
 
-  /// `NO FORCED LABOR AND NO HUMAN TRAFFICKING:`
+  /// `NO FORCED LABOR AND NO HUMAN TRAFFICKING`
   String get noForcedLabor {
     return Intl.message(
-      'NO FORCED LABOR AND NO HUMAN TRAFFICKING:',
+      'NO FORCED LABOR AND NO HUMAN TRAFFICKING',
       name: 'noForcedLabor',
       desc: '',
       args: [],
@@ -615,10 +615,10 @@ class S {
     );
   }
 
-  /// `NO CHILD LABOR:`
+  /// `NO CHILD LABOR`
   String get noChildLabor {
     return Intl.message(
-      'NO CHILD LABOR:',
+      'NO CHILD LABOR',
       name: 'noChildLabor',
       desc: '',
       args: [],
@@ -635,20 +635,20 @@ class S {
     );
   }
 
-  /// `NO DISCRIMINATION:`
+  /// `NO DISCRIMINATION`
   String get noDiscrimination {
     return Intl.message(
-      'NO DISCRIMINATION:',
+      'NO DISCRIMINATION',
       name: 'noDiscrimination',
       desc: '',
       args: [],
     );
   }
 
-  /// `No worker shall be subject to any discrimination in any aspect of the employment relationship.1 A business shall make no distinction, exclusion or preference on the basis of personal characteristics that has the effect of nullifying or impairing equality of opportunity or treatment in employment or occupation. All employment decisions must be made based on the principle of equal employment opportunity, and shall include effective mechanisms to protect migrant, temporary or seasonal workers against any form of discrimination.`
+  /// `No worker shall be subject to any discrimination in any aspect of the employment relationship. A business shall make no distinction, exclusion or preference on the basis of personal characteristics that has the effect of nullifying or impairing equality of opportunity or treatment in employment or occupation. All employment decisions must be made based on the principle of equal employment opportunity, and shall include effective mechanisms to protect migrant, temporary or seasonal workers against any form of discrimination.`
   String get noWorkerShallBeSubjectToAnyDiscriminationInAny {
     return Intl.message(
-      'No worker shall be subject to any discrimination in any aspect of the employment relationship.1 A business shall make no distinction, exclusion or preference on the basis of personal characteristics that has the effect of nullifying or impairing equality of opportunity or treatment in employment or occupation. All employment decisions must be made based on the principle of equal employment opportunity, and shall include effective mechanisms to protect migrant, temporary or seasonal workers against any form of discrimination.',
+      'No worker shall be subject to any discrimination in any aspect of the employment relationship. A business shall make no distinction, exclusion or preference on the basis of personal characteristics that has the effect of nullifying or impairing equality of opportunity or treatment in employment or occupation. All employment decisions must be made based on the principle of equal employment opportunity, and shall include effective mechanisms to protect migrant, temporary or seasonal workers against any form of discrimination.',
       name: 'noWorkerShallBeSubjectToAnyDiscriminationInAny',
       desc: '',
       args: [],
@@ -675,10 +675,10 @@ class S {
     );
   }
 
-  /// `SAFE & HEALTHY WORKPLACE:`
+  /// `SAFE & HEALTHY WORKPLACE`
   String get safeAndHealthyWorkplace {
     return Intl.message(
-      'SAFE & HEALTHY WORKPLACE:',
+      'SAFE & HEALTHY WORKPLACE',
       name: 'safeAndHealthyWorkplace',
       desc: '',
       args: [],
@@ -695,10 +695,10 @@ class S {
     );
   }
 
-  /// `FAIR PAY & HOURS:`
+  /// `FAIR PAY & HOURS`
   String get fairPayAndHours {
     return Intl.message(
-      'FAIR PAY & HOURS:',
+      'FAIR PAY & HOURS',
       name: 'fairPayAndHours',
       desc: '',
       args: [],
@@ -715,10 +715,10 @@ class S {
     );
   }
 
-  /// `FREEDOM OF ASSOCIATION:`
+  /// `FREEDOM OF ASSOCIATION`
   String get freedomOfAssociation {
     return Intl.message(
-      'FREEDOM OF ASSOCIATION:',
+      'FREEDOM OF ASSOCIATION',
       name: 'freedomOfAssociation',
       desc: '',
       args: [],
@@ -735,10 +735,10 @@ class S {
     );
   }
 
-  /// `APPROPRIATE EMPLOYMENT RELATIONS & WRITTEN CONTRACTS:`
+  /// `APPROPRIATE EMPLOYMENT RELATIONS & WRITTEN CONTRACTS`
   String get appropriateEmploymentRelationsAndWrittenContracts {
     return Intl.message(
-      'APPROPRIATE EMPLOYMENT RELATIONS & WRITTEN CONTRACTS:',
+      'APPROPRIATE EMPLOYMENT RELATIONS & WRITTEN CONTRACTS',
       name: 'appropriateEmploymentRelationsAndWrittenContracts',
       desc: '',
       args: [],
@@ -755,10 +755,10 @@ class S {
     );
   }
 
-  /// `DIGNITY & RESPECT:`
+  /// `DIGNITY & RESPECT`
   String get dignityAndRespect {
     return Intl.message(
-      'DIGNITY & RESPECT:',
+      'DIGNITY & RESPECT',
       name: 'dignityAndRespect',
       desc: '',
       args: [],
@@ -775,10 +775,10 @@ class S {
     );
   }
 
-  /// `SUPPLY CHAIN TRACEABILITY & TRANSPARENCY:`
+  /// `SUPPLY CHAIN TRACEABILITY & TRANSPARENCY`
   String get supplyChainTraceabilityAndTransparency {
     return Intl.message(
-      'SUPPLY CHAIN TRACEABILITY & TRANSPARENCY:',
+      'SUPPLY CHAIN TRACEABILITY & TRANSPARENCY',
       name: 'supplyChainTraceabilityAndTransparency',
       desc: '',
       args: [],
@@ -840,6 +840,46 @@ class S {
     return Intl.message(
       'Accept',
       name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Regular Reminders`
+  String get regularReminders {
+    return Intl.message(
+      'Regular Reminders',
+      name: 'regularReminders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't worry, we'll notify you when it's time to update your survey`
+  String get dontWorryWellNotifyYouWhenItsTimeToUpdate {
+    return Intl.message(
+      'Don\'t worry, we\'ll notify you when it\'s time to update your survey',
+      name: 'dontWorryWellNotifyYouWhenItsTimeToUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `slavefreetrade.org`
+  String get slavefreetradeorg {
+    return Intl.message(
+      'slavefreetrade.org',
+      name: 'slavefreetradeorg',
       desc: '',
       args: [],
     );

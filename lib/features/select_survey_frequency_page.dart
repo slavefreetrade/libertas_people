@@ -19,7 +19,6 @@ class _SelectSurveyFrequencyPageState extends State<SelectSurveyFrequencyPage> {
   bool _isLoading = false;
 
   Future<void> enterApp({int surveyFrequencyInMinutes}) async {
-    //TODO: the logic here will be moved to on-boarding page when ready
     if (!_isLoading) {
       setState(() {
         _isLoading = true;

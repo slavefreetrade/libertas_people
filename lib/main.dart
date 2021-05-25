@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: AppColors.backgroundColor,
           primarySwatch: Colors.blue,
-          fontFamily: AppFonts.helveticaNeue,
+          fontFamily: AppFonts.roboto,
           buttonTheme: const ButtonThemeData(
             padding: EdgeInsets.zero,
             height: 50,
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
             elevation: 0,
             textTheme: TextTheme(
               headline6: TextStyle(
-                  fontFamily: AppFonts.helveticaNeue,
+                  fontFamily: AppFonts.roboto,
                   fontSize: 28,
                   fontWeight: FontWeight.w500),
             ),

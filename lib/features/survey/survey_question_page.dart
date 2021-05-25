@@ -101,6 +101,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -111,22 +112,26 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                               style: const TextStyle(fontSize: 20),
                             ),
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (_isTextEntryQuestion)
-                                _buildTextFieldAnswerWidget()
-                              else
-                                // _buildMCAnswerOptionsWidget(),
-                                MultipleChoiceButtonColumn(
-                                  _question.questionId,
-                                  _question.choices,
-                                  updateAnswer: (Map<String, dynamic> answer) {
-                                    _answer = answer;
-                                  },
-                                  previousAnswer: _answer,
-                                )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                if (_isTextEntryQuestion)
+                                  _buildTextFieldAnswerWidget()
+                                else
+                                  // _buildMCAnswerOptionsWidget(),
+                                  MultipleChoiceButtonColumn(
+                                    _question.questionId,
+                                    _question.choices,
+                                    updateAnswer:
+                                        (Map<String, dynamic> answer) {
+                                      _answer = answer;
+                                    },
+                                    previousAnswer: _answer,
+                                  )
+                              ],
+                            ),
                           ),
                         ],
                       ),

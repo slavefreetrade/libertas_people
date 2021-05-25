@@ -17,7 +17,7 @@ class ButtonBorderedWithBackArrow extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
-          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
+          const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
         ),
         textStyle: MaterialStateProperty.all(
           const TextStyle(color: AppColors.lightBlue),
@@ -31,17 +31,24 @@ class ButtonBorderedWithBackArrow extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)),
         ),
       ),
-      child: Row(
+      child:  Row(
         children: [
-          const Expanded(
-            child: Icon(Icons.arrow_back_ios),
-          ),
-          Text(
-            previousButtonLabel ?? S.of(context).previous,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+            const Flexible(
+              child: Icon(Icons.arrow_back_ios, size: 28),
+            ),
+            Expanded(
+              flex: 2,
+              child: Text(
+                previousButtonLabel ?? S.of(context).previous,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.end,
+              ),
+            ),
+          ],
+        ),
     );
   }
 }

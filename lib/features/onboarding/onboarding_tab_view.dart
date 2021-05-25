@@ -20,33 +20,38 @@ class OnBoardingTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7),
-          child: Text(
-            topText,
-            softWrap: true,
-            textAlign: TextAlign.justify,
-            style: const TextStyle(
-                color: AppColors.darkBlue,
-                fontSize: 17,
-                fontWeight: FontWeight.w300,
-                wordSpacing: 3.5),
-          ),
-        ),
-        const SizedBox(height: 25),
         Expanded(
           child: isSvg ? SvgPicture.asset(imagePath) : Image.asset(imagePath),
         ),
-        const SizedBox(height: 25),
-        Text(
-          bottomText,
-          textAlign: TextAlign.justify,
-          softWrap: true,
-          style: const TextStyle(
-              color: AppColors.darkBlue,
-              fontSize: 17,
-              fontWeight: FontWeight.w300,
-              wordSpacing: 3.5),
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Text(
+                  topText,
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.orange),
+                ),
+                const SizedBox(height: 25),
+                Text(
+                  bottomText,
+                  textAlign: TextAlign.justify,
+                  softWrap: true,
+                  style: const TextStyle(
+                    color: AppColors.darkBlue,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );

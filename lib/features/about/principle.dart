@@ -37,7 +37,7 @@ class Principle extends StatelessWidget {
                 child: Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -51,7 +51,7 @@ class Principle extends StatelessWidget {
               textAlign: TextAlign.justify,
               style: const TextStyle(
                   fontSize: 17,
-                  fontFamily: AppFonts.helveticaNeue,
+                  fontFamily: AppFonts.roboto,
                   fontWeight: FontWeight.w400),
             ),
           ),

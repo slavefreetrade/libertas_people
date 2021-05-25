@@ -15,7 +15,7 @@ class ButtonFullColorWithNextArrow extends StatelessWidget {
     return TextButton(
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
-          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30),
+          const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
         ),
         textStyle: MaterialStateProperty.all(
           const TextStyle(color: AppColors.white),
@@ -29,20 +29,26 @@ class ButtonFullColorWithNextArrow extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
+            flex: 2,
             child: Text(
               isFinalQuestion ? S.of(context).complete : S.of(context).next,
               style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
+              textAlign: TextAlign.start,
             ),
           ),
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.white,
-          )
+          const Flexible(
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.white,
+              size: 28,
+            ),
+          ),
         ],
       ),
     );
