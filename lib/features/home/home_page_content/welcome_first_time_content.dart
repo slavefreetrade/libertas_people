@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../generated/l10n.dart';
 import '../../../shared_ui_elements/buttons/button_orange_color.dart';
 import '../../../shared_ui_elements/images.dart';
@@ -63,7 +64,7 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
                 SizedBox(
                   height: 50,
                   width: 50,
-                  child: Image.asset(AppImages.i),
+                  child: SvgPicture.asset(AppImages.yesNo1Svg),
                 ),
                 const Spacer(),
                 Flexible(

@@ -3,10 +3,11 @@ class AppImages {
   static const String onBoarding1 = 'assets/onboarding-1.svg';
   static const String onBoarding2 = 'assets/onboarding-2.svg';
   static const String onBoarding3 = 'assets/onboarding-3.png';
-  static const String womenFallingInLineHoldingEachOther = 'assets/woman-falling-in-line-holding-each-other-1206059 1.jpg';
-  static const String group129 = 'assets/icons/Group 129.png';
+  static const String womenFallingInLineHoldingEachOther =
+      'assets/woman-falling-in-line-holding-each-other-1206059 1.jpg';
+  static const String yesNo2Svg = 'assets/icons/yes-no2.svg';
+  static const String yesNo1Svg = 'assets/icons/yes-no1.svg';
   static const String ima = 'assets/icons/ima.png';
-  static const String i = 'assets/icons/i.png';
   static const String im = 'assets/icons/im.png';
   static const String logoImage = 'assets/slavefreetrade_logo.png';
   static const String logoText = 'assets/slavefreetrade_logo_text.png';

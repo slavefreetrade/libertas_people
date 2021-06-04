@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:libertaspeople/features/survey/survey_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:libertaspeople/generated/l10n.dart';
@@ -39,7 +40,7 @@ class UnfinishedSurveyContent extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 50,
-                  child: Image.asset(AppImages.group129),
+                  child: SvgPicture.asset(AppImages.yesNo2Svg),
                 ),
                 Flexible(
                   child: Column(

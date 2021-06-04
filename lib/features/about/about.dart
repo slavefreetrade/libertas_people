@@ -86,17 +86,19 @@ class _AboutPageState extends State<AboutPage> {
                   primary: false,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(6),
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   crossAxisCount: 2,
-                  childAspectRatio: 1.8,
+                  childAspectRatio: 1.5,
                   children: getAboutData(context).map((principle) {
                     return TextButton(
                       style: ButtonStyle(
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                         backgroundColor: MaterialStateProperty.all(
                           Color(principle['color'] as int),
                         ),
@@ -117,38 +119,22 @@ class _AboutPageState extends State<AboutPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5, right: 5),
                         child: Row(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          // mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                // Text(
-                                //   principle['id'] as String,
-                                //   style: const TextStyle(
-                                //       color: AppColors.white,
-                                //       fontSize: 28,
-                                //       fontWeight: FontWeight.w300),
-                                // ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 4,
-                                    right: 4,
-                                  ),
-                                  child: Image.asset(
-                                    principle['image'] as String,
-                                    width: principle['image_size'] as double,
-                                  ),
-                                ),
-                              ],
+                            Center(
+                              child: Image.asset(
+                                principle['image'] as String,
+                                width: principle['image_size'] as double,
+                              ),
                             ),
+                            const SizedBox(width: 8),
                             Flexible(
                               child: Text(
                                 principle['title'] as String,
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: AppColors.white,
-                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
                                 ),
                                 softWrap: true,
                               ),

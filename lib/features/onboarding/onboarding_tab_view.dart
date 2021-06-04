@@ -41,7 +41,7 @@ class OnBoardingTabView extends StatelessWidget {
                 const SizedBox(height: 25),
                 Text(
                   bottomText,
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.left,
                   softWrap: true,
                   style: const TextStyle(
                     color: AppColors.darkBlue,

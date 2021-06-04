@@ -108,7 +108,7 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
                                 vertical: 30, horizontal: 20),
                             // height: height * 0.35,
                             child: Text(
-                              _question.display,
+                              formatQuestionText(_question.display),
                               style: const TextStyle(fontSize: 20),
                             ),
                           ),
@@ -189,6 +189,10 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
             _answer = {_question.questionId: newValue};
           }),
     );
+  }
+
+  String formatQuestionText(String text) {
+    return text.replaceAll('<br>', '\n').replaceAll('&nbsp;', ' ');
   }
 
   Future<bool> _onBackPressed(BuildContext context) {

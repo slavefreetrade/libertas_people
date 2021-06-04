@@ -185,10 +185,10 @@ class S {
     );
   }
 
-  /// `Answering to the following questions will not expose you to any risk or repercussion with your managers or employer.`
+  /// `Answering the following questions will not expose you to any risk or repercussion with your managers or employer.`
   String get pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations {
     return Intl.message(
-      'Answering to the following questions will not expose you to any risk or repercussion with your managers or employer.',
+      'Answering the following questions will not expose you to any risk or repercussion with your managers or employer.',
       name: 'pleaseAnswerFreelyBasedOnYourOwnExperiencesAndObservations',
       desc: '',
       args: [],
@@ -345,10 +345,10 @@ class S {
     );
   }
 
-  /// `Complete your Assessment`
+  /// `Complete Assessment`
   String get finishSurvey {
     return Intl.message(
-      'Complete your Assessment',
+      'Complete Assessment',
       name: 'finishSurvey',
       desc: '',
       args: [],
