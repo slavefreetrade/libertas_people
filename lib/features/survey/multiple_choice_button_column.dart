@@ -68,7 +68,7 @@ class _MultipleChoiceButtonColumnState
           ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-                side: const BorderSide(color: AppColors.darkBlue, width: 1),
+                side: const BorderSide(color: AppColors.darkBlue),
                 borderRadius: BorderRadius.circular(10)),
           ),
         ),

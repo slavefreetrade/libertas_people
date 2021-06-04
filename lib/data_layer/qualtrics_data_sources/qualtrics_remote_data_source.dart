@@ -38,7 +38,6 @@ class QualtricsRemoteDataSource {
         return SessionInfoModel.fromJson(
             jsonDecode(response.body)['result'] as Map<String, dynamic>);
       } else {
-        final reason = String.fromCharCodes(response.bodyBytes);
         throw Exception('@@@ Returned with Error code: ${response.statusCode}');
       }
     } on Exception catch (e) {
