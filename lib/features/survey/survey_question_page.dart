@@ -178,17 +178,14 @@ class _SurveyQuestionPageState extends State<SurveyQuestionPage> {
   }
 
   Widget _buildTextFieldAnswerWidget() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: TextField(
-          controller: _textAnswerController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
-          onChanged: (newValue) {
-            _answer = {_question.questionId: newValue};
-          }),
-    );
+    return TextField(
+        controller: _textAnswerController,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+        onChanged: (newValue) {
+          _answer = {_question.questionId: newValue};
+        });
   }
 
   String formatQuestionText(String text) {

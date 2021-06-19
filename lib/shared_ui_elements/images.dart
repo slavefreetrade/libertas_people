@@ -7,8 +7,8 @@ class AppImages {
       'assets/woman-falling-in-line-holding-each-other-1206059 1.jpg';
   static const String yesNo2Svg = 'assets/icons/yes-no2.svg';
   static const String yesNo1Svg = 'assets/icons/yes-no1.svg';
-  static const String ima = 'assets/icons/ima.png';
-  static const String im = 'assets/icons/im.png';
+  static const String ima = 'assets/icons/ima.svg';
+  static const String im = 'assets/icons/im.svg';
   static const String logoImage = 'assets/slavefreetrade_logo.png';
   static const String logoText = 'assets/slavefreetrade_logo_text.png';
   static const String thankYou = 'assets/iconthankyou.png';

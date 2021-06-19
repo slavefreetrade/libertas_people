@@ -40,10 +40,10 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
           children: [
             Row(
               children: [
-                SizedBox(
+                SvgPicture.asset(
+                  AppImages.ima,
                   height: 50,
                   width: 50,
-                  child: Image.asset(AppImages.ima),
                 ),
                 const Spacer(),
                 Flexible(
@@ -61,11 +61,15 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
             const SizedBox(height: 10),
             Row(
               children: [
-                SizedBox(
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                //   child:
+                SvgPicture.asset(
+                  AppImages.yesNo1Svg,
                   height: 50,
                   width: 50,
-                  child: SvgPicture.asset(AppImages.yesNo1Svg),
                 ),
+                // ),
                 const Spacer(),
                 Flexible(
                   flex: 20,
@@ -82,10 +86,10 @@ class _WelcomeFirstTimeContentState extends State<WelcomeFirstTimeContent> {
             const SizedBox(height: 10),
             Row(
               children: [
-                SizedBox(
+                SvgPicture.asset(
+                  AppImages.im,
                   height: 50,
                   width: 50,
-                  child: Image.asset(AppImages.im),
                 ),
                 const Spacer(),
                 Flexible(

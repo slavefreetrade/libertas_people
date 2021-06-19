@@ -655,10 +655,10 @@ class S {
     );
   }
 
-  /// `ACCESS TO GRIEVANCE RESOLUTION MECHANISMS:`
+  /// `ACCESS TO GRIEVANCE RESOLUTION MECHANISMS`
   String get accessToGrievanceResolutionMechanisms {
     return Intl.message(
-      'ACCESS TO GRIEVANCE RESOLUTION MECHANISMS:',
+      'ACCESS TO GRIEVANCE RESOLUTION MECHANISMS',
       name: 'accessToGrievanceResolutionMechanisms',
       desc: '',
       args: [],

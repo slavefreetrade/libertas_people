@@ -126,8 +126,8 @@ class _AboutPageState extends State<AboutPage> {
                                 width: principle['image_size'] as double,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            Flexible(
+                            const SizedBox(width: 5),
+                            Expanded(
                               child: Text(
                                 principle['title'] as String,
                                 textAlign: TextAlign.start,
@@ -137,6 +137,7 @@ class _AboutPageState extends State<AboutPage> {
                                   fontSize: 12,
                                 ),
                                 softWrap: true,
+                                overflow: TextOverflow.visible,
                               ),
                             ),
                           ],
